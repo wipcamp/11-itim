@@ -1,8 +1,7 @@
 import React from 'react'
-import Link from 'next/link'
+import ProgressBar from '../Core/Progressbar'
 import { Steps, Form, Input, Button } from 'antd'
 
-const Step = Steps.Step
 const FormItem = Form.Item
 const { TextArea } = Input
 
@@ -17,12 +16,14 @@ class question extends React.Component {
       '123123123',
       '12312566666666'
     ],
-    startIndex: 0
+    startIndex: 0,
+    pageIndex:0
   }
 
   handleNext = () => {
     this.setState({
-      startIndex: this.state.startIndex + 2
+      startIndex: this.state.startIndex + 2,
+      pageIndex: this.state.pageIndex +1
     })
   }
 
@@ -32,14 +33,7 @@ class question extends React.Component {
         <div className="container">
           <div className="row">
             <div className="col mt-5">
-              <Steps current={this.state.startIndex}>
-                <Step title="Finished" description="This is a description." />
-                <Step
-                  title="In Progress"
-                  description="This is a description."
-                />
-                <Step title="Waiting" description="This is a description." />
-              </Steps>
+              <ProgressBar current={this.state.pageIndex}/>
             </div>
           </div>
           <div className="row">
