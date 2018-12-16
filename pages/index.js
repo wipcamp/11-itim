@@ -1,7 +1,5 @@
 import React from 'react'
-import LoginPage from './../component/Login'
-
-
+import LoginPage from '../components/Login/index'
 
 class componentName extends React.Component {
   render () {
