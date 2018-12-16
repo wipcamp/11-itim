@@ -1,24 +1,15 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { Fragment } from 'react'
 import LoginFaceBook from './LoginFaceBook'
 
 class index extends React.Component {
-
-  state = {
-    authDetail:{}
-  }
   render () {
     return (
-      <div>
+      <Fragment>
         <LoginFaceBook />
-      </div>
+      </Fragment>
 
     )
   }
-}
-
-index.propTypes = {
-
 }
 
 export default index
