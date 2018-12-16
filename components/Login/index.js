@@ -5,7 +5,17 @@ class index extends React.Component {
   render () {
     return (
       <Fragment>
-        <LoginFaceBook />
+        <div className="container-fluid mt-5">
+          <div className="row mt-5">
+            <div className="col">
+            </div>
+            <div className="col">
+              <LoginFaceBook />
+            </div>
+            <div className="col">
+            </div>
+          </div>
+        </div>
       </Fragment>
 
     )
