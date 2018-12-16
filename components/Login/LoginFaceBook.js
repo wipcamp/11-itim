@@ -3,15 +3,21 @@ import { Button } from 'antd'
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 import axios from 'axios'
 import Cookies from 'js-cookie'
+import Router from 'next/router'
 
-const responseFacebook = (response) => {
+const responseFacebook = async (response) => {
   console.log(response)
-  axios.post('http://localhost:8882/api/login').then(function (tokenJWT) {
+  await axios.post('http://localhost:8882/api/login').then(function (tokenJWT) {
     console.log(tokenJWT)
     Cookies.set('tokenJWT', tokenJWT.data.token)
     console.log(Cookies.get('tokenJWT'))
+    changePage()
   })
 }
+const changePage = () => Router.push({
+  pathname: '/Register'
+})
+
 class LoginFaceBook extends React.Component {
   render () {
     return (

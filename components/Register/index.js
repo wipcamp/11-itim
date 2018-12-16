@@ -1,12 +1,12 @@
-import React from 'react'
+import React,{ Fragment } from 'react'
 import RegistrationForm from './RegistrationForm'
 
 class index extends React.Component {
   render () {
     return (
-      <div>
-        <RegistrationForm></RegistrationForm>
-      </div>
+      <Fragment>
+        <RegistrationForm />
+      </Fragment>
     )
   }
 }
