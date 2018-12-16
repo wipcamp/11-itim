@@ -23,7 +23,7 @@ class question extends React.Component {
 
   handleNext = () => {
     this.setState({
-      startIndex: this.state.startIndex + 2,
+      startIndex: this.state.startIndex + 3,
       pageIndex: this.state.pageIndex +1
     })
   }
@@ -41,9 +41,10 @@ class question extends React.Component {
             <div className="col-10 mt-5 mx-auto">
               <Form layout="vertical">
                 {this.state.question.map((data, key) => {
-                  if (key <= this.state.startIndex+3 && key > this.state.startIndex)
+                  if (key <= this.state.startIndex+2 && key >= this.state.startIndex)
                     return (
-                      <FormItem key={key} label={data}>
+                      <FormItem key={key}>
+                        <p>Q{data.id} : {data.q}</p>
                         <TextArea
                           placeholder="Autosize placeholder"
                           autosize={{ minRows: 4, maxRows: 10 }}
