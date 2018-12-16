@@ -1,5 +1,5 @@
 import React from 'react'
-import RegistrationForm from '../components/Register'
+import RegistrationForm from './../components/Login'
 
 class componentName extends React.Component {
   render () {
