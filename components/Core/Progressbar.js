@@ -5,12 +5,14 @@ const Step = Steps.Step
 const ProgressBar = (props) => (
   <Fragment>
     <Steps current={props.current}>
-      <Step title="Finished" description="This is a description." />
+      <Step title="ข้อมูลส่วนตัว" />
       <Step
-        title="In Progress"
-        description="This is a description."
+        title="คำถาม"
       />
-      <Step title="Waiting" description="This is a description." />
+      <Step
+        title="คำถาม"
+      />
+      <Step title="ยืนยัน" />
     </Steps>
   </Fragment>
 )
