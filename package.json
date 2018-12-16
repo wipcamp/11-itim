@@ -1,0 +1,15 @@
+{
+  "name": "11-itim",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/wipcamp/11-itim.git",
+  "author": "fame",
+  "license": "MIT",
+  "dependencies": {
+    "add": "^2.0.6",
+    "next": "^7.0.2",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "yarn": "^1.12.3"
+  }
+}
