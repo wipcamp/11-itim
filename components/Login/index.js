@@ -1,23 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Button } from 'antd'
-import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
-const responseFacebook = (response) => {
-  console.log(response)
-}
+import LoginFaceBook from './LoginFaceBook'
+
 class index extends React.Component {
+
+  state = {
+    authDetail:{}
+  }
   render () {
     return (
-      <div className="justify-content-center">
-        <FacebookLogin
-          className="ml-5"
-          appId="293604811359850"
-          autoLoad
-          callback={responseFacebook}
-          render={renderProps => (
-            <Button type="primary" onClick={renderProps.onClick}>This is my custom FB button</Button>
-          )}
-        />
+      <div>
+        <LoginFaceBook />
       </div>
 
     )

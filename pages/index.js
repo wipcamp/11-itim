@@ -1,18 +1,14 @@
 import React from 'react'
-import LoginPage from '../components/Login/index'
+import RegistrationForm from '../components/Register'
 
 class componentName extends React.Component {
   render () {
     return (
       <div>
-        <LoginPage></LoginPage>
+        <RegistrationForm />
       </div>
     )
   }
-}
-
-componentName.propTypes = {
-
 }
 
 export default componentName
