@@ -10,7 +10,7 @@ class question extends React.Component {
   state = {
     question: [],
     startIndex: 0,
-    pageIndex:0
+    pageIndex:1
   }
 
   componentDidMount = async () => {
