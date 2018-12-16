@@ -1,23 +1,24 @@
 import React from 'react'
 import ProgressBar from '../Core/Progressbar'
-import { Steps, Form, Input, Button } from 'antd'
+import { Form, Input, Button } from 'antd'
+import axios from 'axios'
 
 const FormItem = Form.Item
 const { TextArea } = Input
 
 class question extends React.Component {
   state = {
-    question: [
-      'น้องเอ๋ย หากเจ้าเปิดกล่องดวงใจ เจ้าคาดฝันว่าเจ้าจักพบกับสิ่งใด จงอธิบายถึงสิ่งที่เจ้าคาดฝัน',
-      'จงอธิบายกลวิธีการทำงานของ ‘Merge Sort 3 Ways’ ด้วยรหัสจำลอง (Pseudocode) หรือภาษาคอมพิวเตอร์ (Programming)',
-      'บัดนี้ได้เวลาแล้วที่กรุงลงกาจักเกิดการเปลี่ยนแปลง น้องเอ๋ย หากเจ้ามีโอกาสได้นำเสนอเทคโนโลยีใหม่ๆ เพียงหนึ่งอย่างแก่ชาวกรุงลงกา เจ้าเลือกที่จะนำเสนออะไร อย่างไร จงอธิบายถึงสิ่งนั้น',
-      'เมื่อกงล้อแห่งกาลเวลาได้ไหลย้อนกลับ เจ้าได้พบกับสงครามระหว่างเหล่ายักษาและวานร หากเจ้าต้องเลือกเพียงหนึ่งฝ่าย เจ้าจะเลือกสวามิภักดิ์ต่อฝ่ายใด และเจ้าจักทำเช่นไรให้ฝ่ายนั้นยอมรับในตัวเจ้า',
-      'ระหว่างการเดินทางเสาะหากล่องดวงใจ น้ำที่เคยมีมากกลับลดน้อยลงจนเหลือแค่พอประทังชีวิต เจ้าเลือกที่จะดื่มมันเสียเองเพียงผู้เดียว หรือยกมันให้กับพวกพ้วงของเจ้า เพราะเหตุใด',
-      '123123123',
-      '12312566666666'
-    ],
+    question: [],
     startIndex: 0,
     pageIndex:0
+  }
+
+  componentDidMount = async () => {
+    let queryQuestion = await axios.get('http://localhost:8882/api/questions')
+    console.log(queryQuestion)
+    this.setState({
+      question: queryQuestion.data.question
+    })
   }
 
   handleNext = () => {
