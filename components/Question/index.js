@@ -36,7 +36,7 @@ class question extends React.Component {
             <div className="col-10 mt-5 mx-auto">
               <Form layout="vertical">
                 {this.state.question.map((data, key) => (
-                  <FormItem label={data}>
+                  <FormItem key={key} label={data}>
                     <TextArea
                       placeholder="Autosize placeholder"
                       autosize={{ minRows: 4, maxRows: 10 }}
