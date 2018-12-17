@@ -46,6 +46,12 @@ class question extends React.Component {
       pageIndex: this.state.pageIndex + 1
     })
   }
+  handleBack = () => {
+    this.setState({
+      startIndex: this.state.startIndex - 3,
+      pageIndex: this.state.pageIndex - 1
+    })
+  }
 
   showAnser = (questionId) => {
     let answer =this.state.answers.find(ans=>ans.questionId==questionId)
@@ -90,8 +96,11 @@ class question extends React.Component {
                       </FormItem>
                     )
                 })}
-                <FormItem>
-                  <Button type="primary" onClick={() => this.handleNext()}>
+                <FormItem className='text-right'>
+                  <Button type="primary" onClick={() => this.handleBack()} className='m-3'>
+                    Back
+                  </Button>
+                  <Button type="primary" onClick={() => this.handleNext()} className='my-3 mr-0 ml-3'>
                     Next
                   </Button>
                 </FormItem>
