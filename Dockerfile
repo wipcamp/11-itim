@@ -1,3 +1,8 @@
-FROM busybox:latest
+FROM node:8.14-alpine
+WORKDIR /app
+COPY . .
+RUN yarn install
+RUN yarn build
 
-RUN echo "Hello Dockerfile !"
+EXPOSE 3000
+CMD ["yarn","start"]
