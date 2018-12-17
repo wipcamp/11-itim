@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import styled from 'styled-components'
 import { Card, Input, Button, Dropdown, Menu, Icon ,Radio } from 'antd'
+import InputText from '../Core/InputText'
 import api from '../../utils/api'
 import Cookies from 'js-cookie'
 class RegistrationForm extends React.Component {
@@ -129,115 +130,133 @@ const major = (
       <Fragment>
         <div className="container-fluid ">
         <div className="row">
-        <div className="col-1 mr-5 "></div>
-        <div className="col">
+        <div className="col-2 mr-3"></div>
+        <div className="col-8 mr-5">
         <Card title="" className="mt-2" >
-            <h3 className="font-weight-bold mb-2">ข้อมูลส่วนตัว</h3>
-            <div className="row mt-2">
-              <div className="col">
-              ชื่อจริง(ภาษาไทย) : <Input  type="text" name="fName_th"  onChange={({ target: { name, value }}) => this.handleFields(name, value)}   placeholder="ชื่อจริง"/>
+            <h3 className="font-weight-bold mb-4 ml-5">ข้อมูลส่วนตัว</h3>
+            <div className="row mt-2 text-right">
+              <div className="col-6 ">
+              ชื่อจริง( ไทย ) :<InputText className="col-6" 
+             type="text" 
+             name="fName_th"  
+             onChange={({ target: { name, value }}) => this.handleFields(name, value)}  
+              placeholder="ชื่อจริง"/>
               </div>
-              <div className="col">
-              นามสกุล(ภาษาไทย) : <Input  type="text" name="lName_th" onChange={({ target: { name, value }}) => this.handleFields(name, value)}   placeholder="นามสกุล"/>
-              </div>
-            </div>
-            <div className="row mt-2">
-              <div className="col">
-              ชื่อจริง(ภาษาอังกฤษ) : <Input  type="text" name="fName_eng" onChange={({ target: { name, value }}) => this.handleFields(name, value)}  placeholder="FirstName"/>
-              </div>
-              <div className="col">
-              ชื่อจริง(ภาษาอังกฤษ) : <Input  type="text" name="lName_eng" onChange={({ target: { name, value }}) => this.handleFields(name, value)}  placeholder="LastName"/>
+
+              <div className="col-6">
+              นามสกุล( ไทย ) : <InputText className="col-6"   type="text" name="lName_th" onChange={({ target: { name, value }}) => this.handleFields(name, value)}   placeholder="นามสกุล"/>
               </div>
             </div>
-            <div className="row mt-2">
-              <div className="col">
-              ชื่อเล่น : <Input style={{ width: 200}} type="text" name="nickname" onChange={({ target: { name, value }}) => this.handleFields(name, value)}  placeholder="ชื่อเล่น"/>
+            <div className="row mt-2 text-right">
+              <div className="col-6">
+              ชื่อจริง(ภาษาอังกฤษ) : <InputText className="col-6"  type="text" name="fName_eng" onChange={({ target: { name, value }}) => this.handleFields(name, value)}  placeholder="FirstName"/>
               </div>
-              <div className="col">
-                <Radio.Group value={this.state.registerDetail.gender} onChange={this.handleGender}>
-                  <Radio.Button value="Male">Male</Radio.Button>
-                  <Radio.Button value="Female">Female</Radio.Button>
+              <div className="col-6">
+              ชื่อจริง(ภาษาอังกฤษ) : <InputText className="col-6"  type="text" name="lName_eng" onChange={({ target: { name, value }}) => this.handleFields(name, value)}  placeholder="LastName"/>
+              </div>
+            </div>
+            <div className="row mt-2 text-right">
+              <div className="col-6">
+              ชื่อเล่น : <InputText className="col-6"  type="text" name="nickname" onChange={({ target: { name, value }}) => this.handleFields(name, value)}  placeholder="ชื่อเล่น"/>
+              </div>
+              <div className="col-6">
+              เพศ :  
+                <Radio.Group className="ml-2" value={this.state.registerDetail.gender} onChange={this.handleGender}>
+                  <Radio.Button className="px-5" value="Male">Male</Radio.Button>
+                  <Radio.Button className="px-5" value="Female">Female</Radio.Button>
               </Radio.Group>
               </div>
             </div>
 
-            <div className="row mt-2">
-              <div className="col">
-                <Input className="" type="date" name="DOB" onChange={({ target: { name, value }}) => this.handleFields(name, value)}  placeholder="TelNo(เบอร์โทร)"/>
+            <div className="row mt-2 text-right">
+              <div className="col-6">
+               วันเกิด : <InputText className="col-6" type="date" name="DOB" onChange={({ target: { name, value }}) => this.handleFields(name, value)}  placeholder="TelNo(เบอร์โทร)"/>
               </div>
               <div className="col">
+              ศาสนา : 
                 <Dropdown overlay={religion} >
-                  <Input className="" type="button" value={this.state.registerDetail.religion} disabled name="" placeholder=""/>
+                 <InputText className="col-6" type="button" value={this.state.registerDetail.religion} disabled name="" placeholder=""/>
                 </Dropdown >
               </div>
             </div>
-            <div className="row mt-2">
+            <div className="row mt-2 text-right">
               <div className="col">
-                <Input className="" type="text" name="citizenNo"  onChange={({ target: { name, value }}) => this.handleFields(name, value)}   placeholder="เลขบัตร"/>
+              เลขบัตรประชาชน : <InputText className="col-6" type="text" name="citizenNo"  onChange={({ target: { name, value }}) => this.handleFields(name, value)}   placeholder="เลขบัตร"/>
               </div>
               <div className="col">
               </div>
             </div>
-            <div className="row mt-2">
+            <div className="row mt-2 text-right">
               <div className="col-6">
-                <Input className="" type="text" name="congenrtalDisease"  onChange={({ target: { name, value }}) => this.handleFields(name, value)}   placeholder="โรคประจำตัว"/>
+              โรคประจำตัว :
+                <InputText className="col-6" type="text" name="congenrtalDisease"  onChange={({ target: { name, value }}) => this.handleFields(name, value)}   placeholder="โรคประจำตัว"/>
               </div>
-              <div className="col">
-                <Input className="" type="text" name="allergicDrug" onChange={({ target: { name, value }}) => this.handleFields(name, value)}   placeholder="ยาที่แพ้"/>
+              <div className="col-3">
+              ยาที่แพ้ :
+                <InputText className="col-8" type="text" name="allergicDrug" onChange={({ target: { name, value }}) => this.handleFields(name, value)}   placeholder="ยาที่แพ้"/>
               </div>
-              <div className="col">
-                <Input className="" type="text" name="allergicFood"  onChange={({ target: { name, value }}) => this.handleFields(name, value)}   placeholder="อาหารที่แพ้"/>
-              </div>
-            </div>
-            <h3 className="mt-3">ข้อมูลการติดต่อ</h3>
-            <div className="row mt-2">
-              <div className="col">
-                <Input className="" type="text" name="TelNo"  onChange={({ target: { name, value }}) => this.handleFields(name, value)}   placeholder="เบอร์นักเรียน"/>
-              </div>
-              <div className="col">
-                <Input className="" type="email" name="email"  onChange={({ target: { name, value }}) => this.handleFields(name, value)}   placeholder="email" value={this.state.registerDetail.email}/>
+              <div className="col-3">
+              อาหารที่แพ้ :
+                <InputText className="col-7" type="text" name="allergicFood"  onChange={({ target: { name, value }}) => this.handleFields(name, value)}   placeholder="อาหารที่แพ้"/>
               </div>
             </div>
-
-            <div className="row mt-2">
+            <h3 className="my-3 ml-5">ข้อมูลการติดต่อ</h3>
+            <div className="row mt-2 text-right">
               <div className="col">
-                <Input className="" type="text" name="guardian_telno"  onChange={({ target: { name, value }}) => this.handleFields(name, value)}   placeholder="เบอร์ผู้ปกครอง"/>
+              เบอร์นักเรียน :
+                <InputText className="col-6" type="text" name="TelNo"  onChange={({ target: { name, value }}) => this.handleFields(name, value)}   placeholder="เบอร์นักเรียน"/>
               </div>
               <div className="col">
-                <Input className="" type="text" name="guardian_relative"  onChange={({ target: { name, value }}) => this.handleFields(name, value)}   placeholder="ความเกี่ยวข้อง"/>
+              email :
+                <InputText className="col-6" type="email" name="email"  onChange={({ target: { name, value }}) => this.handleFields(name, value)}   placeholder="email" value={this.state.registerDetail.email}/>
               </div>
             </div>
 
-            <h3 className="mt-3">ข้อมูลการศึกษา</h3>
-            <div className="row mt-2">
+            <div className="row mt-2 text-right">
               <div className="col">
+              เบอร์ผู้ปกครอง :
+                <InputText className="col-6" type="text" name="guardian_telno"  onChange={({ target: { name, value }}) => this.handleFields(name, value)}   placeholder="เบอร์ผู้ปกครอง"/>
+              </div>
+              <div className="col">
+              ความเกี่ยวข้อง :
+                <InputText className="col-6" type="text" name="guardian_relative"  onChange={({ target: { name, value }}) => this.handleFields(name, value)}   placeholder="ความเกี่ยวข้อง"/>
+              </div>
+            </div>
+
+            <h3 className="my-3 ml-5">ข้อมูลการศึกษา</h3>
+            <div className="row mt-2 text-right">
+              <div className="col">
+              ชื่อสถานศึกษา :
                 <Dropdown overlay={schoolName}>
-                <Input className="" type="button" value={this.state.registerDetail.schoolname} placeholder="ระดับชั้น"/>
+                <InputText className="col-6" type="button" value={this.state.registerDetail.schoolname} placeholder="ชื่อสถานศึกษา"/>
                 </Dropdown>
               </div>
 
               <div className="col">
+              ระดับชั่น :
                 <Dropdown overlay={schoolGrade}>
-                  <Input className="" type="button" value={this.state.registerDetail.schoolGrade} placeholder="ระดับชั้น"/>
+                  <InputText className="col-6" type="button" value={this.state.registerDetail.schoolGrade} placeholder="ระดับชั้น"/>
                 </Dropdown>
               </div>
             </div>
 
-            <div className="row mt-2">
+            <div className="row mt-2 text-right">
               <div className="col">
+              สายการเรียน :
                 <Dropdown overlay={major}>
-                <Input className="" type="button" value={this.state.registerDetail.major} placeholder="ระดับชั้น"/>
+                <InputText className="col-6" type="button" value={this.state.registerDetail.major} placeholder="ระดับชั้น"/>
                 </Dropdown>
               </div>
-              <div className="col">
-                <Input className="" type="number"  onChange={({ target: { name, value }}) => this.handleFields(name, value)}   name="gpax" placeholder="gpax"/>
+              <div className="col text-right">
+              gpax :
+                <InputText className="col-2" type="number"  onChange={({ target: { name, value }}) => this.handleFields(name, value)}   name="gpax" placeholder="gpax"/>
               </div>
             </div>
-            <div className="row mt-2">
+            <div className="row mt-2 text-right">
               <div className="col">
               </div>
               <div className="col">
-                <Button className="mt-3" type="primary" onClick={this.handleNextButton}>Next</Button>
+                <Button className="mt-3 px-5 py-2" type="primary" onClick={this.handleNextButton}>Next</Button>
               </div>
             </div>
           </Card>
