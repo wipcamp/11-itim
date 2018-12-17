@@ -9,7 +9,6 @@ export default class Progressbar extends React.Component {
   }
   funcName = () => {
     let count =  Math.ceil(this.props.question.length / 3)
-    console.log(count)
     for (let index = 0; index < count; index++) {
       this.state.question.splice(index,count,'')
     }
