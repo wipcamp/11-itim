@@ -14,24 +14,23 @@ class question extends React.Component {
     answers: []
   }
   componentDidMount = async () => {
-    let queryQuestion = await axios.get(process.env.QUESTTION+'/questions')
+    let queryQuestion = await axios.get(process.env.QUESTTION + '/questions')
     console.log(queryQuestion)
     this.setState({
       question: queryQuestion.data.questions
     })
     for (let index = 0; index < this.state.question.length; index++) {
-      this.state.answers.push({questionId:index+1,ans:''})
+      this.state.answers.push({ questionId: index + 1, ans: '' })
     }
     console.log(this.state.answers)
-
   }
 
   handleFields = e => {
     const { answers } = this.state
     let answerText = e.target.value
     let questionId = e.target.id
-    let answering = answers.find((answer) => {
-      return answer.questionId==questionId
+    let answering = answers.find(answer => {
+      return answer.questionId == questionId
     })
     answering.ans = answerText
     const newAnswer = answers.splice(0)
@@ -53,8 +52,8 @@ class question extends React.Component {
     })
   }
 
-  showAnser = (questionId) => {
-    let answer =this.state.answers.find(ans=>ans.questionId==questionId)
+  showAnser = questionId => {
+    let answer = this.state.answers.find(ans => ans.questionId == questionId)
     if (answer) {
       return answer.ans
     }
@@ -96,13 +95,27 @@ class question extends React.Component {
                       </FormItem>
                     )
                 })}
-                <FormItem className='text-right'>
-                  <Button type="primary" onClick={() => this.handleBack()} className='m-3'>
-                    Back
-                  </Button>
-                  <Button type="primary" onClick={() => this.handleNext()} className='my-3 mr-0 ml-3'>
-                    Next
-                  </Button>
+                <FormItem>
+                  <div className="row">
+                    <div className="col text-left">
+                      <Button
+                        type="default"
+                        onClick={() => this.handleBack()}
+                        className="my-3 mr-auto px-5"
+                      >
+                        ย้อนกลับ
+                      </Button>
+                    </div>
+                    <div className="col text-right">
+                      <Button
+                        type="primary"
+                        onClick={() => this.handleNext()}
+                        className="my-3 mr-0 ml-auto px-5"
+                      >
+                        บันทึกและถัดไป
+                      </Button>
+                    </div>
+                  </div>
                 </FormItem>
               </Form>
             </div>
