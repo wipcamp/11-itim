@@ -2,19 +2,30 @@ import React, { Fragment } from 'react'
 import { Steps } from 'antd'
 
 const Step = Steps.Step
-const ProgressBar = (props) => (
-  <Fragment>
-    <Steps current={props.current}>
-      <Step title="ข้อมูลส่วนตัว" />
-      <Step
-        title="คำถาม"
-      />
-      <Step
-        title="คำถาม"
-      />
-      <Step title="ยืนยัน" />
-    </Steps>
-  </Fragment>
-)
 
-export default ProgressBar
+export default class Progressbar extends React.Component {
+  state = {
+    question: []
+  }
+  funcName = () => {
+    let count =  Math.ceil(this.props.question.length / 3)
+    console.log(count)
+    for (let index = 0; index < count; index++) {
+      this.state.question.splice(index,count,'')
+    }
+  }
+
+  render() {
+    return (
+      <Fragment>
+        <Steps current={this.props.current} onClick={this.funcName()}>
+          <Step title="ข้อมูลส่วนตัว" />
+          {this.state.question.map((data, key) => {
+            return <Step title="คำถาม" key={key} />
+          })}
+          <Step title="ยืนยัน" />
+        </Steps>
+      </Fragment>
+    )
+  }
+}
