@@ -20,6 +20,10 @@ class question extends React.Component {
     this.setState({
       question: queryQuestion.data.question
     })
+    for (let index = 0; index < this.state.question.length; index++) {
+      this.state.answers.push({questionId:index+1,ans:''})
+    }
+    console.log(this.state.answers)
   }
 
   handleFields = e => {
