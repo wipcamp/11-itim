@@ -84,7 +84,7 @@ class question extends React.Component {
                     return (
                       <FormItem key={key}>
                         <p>
-                          Q{data.id} : {data.content}
+                          คำถามที่ {data.id} : {data.content}
                         </p>
                         <TextArea
                           name="ans"
