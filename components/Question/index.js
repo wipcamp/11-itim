@@ -34,7 +34,7 @@ class question extends React.Component {
         <div className="container">
           <div className="row">
             <div className="col mt-5">
-              <ProgressBar current={this.state.pageIndex}/>
+              <ProgressBar current={this.state.pageIndex} question={this.state.question}/>
             </div>
           </div>
           <div className="row">
