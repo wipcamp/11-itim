@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react'
 import styled from 'styled-components'
 import { Card, Input, Button, Dropdown, Menu, Icon ,Radio } from 'antd'
-import axios from 'axios'
 import api from '../../utils/api'
 import Cookies from 'js-cookie'
 class RegistrationForm extends React.Component {
@@ -93,9 +92,6 @@ class RegistrationForm extends React.Component {
    const jasonRegisDetail = JSON.stringify(this.state.registerDetail)
   console.log(jasonRegisDetail)
   api.post('/register',jasonRegisDetail,JSON)
-  //  axios.post('http://localhost:8882/api/register').then(function (response) {
-  //   console.log(response);
-  // })
  }
 
   render () {
@@ -131,28 +127,31 @@ const major = (
     )
     return (
       <Fragment>
-        <div className="justify-content">
-          <Card title="" className="mt-2">
-            <h3 className="">ข้อมูลทั่วไป</h3>
+        <div className="container-fluid ">
+        <div className="row">
+        <div className="col-1 mr-5 "></div>
+        <div className="col">
+        <Card title="" className="mt-2" >
+            <h3 className="font-weight-bold mb-2">ข้อมูลส่วนตัว</h3>
             <div className="row mt-2">
               <div className="col">
-                <Input className="" type="text" name="fName_th"  onChange={({ target: { name, value }}) => this.handleFields(name, value)}   placeholder="ชื่อจริง"/>
+              ชื่อจริง(ภาษาไทย) : <Input  type="text" name="fName_th"  onChange={({ target: { name, value }}) => this.handleFields(name, value)}   placeholder="ชื่อจริง"/>
               </div>
               <div className="col">
-                <Input className="" type="text" name="lName_th" onChange={({ target: { name, value }}) => this.handleFields(name, value)}   placeholder="นามสกุล"/>
+              นามสกุล(ภาษาไทย) : <Input  type="text" name="lName_th" onChange={({ target: { name, value }}) => this.handleFields(name, value)}   placeholder="นามสกุล"/>
               </div>
             </div>
             <div className="row mt-2">
               <div className="col">
-                <Input className=" " type="text" name="fName_eng" onChange={({ target: { name, value }}) => this.handleFields(name, value)}  placeholder="FirstName"/>
+              ชื่อจริง(ภาษาอังกฤษ) : <Input  type="text" name="fName_eng" onChange={({ target: { name, value }}) => this.handleFields(name, value)}  placeholder="FirstName"/>
               </div>
               <div className="col">
-                <Input className="" type="text" name="lName_eng" onChange={({ target: { name, value }}) => this.handleFields(name, value)}  placeholder="LastName"/>
+              ชื่อจริง(ภาษาอังกฤษ) : <Input  type="text" name="lName_eng" onChange={({ target: { name, value }}) => this.handleFields(name, value)}  placeholder="LastName"/>
               </div>
             </div>
             <div className="row mt-2">
               <div className="col">
-                <Input className="" type="text" name="nickname" onChange={({ target: { name, value }}) => this.handleFields(name, value)}  placeholder="ชื่อเล่น"/>
+              ชื่อเล่น : <Input style={{ width: 200}} type="text" name="nickname" onChange={({ target: { name, value }}) => this.handleFields(name, value)}  placeholder="ชื่อเล่น"/>
               </div>
               <div className="col">
                 <Radio.Group value={this.state.registerDetail.gender} onChange={this.handleGender}>
@@ -241,7 +240,9 @@ const major = (
                 <Button className="mt-3" type="primary" onClick={this.handleNextButton}>Next</Button>
               </div>
             </div>
-          </Card>,
+          </Card>
+        </div>
+        </div>
         </div>
       </Fragment>
     )

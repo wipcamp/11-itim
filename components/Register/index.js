@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import RegistrationForm from './RegistrationForm'
 import Progressbar from './../Core/Progressbar'
 
@@ -10,12 +10,12 @@ class index extends React.Component {
   }
   render () {
     return (
-      <Fragment>
-        <div className="col mt-5">
+      <div>
+        <div className="col mt-5 container-fluid">
           <Progressbar current={this.state.pageIndex} question={this.state.question}/>
         </div>
         <RegistrationForm />
-      </Fragment>
+        </div>
     )
   }
 }
