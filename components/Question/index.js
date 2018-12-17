@@ -20,6 +20,10 @@ class question extends React.Component {
     this.setState({
       question: queryQuestion.data.question
     })
+    for (let index = 0; index < this.state.question.length; index++) {
+      this.state.answers.push({questionId:index+1,ans:''})
+    }
+    console.log(this.state.answers)
   }
 
   handleFields = e => {
@@ -40,6 +44,12 @@ class question extends React.Component {
     this.setState({
       startIndex: this.state.startIndex + 3,
       pageIndex: this.state.pageIndex + 1
+    })
+  }
+  handleBack = () => {
+    this.setState({
+      startIndex: this.state.startIndex - 3,
+      pageIndex: this.state.pageIndex - 1
     })
   }
 
@@ -86,8 +96,11 @@ class question extends React.Component {
                       </FormItem>
                     )
                 })}
-                <FormItem>
-                  <Button type="primary" onClick={() => this.handleNext()}>
+                <FormItem className='text-right'>
+                  <Button type="primary" onClick={() => this.handleBack()} className='m-3'>
+                    Back
+                  </Button>
+                  <Button type="primary" onClick={() => this.handleNext()} className='my-3 mr-0 ml-3'>
                     Next
                   </Button>
                 </FormItem>
