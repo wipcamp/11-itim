@@ -13,17 +13,17 @@ class question extends React.Component {
     pageIndex: 1,
     answers: []
   }
-
   componentDidMount = async () => {
-    let queryQuestion = await axios.get('http://localhost:8882/api/questions')
+    let queryQuestion = await axios.get(process.env.QUESTTION+'/questions')
     console.log(queryQuestion)
     this.setState({
-      question: queryQuestion.data.question
+      question: queryQuestion.data.questions
     })
     for (let index = 0; index < this.state.question.length; index++) {
       this.state.answers.push({questionId:index+1,ans:''})
     }
     console.log(this.state.answers)
+
   }
 
   handleFields = e => {
@@ -84,7 +84,7 @@ class question extends React.Component {
                     return (
                       <FormItem key={key}>
                         <p>
-                          Q{data.id} : {data.q}
+                          Q{data.id} : {data.content}
                         </p>
                         <TextArea
                           name="ans"

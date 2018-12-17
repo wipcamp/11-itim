@@ -8,12 +8,6 @@ import Router from 'next/router'
 
 const responseFacebook = async (response) => {
   console.log(response)
-  // await axios.post('http://localhost:8882/api/login').then(function (tokenJWT) {
-  //   console.log(tokenJWT)
-  //   Cookies.set('tokenJWT', tokenJWT.data.token)
-  //   console.log(Cookies.get('tokenJWT'))
-  //   changePage()
-  // })
   await axios.post(process.env.TEST + '/login').then(function (tokenJWT) {
     console.log(tokenJWT)
     Cookies.set('tokenJWT', tokenJWT.data.token)
