@@ -1,6 +1,7 @@
 import React from 'react'
 import ProgressBar from '../Core/Progressbar'
-import { Form, Input, Button } from 'antd'
+import { Form, Input } from 'antd'
+import Button from '../Core/Button'
 import axios from 'axios'
 
 const FormItem = Form.Item
@@ -98,20 +99,12 @@ class question extends React.Component {
                 <FormItem>
                   <div className="row">
                     <div className="col text-left">
-                      <Button
-                        type="default"
-                        onClick={() => this.handleBack()}
-                        className="my-3 mr-auto px-5"
-                      >
+                      <Button type='default' onClick={() => this.handleBack} className='px-5 ml-0'>
                         ย้อนกลับ
                       </Button>
                     </div>
                     <div className="col text-right">
-                      <Button
-                        type="primary"
-                        onClick={() => this.handleNext()}
-                        className="my-3 mr-0 ml-auto px-5"
-                      >
+                      <Button type='primary' onClick={() => this.handleNext} className='px-5 mr-0'>
                         บันทึกและถัดไป
                       </Button>
                     </div>
