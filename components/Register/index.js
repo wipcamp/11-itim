@@ -9,7 +9,7 @@ const DivBody = styled.div`
 
 const Register = props => (
   <DivBody visible={props.visible}>
-    <RegistrationForm setPageIndex={props.setPageIndex} />
+    <RegistrationForm setPageIndex={props.setPageIndex} setWipId={props.setWipId}/>
   </DivBody>
 )
 
