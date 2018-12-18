@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import RegisterPage from './../components/Register'
+import RegisterPage from '../components/Register'
 
 class Register extends React.Component {
   render () {

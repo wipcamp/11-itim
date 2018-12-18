@@ -9,10 +9,10 @@ import AuthService from '../../service/AuthService'
 const responseFacebook = async (response) => {
   await AuthService.login(response)
   let token = Cookies.get('tokenJWT')
+  console.log(token)
   if (token) {
-    changePage()
+    // changePage()
   } else {
-    ('WTF NO TOKEN')
   }
 }
 
@@ -22,9 +22,11 @@ const changePage = () => Router.push({
 
 class LoginFaceBook extends React.Component {
   componentDidMount () {
-    Router.push({
-      pathname: '/register'
-    })
+    if (Cookies.get('tokenJWT')) {
+      Router.push({
+        pathname: '/register'
+      })
+    }
   }
   render () {
     return (

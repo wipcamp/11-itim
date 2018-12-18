@@ -1,5 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
+
+import Cookies from 'js-cookie'
+import th_TH from 'antd/lib/locale-provider/th_TH'
 import {
   Card,
   Dropdown,
@@ -8,15 +11,12 @@ import {
   Radio,
   Form,
   LocaleProvider,
-  DatePicker
+  DatePicker,
+  Select
 } from 'antd'
-import Select from 'react-select'
-import Cookies from 'js-cookie'
-import th_TH from 'antd/lib/locale-provider/th_TH'
 import InputText from '../Core/InputText'
 import Button from '../Core/Button'
-import api from '../../utils/api'
-import { async } from 'rxjs/internal/scheduler/async';
+import RegisterService from '../../service/RegisterService'
 
 const DateFormat = 'DD/MM/YYYY'
 const FormItem = Form.Item
@@ -119,9 +119,10 @@ class RegistrationForm extends React.Component {
     })
   }
 
-  handleNextButton = event => {
+  handleNextButton = e => {
+    console.log('handle')
     const jasonRegisDetail = JSON.stringify(this.state.registerDetail)
-    api.post('/register', jasonRegisDetail, JSON)
+     RegisterService.sendRegister(jasonRegisDetail)
   }
 
   render() {
