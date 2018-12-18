@@ -1,6 +1,6 @@
-import { Button } from 'antd'
+import { Button as ButtonFromAntD } from 'antd'
 import styled from 'styled-components'
 
-const ButtonA = styled(Button)``
+const Button = styled(ButtonFromAntD)``
 
-export default ButtonA
+export default Button
