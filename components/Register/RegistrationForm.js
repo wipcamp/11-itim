@@ -1,7 +1,6 @@
 import React from 'react'
 
-import Cookies from '../../service/CookieService'
-import th_TH from 'antd/lib/locale-provider/th_TH'
+  import th_TH from 'antd/lib/locale-provider/th_TH'
 import {
   Card,
   Dropdown,
@@ -43,9 +42,9 @@ class RegistrationForm extends React.Component {
       school_id: '',
       school_level: '',
       school_major: '',
-      school_name:'',
       gpax: '',
       email: '',
+      school_name:'',
       wip_id:''
     },
     schoolOptions: [],
@@ -53,11 +52,13 @@ class RegistrationForm extends React.Component {
   }
 componentDidMount = async() => {
   const schoolname = await RegisterService.getSchoolname()
+  console.log(schoolname)
   this.getSchool(schoolname.data)
   this.getProfilefromDB()
 }
   getProfilefromDB = async()=>{
   const profile = await RegisterService.getProfile()
+  console.log(profile)
 
     this.setState({
       registerDetail:profile.data[0]
@@ -92,7 +93,7 @@ componentDidMount = async() => {
     this.setState({
       registerDetail: {
         ...registerDetail,
-        dob: dateString
+        dob: date && date.format('Y-M-D')
       }
     })
   }
@@ -124,9 +125,9 @@ componentDidMount = async() => {
     this.setState({
       registerDetail: {
         ...registerDetail,
-        school_id: schoolid
+        school_id: school,
+        school_name: schoolNameFromInput
       },
-      schoolname: schoolNameFromInput
     })
     console.log(this.state.schoolname)
   }
@@ -156,8 +157,7 @@ componentDidMount = async() => {
 
   }
   handlesendRegister = async() => {
-    const jasonRegisDetail = JSON.stringify(this.state.registerDetail)
-    await RegisterService.sendRegister(jasonRegisDetail)
+    await RegisterService.sendRegister(this.state.registerDetail)
   }
   
   render() {
@@ -224,8 +224,8 @@ componentDidMount = async() => {
                             placeholder="เลือกวันเกิด"
                             format={DateFormat}
                             defaultValue={
-                              this.state.registerDetail.DOB != ''
-                                ? this.state.registerDetail.DOB
+                              this.state.registerDetail.dob != ''
+                                ? this.state.registerDetail.dob
                                 : ''
                             }
                             onChange={this.handleDate}
