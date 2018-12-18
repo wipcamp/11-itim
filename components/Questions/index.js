@@ -1,5 +1,5 @@
 import React from 'react'
-import ProgressBar from '../Core/Progressbar'
+import ProgressBar from '../Core/ProgressBar'
 import { Form, Input } from 'antd'
 import Button from '../Core/Button'
 import axios from 'axios'
@@ -9,7 +9,7 @@ const { TextArea } = Input
 
 class question extends React.Component {
   state = {
-    question: [],
+    questions: [],
     startIndex: 0,
     pageIndex: 1,
     answers: []
@@ -17,9 +17,9 @@ class question extends React.Component {
   componentDidMount = async () => {
     let queryQuestion = await axios.get(process.env.QUESTION+'/api/questions')
     this.setState({
-      question: queryQuestion.data.questions
+      questions: queryQuestion.data.questions
     })
-    for (let index = 0; index < this.state.question.length; index++) {
+    for (let index = 0; index < this.state.questions.length; index++) {
       this.state.answers.push({ questionId: index + 1, ans_content: '' })
     }
   }
@@ -74,14 +74,14 @@ class question extends React.Component {
             <span style={{ fontSize: 18 }}>WIP ID: 110001</span>
               <ProgressBar
                 current={this.state.pageIndex}
-                question={this.state.question}
+                questions={this.state.questions}
               />
             </div>
           </div>
           <div className="row">
             <div className="col-10 mt-5 mx-auto">
               <Form layout="vertical">
-                {this.state.question.map((data, key) => {
+                {this.state.questions.map((data, key) => {
                   if (
                     key <= this.state.startIndex + 2 &&
                     key >= this.state.startIndex
