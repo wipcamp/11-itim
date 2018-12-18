@@ -42,7 +42,8 @@ class RegistrationForm extends React.Component {
       schoolGrade: '',
       major: '',
       gpax: '',
-      email: ''
+      email: '',
+      wip_id:''
     },
     schoolOptions:[],
     schoolname:''
@@ -50,10 +51,14 @@ class RegistrationForm extends React.Component {
 componentDidMount = async() => {
   const schoolname = await RegisterService.getSchoolname()
   this.getSchool(schoolname.data)
+  this.getProfilefromDB()
 }
-  getProfilefromDB =()=>{
+  getProfilefromDB = async()=>{
+  const profile = await RegisterService.getProfile()
+  console.log(profile)
+
     this.setState({
-      registerDetail:RegisterService.getProfile()
+      registerDetail:profile.data[0]
     })
   }
   getSchool= (schoolname)=>{
