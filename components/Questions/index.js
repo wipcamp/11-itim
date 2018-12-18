@@ -1,5 +1,5 @@
 import React from 'react'
-import axios from 'axios'
+import QuestionService from '../../service/QuestionService'
 import { Form, Input } from 'antd'
 import styled from 'styled-components'
 import Button from '../Core/Button'
@@ -19,7 +19,7 @@ class question extends React.Component {
     answers: []
   }
   componentDidMount = async () => {
-    let queryQuestion = await axios.get(process.env.QUESTION + '/api/questions')
+    let queryQuestion = await QuestionService.getAllQuestion()
     this.setState({
       questions: queryQuestion.data.questions
     })
