@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import LoginFaceBook from './LoginFaceBook'
 
-class index extends React.Component {
+class Login extends React.Component {
   render () {
     return (
       <Fragment>
@@ -22,4 +22,4 @@ class index extends React.Component {
   }
 }
 
-export default index
+export default Login

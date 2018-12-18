@@ -1,11 +1,11 @@
 import React from 'react'
 import RegistrationForm from './RegistrationForm'
-import Progressbar from './../Core/Progressbar'
+import ProgressBar from '../Core/ProgressBar'
 import axios from 'axios'
 
 class index extends React.Component {
   state = {
-    question: [],
+    questions: [],
     startIndex: 0,
     pageIndex: 0
   }
@@ -13,16 +13,16 @@ class index extends React.Component {
     let queryQuestion = await axios.get(process.env.QUESTION+'api/questions')
     console.log(queryQuestion)
     this.setState({
-      question: queryQuestion.data.question
+      questions: queryQuestion.data.question
     })
   }
   render() {
     return (
       <div className="container-fluid">
         <div className="container mt-5">
-          <Progressbar
+          <ProgressBar
             current={this.state.pageIndex}
-            question={this.state.question}
+            questions={this.state.questions}
           />
         </div>
         <RegistrationForm />

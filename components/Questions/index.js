@@ -1,25 +1,25 @@
 import React from 'react'
-import ProgressBar from '../Core/Progressbar'
-import { Form, Input } from 'antd'
-import Button from '../Core/Button'
 import axios from 'axios'
+import { Form, Input } from 'antd'
+import ProgressBar from '../Core/ProgressBar'
+import Button from '../Core/Button'
 
 const FormItem = Form.Item
 const { TextArea } = Input
 
 class question extends React.Component {
   state = {
-    question: [],
+    questions: [],
     startIndex: 0,
     pageIndex: 1,
     answers: []
   }
   componentDidMount = async () => {
-    let queryQuestion = await axios.get('http://127.0.0.1:8000/questions')
+    let queryQuestion = await axios.get(process.env.QUESTION+'/api/questions')
     this.setState({
-      question: queryQuestion.data.questions
+      questions: queryQuestion.data.questions
     })
-    for (let index = 0; index < this.state.question.length; index++) {
+    for (let index = 0; index < this.state.questions.length; index++) {
       this.state.answers.push({ questionId: index + 1, ans_content: '' })
     }
   }
@@ -56,10 +56,10 @@ class question extends React.Component {
    return this.state.answers.find(ans => ans.questionId == questionId)
   }
 
-  showAnser = questionId => {
+  showAnswer = questionId => {
     let answer = this.findAnswerByQuestionId(questionId)
     if (answer) {
-      return answer.ans_content
+      return answer.ans_content 
     }
     return undefined
   }
@@ -74,14 +74,14 @@ class question extends React.Component {
             <span style={{ fontSize: 18 }}>WIP ID: 110001</span>
               <ProgressBar
                 current={this.state.pageIndex}
-                question={this.state.question}
+                questions={this.state.questions}
               />
             </div>
           </div>
           <div className="row">
             <div className="col-10 mt-5 mx-auto">
               <Form layout="vertical">
-                {this.state.question.map((data, key) => {
+                {this.state.questions.map((data, key) => {
                   if (
                     key <= this.state.startIndex + 2 &&
                     key >= this.state.startIndex
@@ -96,7 +96,7 @@ class question extends React.Component {
                           onChange={this.handleFields}
                           autosize={{ minRows: 4, maxRows: 10 }}
                           id={data.id}
-                          value={this.showAnser(data.id)}
+                          value={this.showAnswer(data.id)}
                         />
                       </FormItem>
                     )
