@@ -1,5 +1,5 @@
-import api from '../utils/api'
 import Cookies from 'js-cookie'
+import api from '../utils/api'
 
 const AuthService = {
   login: async (request) => {
