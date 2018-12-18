@@ -15,7 +15,7 @@ class question extends React.Component {
     answers: []
   }
   componentDidMount = async () => {
-    let queryQuestion = await axios.get('http://127.0.0.1:8000/questions')
+    let queryQuestion = await axios.get(process.env.QUESTION+'/api/questions')
     this.setState({
       question: queryQuestion.data.questions
     })
@@ -59,7 +59,7 @@ class question extends React.Component {
   showAnser = questionId => {
     let answer = this.findAnswerByQuestionId(questionId)
     if (answer) {
-      return answer.ans_content
+      return answer.ans_content 
     }
     return undefined
   }
