@@ -5,6 +5,9 @@ const GlobalStyle = createGlobalStyle`
     background: #00B2FF !important;
     color: #fff !important;
   }
+  body{
+    font-family:'Sarabun', sans-serif !important;
+  }
 `
 
 export default GlobalStyle
