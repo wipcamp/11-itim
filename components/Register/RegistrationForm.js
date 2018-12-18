@@ -23,24 +23,27 @@ const FormItem = Form.Item
 class RegistrationForm extends React.Component {
   state = {
     registerDetail: {
-      fName_th: '',
-      lName_th: '',
-      fName_eng: '',
-      lName_eng: '',
+      fistname_th: '',
+      lastname_th: '',
+      fistname_en: '',
+      lastname_en: '',
       nickname: '',
       gender: '',
-      DOB: '',
+      dob: '',
       religion: '',
-      citizenNo: '',
-      congenrtalDisease: '',
-      allergicDrug: '',
-      allergicFood: '',
+      citizen_no: '',
+      cangenital_disease: '',
+      allergic_drug: '',
+      prefix_name:'',
+      allergic_food: '',
+      medical_approved:'',
       TelNo: '',
       guardian_telno: '',
       guardian_relative: '',
-      schoolid: '',
-      schoolGrade: '',
-      major: '',
+      school_id: '',
+      school_level: '',
+      school_major: '',
+      school_name:'',
       gpax: '',
       email: '',
       wip_id:''
@@ -55,11 +58,11 @@ componentDidMount = async() => {
 }
   getProfilefromDB = async()=>{
   const profile = await RegisterService.getProfile()
-  console.log(profile)
 
     this.setState({
       registerDetail:profile.data[0]
     })
+    console.log(this.state.registerDetail)
   }
   getSchool= (schoolname)=>{
    let schoolarray=[]
@@ -90,7 +93,7 @@ componentDidMount = async() => {
     this.setState({
       registerDetail:{
         ...registerDetail,
-        DOB: dateString
+        dob: dateString
       }
     })
   }
@@ -121,7 +124,7 @@ componentDidMount = async() => {
     this.setState({
       registerDetail:{
         ...registerDetail,
-        schoolid: schoolid
+        school_id: schoolid
       },
       schoolname: school
     });
@@ -131,7 +134,7 @@ componentDidMount = async() => {
     this.setState({
       registerDetail: {
         ...registerDetail,
-        schoolGrade: e.key
+        school_level: e.key
       }
     })
   }
@@ -140,17 +143,22 @@ componentDidMount = async() => {
     this.setState({
       registerDetail: {
         ...registerDetail,
-        major: e.key
+        school_major: e.key
       }
     })
   }
 
   handleNextButton = e => {
+  
     console.log('handle')
-    const jasonRegisDetail = JSON.stringify(this.state.registerDetail)
-     RegisterService.sendRegister(jasonRegisDetail)
-  }
+    this.handlesendRegister()
 
+  }
+  handlesendRegister = async() => {
+    const jasonRegisDetail = JSON.stringify(this.state.registerDetail)
+    await RegisterService.sendRegister(jasonRegisDetail)
+  }
+  
   render() {
     const schoolGradeOptions = (
       <Menu onClick={this.handleschoolGrade}>
@@ -192,13 +200,13 @@ componentDidMount = async() => {
                       <FormItem>
                         <InputText
                           onChange={({ target: { name, value }}) => this.handleFields(name, value)}
-                          name="fName_th"
+                          name="fistname_th"
                         />
                       </FormItem>
                       <FormItem>
                         <InputText
                           onChange={({ target: { name, value }}) => this.handleFields(name, value)}
-                          name="fName_eng"
+                          name="fistname_en"
                         />
                       </FormItem>
                       <FormItem>
@@ -221,7 +229,7 @@ componentDidMount = async() => {
                       <FormItem>
                         <InputText
                           onChange={({ target: { name, value }}) => this.handleFields(name, value)}
-                          name="citizenNo"
+                          name="citizen_no"
                         />
                       </FormItem>
                     </div>
@@ -239,13 +247,13 @@ componentDidMount = async() => {
                       <FormItem>
                         <InputText
                           onChange={({ target: { name, value }}) => this.handleFields(name, value)}
-                          name="lName_th"
+                          name="lastname_th"
                         />
                       </FormItem>
                       <FormItem>
                         <InputText
                           onChange={({ target: { name, value }}) => this.handleFields(name, value)}
-                          name="lName_eng"
+                          name="lastname_en"
                         />
                       </FormItem>
                       <FormItem>
@@ -300,7 +308,7 @@ componentDidMount = async() => {
                     </div>
                     <div className="col-6">
                       <FormItem>
-                        <InputText name="congenrtalDisease" onChange={({ target: { name, value }}) => this.handleFields(name, value)} placeholder="หากไม่มีให้ใส่ -" />
+                        <InputText name="cangenital_disease" onChange={({ target: { name, value }}) => this.handleFields(name, value)} placeholder="หากไม่มีให้ใส่ -" />
                       </FormItem>
                     </div>
                   </div>
@@ -315,7 +323,7 @@ componentDidMount = async() => {
                         <InputText
                           placeholder="หากไม่มีให้ใส่ -"
                           onChange={({ target: { name, value }}) => this.handleFields(name, value)}
-                          name="allergicFood"
+                          name="allergic_food"
                         />
                       </FormItem>
                     </div>
@@ -331,7 +339,7 @@ componentDidMount = async() => {
                         <InputText
                           placeholder="หากไม่มีให้ใส่ -"
                           onChange={({ target: { name, value }}) => this.handleFields(name, value)}
-                          name="allergicDrug"
+                          name="allergic_drug"
                         />
                       </FormItem>
                     </div>
@@ -387,7 +395,7 @@ componentDidMount = async() => {
                     <div className="col-8">
                       <FormItem>
                         <Select
-                        defaultValue={this.state.schoolname != '' ? this.state.schoolname : ''}
+                        defaultValue={this.state.school_name != '' ? this.state.school_name : ''}
                         onChange={this.handleChange}
                         options={this.state.schoolOptions.value}
                         placeholder="เลือก"
@@ -399,8 +407,8 @@ componentDidMount = async() => {
                             className="col-6"
                             type="text"
                             value={
-                              this.state.registerDetail.major != ''
-                                ? this.state.registerDetail.major
+                              this.state.registerDetail.school_major != ''
+                                ? this.state.registerDetail.school_major
                                 : ''
                             }
                             placeholder="เลือก"
@@ -422,10 +430,10 @@ componentDidMount = async() => {
                           <InputText
                             className="col-6"
                             type="text"
-                            name="schoolGrade"
+                            name="school_level"
                             value={
-                              this.state.registerDetail.schoolGrade != ''
-                                ? this.state.registerDetail.schoolGrade
+                              this.state.registerDetail.school_level != ''
+                                ? this.state.registerDetail.school_level
                                 : ''
                             }
                             placeholder="เลือก"
@@ -444,7 +452,7 @@ componentDidMount = async() => {
                   <Button
                     type="primary"
                     size="large"
-                    onClick={() => this.props.setPageIndex(1)}
+                    onClick={() => this.handleNextButton()}
                     className="px-5 mr-0"
                   >
                     บันทึกและถัดไป
