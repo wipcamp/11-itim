@@ -6,10 +6,11 @@ import Cookies from 'js-cookie'
 import api from '../../utils/api'
 import Router from 'next/router'
 
+let email
 const responseFacebook = async (response) => {
   console.log(response)
   console.log(response.accessToken)
-
+  email = response.email
   // try {
   //   await axios.post('http://localhost:8000/api/auth/login', {
   //     'provider_name': 'facebook',
@@ -38,6 +39,7 @@ const responseFacebook = async (response) => {
         if (token.data) {
           console.log(token)
           Cookies.set('tokenJWT', token.data.token)
+          Cookies.set('email', email)
           console.log('cokkide______' + Cookies.get('tokenJWT'))
           changePage()
         } else {
