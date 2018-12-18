@@ -15,7 +15,7 @@ const Navbar = (props) => (
         </div>
         <Profile display={props.state.wipid === 0 ? 'none' : 'block'} className="col-4 text-right">
           <Menu.Item>WIP ID: {props.state.wipid} </Menu.Item>
-          <Menu.Item>น้องไอติม</Menu.Item>
+          <Menu.Item>น้อง{props.state.nickname}</Menu.Item>
         </Profile>
       </div>
     </div>
