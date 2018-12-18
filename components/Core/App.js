@@ -8,7 +8,9 @@ class App extends React.Component {
   state = {
     questions: [],
     startIndex: 0,
-    pageIndex: 0
+    pageIndex: 0,
+    registerVisible:'none',
+    questionVisible: 'none'
   }
 
   componentDidMount = async () => {
@@ -16,12 +18,32 @@ class App extends React.Component {
     this.setState({
       questions: queryQuestion.data.questions
     })
+    this.handleChangePage()
   }
 
+  handleChangePage = () => {
+    if (this.state.pageIndex == 0) {
+      this.setState({
+        registerVisible: 'block',
+        queryQuestion: 'none'
+      })
+    }else if(this.state.pageIndex >= 1 && this.state.pageIndex <= Math.round(this.state.questions.length / 3)){
+      this.setState({
+        questionVisible: 'block',
+        registerVisible:'none'
+      })
+    }else{
+      this.setState({
+        registerVisible: 'none',
+        questionVisible: 'none'
+      })
+    }
+  }
   setPageIndex = async count => {
     this.setState({
-      pageIndex: this.state.pageIndex + count
+      pageIndex: await this.state.pageIndex + count
     })
+    this.handleChangePage()
   }
 
   render() {
@@ -32,10 +54,10 @@ class App extends React.Component {
           questions={this.state.questions}
         />
         <div className="mt-5">
-          <Register setPageIndex={this.setPageIndex} />
+          <Register visible={this.state.registerVisible} setPageIndex={this.setPageIndex} />
         </div>
         <div className="mt-5">
-          <Questions setPageIndex={this.setPageIndex} />
+          <Questions visible={this.state.questionVisible} setPageIndex={this.setPageIndex} />
         </div>
       </div>
     )

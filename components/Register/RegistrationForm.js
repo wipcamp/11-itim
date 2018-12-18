@@ -126,7 +126,7 @@ class RegistrationForm extends React.Component {
   }
 
   render() {
-    const schoolGrade = (
+    const schoolGradeOptions = (
       <Menu onClick={this.handleschoolGrade}>
         <Menu.Item key="ม.4">4</Menu.Item>
         <Menu.Item key="ม.5">5</Menu.Item>
@@ -392,7 +392,7 @@ class RegistrationForm extends React.Component {
                     </div>
                     <div className="col-8">
                       <FormItem>
-                        <Dropdown overlay={schoolGrade}>
+                        <Dropdown overlay={schoolGradeOptions}>
                           <InputText
                             className="col-6"
                             type="text"

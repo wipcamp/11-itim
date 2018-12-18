@@ -1,10 +1,15 @@
 import React from 'react'
 import axios from 'axios'
 import { Form, Input } from 'antd'
+import styled from 'styled-components'
 import Button from '../Core/Button'
 
 const FormItem = Form.Item
 const { TextArea } = Input
+
+const DivBody = styled.div`
+  display: ${props => props.visible};
+`
 
 class question extends React.Component {
   state = {
@@ -64,9 +69,18 @@ class question extends React.Component {
     return undefined
   }
 
+  nextStep = async() => {
+    const count = await this.handleNext()
+    this.props.setPageIndex(count)
+  }
+  backStep = async() => {
+    const count = await this.handleBack()
+    this.props.setPageIndex(count)
+  }
+
   render() {
     return (
-      <div className="container-fluid">
+      <DivBody visible={this.props.visible} className="container-fluid">
         <div className="container">
           <div className="row">
             <div className="col-10 mt-5 mx-auto">
@@ -97,7 +111,7 @@ class question extends React.Component {
                       <Button
                         type="default"
                         size="large"
-                        onClick={() => this.props.setPageIndex(this.handleBack())}
+                        onClick={() => this.backStep()}
                         className="px-5 ml-0"
                       >
                         ย้อนกลับ
@@ -107,7 +121,7 @@ class question extends React.Component {
                       <Button
                         type="primary"
                         size="large"
-                        onClick={() => this.props.setPageIndex(this.handleNext())}
+                        onClick={() => this.nextStep()}
                         className="px-5 mr-0"
                       >
                         ถัดไป
@@ -119,7 +133,7 @@ class question extends React.Component {
             </div>
           </div>
         </div>
-      </div>
+      </DivBody>
     )
   }
 }

@@ -1,12 +1,16 @@
 import React from 'react'
-import Cookies from 'js-cookie'
+import styled from 'styled-components'
 
-import QuestionService from '../../service/QuestionService'
 import RegistrationForm from './RegistrationForm'
-import ProgressBar from '../Core/ProgressBar'
 
-const Register = (props) => (
-  <RegistrationForm setPageIndex={props.setPageIndex} />
+const DivBody = styled.div`
+  display: ${props => props.visible};
+`
+
+const Register = props => (
+  <DivBody visible={props.visible}>
+    <RegistrationForm setPageIndex={props.setPageIndex} />
+  </DivBody>
 )
 
 export default Register
