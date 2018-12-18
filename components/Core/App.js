@@ -7,7 +7,6 @@ import QuestionService from '../../service/QuestionService'
 class App extends React.Component {
   state = {
     questions: [],
-    startIndex: 0,
     pageIndex: 0,
     registerVisible:'none',
     questionVisible: 'none'
@@ -32,7 +31,7 @@ class App extends React.Component {
         registerVisible: 'block',
         queryQuestion: 'none'
       })
-    }else if(this.state.pageIndex >= 1 && this.state.pageIndex <= Math.round(this.state.questions.length / 3)){
+    }else if(this.state.pageIndex >= 1 && this.state.pageIndex <= Math.ceil(this.state.questions.length / 3)){
       this.setState({
         questionVisible: 'block',
         registerVisible:'none'
