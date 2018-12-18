@@ -1,14 +1,12 @@
+import Cookies from 'js-cookie'
 import api from '../utils/api'
 
 const RegisterService = {
-  register: async (request) => {
-      await api.post('/register', {request}).then(function ({
-
-      })
-        
-   
+  sendRegister: async (request) => {
+    console.log('send')
+    // await api.put('/register', { request }).then(function (respons) {
+    //   Cookies.set('tokenJWT', respons.data.token)
+    // })
   }
-
 }
-
 export default RegisterService

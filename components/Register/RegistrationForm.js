@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import Cookies from 'js-cookie'
+import th_TH from 'antd/lib/locale-provider/th_TH'
 import {
   Card,
   Dropdown,
@@ -10,11 +12,9 @@ import {
   LocaleProvider,
   DatePicker
 } from 'antd'
-import th_TH from 'antd/lib/locale-provider/th_TH'
 import InputText from '../Core/InputText'
 import Button from '../Core/Button'
-import api from '../../utils/api'
-import Cookies from 'js-cookie'
+import RegisterService from '../../service/RegisterService'
 
 const DateFormat = 'DD/MM/YYYY'
 const FormItem = Form.Item
@@ -112,10 +112,10 @@ class RegistrationForm extends React.Component {
     })
   }
 
-  handleNextButton = event => {
+  handleNextButton = e => {
+    console.log('handle')
     const jasonRegisDetail = JSON.stringify(this.state.registerDetail)
-    console.log(jasonRegisDetail)
-    api.post('/register', jasonRegisDetail, JSON)
+     RegisterService.sendRegister(jasonRegisDetail)
   }
 
   render() {
@@ -424,7 +424,7 @@ class RegistrationForm extends React.Component {
                   <Button
                     type="primary"
                     size="large"
-                    onClick={() => this.handleNext}
+                    onClick={this.handleNextButton}
                     className="px-5 mr-0"
                   >
                     บันทึกและถัดไป

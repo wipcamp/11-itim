@@ -1,7 +1,9 @@
 import React from 'react'
+import Cookies from 'js-cookie'
+
+import QuestionService from '../../service/QuestionService'
 import RegistrationForm from './RegistrationForm'
-import ProgressBar from '../Core/ProgressBar'
-import axios from 'axios'
+import ProgressBar from '../Core/Progressbar'
 
 class index extends React.Component {
   state = {
@@ -10,10 +12,9 @@ class index extends React.Component {
     pageIndex: 0
   }
   componentDidMount = async () => {
-    let queryQuestion = await axios.get(process.env.QUESTION+'api/questions')
-    console.log(queryQuestion)
+    let queryQuestion = await QuestionService.getQuestion()
     this.setState({
-      questions: queryQuestion.data.question
+      questions: queryQuestion.data.questions
     })
   }
   render() {
