@@ -12,27 +12,31 @@ class App extends React.Component {
   }
 
   componentDidMount = async () => {
-    let queryQuestion = await axios.get(process.env.QUESTION+'/api/questions')
+    let queryQuestion = await axios.get(process.env.QUESTION + '/api/questions')
     this.setState({
       questions: queryQuestion.data.questions
     })
   }
 
-  setPageIndex = async(count) => {
+  setPageIndex = async count => {
     this.setState({
       pageIndex: this.state.pageIndex + count
     })
   }
 
-  render () {
+  render() {
     return (
-      <div>
+      <div className="container mt-5">
         <ProgressBar
           current={this.state.pageIndex}
           questions={this.state.questions}
         />
-        <Register setPageIndex={this.setPageIndex}/>
-        <Questions setPageIndex={this.setPageIndex}/>
+        <div className="mt-5">
+          <Register setPageIndex={this.setPageIndex} />
+        </div>
+        <div className="mt-5">
+          <Questions setPageIndex={this.setPageIndex} />
+        </div>
       </div>
     )
   }
