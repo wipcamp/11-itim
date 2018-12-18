@@ -10,11 +10,13 @@ import {
   LocaleProvider,
   DatePicker
 } from 'antd'
+import Select from 'react-select'
+import Cookies from 'js-cookie'
 import th_TH from 'antd/lib/locale-provider/th_TH'
 import InputText from '../Core/InputText'
 import Button from '../Core/Button'
 import api from '../../utils/api'
-import Cookies from 'js-cookie'
+import { async } from 'rxjs/internal/scheduler/async';
 
 const DateFormat = 'DD/MM/YYYY'
 const FormItem = Form.Item
@@ -42,7 +44,12 @@ class RegistrationForm extends React.Component {
       major: '',
       gpax: '',
       email: Cookies.get('email')
-    }
+    },
+    schoolOptions:[
+      { value: 'chocolate', label: 'Chocolate' },
+      { value: 'strawberry', label: 'Strawberry' },
+      { value: 'vanilla', label: 'Vanilla' }
+    ]
   }
   handleFields = (name, value) => {
     const { registerDetail } = this.state
@@ -84,14 +91,16 @@ class RegistrationForm extends React.Component {
     })
   }
 
-  handleschoolname = e => {
+  handleChange = async (data) => {
     const { registerDetail } = this.state
+    const school = await data.value
     this.setState({
-      registerDetail: {
+      registerDetail:{
         ...registerDetail,
-        schoolname: e.key
+        schoolname: school
       }
-    })
+    });
+    console.log(this.state.registerDetail);
   }
   handleschoolGrade = e => {
     const { registerDetail } = this.state
@@ -119,13 +128,6 @@ class RegistrationForm extends React.Component {
   }
 
   render() {
-    const schoolName = (
-      <Menu onClick={this.handleschoolname}>
-        <Menu.Item key="ZomPongSchool">ZomPongSchool</Menu.Item>
-        <Menu.Item key="ZomPongSchool">ZomPongSchool</Menu.Item>
-        <Menu.Item key="ZomPongSchool">ZomPongSchool</Menu.Item>
-      </Menu>
-    )
     const schoolGrade = (
       <Menu onClick={this.handleschoolGrade}>
         <Menu.Item key="ม.4">4</Menu.Item>
@@ -360,18 +362,12 @@ class RegistrationForm extends React.Component {
                     </div>
                     <div className="col-8">
                       <FormItem>
-                        <Dropdown overlay={schoolName}>
-                          <InputText
-                            className="col-6"
-                            type="text"
-                            value={
-                              this.state.registerDetail.schoolname != ''
-                                ? this.state.registerDetail.schoolname
-                                : ''
-                            }
-                            placeholder="เลือก"
-                          />
-                        </Dropdown>
+                        <Select
+                        defaultValue={this.state.registerDetail.schoolname != '' ? this.state.registerDetail.schoolname : ''}
+                        onChange={this.handleChange}
+                        options={this.state.schoolOptions}
+                        placeholder="เลือก"
+                        />
                       </FormItem>
                       <FormItem>
                         <Dropdown overlay={major}>
