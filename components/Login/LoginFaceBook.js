@@ -17,13 +17,13 @@ const responseFacebook = async (response) => {
 }
 
 const changePage = () => Router.push({
-  pathname: '/Register'
+  pathname: '/register'
 })
 
 class LoginFaceBook extends React.Component {
   componentDidMount () {
     Router.push({
-      pathname: '/Register'
+      pathname: '/register'
     })
   }
   render () {
