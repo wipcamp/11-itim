@@ -1,8 +1,8 @@
 import axios from 'axios'
-const url = process.env.PATH + '/api'
+const urlAuth = process.env.PATH_AUTH + '/api'
 const createInstance = (headers) => {
   return axios.create({
-    baseURL: url,
+    baseURL: urlAuth,
     headers
   })
 }

@@ -1,7 +1,6 @@
 import React from 'react'
-import styled from 'styled-components'
 
-import Cookies from 'js-cookie'
+import Cookies from '../../service/CookieService'
 import th_TH from 'antd/lib/locale-provider/th_TH'
 import {
   Card,
@@ -39,18 +38,39 @@ class RegistrationForm extends React.Component {
       TelNo: '',
       guardian_telno: '',
       guardian_relative: '',
-      schoolname: '',
+      schoolid: '',
       schoolGrade: '',
       major: '',
       gpax: '',
-      email: Cookies.get('email')
+      email: ''
     },
-    schoolOptions:[
-      { value: 'chocolate', label: 'Chocolate' },
-      { value: 'strawberry', label: 'Strawberry' },
-      { value: 'vanilla', label: 'Vanilla' }
-    ]
+    schoolOptions:[],
+    schoolname:''
   }
+componentDidMount = async() => {
+  const schoolname = await RegisterService.getSchoolname()
+  this.getSchool(schoolname.data)
+}
+  getProfilefromDB =()=>{
+    this.setState({
+      registerDetail:RegisterService.getProfile()
+    })
+  }
+  getSchool= (schoolname)=>{
+   let schoolarray=[]
+    for (let index = 0; index < schoolname.length; index++) {
+      schoolarray.splice(index,index+1,schoolname[index].school_name)
+    }
+    this.setState({
+      schoolOptions:[
+        {
+          value : schoolarray
+        }
+      ]
+    })
+    console.log(this.state.schoolOptions)
+  }
+
   handleFields = (name, value) => {
     const { registerDetail } = this.state
     this.setState({
@@ -96,8 +116,9 @@ class RegistrationForm extends React.Component {
     this.setState({
       registerDetail:{
         ...registerDetail,
-        schoolname: school
-      }
+        schoolid: schoolid
+      },
+      schoolname: school
     });
   }
   handleschoolGrade = e => {
@@ -361,9 +382,9 @@ class RegistrationForm extends React.Component {
                     <div className="col-8">
                       <FormItem>
                         <Select
-                        defaultValue={this.state.registerDetail.schoolname != '' ? this.state.registerDetail.schoolname : ''}
+                        defaultValue={this.state.schoolname != '' ? this.state.schoolname : ''}
                         onChange={this.handleChange}
-                        options={this.state.schoolOptions}
+                        options={this.state.schoolOptions.value}
                         placeholder="เลือก"
                         />
                       </FormItem>

@@ -1,9 +1,10 @@
 import axios from 'axios'
 // import api from '../utils/api'
+import apiReg from '../utils/apiRegService'
 
 const QuestionService = {
   getQuestion: async () => {
-    let queryQuestion = await axios.get('http://127.0.0.1:8001/api/questions')
+    let queryQuestion = apiReg.get('/questions')
     return queryQuestion
   }
 }

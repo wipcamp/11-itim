@@ -1,9 +1,8 @@
-import Cookies from 'js-cookie'
-import api from '../utils/api'
+import api from '../utils/apiRegService'
+import Cookies from './CookieService'
 
 const AuthService = {
   login: async (request) => {
-    let email
     try {
       await api.post('/auth/login', {
         'provider_name': 'facebook',
@@ -12,13 +11,8 @@ const AuthService = {
         .then(respons => {
           console.log(respons)
           if (respons) {
-            Cookies.remove('email')
-            Cookies.remove('tokenJWT')
-            Cookies.remove('wip_id')
-            email = request.email
-            Cookies.set('tokenJWT', respons.data.token)
-            Cookies.set('email', email)
-            Cookies.set('wip_id', respons.data.wip_id)
+            Cookies.setCookie('tokenJWT', respons.data.token)
+            Cookies.setCookie('wip_Id', respons.data.wip_id)
           } else {
           }
         })
