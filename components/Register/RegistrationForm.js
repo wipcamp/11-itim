@@ -1,6 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Card, Dropdown, Menu, Icon, Radio, Form, LocaleProvider,DatePicker } from 'antd'
+import {
+  Card,
+  Dropdown,
+  Menu,
+  Icon,
+  Radio,
+  Form,
+  LocaleProvider,
+  DatePicker
+} from 'antd'
 import th_TH from 'antd/lib/locale-provider/th_TH'
 import InputText from '../Core/InputText'
 import Button from '../Core/Button'
@@ -145,21 +154,37 @@ class RegistrationForm extends React.Component {
                     </div>
                     <div className="col-8">
                       <FormItem>
-                        <InputText />
+                        <InputText
+                          onChange={this.handleFields}
+                          name="fName_th"
+                        />
                       </FormItem>
                       <FormItem>
-                        <InputText />
+                        <InputText
+                          onChange={this.handleFields}
+                          name="fName_eng"
+                        />
                       </FormItem>
                       <FormItem>
-                        <InputText />
+                        <InputText
+                          onChange={this.handleFields}
+                          name="nickname"
+                        />
                       </FormItem>
                       <FormItem>
                         <LocaleProvider locale={th_TH}>
-                          <DatePicker placeholder="เลือกวันเกิด" />
+                          <DatePicker
+                            placeholder="เลือกวันเกิด"
+                            onChange={this.handleFields}
+                            name="DOB"
+                          />
                         </LocaleProvider>
                       </FormItem>
                       <FormItem>
-                        <InputText />
+                        <InputText
+                          onChange={this.handleFields}
+                          name="citizenNo"
+                        />
                       </FormItem>
                     </div>
                   </div>
@@ -174,10 +199,16 @@ class RegistrationForm extends React.Component {
                     </div>
                     <div className="col-8">
                       <FormItem>
-                        <InputText />
+                        <InputText
+                          onChange={this.handleFields}
+                          name="lName_th"
+                        />
                       </FormItem>
                       <FormItem>
-                        <InputText />
+                        <InputText
+                          onChange={this.handleFields}
+                          name="lName_eng"
+                        />
                       </FormItem>
                       <FormItem>
                         <Radio.Group
@@ -240,7 +271,11 @@ class RegistrationForm extends React.Component {
                     </div>
                     <div className="col-6">
                       <FormItem>
-                        <InputText placeholder="หากไม่มีให้ใส่ -" />
+                        <InputText
+                          placeholder="หากไม่มีให้ใส่ -"
+                          onChange={this.handleFields}
+                          name="allergicFood"
+                        />
                       </FormItem>
                     </div>
                   </div>
@@ -252,7 +287,11 @@ class RegistrationForm extends React.Component {
                     </div>
                     <div className="col-6">
                       <FormItem>
-                        <InputText placeholder="หากไม่มีให้ใส่ -" />
+                        <InputText
+                          placeholder="หากไม่มีให้ใส่ -"
+                          onChange={this.handleFields}
+                          name="allergicDrug"
+                        />
                       </FormItem>
                     </div>
                   </div>
@@ -268,10 +307,13 @@ class RegistrationForm extends React.Component {
                     </div>
                     <div className="col-8">
                       <FormItem>
-                        <InputText />
+                        <InputText onChange={this.handleFields} name="TelNo" />
                       </FormItem>
                       <FormItem>
-                        <InputText />
+                        <InputText
+                          onChange={this.handleFields}
+                          name="guardian_telno"
+                        />
                       </FormItem>
                     </div>
                   </div>
@@ -284,48 +326,10 @@ class RegistrationForm extends React.Component {
                     </div>
                     <div className="col-8">
                       <FormItem>
-                        <InputText />
+                        <InputText onChange={this.handleFields} name="email" value={this.state.registerDetail.email != '' ? this.state.registerDetail.email : ''}/>
                       </FormItem>
                       <FormItem>
-                        <InputText />
-                      </FormItem>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-4">
-                  <div className="row">
-                    <div className="col-6 text-right">
-                      <FormItem>โรคประจำตัว:</FormItem>
-                    </div>
-                    <div className="col-6">
-                      <FormItem>
-                        <InputText placeholder="หากไม่มีให้ใส่ -" />
-                      </FormItem>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-4">
-                  <div className="row">
-                    <div className="col-6 text-right">
-                      <FormItem>อาหารที่แพ้:</FormItem>
-                    </div>
-                    <div className="col-6">
-                      <FormItem>
-                        <InputText placeholder="หากไม่มีให้ใส่ -" />
-                      </FormItem>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-4">
-                  <div className="row">
-                    <div className="col-6 text-right">
-                      <FormItem>ยาที่แพ้:</FormItem>
-                    </div>
-                    <div className="col-6">
-                      <FormItem>
-                        <InputText placeholder="หากไม่มีให้ใส่ -" />
+                        <InputText onChange={this.handleFields} name="guardian_relative"/>
                       </FormItem>
                     </div>
                   </div>
