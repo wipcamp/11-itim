@@ -12,7 +12,7 @@ const responseFacebook = async (response) => {
   if (token) {
     changePage()
   } else {
-    console.log('WTF NO TOKEN')
+    ('WTF NO TOKEN')
   }
 }
 

@@ -17,7 +17,6 @@ const AuthService = {
             Cookies.set('tokenJWT', respons.data.token)
             Cookies.set('email', email)
           } else {
-            console.log('somthing worng')
           }
         })
     } catch (error) {

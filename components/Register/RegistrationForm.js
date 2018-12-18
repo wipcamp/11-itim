@@ -59,7 +59,6 @@ class RegistrationForm extends React.Component {
         [name]: value
       }
     })
-    console.log(this.state)
   }
   handleDate = (date, dateString) => {
     const { registerDetail } = this.state
@@ -100,7 +99,6 @@ class RegistrationForm extends React.Component {
         schoolname: school
       }
     });
-    console.log(this.state.registerDetail);
   }
   handleschoolGrade = e => {
     const { registerDetail } = this.state
@@ -123,7 +121,6 @@ class RegistrationForm extends React.Component {
 
   handleNextButton = event => {
     const jasonRegisDetail = JSON.stringify(this.state.registerDetail)
-    console.log(jasonRegisDetail)
     api.post('/register', jasonRegisDetail, JSON)
   }
 
