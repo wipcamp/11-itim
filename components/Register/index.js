@@ -3,7 +3,7 @@ import Cookies from 'js-cookie'
 
 import QuestionService from '../../service/QuestionService'
 import RegistrationForm from './RegistrationForm'
-import ProgressBar from '../Core/Progressbar'
+import ProgressBar from '../Core/ProgressBar'
 
 class index extends React.Component {
   state = {

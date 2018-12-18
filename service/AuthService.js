@@ -9,13 +9,16 @@ const AuthService = {
         'provider_name': 'facebook',
         'provider_id': request.userID,
         'accessToken': request.accessToken })
-        .then(function (respons) {
+        .then(respons => {
+          console.log(respons)
           if (respons) {
             Cookies.remove('email')
             Cookies.remove('tokenJWT')
+            Cookies.remove('wip_id')
             email = request.email
             Cookies.set('tokenJWT', respons.data.token)
             Cookies.set('email', email)
+            Cookies.set('wip_id', respons.data.wip_id)
           } else {
           }
         })
