@@ -15,7 +15,7 @@ class question extends React.Component {
     answers: []
   }
   componentDidMount = async () => {
-    let queryQuestion = await axios.get(process.env.QUESTION+'/api/questions')
+    let queryQuestion = await axios.get('http://127.0.0.1:8001/api/questions')
     this.setState({
       questions: queryQuestion.data.questions
     })
