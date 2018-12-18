@@ -63,7 +63,7 @@ componentDidMount = async() => {
     this.setState({
       registerDetail:profile.data[0]
     })
-    this.props.setWipId(this.state.registerDetail.wip_id,this.state.registerDetail.nickname)
+    await this.props.setWipId(this.state.registerDetail.wip_id, this.state.registerDetail.nickname)
   }
   getSchool = async schoolname => {
     let newSelectOptions = []
@@ -158,6 +158,7 @@ componentDidMount = async() => {
   }
   handlesendRegister = async() => {
     await RegisterService.sendRegister(this.state.registerDetail)
+    await this.props.setWipId(this.state.registerDetail.wip_id, this.state.registerDetail.nickname)
     this.props.setPageIndex(1)
   }
   
