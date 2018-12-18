@@ -10,9 +10,9 @@ import {
   Radio,
   Form,
   LocaleProvider,
-  DatePicker,
-  Select
+  DatePicker
 } from 'antd'
+import Select from 'react-select'
 import InputText from '../Core/InputText'
 import Button from '../Core/Button'
 import RegisterService from '../../service/RegisterService'
@@ -44,31 +44,30 @@ class RegistrationForm extends React.Component {
       gpax: '',
       email: ''
     },
-    schoolOptions:[],
-    schoolname:''
+    schoolOptions: [],
+    schoolname: ''
   }
-componentDidMount = async() => {
-  const schoolname = await RegisterService.getSchoolname()
-  this.getSchool(schoolname.data)
-}
-  getProfilefromDB =()=>{
+  componentDidMount = async () => {
+    const schoolname = await RegisterService.getSchoolname()
+    this.getSchool(schoolname.data)
+  }
+  getProfilefromDB = () => {
     this.setState({
-      registerDetail:RegisterService.getProfile()
+      registerDetail: RegisterService.getProfile()
     })
   }
-  getSchool= (schoolname)=>{
-   let schoolarray=[]
+  getSchool = async schoolname => {
+    let newSelectOptions = []
     for (let index = 0; index < schoolname.length; index++) {
-      schoolarray.splice(index,index+1,schoolname[index].school_name)
+      newSelectOptions.push({
+        id: index,
+        value: schoolname[index].school_name,
+        label: schoolname[index].school_name
+      })
     }
-    this.setState({
-      schoolOptions:[
-        {
-          value : schoolarray
-        }
-      ]
+    await this.setState({
+      schoolOptions: newSelectOptions
     })
-    console.log(this.state.schoolOptions)
   }
 
   handleFields = (name, value) => {
@@ -83,7 +82,7 @@ componentDidMount = async() => {
   handleDate = (date, dateString) => {
     const { registerDetail } = this.state
     this.setState({
-      registerDetail:{
+      registerDetail: {
         ...registerDetail,
         DOB: dateString
       }
@@ -110,16 +109,18 @@ componentDidMount = async() => {
     })
   }
 
-  handleChange = async (data) => {
+  handleChange = async data => {
     const { registerDetail } = this.state
-    const school = await data.value
+    const school = await data.id+1
+    const schoolNameFromInput = data.value
     this.setState({
-      registerDetail:{
+      registerDetail: {
         ...registerDetail,
-        schoolid: schoolid
+        schoolid: school
       },
-      schoolname: school
-    });
+      schoolname: schoolNameFromInput
+    })
+    console.log(this.state.schoolname)
   }
   handleschoolGrade = e => {
     const { registerDetail } = this.state
@@ -143,7 +144,7 @@ componentDidMount = async() => {
   handleNextButton = e => {
     console.log('handle')
     const jasonRegisDetail = JSON.stringify(this.state.registerDetail)
-     RegisterService.sendRegister(jasonRegisDetail)
+    RegisterService.sendRegister(jasonRegisDetail)
   }
 
   render() {
@@ -186,19 +187,25 @@ componentDidMount = async() => {
                     <div className="col-8">
                       <FormItem>
                         <InputText
-                          onChange={({ target: { name, value }}) => this.handleFields(name, value)}
+                          onChange={({ target: { name, value } }) =>
+                            this.handleFields(name, value)
+                          }
                           name="fName_th"
                         />
                       </FormItem>
                       <FormItem>
                         <InputText
-                          onChange={({ target: { name, value }}) => this.handleFields(name, value)}
+                          onChange={({ target: { name, value } }) =>
+                            this.handleFields(name, value)
+                          }
                           name="fName_eng"
                         />
                       </FormItem>
                       <FormItem>
                         <InputText
-                          onChange={({ target: { name, value }}) => this.handleFields(name, value)}
+                          onChange={({ target: { name, value } }) =>
+                            this.handleFields(name, value)
+                          }
                           name="nickname"
                         />
                       </FormItem>
@@ -207,15 +214,21 @@ componentDidMount = async() => {
                           <DatePicker
                             placeholder="เลือกวันเกิด"
                             format={DateFormat}
-                            defaultValue={this.state.registerDetail.DOB != '' ? this.state.registerDetail.DOB : ''}
-                            onChange={ this.handleDate}
+                            defaultValue={
+                              this.state.registerDetail.DOB != ''
+                                ? this.state.registerDetail.DOB
+                                : ''
+                            }
+                            onChange={this.handleDate}
                           />
                         </LocaleProvider>
                       </FormItem>
 
                       <FormItem>
                         <InputText
-                          onChange={({ target: { name, value }}) => this.handleFields(name, value)}
+                          onChange={({ target: { name, value } }) =>
+                            this.handleFields(name, value)
+                          }
                           name="citizenNo"
                         />
                       </FormItem>
@@ -233,25 +246,27 @@ componentDidMount = async() => {
                     <div className="col-8">
                       <FormItem>
                         <InputText
-                          onChange={({ target: { name, value }}) => this.handleFields(name, value)}
+                          onChange={({ target: { name, value } }) =>
+                            this.handleFields(name, value)
+                          }
                           name="lName_th"
                         />
                       </FormItem>
                       <FormItem>
                         <InputText
-                          onChange={({ target: { name, value }}) => this.handleFields(name, value)}
+                          onChange={({ target: { name, value } }) =>
+                            this.handleFields(name, value)
+                          }
                           name="lName_eng"
                         />
                       </FormItem>
                       <FormItem>
-                        <Radio.Group
-                          value={this.state.registerDetail.gender}
-                        >
+                        <Radio.Group value={this.state.registerDetail.gender}>
                           <Radio.Button
                             size="large"
                             className="px-5"
                             value="Male"
-                            name ="Male"
+                            name="Male"
                             onClick={this.handleGender}
                           >
                             ชาย
@@ -295,7 +310,13 @@ componentDidMount = async() => {
                     </div>
                     <div className="col-6">
                       <FormItem>
-                        <InputText name="congenrtalDisease" onChange={({ target: { name, value }}) => this.handleFields(name, value)} placeholder="หากไม่มีให้ใส่ -" />
+                        <InputText
+                          name="congenrtalDisease"
+                          onChange={({ target: { name, value } }) =>
+                            this.handleFields(name, value)
+                          }
+                          placeholder="หากไม่มีให้ใส่ -"
+                        />
                       </FormItem>
                     </div>
                   </div>
@@ -309,7 +330,9 @@ componentDidMount = async() => {
                       <FormItem>
                         <InputText
                           placeholder="หากไม่มีให้ใส่ -"
-                          onChange={({ target: { name, value }}) => this.handleFields(name, value)}
+                          onChange={({ target: { name, value } }) =>
+                            this.handleFields(name, value)
+                          }
                           name="allergicFood"
                         />
                       </FormItem>
@@ -325,7 +348,9 @@ componentDidMount = async() => {
                       <FormItem>
                         <InputText
                           placeholder="หากไม่มีให้ใส่ -"
-                          onChange={({ target: { name, value }}) => this.handleFields(name, value)}
+                          onChange={({ target: { name, value } }) =>
+                            this.handleFields(name, value)
+                          }
                           name="allergicDrug"
                         />
                       </FormItem>
@@ -343,11 +368,18 @@ componentDidMount = async() => {
                     </div>
                     <div className="col-8">
                       <FormItem>
-                        <InputText onChange={({ target: { name, value }}) => this.handleFields(name, value)} name="TelNo" />
+                        <InputText
+                          onChange={({ target: { name, value } }) =>
+                            this.handleFields(name, value)
+                          }
+                          name="TelNo"
+                        />
                       </FormItem>
                       <FormItem>
                         <InputText
-                          onChange={({ target: { name, value }}) => this.handleFields(name, value)}
+                          onChange={({ target: { name, value } }) =>
+                            this.handleFields(name, value)
+                          }
                           name="guardian_telno"
                         />
                       </FormItem>
@@ -362,10 +394,25 @@ componentDidMount = async() => {
                     </div>
                     <div className="col-8">
                       <FormItem>
-                        <InputText onChange={({ target: { name, value }}) => this.handleFields(name, value)} name="email" value={this.state.registerDetail.email != '' ? this.state.registerDetail.email : ''}/>
+                        <InputText
+                          onChange={({ target: { name, value } }) =>
+                            this.handleFields(name, value)
+                          }
+                          name="email"
+                          value={
+                            this.state.registerDetail.email != ''
+                              ? this.state.registerDetail.email
+                              : ''
+                          }
+                        />
                       </FormItem>
                       <FormItem>
-                        <InputText onChange={({ target: { name, value }}) => this.handleFields(name, value)} name="guardian_relative"/>
+                        <InputText
+                          onChange={({ target: { name, value } }) =>
+                            this.handleFields(name, value)
+                          }
+                          name="guardian_relative"
+                        />
                       </FormItem>
                     </div>
                   </div>
@@ -382,10 +429,14 @@ componentDidMount = async() => {
                     <div className="col-8">
                       <FormItem>
                         <Select
-                        defaultValue={this.state.schoolname != '' ? this.state.schoolname : ''}
-                        onChange={this.handleChange}
-                        options={this.state.schoolOptions.value}
-                        placeholder="เลือก"
+                          defaultValue={
+                            this.state.schoolname != ''
+                              ? this.state.schoolname
+                              : ''
+                          }
+                          onChange={this.handleChange}
+                          options={this.state.schoolOptions}
+                          placeholder="เลือก"
                         />
                       </FormItem>
                       <FormItem>
@@ -428,7 +479,12 @@ componentDidMount = async() => {
                         </Dropdown>
                       </FormItem>
                       <FormItem>
-                        <InputText  name="gpax" onChange={({ target: { name, value }}) => this.handleFields(name, value)}/>
+                        <InputText
+                          name="gpax"
+                          onChange={({ target: { name, value } }) =>
+                            this.handleFields(name, value)
+                          }
+                        />
                       </FormItem>
                     </div>
                   </div>
