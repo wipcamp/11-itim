@@ -1,6 +1,8 @@
 import React from 'react'
 import App, { Container } from 'next/app'
 import 'antd/dist/antd.css'
+import GlobalStyle from '../components/Core/Globalstyle'
+
 
 export default class MyApp extends App {
   static async getInitialProps({ Component, router, ctx }) {
@@ -18,6 +20,7 @@ export default class MyApp extends App {
 
     return (
       <Container>
+        <GlobalStyle />
         <Component {...pageProps} />
       </Container>
     )
