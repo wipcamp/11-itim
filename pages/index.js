@@ -1,11 +1,11 @@
 import React from 'react'
-import LoginPage from './../components/Login'
+import App from './../components/Core/App'
 
 class componentName extends React.Component {
   render () {
     return (
       <div>
-        <LoginPage />
+        <App />
       </div>
     )
   }
