@@ -1,14 +1,8 @@
 import React, { Fragment } from 'react'
-import RegisterPage from '../components/Register'
+import App from '../components/Core/App'
 
-class Register extends React.Component {
-  render () {
-    return (
-      <Fragment>
-        <RegisterPage/>
-      </Fragment>
-    )
-  }
-}
+const Register = () => (
+  <App />
+)
 
 export default Register

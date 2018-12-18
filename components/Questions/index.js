@@ -1,11 +1,15 @@
 import React from 'react'
 import axios from 'axios'
 import { Form, Input } from 'antd'
-import ProgressBar from '../Core/ProgressBar'
+import styled from 'styled-components'
 import Button from '../Core/Button'
 
 const FormItem = Form.Item
 const { TextArea } = Input
+
+const DivBody = styled.div`
+  display: ${props => props.visible};
+`
 
 class question extends React.Component {
   state = {
@@ -15,7 +19,7 @@ class question extends React.Component {
     answers: []
   }
   componentDidMount = async () => {
-    let queryQuestion = await axios.get('http://127.0.0.1:8001/api/questions')
+    let queryQuestion = await axios.get(process.env.QUESTION + '/api/questions')
     this.setState({
       questions: queryQuestion.data.questions
     })
@@ -42,41 +46,42 @@ class question extends React.Component {
   handleNext = () => {
     this.setState({
       startIndex: this.state.startIndex + 3,
-      pageIndex: this.state.pageIndex + 1
     })
+    return 1
   }
   handleBack = () => {
     this.setState({
       startIndex: this.state.startIndex - 3,
-      pageIndex: this.state.pageIndex - 1
     })
+    let count = -1
+    return count
   }
 
-  findAnswerByQuestionId = (questionId) => {
-   return this.state.answers.find(ans => ans.questionId == questionId)
+  findAnswerByQuestionId = questionId => {
+    return this.state.answers.find(ans => ans.questionId == questionId)
   }
 
   showAnswer = questionId => {
     let answer = this.findAnswerByQuestionId(questionId)
     if (answer) {
-      return answer.ans_content 
+      return answer.ans_content
     }
     return undefined
   }
 
+  nextStep = async() => {
+    const count = await this.handleNext()
+    this.props.setPageIndex(count)
+  }
+  backStep = async() => {
+    const count = await this.handleBack()
+    this.props.setPageIndex(count)
+  }
+
   render() {
     return (
-      <div className="container-fluid">
+      <DivBody visible={this.props.visible} className="container-fluid">
         <div className="container">
-          <div className="row">
-            <div className="col mt-5">
-            <div style={{background:'gray'}}></div>
-              <ProgressBar
-                current={this.state.pageIndex}
-                questions={this.state.questions}
-              />
-            </div>
-          </div>
           <div className="row">
             <div className="col-10 mt-5 mx-auto">
               <Form layout="vertical">
@@ -103,12 +108,22 @@ class question extends React.Component {
                 <FormItem>
                   <div className="row">
                     <div className="col text-left">
-                      <Button type='default' size='large' onClick={() => this.handleBack()} className='px-5 ml-0'>
+                      <Button
+                        type="default"
+                        size="large"
+                        onClick={() => this.backStep()}
+                        className="px-5 ml-0"
+                      >
                         ย้อนกลับ
                       </Button>
                     </div>
                     <div className="col text-right">
-                      <Button type='primary' size='large' onClick={() => this.handleNext()} className='px-5 mr-0'>
+                      <Button
+                        type="primary"
+                        size="large"
+                        onClick={() => this.nextStep()}
+                        className="px-5 mr-0"
+                      >
                         ถัดไป
                       </Button>
                     </div>
@@ -118,7 +133,7 @@ class question extends React.Component {
             </div>
           </div>
         </div>
-      </div>
+      </DivBody>
     )
   }
 }

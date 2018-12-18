@@ -147,7 +147,7 @@ componentDidMount = async() => {
   }
 
   render() {
-    const schoolGrade = (
+    const schoolGradeOptions = (
       <Menu onClick={this.handleschoolGrade}>
         <Menu.Item key="ม.4">4</Menu.Item>
         <Menu.Item key="ม.5">5</Menu.Item>
@@ -413,7 +413,7 @@ componentDidMount = async() => {
                     </div>
                     <div className="col-8">
                       <FormItem>
-                        <Dropdown overlay={schoolGrade}>
+                        <Dropdown overlay={schoolGradeOptions}>
                           <InputText
                             className="col-6"
                             type="text"
@@ -439,7 +439,7 @@ componentDidMount = async() => {
                   <Button
                     type="primary"
                     size="large"
-                    onClick={this.handleNextButton}
+                    onClick={() => this.props.setPageIndex(1)}
                     className="px-5 mr-0"
                   >
                     บันทึกและถัดไป

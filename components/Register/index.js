@@ -1,35 +1,16 @@
 import React from 'react'
-import Cookies from 'js-cookie'
+import styled from 'styled-components'
 
-import QuestionService from '../../service/QuestionService'
 import RegistrationForm from './RegistrationForm'
-import ProgressBar from '../Core/ProgressBar'
 
-class index extends React.Component {
-  state = {
-    questions: [],
-    startIndex: 0,
-    pageIndex: 0
-  }
-  componentDidMount = async () => {
-    let queryQuestion = await QuestionService.getQuestion()
-    this.setState({
-      questions: queryQuestion.data.questions
-    })
-  }
-  render() {
-    return (
-      <div className="container-fluid">
-        <div className="container mt-5">
-          <ProgressBar
-            current={this.state.pageIndex}
-            questions={this.state.questions}
-          />
-        </div>
-        <RegistrationForm />
-      </div>
-    )
-  }
-}
+const DivBody = styled.div`
+  display: ${props => props.visible};
+`
 
-export default index
+const Register = props => (
+  <DivBody visible={props.visible}>
+    <RegistrationForm setPageIndex={props.setPageIndex} />
+  </DivBody>
+)
+
+export default Register
