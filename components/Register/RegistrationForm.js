@@ -42,7 +42,12 @@ class RegistrationForm extends React.Component {
       major: '',
       gpax: '',
       email: Cookies.get('email')
-    }
+    },
+    schoolOptions:[
+      { value: 'chocolate', label: 'Chocolate' },
+      { value: 'strawberry', label: 'Strawberry' },
+      { value: 'vanilla', label: 'Vanilla' }
+    ]
   }
   handleFields = (name, value) => {
     const { registerDetail } = this.state
@@ -52,7 +57,6 @@ class RegistrationForm extends React.Component {
         [name]: value
       }
     })
-    console.log(this.state)
   }
   handleDate = (date, dateString) => {
     const { registerDetail } = this.state
@@ -84,14 +88,15 @@ class RegistrationForm extends React.Component {
     })
   }
 
-  handleschoolname = e => {
+  handleChange = async (data) => {
     const { registerDetail } = this.state
+    const school = await data.value
     this.setState({
-      registerDetail: {
+      registerDetail:{
         ...registerDetail,
-        schoolname: e.key
+        schoolname: school
       }
-    })
+    });
   }
   handleschoolGrade = e => {
     const { registerDetail } = this.state
@@ -119,13 +124,6 @@ class RegistrationForm extends React.Component {
   }
 
   render() {
-    const schoolName = (
-      <Menu onClick={this.handleschoolname}>
-        <Menu.Item key="ZomPongSchool">ZomPongSchool</Menu.Item>
-        <Menu.Item key="ZomPongSchool">ZomPongSchool</Menu.Item>
-        <Menu.Item key="ZomPongSchool">ZomPongSchool</Menu.Item>
-      </Menu>
-    )
     const schoolGrade = (
       <Menu onClick={this.handleschoolGrade}>
         <Menu.Item key="ม.4">4</Menu.Item>
@@ -360,18 +358,12 @@ class RegistrationForm extends React.Component {
                     </div>
                     <div className="col-8">
                       <FormItem>
-                        <Dropdown overlay={schoolName}>
-                          <InputText
-                            className="col-6"
-                            type="text"
-                            value={
-                              this.state.registerDetail.schoolname != ''
-                                ? this.state.registerDetail.schoolname
-                                : ''
-                            }
-                            placeholder="เลือก"
-                          />
-                        </Dropdown>
+                        <Select
+                        defaultValue={this.state.registerDetail.schoolname != '' ? this.state.registerDetail.schoolname : ''}
+                        onChange={this.handleChange}
+                        options={this.state.schoolOptions}
+                        placeholder="เลือก"
+                        />
                       </FormItem>
                       <FormItem>
                         <Dropdown overlay={major}>

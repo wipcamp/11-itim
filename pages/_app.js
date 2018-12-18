@@ -1,11 +1,11 @@
 import React from 'react'
 import App, { Container } from 'next/app'
 import 'antd/dist/antd.css'
-import GlobalStyle from '../components/Core/Globalstyle'
+import GlobalStyle from '../components/Core/GlobalStyle'
 
 
 export default class MyApp extends App {
-  static async getInitialProps({ Component, router, ctx }) {
+  static async getInitialProps ({ Component, router, ctx }) {
     let pageProps = {}
 
     if (Component.getInitialProps) {
