@@ -417,7 +417,7 @@ class RegistrationForm extends React.Component {
                   <Button
                     type="primary"
                     size="large"
-                    onClick={() => this.handleNext}
+                    onClick={() => this.props.setPageIndex(1)}
                     className="px-5 mr-0"
                   >
                     บันทึกและถัดไป
