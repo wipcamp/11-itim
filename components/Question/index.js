@@ -20,22 +20,23 @@ class question extends React.Component {
       question: queryQuestion.data.questions
     })
     for (let index = 0; index < this.state.question.length; index++) {
-      this.state.answers.push({ questionId: index + 1, ans: '' })
+      this.state.answers.push({ questionId: index + 1, ans_content: '' })
     }
   }
 
+  setAnswerByQuestionId = (questionId, newAnswer) => {
+    return this.state.answers.map(answer => {
+      if (answer.questionId === questionId) {
+        answer.ans_content = newAnswer
+      }
+      return answer
+    })
+  }
   handleFields = e => {
-    const { answers } = this.state
-    let answerText = e.target.value
-    let questionId = e.target.id
-    let answering = answers.find(answer => {
-      return answer.questionId == questionId
-    })
-    answering.ans = answerText
-    const newAnswer = answers.splice(0)
-    this.setState({
-      answers: newAnswer
-    })
+    const newAnswer = e.target.value
+    const questionId = parseInt(e.target.id)
+    const answers = this.setAnswerByQuestionId(questionId, newAnswer)
+    this.setState({ answers })
   }
 
   handleNext = () => {
@@ -51,10 +52,14 @@ class question extends React.Component {
     })
   }
 
+  findAnswerByQuestionId = (questionId) => {
+   return this.state.answers.find(ans => ans.questionId == questionId)
+  }
+
   showAnser = questionId => {
-    let answer = this.state.answers.find(ans => ans.questionId == questionId)
+    let answer = this.findAnswerByQuestionId(questionId)
     if (answer) {
-      return answer.ans
+      return answer.ans_content
     }
     return undefined
   }
@@ -65,6 +70,8 @@ class question extends React.Component {
         <div className="container">
           <div className="row">
             <div className="col mt-5">
+            <div style={{background:'gray'}}></div>
+            <span style={{ fontSize: 18 }}>WIP ID: 110001</span>
               <ProgressBar
                 current={this.state.pageIndex}
                 question={this.state.question}
@@ -85,7 +92,7 @@ class question extends React.Component {
                           คำถามที่ {data.id} : {data.content}
                         </p>
                         <TextArea
-                          name="ans"
+                          name="ans_content"
                           onChange={this.handleFields}
                           autosize={{ minRows: 4, maxRows: 10 }}
                           id={data.id}
