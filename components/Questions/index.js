@@ -21,7 +21,7 @@ class question extends React.Component {
   componentDidMount = async () => {
     let queryQuestion = await QuestionService.getAllQuestion()
     this.setState({
-      questions: queryQuestion.data.questions
+      questions: queryQuestion.data
     })
     for (let index = 0; index < this.state.questions.length; index++) {
       this.state.answers.push({ questionId: index + 1, ans_content: '' })
@@ -45,13 +45,13 @@ class question extends React.Component {
 
   handleNext = () => {
     this.setState({
-      startIndex: this.state.startIndex + 3,
+      startIndex: this.state.startIndex + 3
     })
     return 1
   }
   handleBack = () => {
     this.setState({
-      startIndex: this.state.startIndex - 3,
+      startIndex: this.state.startIndex - 3
     })
     let count = -1
     return count
@@ -69,11 +69,11 @@ class question extends React.Component {
     return undefined
   }
 
-  nextStep = async() => {
+  nextStep = async () => {
     const count = await this.handleNext()
     this.props.setPageIndex(count)
   }
-  backStep = async() => {
+  backStep = async () => {
     const count = await this.handleBack()
     this.props.setPageIndex(count)
   }

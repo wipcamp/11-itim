@@ -19,7 +19,7 @@ class App extends React.Component {
     let queryQuestion = await QuestionService.getAllQuestion()
 
     this.setState({
-      questions: queryQuestion.data.questions
+      questions: queryQuestion.data
     })
     this.handleChangePage()
 
