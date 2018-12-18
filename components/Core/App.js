@@ -1,8 +1,8 @@
 import React from 'react'
-import axios from 'axios'
 import ProgressBar from './ProgressBar.js'
 import Register from '../Register'
 import Questions from '../Questions'
+import QuestionService from '../../service/QuestionService'
 
 class App extends React.Component {
   state = {
@@ -14,11 +14,16 @@ class App extends React.Component {
   }
 
   componentDidMount = async () => {
-    let queryQuestion = await axios.get(process.env.QUESTION + '/api/questions')
+    this.getAllQuestion()
+  }
+  getAllQuestion = async ()=>{
+    let queryQuestion = await QuestionService.getAllQuestion()
+
     this.setState({
       questions: queryQuestion.data.questions
     })
     this.handleChangePage()
+
   }
 
   handleChangePage = () => {
