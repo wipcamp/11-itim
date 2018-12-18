@@ -20,7 +20,7 @@ export default class ProgressBar extends React.Component {
         <Steps progressDot current={this.props.current} onClick={this.calculateQuestionNo()}>
           <Step title="ข้อมูลส่วนตัว" />
           {this.state.questions.map((data, key) => {
-            return <Step title="In Progress" description={`ตอบคำถามส่วนที่ ${key+1}`} key={key} />
+            return <Step description={`ตอบคำถามส่วนที่ ${key+1}`} key={key} />
           })}
           <Step title="ยืนยัน" />
         </Steps>
