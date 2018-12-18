@@ -60,7 +60,7 @@ componentDidMount = async() => {
     this.setState({
       registerDetail:profile.data[0]
     })
-    this.props.setWipId(this.state.registerDetail.wip_id)
+    this.props.setWipId(this.state.registerDetail.wip_id,this.state.registerDetail.nickname)
   }
   getSchool = async schoolname => {
     let newSelectOptions = []
@@ -504,7 +504,7 @@ componentDidMount = async() => {
                     onClick={() => this.props.setPageIndex(1)}
                     className="px-5 mr-0"
                   >
-                    บันทึกและถัดไป
+                    ถัดไป
                   </Button>
                 </div>
               </div>
