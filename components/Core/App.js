@@ -4,7 +4,6 @@ import ProgressBar from './ProgressBar.js'
 import Register from '../Register'
 import Questions from '../Questions'
 import QuestionService from '../../service/QuestionService'
-import Nvabar from './Navbar'
 import Navbar from './Navbar'
 
 class App extends React.Component {
@@ -13,7 +12,8 @@ class App extends React.Component {
     pageIndex: 0,
     registerVisible: 'none',
     questionVisible: 'none',
-    wipid: 0
+    wipid: 0,
+    nickname:''
   }
 
   componentDidMount = async () => {
@@ -32,7 +32,7 @@ class App extends React.Component {
     if (this.state.pageIndex == 0) {
       this.setState({
         registerVisible: 'block',
-        queryQuestion: 'none'
+        questionVisible: 'none'
       })
     } else if (
       this.state.pageIndex >= 1 &&
@@ -55,9 +55,10 @@ class App extends React.Component {
     })
     this.handleChangePage()
   }
-  setWipId = async id => {
+  setWipId = async (id,nickname) => {
     this.setState({
-      wipid: await id
+      wipid: await id,
+      nickname: await nickname
     })
   }
 
