@@ -1,4 +1,4 @@
-import api from '../utils/apiRegService'
+import api from '../utils/apiAuthService'
 import Cookies from './CookieService'
 
 const AuthService = {
