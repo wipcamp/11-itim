@@ -42,18 +42,23 @@ class RegistrationForm extends React.Component {
       schoolGrade: '',
       major: '',
       gpax: '',
-      email: ''
+      email: '',
+      wip_id:''
     },
     schoolOptions: [],
     schoolname: ''
   }
-  componentDidMount = async () => {
-    const schoolname = await RegisterService.getSchoolname()
-    this.getSchool(schoolname.data)
-  }
-  getProfilefromDB = () => {
+componentDidMount = async() => {
+  const schoolname = await RegisterService.getSchoolname()
+  this.getSchool(schoolname.data)
+  this.getProfilefromDB()
+}
+  getProfilefromDB = async()=>{
+  const profile = await RegisterService.getProfile()
+  console.log(profile)
+
     this.setState({
-      registerDetail: RegisterService.getProfile()
+      registerDetail:profile.data[0]
     })
   }
   getSchool = async schoolname => {
