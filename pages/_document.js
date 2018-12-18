@@ -29,6 +29,14 @@ export default class MyDocument extends Document {
             integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
             crossorigin="anonymous"
           />
+          <link
+            href="https://fonts.googleapis.com/css?family=Sarabun:300,400,700"
+            rel="stylesheet"
+          />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          />
         </Head>
         <body className="custom_class">
           <Main />
