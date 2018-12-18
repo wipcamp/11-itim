@@ -5,7 +5,7 @@ import GlobalStyle from '../components/Core/GlobalStyle'
 
 
 export default class MyApp extends App {
-  static async getInitialProps({ Component, router, ctx }) {
+  static async getInitialProps ({ Component, router, ctx }) {
     let pageProps = {}
 
     if (Component.getInitialProps) {
