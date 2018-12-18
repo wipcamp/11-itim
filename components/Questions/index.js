@@ -71,7 +71,6 @@ class question extends React.Component {
           <div className="row">
             <div className="col mt-5">
             <div style={{background:'gray'}}></div>
-            <span style={{ fontSize: 18 }}>WIP ID: 110001</span>
               <ProgressBar
                 current={this.state.pageIndex}
                 questions={this.state.questions}
@@ -110,7 +109,7 @@ class question extends React.Component {
                     </div>
                     <div className="col text-right">
                       <Button type='primary' size='large' onClick={() => this.handleNext()} className='px-5 mr-0'>
-                        บันทึกและถัดไป
+                        ถัดไป
                       </Button>
                     </div>
                   </div>
