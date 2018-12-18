@@ -10,7 +10,8 @@ class index extends React.Component {
     pageIndex: 0
   }
   componentDidMount = async () => {
-    let queryQuestion = await axios.get('http://localhost:8882/api/questions')
+    let queryQuestion = await axios.get(process.env.QUESTION+'api/questions')
+    console.log(queryQuestion)
     this.setState({
       question: queryQuestion.data.question
     })
