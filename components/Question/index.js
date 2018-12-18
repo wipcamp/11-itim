@@ -16,14 +16,12 @@ class question extends React.Component {
   }
   componentDidMount = async () => {
     let queryQuestion = await axios.get('http://127.0.0.1:8000/questions')
-    console.log(queryQuestion)
     this.setState({
       question: queryQuestion.data.questions
     })
     for (let index = 0; index < this.state.question.length; index++) {
       this.state.answers.push({ questionId: index + 1, ans: '' })
     }
-    console.log(this.state.answers)
   }
 
   handleFields = e => {
