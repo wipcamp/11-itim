@@ -60,6 +60,7 @@ componentDidMount = async() => {
     this.setState({
       registerDetail:profile.data[0]
     })
+    this.props.setWipId(this.state.registerDetail.wip_id)
   }
   getSchool = async schoolname => {
     let newSelectOptions = []
