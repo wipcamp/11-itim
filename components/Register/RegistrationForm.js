@@ -228,7 +228,11 @@ componentDidMount = async() => {
                       <FormItem>
                         <LocaleProvider locale={th_TH}>
                           <DatePicker
-                            placeholder="เลือกวันเกิด"
+                            placeholder={
+                              this.state.registerDetail.dob != ''
+                                ? this.state.registerDetail.dob
+                                : 'เลือกวันเกิด'
+                            }
                             format={DateFormat}
                             defaultValue={
                               this.state.registerDetail.dob != ''
@@ -278,20 +282,21 @@ componentDidMount = async() => {
                         />
                       </FormItem>
                       <FormItem>
-                        <Radio.Group value={this.state.registerDetail.gender}>
+                        <Radio.Group defaultValue={this.state.registerDetail.gender} value={this.state.registerDetail.gender}>
                           <Radio.Button
                             size="large"
                             className="px-5"
-                            value="Male"
+                            value="male"
                             name="Male"
                             onClick={this.handleGender}
+                            checked
                           >
                             ชาย
                           </Radio.Button>
                           <Radio.Button
                             size="large"
                             className="px-5"
-                            value="Female"
+                            value="female"
                             name="Female"
                             onClick={this.handleGender}
                           >
@@ -389,8 +394,8 @@ componentDidMount = async() => {
                           onChange={({ target: { name, value } }) =>
                             this.handleFields(name, value)
                           }
-                          name="telNo"
-                          value = {this.state.registerDetail.telNo}
+                          name="telno"
+                          value = {this.state.registerDetail.telno}
 
                         />
                       </FormItem>
@@ -453,13 +458,17 @@ componentDidMount = async() => {
                       <FormItem>
                         <Select
                           defaultValue={
-                            this.state.school_name != ''
-                              ? this.state.school_name
+                            this.state.registerDetail.school_name != ''
+                              ? this.state.registerDetail.school_name 
                               : ''
                           }
                           onChange={this.handleChange}
                           options={this.state.schoolOptions}
-                          placeholder="เลือก"
+                          placeholder={
+                            this.state.registerDetail.school_name != ''
+                              ? this.state.registerDetail.school_name 
+                              : 'เลือก'
+                          }
 
                         />
                       </FormItem>
