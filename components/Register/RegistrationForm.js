@@ -16,6 +16,7 @@ import Button from '../Core/Button'
 import api from '../../utils/api'
 import Cookies from 'js-cookie'
 
+const DateFormat = 'DD/MM/YYYY'
 const FormItem = Form.Item
 
 class RegistrationForm extends React.Component {
@@ -52,6 +53,15 @@ class RegistrationForm extends React.Component {
       }
     })
     console.log(this.state)
+  }
+  handleDate = (date, dateString) => {
+    const { registerDetail } = this.state
+    this.setState({
+      registerDetail:{
+        ...registerDetail,
+        DOB: dateString
+      }
+    })
   }
 
   handleGender = e => {
@@ -155,19 +165,19 @@ class RegistrationForm extends React.Component {
                     <div className="col-8">
                       <FormItem>
                         <InputText
-                          onChange={this.handleFields}
+                          onChange={({ target: { name, value }}) => this.handleFields(name, value)}
                           name="fName_th"
                         />
                       </FormItem>
                       <FormItem>
                         <InputText
-                          onChange={this.handleFields}
+                          onChange={({ target: { name, value }}) => this.handleFields(name, value)}
                           name="fName_eng"
                         />
                       </FormItem>
                       <FormItem>
                         <InputText
-                          onChange={this.handleFields}
+                          onChange={({ target: { name, value }}) => this.handleFields(name, value)}
                           name="nickname"
                         />
                       </FormItem>
@@ -175,14 +185,16 @@ class RegistrationForm extends React.Component {
                         <LocaleProvider locale={th_TH}>
                           <DatePicker
                             placeholder="เลือกวันเกิด"
-                            onChange={this.handleFields}
-                            name="DOB"
+                            format={DateFormat}
+                            defaultValue={this.state.registerDetail.DOB != '' ? this.state.registerDetail.DOB : ''}
+                            onChange={ this.handleDate}
                           />
                         </LocaleProvider>
                       </FormItem>
+
                       <FormItem>
                         <InputText
-                          onChange={this.handleFields}
+                          onChange={({ target: { name, value }}) => this.handleFields(name, value)}
                           name="citizenNo"
                         />
                       </FormItem>
@@ -200,25 +212,26 @@ class RegistrationForm extends React.Component {
                     <div className="col-8">
                       <FormItem>
                         <InputText
-                          onChange={this.handleFields}
+                          onChange={({ target: { name, value }}) => this.handleFields(name, value)}
                           name="lName_th"
                         />
                       </FormItem>
                       <FormItem>
                         <InputText
-                          onChange={this.handleFields}
+                          onChange={({ target: { name, value }}) => this.handleFields(name, value)}
                           name="lName_eng"
                         />
                       </FormItem>
                       <FormItem>
                         <Radio.Group
                           value={this.state.registerDetail.gender}
-                          onChange={this.handleGender}
                         >
                           <Radio.Button
                             size="large"
                             className="px-5"
                             value="Male"
+                            name ="Male"
+                            onClick={this.handleGender}
                           >
                             ชาย
                           </Radio.Button>
@@ -226,6 +239,8 @@ class RegistrationForm extends React.Component {
                             size="large"
                             className="px-5"
                             value="Female"
+                            name="Female"
+                            onClick={this.handleGender}
                           >
                             หญิง
                           </Radio.Button>
@@ -259,7 +274,7 @@ class RegistrationForm extends React.Component {
                     </div>
                     <div className="col-6">
                       <FormItem>
-                        <InputText placeholder="หากไม่มีให้ใส่ -" />
+                        <InputText name="congenrtalDisease" onChange={({ target: { name, value }}) => this.handleFields(name, value)} placeholder="หากไม่มีให้ใส่ -" />
                       </FormItem>
                     </div>
                   </div>
@@ -273,7 +288,7 @@ class RegistrationForm extends React.Component {
                       <FormItem>
                         <InputText
                           placeholder="หากไม่มีให้ใส่ -"
-                          onChange={this.handleFields}
+                          onChange={({ target: { name, value }}) => this.handleFields(name, value)}
                           name="allergicFood"
                         />
                       </FormItem>
@@ -289,7 +304,7 @@ class RegistrationForm extends React.Component {
                       <FormItem>
                         <InputText
                           placeholder="หากไม่มีให้ใส่ -"
-                          onChange={this.handleFields}
+                          onChange={({ target: { name, value }}) => this.handleFields(name, value)}
                           name="allergicDrug"
                         />
                       </FormItem>
@@ -307,11 +322,11 @@ class RegistrationForm extends React.Component {
                     </div>
                     <div className="col-8">
                       <FormItem>
-                        <InputText onChange={this.handleFields} name="TelNo" />
+                        <InputText onChange={({ target: { name, value }}) => this.handleFields(name, value)} name="TelNo" />
                       </FormItem>
                       <FormItem>
                         <InputText
-                          onChange={this.handleFields}
+                          onChange={({ target: { name, value }}) => this.handleFields(name, value)}
                           name="guardian_telno"
                         />
                       </FormItem>
@@ -326,10 +341,10 @@ class RegistrationForm extends React.Component {
                     </div>
                     <div className="col-8">
                       <FormItem>
-                        <InputText onChange={this.handleFields} name="email" value={this.state.registerDetail.email != '' ? this.state.registerDetail.email : ''}/>
+                        <InputText onChange={({ target: { name, value }}) => this.handleFields(name, value)} name="email" value={this.state.registerDetail.email != '' ? this.state.registerDetail.email : ''}/>
                       </FormItem>
                       <FormItem>
-                        <InputText onChange={this.handleFields} name="guardian_relative"/>
+                        <InputText onChange={({ target: { name, value }}) => this.handleFields(name, value)} name="guardian_relative"/>
                       </FormItem>
                     </div>
                   </div>
@@ -387,6 +402,7 @@ class RegistrationForm extends React.Component {
                           <InputText
                             className="col-6"
                             type="text"
+                            name="schoolGrade"
                             value={
                               this.state.registerDetail.schoolGrade != ''
                                 ? this.state.registerDetail.schoolGrade
@@ -397,7 +413,7 @@ class RegistrationForm extends React.Component {
                         </Dropdown>
                       </FormItem>
                       <FormItem>
-                        <InputText />
+                        <InputText  name="gpax" onChange={({ target: { name, value }}) => this.handleFields(name, value)}/>
                       </FormItem>
                     </div>
                   </div>

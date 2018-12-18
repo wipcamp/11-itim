@@ -6,14 +6,49 @@ import Cookies from 'js-cookie'
 import api from '../../utils/api'
 import Router from 'next/router'
 
+let email
 const responseFacebook = async (response) => {
   console.log(response)
-  await axios.post(process.env.TEST + '/login').then(function (tokenJWT) {
-    console.log(tokenJWT)
-    Cookies.set('tokenJWT', tokenJWT.data.token)
-    console.log(Cookies.get('tokenJWT'))
-    changePage()
-  })
+  console.log(response.accessToken)
+  email = response.email
+  // try {
+  //   await axios.post('http://localhost:8000/api/auth/login', {
+  //     'provider_name': 'facebook',
+  //     'provider_id': response.userID,
+  //     'accessToken': response.accessToken })
+  //     .then(function (token) {
+  //       if (token.data) {
+  //         console.log(token)
+  //         Cookies.set('tokenJWT', token.data.token)
+  //         console.log('cokkide______' + Cookies.get('tokenJWT'))
+  //         changePage()
+  //       } else {
+  //         console.log('WTF NO TOKEN')
+  //       }
+  //     })
+  // } catch (error) {
+  //   console.log(error)
+  // }
+
+  try {
+    await api.post('/auth/login', {
+      'provider_name': 'facebook',
+      'provider_id': response.userID,
+      'accessToken': response.accessToken })
+      .then(function (token) {
+        if (token.data) {
+          console.log(token)
+          Cookies.set('tokenJWT', token.data.token)
+          Cookies.set('email', email)
+          console.log('cokkide______' + Cookies.get('tokenJWT'))
+          changePage()
+        } else {
+          console.log('WTF NO TOKEN')
+        }
+      })
+  } catch (error) {
+    console.log(error)
+  }
 }
 const changePage = () => Router.push({
   pathname: '/Register'
