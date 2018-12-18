@@ -97,12 +97,12 @@ class question extends React.Component {
                 <FormItem>
                   <div className="row">
                     <div className="col text-left">
-                      <Button type='default' size='large' onClick={() => this.handleBack} className='px-5 ml-0'>
+                      <Button type='default' size='large' onClick={() => this.handleBack()} className='px-5 ml-0'>
                         ย้อนกลับ
                       </Button>
                     </div>
                     <div className="col text-right">
-                      <Button type='primary' size='large' onClick={() => this.handleNext} className='px-5 mr-0'>
+                      <Button type='primary' size='large' onClick={() => this.handleNext()} className='px-5 mr-0'>
                         บันทึกและถัดไป
                       </Button>
                     </div>
