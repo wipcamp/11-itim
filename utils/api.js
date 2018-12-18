@@ -1,6 +1,5 @@
 import axios from 'axios'
-// import env from './env'
-const url = process.env.TEST
+const url = process.env.PATH + '/api'
 const createInstance = (headers) => {
   return axios.create({
     baseURL: url,
