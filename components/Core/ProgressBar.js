@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import {Steps} from 'antd'
+import { Steps } from 'antd'
 
 const Step = Steps.Step
 

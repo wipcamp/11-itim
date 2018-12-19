@@ -1,4 +1,4 @@
-import { Button } from 'antd'
+import Button from '../Core/Button'
 import React from 'react'
 import Router from 'next/router'
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
