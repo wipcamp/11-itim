@@ -14,7 +14,6 @@ COPY ./next.config.js .
 COPY ./package-lock.json .
 COPY ./components ./components
 COPY ./pages ./pages
-RUN ls -a
 RUN yarn build
 
 EXPOSE 3000
