@@ -3,7 +3,6 @@ import { Form, Input } from 'antd'
 import styled from 'styled-components'
 import Button from '../Core/Button'
 
-import { Subtitle } from '../../config/fonts'
 import QuestionService from '../../service/QuestionService'
 
 
@@ -95,9 +94,7 @@ class question extends React.Component {
                   )
                     return (
                       <FormItem key={key}>
-                        <Subtitle>
                           คำถามที่ {data.id} : {data.content}
-                        </Subtitle>
                         <TextArea
                           name="ans_content"
                           onChange={this.handleFields}
