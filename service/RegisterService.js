@@ -9,15 +9,15 @@ const RegisterService = {
 
   sendRegister: async (request) => {
     console.log(request)
-    await apiReg.put('/profile', request).then(respons => {
+    await apiReg.put('/api/profile', request).then(respons => {
     })
   },
   getSchoolname: async () => {
-    return apiReg.get('/schools')
+    return apiReg.get('/api/schools')
   },
 
   getProfile: async () => {
-    return apiReg.get('/profile', headers)
+    return apiReg.get('/api/profile', headers)
   }
 
 }
