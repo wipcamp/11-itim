@@ -1,7 +1,7 @@
 import React from 'react'
 import { Form, Input } from 'antd'
 import styled from 'styled-components'
-import Button from '../Core/Button'
+import ButtonPrimary, { ButtonSecondary } from '../Core/Button'
 
 import QuestionService from '../../service/QuestionService'
 
@@ -108,24 +108,22 @@ class question extends React.Component {
                 <FormItem>
                   <div className="row">
                     <div className="col text-left">
-                      <Button
-                        type="default"
+                      <ButtonSecondary
                         size="large"
                         onClick={() => this.backStep()}
                         className="px-5 ml-0"
                       >
                         ย้อนกลับ
-                      </Button>
+                      </ButtonSecondary>
                     </div>
                     <div className="col text-right">
-                      <Button
-                        type="primary"
+                      <ButtonPrimary
                         size="large"
                         onClick={() => this.nextStep()}
                         className="px-5 mr-0"
                       >
                         ถัดไป
-                      </Button>
+                      </ButtonPrimary>
                     </div>
                   </div>
                 </FormItem>
