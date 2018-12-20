@@ -151,7 +151,6 @@ componentDidMount = async() => {
   }
 
   handleNextButton = e => {
-  
     console.log('handle')
     this.handlesendRegister()
 
