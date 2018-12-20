@@ -5,8 +5,7 @@ import apiReg from '../utils/apiRegService'
 const RegisterService = {
   sendRegister: async (request) => {
     console.log(request)
-    console.log(Cookies.gettokenJWTCookie())
-    await apiReg.put('/profile', request, Cookies.gettokenJWTCookie()).then(respons => {
+    await apiReg.put('/profile', request, { 'Bearer': Cookies.gettokenJWTCookie() }).then(respons => {
       Cookies.setCookie('tokenJWT', respons.data.token)
     })
   },
