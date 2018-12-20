@@ -1,12 +1,12 @@
-import Cookies from 'js-cookie'
+import Cookies from '../service/CookieService'
 import apiReg from '../utils/apiRegService'
 // import apiAuth from '../utils/apiAuthService'
 
 const RegisterService = {
   sendRegister: async (request) => {
     console.log(request)
-    await apiReg.put('/profile', request).then(respons => {
-      Cookies.set('tokenJWT', respons.data.token)
+    await apiReg.put('/profile', request, Cookies.gettokenJWTCookie).then(respons => {
+      Cookies.setCookie('tokenJWT', respons.data.token)
     })
   },
   getSchoolname: async () => {

@@ -160,8 +160,22 @@ componentDidMount = async() => {
     await RegisterService.sendRegister(this.state.registerDetail)
     await this.props.setWipId(this.state.registerDetail.wip_id, this.state.registerDetail.nickname)
     this.props.setPageIndex(1)
+    if(this.handleValidation()){
+      console.log(this.state.registerDetail)
+    }else{
+
+    }
   }
-  
+  handleValidation(){
+    console.log("handle validation")
+    let { registerDetail } = this.state.registerDetail
+    for (let index in registerDetail) {
+      if (registerDetail.hasOwnProperty(index)) {
+        console.log(index + " -> " + registerDetail[index]);
+    }
+    }
+  }
+
   render() {
     const schoolGradeOptions = (
       <Menu onClick={this.handleschoolGrade}>
