@@ -10,7 +10,7 @@ const AuthService = {
         'provider_id': request.userID,
         'accessToken': request.accessToken })
         .then(respons => {
-          console.log(request)
+          console.log(respons)
           if (respons) {
             Cookies.setCookie('tokenJWT', respons.data.token)
             Cookies.setCookie('wip_Id', respons.data.wip_id)
