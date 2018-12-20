@@ -1,8 +1,10 @@
 import React from 'react'
-import QuestionService from '../../service/QuestionService'
 import { Form, Input } from 'antd'
 import styled from 'styled-components'
 import Button from '../Core/Button'
+
+import QuestionService from '../../service/QuestionService'
+
 
 const FormItem = Form.Item
 const { TextArea } = Input
@@ -92,9 +94,7 @@ class question extends React.Component {
                   )
                     return (
                       <FormItem key={key}>
-                        <p>
                           คำถามที่ {data.id} : {data.content}
-                        </p>
                         <TextArea
                           name="ans_content"
                           onChange={this.handleFields}

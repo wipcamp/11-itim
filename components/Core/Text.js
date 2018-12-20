@@ -1,8 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import config from '../../config/font'
-
+import config from '../../config/fonts'
 const Headline = styled.h1`
   font-size: ${config.headline};
 `

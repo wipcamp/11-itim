@@ -156,7 +156,7 @@ componentDidMount = async() => {
 
   }
   handlesendRegister = async() => {
-    await RegisterService.sendRegister(this.state.registerDetail)
+    // await RegisterService.sendRegister(this.state.registerDetail)
     await this.props.setWipId(this.state.registerDetail.wip_id, this.state.registerDetail.nickname)
     this.props.setPageIndex(1)
     if(this.handleValidation()){
