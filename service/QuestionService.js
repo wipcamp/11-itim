@@ -2,7 +2,7 @@ import apiReg from '../utils/apiRegService'
 
 const QuestionService = {
   getAllQuestion: async () => {
-    let queryQuestion = await apiReg.get('/questions')
+    let queryQuestion = await apiReg.get('/api/questions')
     return queryQuestion
   }
 }

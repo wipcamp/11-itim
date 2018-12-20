@@ -5,7 +5,7 @@ const AuthService = {
   login: async (request) => {
     console.log(request)
     try {
-      await api.post('/auth/login', {
+      await api.post('/api/auth/login', {
         'provider_name': 'facebook',
         'provider_id': request.userID,
         'accessToken': request.accessToken })
