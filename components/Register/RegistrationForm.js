@@ -1,6 +1,6 @@
 import React from 'react'
 
-  import th_TH from 'antd/lib/locale-provider/th_TH'
+import th_TH from 'antd/lib/locale-provider/th_TH'
 import {
   Card,
   Dropdown,
@@ -13,10 +13,10 @@ import {
 } from 'antd'
 import Select from 'react-select'
 import InputText from '../Core/InputText'
-import Button from '../Core/Button'
+import ButtonPrimary from '../Core/Button'
 import RegisterService from '../../service/RegisterService'
 
-const DateFormat = 'DD/MM/YYYY'
+const DateFormat = `DD/MM/YYYY`
 const FormItem = Form.Item
 
 class RegistrationForm extends React.Component {
@@ -259,7 +259,7 @@ componentDidMount = async() => {
                                 : ''
                             }
                             onChange={this.handleDate}
-
+                            locale={th_TH}
                           />
                         </LocaleProvider>
                       </FormItem>
@@ -546,14 +546,13 @@ componentDidMount = async() => {
               </div>
               <div className="row ">
                 <div className="col text-right">
-                  <Button
-                    type="primary"
+                  <ButtonPrimary
                     size="large"
                     onClick={() => this.handleNextButton()}
                     className="px-5 mr-0"
                   >
                     ถัดไป
-                  </Button>
+                  </ButtonPrimary>
                 </div>
               </div>
             </Card>
