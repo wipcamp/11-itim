@@ -151,24 +151,30 @@ componentDidMount = async() => {
   }
 
   handleNextButton = e => {
-    console.log('handle')
     this.handlesendRegister()
 
   }
   handlesendRegister = async() => {
-    // await RegisterService.sendRegister(this.state.registerDetail)
-    await this.props.setWipId(this.state.registerDetail.wip_id, this.state.registerDetail.nickname)
-    this.props.setPageIndex(1)
-    this.handleValidation()
+    if (this.handleValidation()) {
+      await RegisterService.sendRegister(this.state.registerDetail)
+      await this.props.setWipId(this.state.registerDetail.wip_id, this.state.registerDetail.nickname)
+      this.props.setPageIndex(1)
+    } else {
+      
+    }
+   
 
     
   }
   handleValidation = () =>{
-    console.log("handle validation")
-    let { registerDetail } = this.state.registerDetail
-   for (let index in registerDetail) {
+    let  registerDetail  = this.state.registerDetail
+    for (let index in registerDetail) {
       if (registerDetail.hasOwnProperty(index)) {
-        console.log(index + " -> " + registerDetail[index]);
+        if (registerDetail[index] === '') {
+          window.alert('โปรดกรอกข้อมูลให้ครบ')
+          return false;
+        } 
+    return true;
     }
     }
     
@@ -205,7 +211,7 @@ componentDidMount = async() => {
                 <div className="col-6">
                   <div className="row">
                     <div className="col-4 text-right">
-                      <FormItem>ชื่อ(ไทย):</FormItem>
+                      <FormItem >ชื่อ(ไทย):</FormItem>
                       <FormItem>ชื่อ(อังกฤษ):</FormItem>
                       <FormItem>ชื่อเล่น:</FormItem>
                       <FormItem>วันเกิด:</FormItem>
@@ -214,6 +220,7 @@ componentDidMount = async() => {
                     <div className="col-8">
                       <FormItem>
                         <InputText
+                        
                           onChange={({ target: { name, value }}) => this.handleFields(name, value)}
                           name="fistname_th"
                           value = {this.state.registerDetail.fistname_th}
