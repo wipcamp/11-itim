@@ -1,5 +1,5 @@
 import axios from 'axios'
-const urlReg = process.env.PATH_REGISTANCE + '/api'
+const urlReg = process.env.PATH_REGISTANCE
 const createInstance = (headers) => {
   return axios.create({
     baseURL: urlReg,
