@@ -16,13 +16,13 @@ const Navbar = props => (
         </div>
         <Profile
           display={props.state.wipid === 0 ? 'none' : 'block'}
-          className="col-4 text-right"
+          className="col-4 text-right mt-3 mb-3"
         >
           <Menu.Item>
             <Paragraph>WIP ID: {props.state.wipid}</Paragraph>
           </Menu.Item>
           <Menu.Item>
-            <Paragraph>น้อง{props.state.nickname}</Paragraph>
+            <Paragraph>{props.state.nickname != null ? `น้อง${props.state.nickname}` : ''}</Paragraph>
           </Menu.Item>
         </Profile>
       </div>
