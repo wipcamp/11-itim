@@ -77,7 +77,18 @@ class App extends React.Component {
     })
   }
 
-  render() {
+ handleCheckLoginState = async() => {
+  if (await CookiesService.gettokenJWTCookie()) {
+  }else{
+      Router.push({
+        pathname: '/index'
+      })
+
+  }
+}
+
+  render() { 
+    this.handleCheckLoginState()
     return (
       <div className="container-fluid">
         <Navbar state={this.state} />

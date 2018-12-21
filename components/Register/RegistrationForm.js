@@ -1,5 +1,4 @@
 import React from 'react'
-
 import th_TH from 'antd/lib/locale-provider/th_TH'
 import {
   Card,
@@ -188,14 +187,7 @@ class RegistrationForm extends React.Component {
       }
     }
   }
-  handleChangetemp = async () => {
-    await this.props.setWipId(
-      this.state.registerDetail.wip_id,
-      this.state.registerDetail.nickname
-    )
-    this.props.setPageIndex(1)
-    // await RegisterService.sendRegister(this.state.registerDetail)
-  }
+
   handlePrefixName = valuePrefix => {
     const { registerDetail } = this.state
     this.setState({
@@ -205,13 +197,7 @@ class RegistrationForm extends React.Component {
       }
     })
   }
-handleLoginState=()=>{
-  if (condition) {
-    
-  } else {
-    
-  }
-}
+
   render() {
     const schoolGradeOptions = (
       <Menu onClick={this.handleschoolGrade}>
@@ -246,7 +232,6 @@ handleLoginState=()=>{
         <div className="row justify-content-center">
           <div className="col-10">
             <Card className="mt-2 mb-5">
-              <button onClick={this.handleChangetemp}>temp</button>
               <Form method="post" onSubmit={this.handleNextButton}>
                 <Subtitle className="font-weight-bold mb-4 ml-5">
                   ข้อมูลส่วนตัว
@@ -566,6 +551,7 @@ handleLoginState=()=>{
                             }
                             name="telno"
                             value={this.state.registerDetail.telno}
+                            type="tel"
                           />
                         </FormItem>
                       </div>

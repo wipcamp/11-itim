@@ -19,7 +19,10 @@ class Register extends React.Component {
   }
   componentDidMount = async () => {
     this.getProfilefromDB()
-    let queryQuestion = await QuestionService.getAllQuestion()
+    console.log(this.state.questions)
+  }
+  getQuestion = async () => {
+     let queryQuestion = await QuestionService.getAllQuestion()
     this.setState({
       questions: queryQuestion.data
     })
