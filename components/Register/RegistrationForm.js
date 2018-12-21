@@ -161,12 +161,12 @@ class RegistrationForm extends React.Component {
   }
   handlesendRegister = async () => {
     if (this.handleValidation()) {
+      await RegisterService.sendRegister(this.state.registerDetail)
       await this.props.setWipId(
         this.state.registerDetail.wip_id,
         this.state.registerDetail.nickname
       )
       this.props.setPageIndex(1)
-      await RegisterService.sendRegister(this.state.registerDetail)
     } else {
     }
   }
@@ -182,6 +182,24 @@ class RegistrationForm extends React.Component {
         }
       }
     }
+  }
+  handleChangetemp = async() => {
+    await this.props.setWipId(
+      this.state.registerDetail.wip_id,
+      this.state.registerDetail.nickname
+    )
+    this.props.setPageIndex(1)
+    // await RegisterService.sendRegister(this.state.registerDetail)
+
+  }
+  handlePrefixName = valuePrefix => {
+    const { registerDetail } = this.state
+    this.setState({
+      registerDetail: {
+        ...registerDetail,
+        prefix_name: valuePrefix
+      }
+    })
   }
 
   render() {
@@ -203,13 +221,14 @@ class RegistrationForm extends React.Component {
         <Menu.Item key="พุทธ">พุทธ</Menu.Item>
         <Menu.Item key="อิสราม">อิสราม</Menu.Item>
         <Menu.Item key="คริสต์">คริสต์</Menu.Item>
+        <Menu.Item key="คริสต์">อื่นๆ</Menu.Item>
       </Menu>
     )
 
     const prefixName = (
-      <AntDesignSelect defaultValue="นาย">
-        <Option value="male">นาย</Option>
-        <Option value="female">นางสาว</Option>
+      <AntDesignSelect onChange={this.handlePrefixName} defaultValue="นาย">
+        <Option value="นาย">นาย</Option>
+        <Option value="นางสาว">นางสาว</Option>
       </AntDesignSelect>
     )
     return (
@@ -217,6 +236,7 @@ class RegistrationForm extends React.Component {
         <div className="row justify-content-center">
           <div className="col-10">
             <Card className="mt-2 mb-5">
+            <button onClick={this.handleChangetemp}>temp</button>
               <Form method="post" onSubmit={this.handleNextButton}>
                 <h3 className="font-weight-bold mb-4 ml-5">ข้อมูลส่วนตัว</h3>
                 <div className="row">
@@ -394,7 +414,7 @@ class RegistrationForm extends React.Component {
                             <InputText
                             required
                               className="col-6"
-                              type=""
+                              type="button"
                               value={
                                 this.state.registerDetail.religion != ''
                                   ? this.state.registerDetail.religion
@@ -524,6 +544,7 @@ class RegistrationForm extends React.Component {
                         <FormItem>
                           <InputText
                           required
+                          type="email"
                             onChange={({ target: { name, value } }) =>
                               this.handleFields(name, value)
                             }
@@ -548,6 +569,7 @@ class RegistrationForm extends React.Component {
                       <div className="col-12 col-md-8">
                         <FormItem>
                           <InputText
+                          
                           required
                             onChange={({ target: { name, value } }) =>
                               this.handleFields(name, value)
@@ -617,7 +639,7 @@ class RegistrationForm extends React.Component {
                             <InputText
                             required
                               className="col-6"
-                              type="text"
+                              type="button"
                               name="school_level"
                               value={
                                 this.state.registerDetail.school_level != ''
@@ -644,7 +666,7 @@ class RegistrationForm extends React.Component {
                             <InputText
                             required
                               className="col-6"
-                              type="text"
+                              type="button"
                               value={
                                 this.state.registerDetail.school_major != ''
                                   ? this.state.registerDetail.school_major
@@ -671,6 +693,7 @@ class RegistrationForm extends React.Component {
                               this.handleFields(name, value)
                             }
                             value={this.state.registerDetail.gpax}
+                            type="number"
                           />
                         </FormItem>
                       </div>
