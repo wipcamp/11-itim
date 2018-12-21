@@ -3,6 +3,7 @@ import React from 'react'
 import ProgressBar from './ProgressBar.js'
 import Register from '../Register'
 import Questions from '../Questions'
+import Confirm from '../Confirm'
 import QuestionService from '../../service/QuestionService'
 import Navbar from './Navbar'
 
@@ -12,6 +13,7 @@ class App extends React.Component {
     pageIndex: 0,
     registerVisible: 'none',
     questionVisible: 'none',
+    confirmVisible: 'none',
     wipid: 0,
     nickname:''
   }
@@ -32,7 +34,8 @@ class App extends React.Component {
     if (this.state.pageIndex == 0) {
       this.setState({
         registerVisible: 'block',
-        questionVisible: 'none'
+        questionVisible: 'none',
+        confirmVisible: 'none'
       })
     } else if (
       this.state.pageIndex >= 1 &&
@@ -40,12 +43,23 @@ class App extends React.Component {
     ) {
       this.setState({
         questionVisible: 'block',
-        registerVisible: 'none'
+        registerVisible: 'none',
+        confirmVisible: 'none'
+      })
+    } else if (
+      this.state.pageIndex > Math.ceil(this.state.questions.length / 3) &&
+      this.state.pageIndex <= Math.ceil(this.state.questions.length / 3) + 1
+    ) {
+      this.setState({
+        questionVisible: 'none',
+        registerVisible: 'none',
+        confirmVisible: 'block'
       })
     } else {
       this.setState({
         registerVisible: 'none',
-        questionVisible: 'none'
+        questionVisible: 'none',
+        confirmVisible: 'none'
       })
     }
   }
@@ -81,6 +95,12 @@ class App extends React.Component {
           <div className="mt-5">
             <Questions
               visible={this.state.questionVisible}
+              setPageIndex={this.setPageIndex}
+            />
+          </div>
+          <div className="mt-5">
+            <Confirm
+              visible={this.state.confirmVisible}
               setPageIndex={this.setPageIndex}
             />
           </div>
