@@ -19,8 +19,8 @@ export default class ProgressBar extends React.Component {
       <Fragment>
         <Steps progressDot current={this.props.current} onClick={this.pageCountByQuestion()}>
           <Step title="ข้อมูลส่วนตัว" />
-          {this.state.questions.map((data) => {
-            return <Step description={`ตอบคำถามส่วนที่ ${data+1}`} key={data} />
+          {this.state.questions.map((data,key) => {
+            return <Step description={`ตอบคำถามส่วนที่ ${key+1}`} key={key} />
           })}
           <Step title="ยืนยัน" />
         </Steps>
