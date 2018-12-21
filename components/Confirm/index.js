@@ -37,9 +37,12 @@ class Register extends React.Component {
   }
 
   handleOk = e => {
-    console.log(e)
+    RegisterService.sendRegister(this.state.profile)
+    QuestionService.sendQuestions(this.state.questions)
+    console.log('q',this.state.questions)
+    console.log('p',this.state.profile)
     this.setState({
-      modalVisible: false
+      modalVisible:false
     })
   }
 
