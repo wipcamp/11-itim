@@ -10,7 +10,7 @@ import Navbar from './Navbar'
 class App extends React.Component {
   state = {
     questions: [],
-    pageIndex: 5,
+    pageIndex: 0,
     registerVisible: 'none',
     questionVisible: 'none',
     confirmVisible: 'none',
