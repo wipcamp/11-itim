@@ -4,6 +4,7 @@ COPY package.json .
 COPY yarn.lock .
 RUN yarn install
 
+COPY .env .
 COPY ./config ./config
 COPY ./utils ./utils
 COPY ./service ./service
