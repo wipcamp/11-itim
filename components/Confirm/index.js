@@ -1,5 +1,7 @@
 import React from 'react'
 import { Card, Modal } from 'antd'
+import Router from 'next/router'
+
 import Body from '../Core/Body'
 import Profile from './Profile'
 import ButtonPrimary from '../Core/Button'
@@ -44,6 +46,16 @@ class Register extends React.Component {
     this.setState({
       modalVisible:false
     })
+    setInterval(()=>{
+      Router.push({
+        pathname: '/regiscomplete',
+        query: {wipid:this.state.profile.wip_id,
+          nickname: this.state.profile.nickname,
+          fname: this.state.profile.fistname_th,
+          lname: this.state.profile.lastname_th
+        }
+      })
+    },1000)
   }
 
   handleCancel = e => {
