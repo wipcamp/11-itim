@@ -1,6 +1,11 @@
 import axios from 'axios'
+import Cookies from '../service/CookieService'
 const urlReg = process.env.PATH_REGISTANCE
-const createInstance = (headers) => {
+const headers = {
+  'Authorization': `Bearer ${Cookies.gettokenJWTCookie()}`,
+  'Content-Type': 'application/x-www-form-urlencoded'
+}
+const createInstance = () => {
   return axios.create({
     baseURL: urlReg,
     headers
