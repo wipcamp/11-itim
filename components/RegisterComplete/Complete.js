@@ -1,9 +1,10 @@
 import React from 'react'
 import { Card } from 'antd'
 import ButtonPrimary from '../Core/Button'
+import Headline, { Paragraph } from '../Core/Text'
 
 export default class Complete extends React.Component {
-  render() {
+  render () {
     return (
       <div className="container-fluid">
         <div className="container">
@@ -13,14 +14,14 @@ export default class Complete extends React.Component {
             </div>
             <div className="row text-center">
               <div className="col-12 mt-3">
-                <h3>ส่งใบสมัครค่ายสำเร็จ</h3>
+                <Headline>ส่งใบสมัครค่ายสำเร็จ</Headline>
               </div>
               <div className="col-12 mt-3">
-                <h5>
+                <Paragraph>
                   {this.props.name} ได้ส่งใบสมัครค่ายสำเร็จเรียบร้อยแล้ว
                   โปรดรอฟังผลการประกาศค่ายในวันที่ xx มีนาคม 2562 ผ่านทาง
                   Facebook Live นะครับ
-                </h5>
+                </Paragraph>
               </div>
             </div>
             <div className="row justify-content-center mt-5">

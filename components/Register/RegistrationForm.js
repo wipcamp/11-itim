@@ -13,6 +13,8 @@ import {
 } from 'antd'
 import moment from 'moment'
 import Select from 'react-select'
+
+import { Subtitle, Paragraph } from '../Core/Text'
 import InputText from '../Core/InputText'
 import ButtonPrimary from '../Core/Button'
 import RegisterService from '../../service/RegisterService'
@@ -156,7 +158,7 @@ class RegistrationForm extends React.Component {
   }
 
   handleNextButton = e => {
-    e.preventDefault();
+    e.preventDefault()
     this.handlesendRegister()
   }
   handlesendRegister = async () => {
@@ -183,14 +185,13 @@ class RegistrationForm extends React.Component {
       }
     }
   }
-  handleChangetemp = async() => {
+  handleChangetemp = async () => {
     await this.props.setWipId(
       this.state.registerDetail.wip_id,
       this.state.registerDetail.nickname
     )
     this.props.setPageIndex(1)
     // await RegisterService.sendRegister(this.state.registerDetail)
-
   }
   handlePrefixName = valuePrefix => {
     const { registerDetail } = this.state
@@ -236,16 +237,20 @@ class RegistrationForm extends React.Component {
         <div className="row justify-content-center">
           <div className="col-10">
             <Card className="mt-2 mb-5">
-            <button onClick={this.handleChangetemp}>temp</button>
+              <button onClick={this.handleChangetemp}>temp</button>
               <Form method="post" onSubmit={this.handleNextButton}>
-                <h3 className="font-weight-bold mb-4 ml-5">ข้อมูลส่วนตัว</h3>
+                <Subtitle className="font-weight-bold mb-4 ml-5">
+                  ข้อมูลส่วนตัว
+                </Subtitle>
                 <div className="row">
                   <div className="col-12 col-md-6">
                     <div className="row">
-                      <div className="col-12 col-md-4 ">
-                        <FormItem>ชื่อ(ไทย):</FormItem>
+                      <div className="col-12 col-md-5 ">
+                        <FormItem>
+                          <Paragraph>ชื่อ(ไทย):</Paragraph>
+                        </FormItem>
                       </div>
-                      <div className="col-12 col-md-8">
+                      <div className="col-12 col-md-7">
                         <FormItem>
                           <InputText
                             addonBefore={prefixName}
@@ -255,7 +260,6 @@ class RegistrationForm extends React.Component {
                             name="fistname_th"
                             value={this.state.registerDetail.fistname_th}
                             required
-                            
                           />
                         </FormItem>
                       </div>
@@ -263,10 +267,12 @@ class RegistrationForm extends React.Component {
                   </div>
                   <div className="col-12 col-md-6">
                     <div className="row">
-                      <div className="col-12 col-md-4 ">
-                        <FormItem>นามสกุล(ไทย):</FormItem>
+                      <div className="col-12 col-md-5 ">
+                        <FormItem>
+                          <Paragraph>นามสกุล(ไทย):</Paragraph>
+                        </FormItem>
                       </div>
-                      <div className="col-12 col-md-8">
+                      <div className="col-12 col-md-7">
                         <FormItem>
                           <InputText
                             onChange={({ target: { name, value } }) =>
@@ -275,7 +281,6 @@ class RegistrationForm extends React.Component {
                             name="lastname_th"
                             value={this.state.registerDetail.lastname_th}
                             required
-
                           />
                         </FormItem>
                       </div>
@@ -285,13 +290,15 @@ class RegistrationForm extends React.Component {
                 <div className="row">
                   <div className="col-12 col-md-6">
                     <div className="row">
-                      <div className="col-12 col-md-4 ">
-                        <FormItem>ชื่อ(อังกฤษ):</FormItem>
+                      <div className="col-12 col-md-5 ">
+                        <FormItem>
+                          <Paragraph>ชื่อ(อังกฤษ):</Paragraph>
+                        </FormItem>
                       </div>
-                      <div className="col-12 col-md-8">
+                      <div className="col-12 col-md-7">
                         <FormItem>
                           <InputText
-                          required
+                            required
                             onChange={({ target: { name, value } }) =>
                               this.handleFields(name, value)
                             }
@@ -304,13 +311,15 @@ class RegistrationForm extends React.Component {
                   </div>
                   <div className="col-12 col-md-6">
                     <div className="row">
-                      <div className="col-12 col-md-4 ">
-                        <FormItem>นามสกุล(อังกฤษ):</FormItem>
+                      <div className="col-12 col-md-5 ">
+                        <FormItem>
+                          <Paragraph>นามสกุล(อังกฤษ):</Paragraph>
+                        </FormItem>
                       </div>
-                      <div className="col-12 col-md-8">
+                      <div className="col-12 col-md-7">
                         <FormItem>
                           <InputText
-                          required
+                            required
                             onChange={({ target: { name, value } }) =>
                               this.handleFields(name, value)
                             }
@@ -325,13 +334,15 @@ class RegistrationForm extends React.Component {
                 <div className="row">
                   <div className="col-12 col-md-6">
                     <div className="row">
-                      <div className="col-12 col-md-4 ">
-                        <FormItem>ชื่อเล่น:</FormItem>
+                      <div className="col-12 col-md-5 ">
+                        <FormItem>
+                          <Paragraph>ชื่อเล่น:</Paragraph>
+                        </FormItem>
                       </div>
-                      <div className="col-12 col-md-8">
+                      <div className="col-12 col-md-7">
                         <FormItem>
                           <InputText
-                          required
+                            required
                             onChange={({ target: { name, value } }) =>
                               this.handleFields(name, value)
                             }
@@ -344,30 +355,30 @@ class RegistrationForm extends React.Component {
                   </div>
                   <div className="col-12 col-md-6">
                     <div className="row">
-                      <div className="col-12 col-md-4 ">
-                        <FormItem>เพศ:</FormItem>
+                      <div className="col-12 col-md-5 ">
+                        <FormItem>
+                          <Paragraph>เพศ:</Paragraph>
+                        </FormItem>
                       </div>
-                      <div className="col-12 col-md-8">
+                      <div className="col-12 col-md-7">
                         <FormItem>
                           <Radio.Group
                             defaultValue={this.state.registerDetail.gender}
                             value={this.state.registerDetail.gender}
+                            size="large"
                           >
                             <Radio.Button
-                              size="large"
-                              className="px-5"
                               value="male"
                               name="Male"
+                              className="px-4"
                               onClick={this.handleGender}
-                              checked
                             >
                               ชาย
                             </Radio.Button>
                             <Radio.Button
-                              size="large"
-                              className="px-5"
                               value="female"
                               name="Female"
+                              className="px-4"
                               onClick={this.handleGender}
                             >
                               หญิง
@@ -381,10 +392,12 @@ class RegistrationForm extends React.Component {
                 <div className="row">
                   <div className="col-12 col-md-6">
                     <div className="row">
-                      <div className="col-12 col-md-4 ">
-                        <FormItem>วันเกิด:</FormItem>
+                      <div className="col-12 col-md-5 ">
+                        <FormItem>
+                          <Paragraph>วันเกิด:</Paragraph>
+                        </FormItem>
                       </div>
-                      <div className="col-12 col-md-8">
+                      <div className="col-12 col-md-7">
                         <FormItem>
                           <LocaleProvider locale={th_TH}>
                             <DatePicker
@@ -405,14 +418,16 @@ class RegistrationForm extends React.Component {
                   </div>
                   <div className="col-12 col-md-6">
                     <div className="row">
-                      <div className="col-12 col-md-4 ">
-                        <FormItem>ศาสนา:</FormItem>
+                      <div className="col-12 col-md-5 ">
+                        <FormItem>
+                          <Paragraph>ศาสนา:</Paragraph>
+                        </FormItem>
                       </div>
-                      <div className="col-12 col-md-8">
+                      <div className="col-12 col-md-7">
                         <FormItem>
                           <Dropdown overlay={religion}>
                             <InputText
-                            required
+                              required
                               className="col-6"
                               type="button"
                               value={
@@ -434,13 +449,15 @@ class RegistrationForm extends React.Component {
                 <div className="row">
                   <div className="col-12 col-md-6">
                     <div className="row">
-                      <div className="col-12 col-md-4 ">
-                        <FormItem>เลขบัตรประชาชน:</FormItem>
+                      <div className="col-12 col-md-5 ">
+                        <FormItem>
+                          <Paragraph>เลขบัตรประชาชน:</Paragraph>
+                        </FormItem>
                       </div>
-                      <div className="col-12 col-md-8">
+                      <div className="col-12 col-md-7">
                         <FormItem>
                           <InputText
-                          required
+                            required
                             onChange={({ target: { name, value } }) =>
                               this.handleFields(name, value)
                             }
@@ -456,12 +473,14 @@ class RegistrationForm extends React.Component {
                   <div className="col-4">
                     <div className="row">
                       <div className="col-6 ">
-                        <FormItem>โรคประจำตัว:</FormItem>
+                        <FormItem>
+                          <Paragraph>โรคประจำตัว:</Paragraph>
+                        </FormItem>
                       </div>
                       <div className="col-6">
                         <FormItem>
                           <InputText
-                          required
+                            required
                             name="cangenital_disease"
                             onChange={({ target: { name, value } }) =>
                               this.handleFields(name, value)
@@ -476,12 +495,14 @@ class RegistrationForm extends React.Component {
                   <div className="col-4">
                     <div className="row">
                       <div className="col-6 ">
-                        <FormItem>อาหารที่แพ้:</FormItem>
+                        <FormItem>
+                          <Paragraph>อาหารที่แพ้:</Paragraph>
+                        </FormItem>
                       </div>
                       <div className="col-6">
                         <FormItem>
                           <InputText
-                          required
+                            required
                             placeholder="หากไม่มีให้ใส่ -"
                             onChange={({ target: { name, value } }) =>
                               this.handleFields(name, value)
@@ -496,12 +517,14 @@ class RegistrationForm extends React.Component {
                   <div className="col-4">
                     <div className="row">
                       <div className="col-6 ">
-                        <FormItem>ยาที่แพ้:</FormItem>
+                        <FormItem>
+                          <Paragraph>ยาที่แพ้:</Paragraph>
+                        </FormItem>
                       </div>
                       <div className="col-6">
                         <FormItem>
                           <InputText
-                          required
+                            required
                             placeholder="หากไม่มีให้ใส่ -"
                             onChange={({ target: { name, value } }) =>
                               this.handleFields(name, value)
@@ -514,17 +537,21 @@ class RegistrationForm extends React.Component {
                     </div>
                   </div>
                 </div>
-                <h3 className="font-weight-bold mb-4 ml-5">ข้อมูลการติดต่อ</h3>
+                <Subtitle className="font-weight-bold mb-4 ml-5">
+                  ข้อมูลการติดต่อ
+                </Subtitle>
                 <div className="row">
                   <div className="col-12 col-md-6">
                     <div className="row">
-                      <div className="col-12 col-md-4 ">
-                        <FormItem>เบอร์โทรศัพท์:</FormItem>
+                      <div className="col-12 col-md-5 ">
+                        <FormItem>
+                          <Paragraph>เบอร์โทรศัพท์:</Paragraph>
+                        </FormItem>
                       </div>
-                      <div className="col-12 col-md-8">
+                      <div className="col-12 col-md-7">
                         <FormItem>
                           <InputText
-                          required
+                            required
                             onChange={({ target: { name, value } }) =>
                               this.handleFields(name, value)
                             }
@@ -537,14 +564,16 @@ class RegistrationForm extends React.Component {
                   </div>
                   <div className="col-12 col-md-6">
                     <div className="row">
-                      <div className="col-12 col-md-4 ">
-                        <FormItem>อีเมลล์:</FormItem>
+                      <div className="col-12 col-md-5 ">
+                        <FormItem>
+                          <Paragraph>อีเมลล์:</Paragraph>
+                        </FormItem>
                       </div>
-                      <div className="col-12 col-md-8">
+                      <div className="col-12 col-md-7">
                         <FormItem>
                           <InputText
-                          required
-                          type="email"
+                            required
+                            type="email"
                             onChange={({ target: { name, value } }) =>
                               this.handleFields(name, value)
                             }
@@ -563,14 +592,15 @@ class RegistrationForm extends React.Component {
                 <div className="row">
                   <div className="col-12 col-md-6">
                     <div className="row">
-                      <div className="col-12 col-md-4 ">
-                        <FormItem>เบอร์โทรผู้ปกครอง:</FormItem>
+                      <div className="col-12 col-md-5 ">
+                        <FormItem>
+                          <Paragraph>เบอร์โทรผู้ปกครอง:</Paragraph>
+                        </FormItem>
                       </div>
-                      <div className="col-12 col-md-8">
+                      <div className="col-12 col-md-7">
                         <FormItem>
                           <InputText
-                          
-                          required
+                            required
                             onChange={({ target: { name, value } }) =>
                               this.handleFields(name, value)
                             }
@@ -583,13 +613,15 @@ class RegistrationForm extends React.Component {
                   </div>
                   <div className="col-12 col-md-6">
                     <div className="row">
-                      <div className="col-12 col-md-4 ">
-                        <FormItem>ผู้ปกครองเกี่ยวข้องเป็น:</FormItem>
+                      <div className="col-12 col-md-5 ">
+                        <FormItem>
+                          <Paragraph>ผู้ปกครองเกี่ยวข้องเป็น:</Paragraph>
+                        </FormItem>
                       </div>
-                      <div className="col-12 col-md-8">
+                      <div className="col-12 col-md-7">
                         <FormItem>
                           <InputText
-                          required
+                            required
                             onChange={({ target: { name, value } }) =>
                               this.handleFields(name, value)
                             }
@@ -601,14 +633,18 @@ class RegistrationForm extends React.Component {
                     </div>
                   </div>
                 </div>
-                <h3 className="font-weight-bold mb-4 ml-5">ข้อมูลการศึกษา</h3>
+                <Subtitle className="font-weight-bold mb-4 ml-5">
+                  ข้อมูลการศึกษา
+                </Subtitle>
                 <div className="row">
                   <div className="col-12 col-md-6">
                     <div className="row">
-                      <div className="col-12 col-md-4 ">
-                        <FormItem>ชื่อโรงเรียน:</FormItem>
+                      <div className="col-12 col-md-5 ">
+                        <FormItem>
+                          <Paragraph>ชื่อโรงเรียน:</Paragraph>
+                        </FormItem>
                       </div>
-                      <div className="col-12 col-md-8">
+                      <div className="col-12 col-md-7">
                         <FormItem>
                           <Select
                             defaultValue={
@@ -630,14 +666,16 @@ class RegistrationForm extends React.Component {
                   </div>
                   <div className="col-12 col-md-6">
                     <div className="row">
-                      <div className="col-12 col-md-4 ">
-                        <FormItem>ระดับชั้น:</FormItem>
+                      <div className="col-12 col-md-5 ">
+                        <FormItem>
+                          <Paragraph>ระดับชั้น:</Paragraph>
+                        </FormItem>
                       </div>
-                      <div className="col-12 col-md-8">
+                      <div className="col-12 col-md-7">
                         <FormItem>
                           <Dropdown overlay={schoolGradeOptions}>
                             <InputText
-                            required
+                              required
                               className="col-6"
                               type="button"
                               name="school_level"
@@ -657,14 +695,16 @@ class RegistrationForm extends React.Component {
                 <div className="row">
                   <div className="col-12 col-md-6">
                     <div className="row">
-                      <div className="col-12 col-md-4 ">
-                        <FormItem>สายการเรียน:</FormItem>
+                      <div className="col-12 col-md-5 ">
+                        <FormItem>
+                          <Paragraph>สายการเรียน:</Paragraph>
+                        </FormItem>
                       </div>
-                      <div className="col-12 col-md-8">
+                      <div className="col-12 col-md-7">
                         <FormItem>
                           <Dropdown overlay={major}>
                             <InputText
-                            required
+                              required
                               className="col-6"
                               type="button"
                               value={
@@ -681,13 +721,15 @@ class RegistrationForm extends React.Component {
                   </div>
                   <div className="col-12 col-md-6">
                     <div className="row">
-                      <div className="col-12 col-md-4 ">
-                        <FormItem>เกรด:</FormItem>
+                      <div className="col-12 col-md-5 ">
+                        <FormItem>
+                          <Paragraph>เกรด:</Paragraph>
+                        </FormItem>
                       </div>
-                      <div className="col-12 col-md-8">
+                      <div className="col-12 col-md-7">
                         <FormItem>
                           <InputText
-                          required
+                            required
                             name="gpax"
                             onChange={({ target: { name, value } }) =>
                               this.handleFields(name, value)
@@ -702,10 +744,7 @@ class RegistrationForm extends React.Component {
                 </div>
                 <div className="row">
                   <div className="col text-right">
-                    <ButtonPrimary
-                      htmlType="submit"
-                      className="mr-0"
-                    >
+                    <ButtonPrimary htmlType="submit" className="mr-0">
                       ถัดไป
                     </ButtonPrimary>
                   </div>

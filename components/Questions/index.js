@@ -1,14 +1,19 @@
 import React from 'react'
 import { Form, Input } from 'antd'
+import styled from 'styled-components'
+
 import Body from '../Core/Body'
 import ButtonPrimary, { ButtonSecondary } from '../Core/Button'
-
 import QuestionService from '../../service/QuestionService'
-import RegisterService from '../../service/RegisterService';
+import { Subtitle } from '../Core/Text'
+import config from '../../config/fonts'
 
 const FormItem = Form.Item
 const { TextArea } = Input
 
+const StyledTextArea = styled(TextArea)`
+  font-size: ${config.paragraph};
+`
 class question extends React.Component {
   state = {
     questions: [],
@@ -95,8 +100,10 @@ class question extends React.Component {
                   )
                     return (
                       <FormItem key={key}>
+                      <Subtitle>
                         คำถามที่ {data.id} : {data.content}
-                        <TextArea
+                      </Subtitle>
+                        <StyledTextArea
                         required
                           name="ans_content"
                           onChange={this.handleFields}
@@ -119,7 +126,7 @@ class question extends React.Component {
                     </div>
                     <div className="col-6 text-right">
                       <ButtonPrimary
-                      htmlType="submit"                        
+                      htmlType="submit"
                         className="mr-0"
                       >
                         ถัดไป
