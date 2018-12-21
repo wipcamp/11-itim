@@ -1,11 +1,12 @@
 import React from 'react'
-
+import Router from 'next/router'
 import ProgressBar from './ProgressBar.js'
 import Register from '../Register'
 import Questions from '../Questions'
 import Confirm from '../Confirm'
 import QuestionService from '../../service/QuestionService'
 import Navbar from './Navbar'
+import CookiesService from '../../service/CookieService.js';
 
 class App extends React.Component {
   state = {

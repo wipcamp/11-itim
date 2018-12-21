@@ -47,16 +47,19 @@ class RegistrationForm extends React.Component {
       gpax: '',
       email: '',
       school_name: '',
-      wip_id: ''
+      wip_id: 0,
+      confirm_register: ''
+
     },
     schoolOptions: [],
     schoolname: ''
   }
   componentDidMount = async () => {
     const schoolname = await RegisterService.getSchoolname()
-    console.log(schoolname)
     this.getSchool(schoolname.data)
     this.getProfilefromDB()
+    console.log(this.state.registerDetail)
+    
   }
   getProfilefromDB = async () => {
     const profile = await RegisterService.getProfile()
@@ -201,7 +204,13 @@ class RegistrationForm extends React.Component {
       }
     })
   }
-
+handleLoginState=()=>{
+  if (condition) {
+    
+  } else {
+    
+  }
+}
   render() {
     const schoolGradeOptions = (
       <Menu onClick={this.handleschoolGrade}>

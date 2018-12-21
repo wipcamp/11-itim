@@ -3,7 +3,7 @@ import Cookies from '../service/CookieService'
 const urlReg = process.env.PATH_REGISTANCE
 const headers = {
   'Authorization': `Bearer ${Cookies.gettokenJWTCookie()}`,
-  'Content-Type': 'application/x-www-form-urlencoded'
+  'Content-Type': 'application/json'
 }
 const createInstance = () => {
   return axios.create({

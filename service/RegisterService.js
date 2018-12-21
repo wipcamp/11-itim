@@ -5,9 +5,9 @@ import apiReg from '../utils/apiRegService'
 const RegisterService = {
 
   sendRegister: async (request) => {
-    console.log(request)
-    console.log()
+    console.log('sending', request)
     await apiReg.put('/profile', request).then(respons => {
+      console.log(respons)
     })
   },
   getSchoolname: async () => {
