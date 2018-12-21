@@ -1,17 +1,12 @@
 import React from 'react'
 import { Form, Input } from 'antd'
-import styled from 'styled-components'
+import Body from '../Core/Body'
 import ButtonPrimary, { ButtonSecondary } from '../Core/Button'
 
 import QuestionService from '../../service/QuestionService'
 
-
 const FormItem = Form.Item
 const { TextArea } = Input
-
-const DivBody = styled.div`
-  display: ${props => props.visible};
-`
 
 class question extends React.Component {
   state = {
@@ -82,7 +77,7 @@ class question extends React.Component {
 
   render() {
     return (
-      <DivBody visible={this.props.visible} className="container-fluid">
+      <Body visible={this.props.visible} className="container-fluid">
         <div className="container">
           <div className="row">
             <div className="col-10 mt-5 mx-auto">
@@ -94,7 +89,7 @@ class question extends React.Component {
                   )
                     return (
                       <FormItem key={key}>
-                          คำถามที่ {data.id} : {data.content}
+                        คำถามที่ {data.id} : {data.content}
                         <TextArea
                           name="ans_content"
                           onChange={this.handleFields}
@@ -129,7 +124,7 @@ class question extends React.Component {
             </div>
           </div>
         </div>
-      </DivBody>
+      </Body>
     )
   }
 }
