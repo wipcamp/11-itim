@@ -156,16 +156,17 @@ class RegistrationForm extends React.Component {
   }
 
   handleNextButton = e => {
+    e.preventDefault();
     this.handlesendRegister()
   }
   handlesendRegister = async () => {
     if (this.handleValidation()) {
-      await RegisterService.sendRegister(this.state.registerDetail)
       await this.props.setWipId(
         this.state.registerDetail.wip_id,
         this.state.registerDetail.nickname
       )
       this.props.setPageIndex(1)
+      await RegisterService.sendRegister(this.state.registerDetail)
     } else {
     }
   }
@@ -177,7 +178,6 @@ class RegistrationForm extends React.Component {
           window.alert('โปรดกรอกข้อมูลให้ครบ')
           return false
         } else {
-          this.handleNextButton()
           return true
         }
       }
@@ -217,7 +217,7 @@ class RegistrationForm extends React.Component {
         <div className="row justify-content-center">
           <div className="col-10">
             <Card className="mt-2 mb-5">
-              <Form onSubmit={this.handleValidation}>
+              <Form method="post" onSubmit={this.handleNextButton}>
                 <h3 className="font-weight-bold mb-4 ml-5">ข้อมูลส่วนตัว</h3>
                 <div className="row">
                   <div className="col-12 col-md-6">
@@ -234,6 +234,8 @@ class RegistrationForm extends React.Component {
                             }
                             name="fistname_th"
                             value={this.state.registerDetail.fistname_th}
+                            required
+                            
                           />
                         </FormItem>
                       </div>
@@ -252,6 +254,8 @@ class RegistrationForm extends React.Component {
                             }
                             name="lastname_th"
                             value={this.state.registerDetail.lastname_th}
+                            required
+
                           />
                         </FormItem>
                       </div>
@@ -267,6 +271,7 @@ class RegistrationForm extends React.Component {
                       <div className="col-12 col-md-8">
                         <FormItem>
                           <InputText
+                          required
                             onChange={({ target: { name, value } }) =>
                               this.handleFields(name, value)
                             }
@@ -285,6 +290,7 @@ class RegistrationForm extends React.Component {
                       <div className="col-12 col-md-8">
                         <FormItem>
                           <InputText
+                          required
                             onChange={({ target: { name, value } }) =>
                               this.handleFields(name, value)
                             }
@@ -305,6 +311,7 @@ class RegistrationForm extends React.Component {
                       <div className="col-12 col-md-8">
                         <FormItem>
                           <InputText
+                          required
                             onChange={({ target: { name, value } }) =>
                               this.handleFields(name, value)
                             }
@@ -385,6 +392,7 @@ class RegistrationForm extends React.Component {
                         <FormItem>
                           <Dropdown overlay={religion}>
                             <InputText
+                            required
                               className="col-6"
                               type=""
                               value={
@@ -412,6 +420,7 @@ class RegistrationForm extends React.Component {
                       <div className="col-12 col-md-8">
                         <FormItem>
                           <InputText
+                          required
                             onChange={({ target: { name, value } }) =>
                               this.handleFields(name, value)
                             }
@@ -432,6 +441,7 @@ class RegistrationForm extends React.Component {
                       <div className="col-6">
                         <FormItem>
                           <InputText
+                          required
                             name="cangenital_disease"
                             onChange={({ target: { name, value } }) =>
                               this.handleFields(name, value)
@@ -451,6 +461,7 @@ class RegistrationForm extends React.Component {
                       <div className="col-6">
                         <FormItem>
                           <InputText
+                          required
                             placeholder="หากไม่มีให้ใส่ -"
                             onChange={({ target: { name, value } }) =>
                               this.handleFields(name, value)
@@ -470,6 +481,7 @@ class RegistrationForm extends React.Component {
                       <div className="col-6">
                         <FormItem>
                           <InputText
+                          required
                             placeholder="หากไม่มีให้ใส่ -"
                             onChange={({ target: { name, value } }) =>
                               this.handleFields(name, value)
@@ -492,6 +504,7 @@ class RegistrationForm extends React.Component {
                       <div className="col-12 col-md-8">
                         <FormItem>
                           <InputText
+                          required
                             onChange={({ target: { name, value } }) =>
                               this.handleFields(name, value)
                             }
@@ -510,6 +523,7 @@ class RegistrationForm extends React.Component {
                       <div className="col-12 col-md-8">
                         <FormItem>
                           <InputText
+                          required
                             onChange={({ target: { name, value } }) =>
                               this.handleFields(name, value)
                             }
@@ -534,6 +548,7 @@ class RegistrationForm extends React.Component {
                       <div className="col-12 col-md-8">
                         <FormItem>
                           <InputText
+                          required
                             onChange={({ target: { name, value } }) =>
                               this.handleFields(name, value)
                             }
@@ -552,6 +567,7 @@ class RegistrationForm extends React.Component {
                       <div className="col-12 col-md-8">
                         <FormItem>
                           <InputText
+                          required
                             onChange={({ target: { name, value } }) =>
                               this.handleFields(name, value)
                             }
@@ -599,6 +615,7 @@ class RegistrationForm extends React.Component {
                         <FormItem>
                           <Dropdown overlay={schoolGradeOptions}>
                             <InputText
+                            required
                               className="col-6"
                               type="text"
                               name="school_level"
@@ -625,6 +642,7 @@ class RegistrationForm extends React.Component {
                         <FormItem>
                           <Dropdown overlay={major}>
                             <InputText
+                            required
                               className="col-6"
                               type="text"
                               value={
@@ -647,6 +665,7 @@ class RegistrationForm extends React.Component {
                       <div className="col-12 col-md-8">
                         <FormItem>
                           <InputText
+                          required
                             name="gpax"
                             onChange={({ target: { name, value } }) =>
                               this.handleFields(name, value)
