@@ -9,13 +9,11 @@ import QuestionAndAnswer from './QuestionAndAnswer'
 import RegisterService from '../../service/RegisterService'
 import QuestionService from '../../service/QuestionService'
 
-
-
 class Register extends React.Component {
   state = {
     modalVisible: false,
     profile: {},
-    questions:[]
+    questions: []
   }
   componentDidMount = async () => {
     this.getProfilefromDB()
@@ -32,7 +30,6 @@ class Register extends React.Component {
     this.setState({
       profile: profile.data
     })
-    console.log("profile-state",this.state.profile)
   }
 
   showModal = () => {
@@ -44,21 +41,26 @@ class Register extends React.Component {
   handleOk = e => {
     RegisterService.sendRegister(this.state.profile)
     QuestionService.sendQuestions(this.state.questions)
-    console.log('q',this.state.questions)
-    console.log('p',this.state.profile)
+    const { profile } = this.state
     this.setState({
-      modalVisible:false
+      modalVisible: false,
+      profile: {
+        ...profile,
+        confirm_register: 1
+      }
     })
-    setInterval(()=>{
+    setInterval(() => {
       Router.push({
         pathname: '/regiscomplete',
-        query: {wipid:this.state.profile.wip_id,
+        query: {
+          wipid: this.state.profile.wip_id,
           nickname: this.state.profile.nickname,
           fname: this.state.profile.fistname_th,
-          lname: this.state.profile.lastname_th
+          lname: this.state.profile.lastname_th,
+          confirm: this.state.profile.confirm_register
         }
       })
-    },1000)
+    }, 1000)
   }
 
   handleCancel = e => {
@@ -72,8 +74,8 @@ class Register extends React.Component {
       <Body visible={this.props.visible}>
         <div className="container-fluid">
           <Card className="mt-2 mb-5">
-            <Profile profile={this.state.profile}/>
-            <QuestionAndAnswer questions={this.state.questions}/>
+            <Profile profile={this.state.profile} />
+            <QuestionAndAnswer questions={this.state.questions} />
             <div className="row">
               <div className="col text-right">
                 <ButtonPrimary
