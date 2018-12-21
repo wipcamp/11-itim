@@ -4,6 +4,7 @@ import Body from '../Core/Body'
 import ButtonPrimary, { ButtonSecondary } from '../Core/Button'
 
 import QuestionService from '../../service/QuestionService'
+import RegisterService from '../../service/RegisterService';
 
 const FormItem = Form.Item
 const { TextArea } = Input
@@ -21,13 +22,13 @@ class question extends React.Component {
       questions: queryQuestion.data
     })
     for (let index = 0; index < this.state.questions.length; index++) {
-      this.state.answers.push({ questionId: index + 1, ans_content: '' })
+      this.state.answers.push({ question_id: index + 1, ans_content: '' })
     }
   }
 
-  setAnswerByQuestionId = (questionId, newAnswer) => {
+  setAnswerByQuestionId = (question_id, newAnswer) => {
     return this.state.answers.map(answer => {
-      if (answer.questionId === questionId) {
+      if (answer.question_id === question_id) {
         answer.ans_content = newAnswer
       }
       return answer
@@ -35,8 +36,8 @@ class question extends React.Component {
   }
   handleFields = e => {
     const newAnswer = e.target.value
-    const questionId = parseInt(e.target.id)
-    const answers = this.setAnswerByQuestionId(questionId, newAnswer)
+    const question_id = parseInt(e.target.id)
+    const answers = this.setAnswerByQuestionId(question_id, newAnswer)
     this.setState({ answers })
   }
 
@@ -54,12 +55,12 @@ class question extends React.Component {
     return count
   }
 
-  findAnswerByQuestionId = questionId => {
-    return this.state.answers.find(ans => ans.questionId == questionId)
+  findAnswerByquestion_id = question_id => {
+    return this.state.answers.find(ans => ans.question_id == question_id)
   }
 
-  showAnswer = questionId => {
-    let answer = this.findAnswerByQuestionId(questionId)
+  showAnswer = question_id => {
+    let answer = this.findAnswerByquestion_id(question_id)
     if (answer) {
       return answer.ans_content
     }
@@ -68,6 +69,7 @@ class question extends React.Component {
 
   handleNextButton = e => {
     e.preventDefault();
+    QuestionService.sendQuestions(this.state.answers)
     this.nextStep()
   }
   nextStep = async () => {

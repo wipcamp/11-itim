@@ -4,6 +4,10 @@ const QuestionService = {
   getAllQuestion: async () => {
     let queryQuestion = await apiReg.get('/questions')
     return queryQuestion
+  },
+  sendQuestions: async (request) => {
+    console.log(JSON.stringify(request))
+    await apiReg.post('/answers', request)
   }
 }
 export default QuestionService
