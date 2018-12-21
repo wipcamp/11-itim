@@ -71,6 +71,10 @@ class question extends React.Component {
     return undefined
   }
 
+  handleNextButton = e => {
+    e.preventDefault();
+    this.nextStep()
+  }
   nextStep = async () => {
     const count = await this.handleNext()
     this.props.setPageIndex(count)
@@ -86,7 +90,7 @@ class question extends React.Component {
         <div className="container">
           <div className="row">
             <div className="col-10 mt-5 mx-auto">
-              <Form layout="vertical">
+              <Form method="post" onSubmit={this.handleNextButton} layout="vertical">
                 {this.state.questions.map((data, key) => {
                   if (
                     key <= this.state.startIndex + 2 &&
@@ -96,6 +100,7 @@ class question extends React.Component {
                       <FormItem key={key}>
                           คำถามที่ {data.id} : {data.content}
                         <TextArea
+                        required
                           name="ans_content"
                           onChange={this.handleFields}
                           autosize={{ minRows: 7 }}
@@ -117,7 +122,7 @@ class question extends React.Component {
                     </div>
                     <div className="col-6 text-right">
                       <ButtonPrimary
-                        onClick={() => this.nextStep()}
+                      htmlType="submit"                        
                         className="mr-0"
                       >
                         ถัดไป
