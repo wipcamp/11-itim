@@ -1,4 +1,5 @@
 import React from 'react'
+import { ParagraphBold } from '../Core/Text'
 
 const QuestionAndAnswer = (props) => {
   return (
@@ -9,9 +10,9 @@ const QuestionAndAnswer = (props) => {
           {props.questions.map((data, key) => {
             return (
               <div>
-                <p key={key}>
+                <ParagraphBold key={key}>
                   คำถามที่ {data.id} : {data.content}
-                </p>
+                </ParagraphBold>
                 <p key={key}>{data.ans_content}</p>
               </div>
             )
