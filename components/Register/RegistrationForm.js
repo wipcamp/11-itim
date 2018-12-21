@@ -54,14 +54,14 @@ componentDidMount = async() => {
   const schoolname = await RegisterService.getSchoolname()
   console.log(schoolname)
   this.getSchool(schoolname.data)
-  // this.getProfilefromDB()
+  this.getProfilefromDB()
 }
   getProfilefromDB = async()=>{
   const profile = await RegisterService.getProfile()
   console.log(profile)
 
     this.setState({
-      registerDetail:profile.data[0]
+      registerDetail:profile.data
     })
     await this.props.setWipId(this.state.registerDetail.wip_id, this.state.registerDetail.nickname)
   }
