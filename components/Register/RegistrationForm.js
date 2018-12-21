@@ -166,7 +166,7 @@ class RegistrationForm extends React.Component {
         this.state.registerDetail.nickname
       )
       this.props.setPageIndex(1)
-      // await RegisterService.sendRegister(this.state.registerDetail)
+      await RegisterService.sendRegister(this.state.registerDetail)
     } else {
     }
   }
@@ -183,13 +183,7 @@ class RegistrationForm extends React.Component {
       }
     }
   }
-  handleChangeTempChangetoQuestion= async()=>{
-    await this.props.setWipId(
-      this.state.registerDetail.wip_id,
-      this.state.registerDetail.nickname
-    )
-    this.props.setPageIndex(1)
-  }
+
   render() {
     const schoolGradeOptions = (
       <Menu onClick={this.handleschoolGrade}>
@@ -220,7 +214,6 @@ class RegistrationForm extends React.Component {
     )
     return (
       <div className="container-fluid">
-       <button onClick={this.handleChangeTempChangetoQuestion}>Temp</button>
         <div className="row justify-content-center">
           <div className="col-10">
             <Card className="mt-2 mb-5">
