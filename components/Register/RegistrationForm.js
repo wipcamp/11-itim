@@ -11,6 +11,7 @@ import {
   LocaleProvider,
   DatePicker
 } from 'antd'
+import moment from 'moment'
 import Select from 'react-select'
 import InputText from '../Core/InputText'
 import ButtonPrimary from '../Core/Button'
@@ -33,9 +34,9 @@ class RegistrationForm extends React.Component {
       citizen_no: '',
       cangenital_disease: '',
       allergic_drug: '',
-      prefix_name:'',
+      prefix_name: '',
       allergic_food: '',
-      medical_approved:'',
+      medical_approved: '',
       telno: '',
       guardian_telno: '',
       guardian_relative: '',
@@ -44,26 +45,29 @@ class RegistrationForm extends React.Component {
       school_major: '',
       gpax: '',
       email: '',
-      school_name:'',
-      wip_id:''
+      school_name: '',
+      wip_id: ''
     },
     schoolOptions: [],
     schoolname: ''
   }
-componentDidMount = async() => {
-  const schoolname = await RegisterService.getSchoolname()
-  console.log(schoolname)
-  this.getSchool(schoolname.data)
-  // this.getProfilefromDB()
-}
-  getProfilefromDB = async()=>{
-  const profile = await RegisterService.getProfile()
-  console.log(profile)
+  componentDidMount = async () => {
+    const schoolname = await RegisterService.getSchoolname()
+    console.log(schoolname)
+    this.getSchool(schoolname.data)
+    // this.getProfilefromDB()
+  }
+  getProfilefromDB = async () => {
+    const profile = await RegisterService.getProfile()
+    console.log(profile)
 
     this.setState({
-      registerDetail:profile.data[0]
+      registerDetail: profile.data[0]
     })
-    await this.props.setWipId(this.state.registerDetail.wip_id, this.state.registerDetail.nickname)
+    await this.props.setWipId(
+      this.state.registerDetail.wip_id,
+      this.state.registerDetail.nickname
+    )
   }
   getSchool = async schoolname => {
     let newSelectOptions = []
@@ -120,14 +124,14 @@ componentDidMount = async() => {
 
   handleChange = async data => {
     const { registerDetail } = this.state
-    const school = await data.id+1
+    const school = (await data.id) + 1
     const schoolNameFromInput = data.value
     this.setState({
       registerDetail: {
         ...registerDetail,
         school_id: school,
         school_name: schoolNameFromInput
-      },
+      }
     })
     console.log(this.state.schoolname)
   }
@@ -152,32 +156,29 @@ componentDidMount = async() => {
 
   handleNextButton = e => {
     this.handlesendRegister()
-
   }
-  handlesendRegister = async() => {
+  handlesendRegister = async () => {
     if (this.handleValidation()) {
       await RegisterService.sendRegister(this.state.registerDetail)
-      await this.props.setWipId(this.state.registerDetail.wip_id, this.state.registerDetail.nickname)
+      await this.props.setWipId(
+        this.state.registerDetail.wip_id,
+        this.state.registerDetail.nickname
+      )
       this.props.setPageIndex(1)
     } else {
-      
     }
-   
-
-    
   }
-  handleValidation = () =>{
-    let  registerDetail  = this.state.registerDetail
+  handleValidation = () => {
+    let registerDetail = this.state.registerDetail
     for (let index in registerDetail) {
       if (registerDetail.hasOwnProperty(index)) {
         if (registerDetail[index] === '') {
           window.alert('โปรดกรอกข้อมูลให้ครบ')
-          return false;
-        } 
-    return true;
+          return false
+        }
+        return true
+      }
     }
-    }
-    
   }
 
   render() {
@@ -211,7 +212,7 @@ componentDidMount = async() => {
                 <div className="col-6">
                   <div className="row">
                     <div className="col-4 text-right">
-                      <FormItem >ชื่อ(ไทย):</FormItem>
+                      <FormItem>ชื่อ(ไทย):</FormItem>
                       <FormItem>ชื่อ(อังกฤษ):</FormItem>
                       <FormItem>ชื่อเล่น:</FormItem>
                       <FormItem>วันเกิด:</FormItem>
@@ -220,18 +221,20 @@ componentDidMount = async() => {
                     <div className="col-8">
                       <FormItem>
                         <InputText
-                        
-                          onChange={({ target: { name, value }}) => this.handleFields(name, value)}
+                          onChange={({ target: { name, value } }) =>
+                            this.handleFields(name, value)
+                          }
                           name="fistname_th"
-                          value = {this.state.registerDetail.fistname_th}
+                          value={this.state.registerDetail.fistname_th}
                         />
                       </FormItem>
                       <FormItem>
                         <InputText
-                          onChange={({ target: { name, value }}) => this.handleFields(name, value)}
+                          onChange={({ target: { name, value } }) =>
+                            this.handleFields(name, value)
+                          }
                           name="fistname_en"
-                          value = {this.state.registerDetail.fistname_en}
-
+                          value={this.state.registerDetail.fistname_en}
                         />
                       </FormItem>
                       <FormItem>
@@ -240,8 +243,7 @@ componentDidMount = async() => {
                             this.handleFields(name, value)
                           }
                           name="nickname"
-                          value = {this.state.registerDetail.nickname}
-
+                          value={this.state.registerDetail.nickname}
                         />
                       </FormItem>
                       <FormItem>
@@ -253,11 +255,7 @@ componentDidMount = async() => {
                                 : 'เลือกวันเกิด'
                             }
                             format={DateFormat}
-                            defaultValue={
-                              this.state.registerDetail.dob != ''
-                                ? this.state.registerDetail.dob
-                                : ''
-                            }
+                            defaultValue={moment('01/01/2002', DateFormat)}
                             onChange={this.handleDate}
                             locale={th_TH}
                           />
@@ -266,10 +264,11 @@ componentDidMount = async() => {
 
                       <FormItem>
                         <InputText
-                          onChange={({ target: { name, value }}) => this.handleFields(name, value)}
+                          onChange={({ target: { name, value } }) =>
+                            this.handleFields(name, value)
+                          }
                           name="citizen_no"
-                          value = {this.state.registerDetail.citizen_no}
-
+                          value={this.state.registerDetail.citizen_no}
                         />
                       </FormItem>
                     </div>
@@ -286,22 +285,27 @@ componentDidMount = async() => {
                     <div className="col-8">
                       <FormItem>
                         <InputText
-                          onChange={({ target: { name, value }}) => this.handleFields(name, value)}
+                          onChange={({ target: { name, value } }) =>
+                            this.handleFields(name, value)
+                          }
                           name="lastname_th"
-                          value = {this.state.registerDetail.lastname_th}
-
+                          value={this.state.registerDetail.lastname_th}
                         />
                       </FormItem>
                       <FormItem>
                         <InputText
-                          onChange={({ target: { name, value }}) => this.handleFields(name, value)}
+                          onChange={({ target: { name, value } }) =>
+                            this.handleFields(name, value)
+                          }
                           name="lastname_en"
-                          value = {this.state.registerDetail.lastname_en}
-
+                          value={this.state.registerDetail.lastname_en}
                         />
                       </FormItem>
                       <FormItem>
-                        <Radio.Group defaultValue={this.state.registerDetail.gender} value={this.state.registerDetail.gender}>
+                        <Radio.Group
+                          defaultValue={this.state.registerDetail.gender}
+                          value={this.state.registerDetail.gender}
+                        >
                           <Radio.Button
                             size="large"
                             className="px-5"
@@ -336,8 +340,7 @@ componentDidMount = async() => {
                             disabled
                             name=""
                             placeholder="เลือก"
-                          value = {this.state.registerDetail.religion}
-
+                            value={this.state.registerDetail.religion}
                           />
                         </Dropdown>
                       </FormItem>
@@ -353,11 +356,14 @@ componentDidMount = async() => {
                     </div>
                     <div className="col-6">
                       <FormItem>
-                        <InputText name="cangenital_disease"
-                         onChange={({ target: { name, value }}) => this.handleFields(name, value)}
-                          placeholder="หากไม่มีให้ใส่ -" 
-                          value = {this.state.registerDetail.cangenital_disease}
-                           />
+                        <InputText
+                          name="cangenital_disease"
+                          onChange={({ target: { name, value } }) =>
+                            this.handleFields(name, value)
+                          }
+                          placeholder="หากไม่มีให้ใส่ -"
+                          value={this.state.registerDetail.cangenital_disease}
+                        />
                       </FormItem>
                     </div>
                   </div>
@@ -371,10 +377,11 @@ componentDidMount = async() => {
                       <FormItem>
                         <InputText
                           placeholder="หากไม่มีให้ใส่ -"
-                          onChange={({ target: { name, value }}) => this.handleFields(name, value)}
+                          onChange={({ target: { name, value } }) =>
+                            this.handleFields(name, value)
+                          }
                           name="allergic_food"
-                          value = {this.state.registerDetail.allergic_food}
-
+                          value={this.state.registerDetail.allergic_food}
                         />
                       </FormItem>
                     </div>
@@ -389,10 +396,11 @@ componentDidMount = async() => {
                       <FormItem>
                         <InputText
                           placeholder="หากไม่มีให้ใส่ -"
-                          onChange={({ target: { name, value }}) => this.handleFields(name, value)}
+                          onChange={({ target: { name, value } }) =>
+                            this.handleFields(name, value)
+                          }
                           name="allergic_drug"
-                          value = {this.state.registerDetail.allergic_drug}
-
+                          value={this.state.registerDetail.allergic_drug}
                         />
                       </FormItem>
                     </div>
@@ -414,8 +422,7 @@ componentDidMount = async() => {
                             this.handleFields(name, value)
                           }
                           name="telno"
-                          value = {this.state.registerDetail.telno}
-
+                          value={this.state.registerDetail.telno}
                         />
                       </FormItem>
                       <FormItem>
@@ -424,8 +431,7 @@ componentDidMount = async() => {
                             this.handleFields(name, value)
                           }
                           name="guardian_telno"
-                          value = {this.state.registerDetail.guardian_telno}
-
+                          value={this.state.registerDetail.guardian_telno}
                         />
                       </FormItem>
                     </div>
@@ -457,8 +463,7 @@ componentDidMount = async() => {
                             this.handleFields(name, value)
                           }
                           name="guardian_relative"
-                          value = {this.state.registerDetail.guardian_relative}
-
+                          value={this.state.registerDetail.guardian_relative}
                         />
                       </FormItem>
                     </div>
@@ -478,17 +483,16 @@ componentDidMount = async() => {
                         <Select
                           defaultValue={
                             this.state.registerDetail.school_name != ''
-                              ? this.state.registerDetail.school_name 
+                              ? this.state.registerDetail.school_name
                               : ''
                           }
                           onChange={this.handleChange}
                           options={this.state.schoolOptions}
                           placeholder={
                             this.state.registerDetail.school_name != ''
-                              ? this.state.registerDetail.school_name 
+                              ? this.state.registerDetail.school_name
                               : 'เลือก'
                           }
-
                         />
                       </FormItem>
                       <FormItem>
@@ -536,8 +540,7 @@ componentDidMount = async() => {
                           onChange={({ target: { name, value } }) =>
                             this.handleFields(name, value)
                           }
-                          value = {this.state.registerDetail.gpax}
-
+                          value={this.state.registerDetail.gpax}
                         />
                       </FormItem>
                     </div>
