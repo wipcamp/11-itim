@@ -98,7 +98,7 @@ class question extends React.Component {
                         <TextArea
                           name="ans_content"
                           onChange={this.handleFields}
-                          autosize={{ minRows: 4, maxRows: 10 }}
+                          autosize={{ minRows: 7 }}
                           id={data.id}
                           value={this.showAnswer(data.id)}
                         />
@@ -107,20 +107,18 @@ class question extends React.Component {
                 })}
                 <FormItem>
                   <div className="row">
-                    <div className="col text-left">
+                    <div className="col-6 text-left">
                       <ButtonSecondary
-                        size="large"
                         onClick={() => this.backStep()}
-                        className="px-5 ml-0"
+                        className="ml-0"
                       >
                         ย้อนกลับ
                       </ButtonSecondary>
                     </div>
-                    <div className="col text-right">
+                    <div className="col-6 text-right">
                       <ButtonPrimary
-                        size="large"
                         onClick={() => this.nextStep()}
-                        className="px-5 mr-0"
+                        className="mr-0"
                       >
                         ถัดไป
                       </ButtonPrimary>
