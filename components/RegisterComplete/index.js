@@ -2,12 +2,15 @@ import React, { Fragment } from 'react'
 import Navbar from '../Core/Navbar'
 import Complete from './Complete'
 import Router from 'next/router'
+import Body from '../Core/Body'
 
 export default class RegisComplete extends React.Component {
   state={
     wipid:0,
     nickname:null,
-    name:''
+    name:'',
+    confirm: 0,
+    visible:'none'
   }
   componentDidMount = async () => {
     let profileRouter = await Router.query
@@ -15,16 +18,22 @@ export default class RegisComplete extends React.Component {
     this.setState({
       wipid: profileRouter.wipid,
       nickname: profileRouter.nickname,
-      name: fullName
+      name: fullName,
+      confirm: profileRouter.confirm
     })
+    if (this.state.confirm === '1') {
+      this.setState({
+        visible: 'block'
+      })
+    }
   }
 
   render() {
     return (
-      <div>
+      <Body visible={this.state.visible}>
         <Navbar state={this.state} />
         <Complete name={this.state.name}/>
-      </div>
+      </Body>
     )
   }
 }

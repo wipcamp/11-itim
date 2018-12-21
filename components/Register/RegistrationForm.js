@@ -13,6 +13,7 @@ import {
 } from 'antd'
 import moment from 'moment'
 import Select from 'react-select'
+import Router from 'next/router'
 
 import { Subtitle, Paragraph } from '../Core/Text'
 import InputText from '../Core/InputText'
@@ -49,7 +50,8 @@ class RegistrationForm extends React.Component {
       gpax: '',
       email: '',
       school_name: '',
-      wip_id: ''
+      wip_id: '',
+      confirm_register: ''
     },
     schoolOptions: [],
     schoolname: ''
@@ -62,15 +64,18 @@ class RegistrationForm extends React.Component {
   }
   getProfilefromDB = async () => {
     const profile = await RegisterService.getProfile()
-    console.log(profile)
-
     this.setState({
       registerDetail: profile.data
     })
     await this.props.setWipId(
       this.state.registerDetail.wip_id,
       this.state.registerDetail.nickname
-    )
+      )
+    if (await this.state.registerDetail.confirm_register === 1) {
+      Router.push({
+        pathname: '/regiscomplete'
+      })
+    }
   }
   getSchool = async schoolname => {
     let newSelectOptions = []
