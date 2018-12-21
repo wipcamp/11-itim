@@ -1,8 +1,22 @@
 import React from 'react'
-import { Card } from 'antd'
+import RegisterService from '../../service/RegisterService'
+
 
 export default class Profile extends React.Component {
-  render () {
+  state = {
+    profile: {}
+  }
+  componentDidMount = async () => {
+    this.getProfilefromDB()
+  }
+  getProfilefromDB = async () => {
+    const profile = await RegisterService.getProfile()
+    this.setState({
+      profile: profile.data
+    })
+    console.log("profile-state",this.state.profile)
+  }
+  render() {
     return (
       <div className="container-fluid">
         <div className="row justify-content-center">
@@ -15,7 +29,7 @@ export default class Profile extends React.Component {
                     <p>ชื่อ(ไทย):</p>
                   </div>
                   <div className="col-12 col-md-8">
-                    <p>ชื่อ(ไทย):</p>
+                    <p>{this.state.profile.fistname_th}</p>
                   </div>
                 </div>
               </div>
@@ -25,7 +39,7 @@ export default class Profile extends React.Component {
                     <p>นามสกุล(ไทย):</p>
                   </div>
                   <div className="col-12 col-md-8">
-                    <p>นามสกุล(ไทย):</p>
+                    <p>{this.state.profile.lastname_th}</p>
                   </div>
                 </div>
               </div>
@@ -37,7 +51,7 @@ export default class Profile extends React.Component {
                     <p>ชื่อ(อังกฤษ):</p>
                   </div>
                   <div className="col-12 col-md-8">
-                    <p>ชื่อ(อังกฤษ):</p>
+                    <p>{this.state.profile.fistname_en}</p>
                   </div>
                 </div>
               </div>
@@ -47,7 +61,7 @@ export default class Profile extends React.Component {
                     <p>นามสกุล(อังกฤษ):</p>
                   </div>
                   <div className="col-12 col-md-8">
-                    <p>นามสกุล(อังกฤษ):</p>
+                    <p>{this.state.profile.lastname_en}</p>
                   </div>
                 </div>
               </div>
@@ -59,7 +73,7 @@ export default class Profile extends React.Component {
                     <p>ชื่อเล่น:</p>
                   </div>
                   <div className="col-12 col-md-8">
-                    <p>ชื่อเล่น:</p>
+                    <p>{this.state.profile.nickname}</p>
                   </div>
                 </div>
               </div>
@@ -69,7 +83,7 @@ export default class Profile extends React.Component {
                     <p>เพศ:</p>
                   </div>
                   <div className="col-12 col-md-8">
-                    <p>เพศ:</p>
+                    <p>{this.state.profile.gender}</p>
                   </div>
                 </div>
               </div>
@@ -81,7 +95,7 @@ export default class Profile extends React.Component {
                     <p>วันเกิด:</p>
                   </div>
                   <div className="col-12 col-md-8">
-                    <p>วันเกิด:</p>
+                    <p>{this.state.profile.dob}</p>
                   </div>
                 </div>
               </div>
@@ -91,7 +105,7 @@ export default class Profile extends React.Component {
                     <p>ศาสนา:</p>
                   </div>
                   <div className="col-12 col-md-8">
-                    <p>ศาสนา:</p>
+                    <p>{this.state.profile.religion}</p>
                   </div>
                 </div>
               </div>
@@ -103,7 +117,7 @@ export default class Profile extends React.Component {
                     <p>เลขบัตรประชาชน:</p>
                   </div>
                   <div className="col-12 col-md-8">
-                    <p>เลขบัตรประชาชน:</p>
+                    <p>{this.state.profile.citizen_no}</p>
                   </div>
                 </div>
               </div>
@@ -115,7 +129,7 @@ export default class Profile extends React.Component {
                     <p>โรคประจำตัว:</p>
                   </div>
                   <div className="col-6">
-                    <p>โรคประจำตัว:</p>
+                    <p>{this.state.profile.cangenital_disease}</p>
                   </div>
                 </div>
               </div>
@@ -125,7 +139,7 @@ export default class Profile extends React.Component {
                     <p>อาหารที่แพ้:</p>
                   </div>
                   <div className="col-6">
-                    <p>อาหารที่แพ้:</p>
+                    <p>{this.state.profile.allergic_food}</p>
                   </div>
                 </div>
               </div>
@@ -135,7 +149,7 @@ export default class Profile extends React.Component {
                     <p>ยาที่แพ้:</p>
                   </div>
                   <div className="col-6">
-                    <p>ยาที่แพ้:</p>
+                    <p>{this.state.profile.allergic_drug}</p>
                   </div>
                 </div>
               </div>
@@ -147,7 +161,7 @@ export default class Profile extends React.Component {
                     <p>เบอร์โทรศัพท์:</p>
                   </div>
                   <div className="col-12 col-md-8">
-                    <p>เบอร์โทรศัพท์:</p>
+                    <p>{this.state.profile.telno}</p>
                   </div>
                 </div>
               </div>
@@ -157,7 +171,7 @@ export default class Profile extends React.Component {
                     <p>อีเมลล์:</p>
                   </div>
                   <div className="col-12 col-md-8">
-                    <p>อีเมลล์:</p>
+                    <p>{this.state.profile.email}</p>
                   </div>
                 </div>
               </div>
@@ -169,7 +183,7 @@ export default class Profile extends React.Component {
                     <p>เบอร์โทรผู้ปกครอง:</p>
                   </div>
                   <div className="col-12 col-md-8">
-                    <p>เบอร์โทรผู้ปกครอง:</p>
+                    <p>{this.state.profile.guardian_telno}</p>
                   </div>
                 </div>
               </div>
@@ -179,7 +193,7 @@ export default class Profile extends React.Component {
                     <p>ผู้ปกครองเกี่ยวข้องเป็น:</p>
                   </div>
                   <div className="col-12 col-md-8">
-                    <p>ผู้ปกครองเกี่ยวข้องเป็น:</p>
+                    <p>{this.state.profile.guardian_relative}</p>
                   </div>
                 </div>
               </div>
@@ -191,7 +205,7 @@ export default class Profile extends React.Component {
                     <p>ชื่อโรงเรียน:</p>
                   </div>
                   <div className="col-12 col-md-8">
-                    <p>ชื่อโรงเรียน:</p>
+                    <p>{this.state.profile.school_name}</p>
                   </div>
                 </div>
               </div>
@@ -201,7 +215,7 @@ export default class Profile extends React.Component {
                     <p>ระดับชั้น:</p>
                   </div>
                   <div className="col-12 col-md-8">
-                    <p>ระดับชั้น:</p>
+                    <p>{this.state.profile.school_name}</p>
                   </div>
                 </div>
               </div>
@@ -213,7 +227,7 @@ export default class Profile extends React.Component {
                     <p>สายการเรียน:</p>
                   </div>
                   <div className="col-12 col-md-8">
-                    <p>สายการเรียน:</p>
+                    <p>{this.state.profile.school_major}</p>
                   </div>
                 </div>
               </div>
@@ -223,7 +237,7 @@ export default class Profile extends React.Component {
                     <p>เกรด:</p>
                   </div>
                   <div className="col-12 col-md-8">
-                    <p>เกรด:</p>
+                    <p>{this.state.profile.gpax}</p>
                   </div>
                 </div>
               </div>
