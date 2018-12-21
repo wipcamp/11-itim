@@ -4,10 +4,30 @@ import Body from '../Core/Body'
 import Profile from './Profile'
 import ButtonPrimary from '../Core/Button'
 import QuestionAndAnswer from './QuestionAndAnswer'
+import RegisterService from '../../service/RegisterService'
+import QuestionService from '../../service/QuestionService'
+
+
 
 class Register extends React.Component {
   state = {
-    modalVisible: false
+    modalVisible: false,
+    profile: {},
+    questions:[]
+  }
+  componentDidMount = async () => {
+    this.getProfilefromDB()
+    let queryQuestion = await QuestionService.getAllQuestion()
+    this.setState({
+      questions: queryQuestion.data
+    })
+  }
+  getProfilefromDB = async () => {
+    const profile = await RegisterService.getProfile()
+    this.setState({
+      profile: profile.data
+    })
+    console.log("profile-state",this.state.profile)
   }
 
   showModal = () => {
@@ -34,8 +54,8 @@ class Register extends React.Component {
       <Body visible={this.props.visible}>
         <div className="container-fluid">
           <Card className="mt-2 mb-5">
-            <Profile />
-            <QuestionAndAnswer />
+            <Profile profile={this.state.profile}/>
+            <QuestionAndAnswer questions={this.state.questions}/>
             <div className="row">
               <div className="col text-right">
                 <ButtonPrimary
