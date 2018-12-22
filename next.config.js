@@ -3,29 +3,8 @@ const withPlugins = require('next-compose-plugins')
 
 require('dotenv').config()
 
-const path = require('path')
-const Dotenv = require('dotenv-webpack')
-
-// const evnconfig = {
-//   webpack: (config) => {
-//     config.plugins = config.plugins || []
-
-//     config.plugins = [
-//       ...config.plugins,
-
-//       // Read the .env file
-//       new Dotenv({
-//         path: path.join(__dirname, '.env'),
-//         systemvars: true
-//       })
-//     ]
-
-//     return config
-//   }
-// }
-
 const evnconfig = {
-  useFileSystemPublicRoutes: false,
+  useFileSystemPublicRoutes: true,
   publicRuntimeConfig: {
     PATH_AUTH: process.env.PATH_AUTH,
     PATH_REGISTANCE: process.env.PATH_REGISTANCE
