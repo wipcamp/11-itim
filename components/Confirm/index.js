@@ -11,11 +11,10 @@ import QuestionService from '../../service/QuestionService'
 class Register extends React.Component {
   state = {
     modalVisible: false,
-    profile: {},
+    profile: {confirm_register: 0},
   }
   componentDidMount = async () => {
     this.getProfilefromDB()
-    console.log(this.state.questions)
   }
   getQuestion = async () => {
     let queryQuestion = await QuestionService.getAllQuestion()
@@ -37,6 +36,17 @@ class Register extends React.Component {
   }
 
   handleOk = async e => {
+    const { profile } = this.state.profile
+    this.setState({
+      modalVisible: false,
+      profile: {
+        ...profile,
+        confirm_register: 1
+      }
+    })
+    console.log(this.state.profile)
+    RegisterService.sendRegister(this.state.profile)
+    QuestionService.sendQuestions(this.state.questions)
     this.props.setPageIndex(1)
   }
 

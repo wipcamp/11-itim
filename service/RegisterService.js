@@ -6,7 +6,7 @@ const RegisterService = {
 
   sendRegister: async (request) => {
     console.log('sending', request)
-    await apiReg.post('/profile', request).then(respons => {
+    await apiReg.put('/profile', request).then(respons => {
       console.log(respons)
     })
   },
