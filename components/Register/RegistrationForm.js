@@ -165,9 +165,9 @@ class RegistrationForm extends React.Component {
 
   handleNextButton = e => {
     e.preventDefault()
-    this.handlesendRegister()
+    this.handlesendRegister(e)
   }
-  handlesendRegister = async () => {
+  handlesendRegister = async (e) => {
     if (this.handleValidation()) {
       await RegisterService.sendRegister(this.state.registerDetail)
       await this.props.setWipId(
@@ -186,11 +186,52 @@ class RegistrationForm extends React.Component {
           window.alert('โปรดกรอกข้อมูลให้ครบ')
           return false
         } else {
-          return true
+          if (this.validNationalID(registerDetail.citizen_no)) {
+            if(/^[a-zA-Z]+$/.test(this.state.registerDetail.nickname)){
+              window.alert('ชื่อเล่นภาษาไทยยนะ')
+            return false
+            }else{
+              const gpaxc = this.state.registerDetail.gpax
+            if(isNaN(gpaxc)||gpaxc.length!==4){
+              window.alert('กรอกเกรดผิด')
+              return false
+            }else{
+              if(/^[a-zA-Z]+$/.test(this.state.registerDetail.fistname_th)||/^[a-zA-Z]+$/.test(this.state.registerDetail.lastname_th)){
+                window.alert('กรอกชื่อและนามสกุลไทยผิด')
+              return false
+              }else{
+                if(/^[a-zA-Z]+$/.test(this.state.registerDetail.fistname_en)&&/^[a-zA-Z]+$/.test(this.state.registerDetail.lastname_en)){
+                return true
+                }else{
+                  window.alert('กรอกชื่อและนามสกุลอังกฤษผิด')
+                  return false
+                }
+              }
+
+            }
+            }
+          } else {
+            window.alert('กรอกบัตรประชาชนผิด')
+            return false
+          }
         }
       }
     }
   }
+   validNationalID =(id) => {
+    if (id == null || id.length !== 13) return false;
+    let i, sum = 0;
+    for ((i = 0), (sum = 0); i < 12; i++) {
+      sum += parseInt(id.charAt(i)) * (13 - i);
+    }
+    let mod = sum % 11;
+    let check = (11 - mod) % 10;
+    if (check == parseInt(id.charAt(12))) {
+      return true;
+    }
+    return false;
+  }
+
 
   handlePrefixName = valuePrefix => {
     const { registerDetail } = this.state
@@ -232,14 +273,14 @@ class RegistrationForm extends React.Component {
     const religion = (
       <Menu onClick={this.handleReligion}>
         <Menu.Item key="พุทธ">พุทธ</Menu.Item>
-        <Menu.Item key="อิสราม">อิสราม</Menu.Item>
         <Menu.Item key="คริสต์">คริสต์</Menu.Item>
+        <Menu.Item key="อิสราม">อิสลาม</Menu.Item>
         <Menu.Item key="คริสต์">อื่นๆ</Menu.Item>
       </Menu>
     )
 
     const prefixName = (
-      <AntDesignSelect onChange={this.handlePrefixName} defaultValue="นาย">
+      <AntDesignSelect onChange={this.handlePrefixName} defaultValue=''>
         <Option value="นาย">นาย</Option>
         <Option value="นางสาว">นางสาว</Option>
       </AntDesignSelect>
@@ -475,6 +516,7 @@ class RegistrationForm extends React.Component {
                             }
                             name="citizen_no"
                             value={this.state.registerDetail.citizen_no}
+                            size="13"
                           />
                         </FormItem>
                       </div>
@@ -618,6 +660,7 @@ class RegistrationForm extends React.Component {
                               this.handleFields(name, value)
                             }
                             name="guardian_telno"
+                            type="tel"
                             value={this.state.registerDetail.guardian_telno}
                           />
                         </FormItem>
@@ -736,7 +779,7 @@ class RegistrationForm extends React.Component {
                     <div className="row">
                       <div className="col-12 col-md-5 ">
                         <FormItem>
-                          <Paragraph>เกรด:</Paragraph>
+                          <Paragraph>เกรด(x.xx):</Paragraph>
                         </FormItem>
                       </div>
                       <div className="col-12 col-md-7">
@@ -748,7 +791,7 @@ class RegistrationForm extends React.Component {
                               this.handleFields(name, value)
                             }
                             value={this.state.registerDetail.gpax}
-                            type="number"
+                            type="text"
                           />
                         </FormItem>
                       </div>
