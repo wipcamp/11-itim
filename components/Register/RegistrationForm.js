@@ -27,23 +27,6 @@ const Option = AntDesignSelect.Option
 
 class RegistrationForm extends React.Component {
 
-  handleNextButton = e => {
-    e.preventDefault()
-    this.handlesendRegister(e)
-  }
-  handlesendRegister = async (e) => {
-    console.log('val', e)
-    if (await Validatetion.handleValidation(this.props.profileData)) {
-      await RegisterService.sendRegister(this.props.profileData)
-      await this.props.setWipId(
-        this.props.profileData.wip_id,
-        this.props.profileData.nickname
-      )
-      this.props.setPageIndex(1)
-    } else {
-    }
-  }
-
   handleLogout= ()=>{
     CookiesService.removeJWTAndEmailCookie()
     this.handleCheckLoginState()
@@ -83,7 +66,7 @@ class RegistrationForm extends React.Component {
         <div className="row justify-content-center">
           <div className="col-10">
             <Card className="mt-2 mb-5">
-              <Form method="post" onSubmit={this.handleNextButton}>
+              <Form method="post" onSubmit={this.props.handleNextButton}>
                 <Subtitle className="font-weight-bold mb-4 ml-5">
                   ข้อมูลส่วนตัว
                 </Subtitle>
