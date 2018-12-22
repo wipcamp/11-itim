@@ -19,6 +19,7 @@ import InputText from '../Core/InputText'
 import ButtonPrimary from '../Core/Button'
 import RegisterService from '../../service/RegisterService'
 import CookiesService from '../../service/CookieService';
+import Validatetion from './Validatetion'
 
 const DateFormat = `DD/MM/YYYY`
 const FormItem = Form.Item
@@ -168,7 +169,7 @@ class RegistrationForm extends React.Component {
     this.handlesendRegister(e)
   }
   handlesendRegister = async (e) => {
-    if (this.handleValidation()) {
+    if (Validatetion.handleValidation(this.state.registerDetail)) {
       await RegisterService.sendRegister(this.state.registerDetail)
       await this.props.setWipId(
         this.state.registerDetail.wip_id,
@@ -177,67 +178,6 @@ class RegistrationForm extends React.Component {
       this.props.setPageIndex(1)
     } else {
     }
-  }
-  handleValidation = () => {
-    let registerDetail = this.state.registerDetail
-    for (let index in registerDetail) {
-      if (registerDetail.hasOwnProperty(index)) {
-        if (registerDetail[index] === '') {
-          window.alert('โปรดกรอกข้อมูลให้ครบ')
-          return false
-        } else {
-          if (this.validNationalID(registerDetail.citizen_no)) {
-            if(/^[a-zA-Z]+$/.test(registerDetail.nickname)){
-              window.alert('ชื่อเล่นภาษาไทยยนะ')
-            return false
-            }else{
-              const gpaxc = registerDetail.gpax
-            if(isNaN(gpaxc)||gpaxc.length!==4){
-              window.alert('กรอกเกรดผิด')
-              return false
-            }else{
-              if(/^[a-zA-Z]+$/.test(registerDetail.fistname_th)||/^[a-zA-Z]+$/.test(this.state.registerDetail.lastname_th)){
-                window.alert('กรอกชื่อและนามสกุลไทยผิด')
-              return false
-              }else{
-                if(/^[a-zA-Z]+$/.test(registerDetail.fistname_en)&&/^[a-zA-Z]+$/.test(this.state.registerDetail.lastname_en)){
-                  if(registerDetail.prefix_name==='นาย'&&registerDetail.gender==='male'){
-                    return true;
-                  }
-                  if(registerDetail.prefix_name==='นางสาว'&&registerDetail.gender==='female'){
-                    return true;
-                  }else{
-                     window.alert('คำนำหน้ากับชื่อไม่ตรงกัน')
-                    return false;
-
-                  }
-                }else{
-                  window.alert('กรอกชื่อและนามสกุลอังกฤษผิด')
-                  return false
-                }
-              }
-            }
-            }
-          } else {
-            window.alert('กรอกบัตรประชาชนผิด')
-            return false
-          }
-        }
-      }
-    }
-  }
-   validNationalID =(id) => {
-    if (id == null || id.length !== 13) return false;
-    let i, sum = 0;
-    for ((i = 0), (sum = 0); i < 12; i++) {
-      sum += parseInt(id.charAt(i)) * (13 - i);
-    }
-    let mod = sum % 11;
-    let check = (11 - mod) % 10;
-    if (check == parseInt(id.charAt(12))) {
-      return true;
-    }
-    return false;
   }
 
 
