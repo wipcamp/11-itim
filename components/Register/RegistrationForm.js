@@ -18,6 +18,7 @@ import { Subtitle, Paragraph } from '../Core/Text'
 import InputText from '../Core/InputText'
 import ButtonPrimary from '../Core/Button'
 import RegisterService from '../../service/RegisterService'
+import CookiesService from '../../service/CookieService';
 
 const DateFormat = `DD/MM/YYYY`
 const FormItem = Form.Item
@@ -200,6 +201,19 @@ class RegistrationForm extends React.Component {
       }
     })
   }
+  handleLogout= ()=>{
+    CookiesService.removeJWTAndEmailCookie()
+    this.handleCheckLoginState()
+  }
+  handleCheckLoginState = async() => {
+    if (await CookiesService.gettokenJWTCookie()) {
+    }else{
+        Router.push({
+          pathname: '/index'
+        })
+  
+    }
+  }
 
   render() {
     const schoolGradeOptions = (
@@ -232,6 +246,7 @@ class RegistrationForm extends React.Component {
     )
     return (
       <div className="container-fluid">
+      <button onClick={this.handleLogout}>Emergercy logout ชั่วคราวจ้าาา</button>
         <div className="row justify-content-center">
           <div className="col-10">
             <Card className="mt-2 mb-5">
