@@ -4,9 +4,10 @@ import ProgressBar from './ProgressBar.js'
 import Register from '../Register'
 import Questions from '../Questions'
 import Confirm from '../Confirm'
+import RegisComplete from '../RegisterComplete'
 import QuestionService from '../../service/QuestionService'
 import Navbar from './Navbar'
-import CookiesService from '../../service/CookieService.js';
+import CookiesService from '../../service/CookieService.js'
 
 class App extends React.Component {
   state = {
@@ -15,8 +16,9 @@ class App extends React.Component {
     registerVisible: 'none',
     questionVisible: 'none',
     confirmVisible: 'none',
+    completeVisible: 'none',
     wipid: 0,
-    nickname:''
+    nickname: ''
   }
 
   componentDidMount = async () => {
@@ -36,7 +38,8 @@ class App extends React.Component {
       this.setState({
         registerVisible: 'block',
         questionVisible: 'none',
-        confirmVisible: 'none'
+        confirmVisible: 'none',
+        completeVisible: 'none'
       })
     } else if (
       this.state.pageIndex >= 1 &&
@@ -45,7 +48,8 @@ class App extends React.Component {
       this.setState({
         questionVisible: 'block',
         registerVisible: 'none',
-        confirmVisible: 'none'
+        confirmVisible: 'none',
+        completeVisible: 'none'
       })
     } else if (
       this.state.pageIndex > Math.ceil(this.state.questions.length / 3) &&
@@ -54,13 +58,25 @@ class App extends React.Component {
       this.setState({
         questionVisible: 'none',
         registerVisible: 'none',
-        confirmVisible: 'block'
+        confirmVisible: 'block',
+        completeVisible: 'none'
+      })
+    } else if (
+      this.state.pageIndex ===
+      Math.ceil(this.state.questions.length / 3) + 1
+    ) {
+      this.setState({
+        questionVisible: 'none',
+        registerVisible: 'none',
+        confirmVisible: 'none',
+        completeVisible: 'block'
       })
     } else {
       this.setState({
         registerVisible: 'none',
         questionVisible: 'none',
-        confirmVisible: 'none'
+        confirmVisible: 'none',
+        completeVisible: 'none'
       })
     }
   }
@@ -70,24 +86,23 @@ class App extends React.Component {
     })
     this.handleChangePage()
   }
-  setWipId = async (id,nickname) => {
+  setWipId = async (id, nickname) => {
     this.setState({
       wipid: await id,
       nickname: await nickname
     })
   }
 
- handleCheckLoginState = async() => {
-  if (await CookiesService.gettokenJWTCookie()) {
-  }else{
+  handleCheckLoginState = async () => {
+    if (await CookiesService.gettokenJWTCookie()) {
+    } else {
       Router.push({
         pathname: '/index'
       })
-
+    }
   }
-}
 
-  render() { 
+  render() {
     this.handleCheckLoginState()
     return (
       <div className="container-fluid">
@@ -114,6 +129,11 @@ class App extends React.Component {
             <Confirm
               visible={this.state.confirmVisible}
               setPageIndex={this.setPageIndex}
+            />
+          </div>
+          <div className="mt-5">
+            <RegisComplete
+              visible={this.state.completeVisible}
             />
           </div>
         </div>
