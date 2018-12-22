@@ -12,7 +12,6 @@ class Register extends React.Component {
   state = {
     modalVisible: false,
     profile: {},
-    questions: []
   }
   componentDidMount = async () => {
     this.getProfilefromDB()
@@ -64,7 +63,7 @@ class Register extends React.Component {
         <div className="container-fluid">
           <Card className="mt-2 mb-5">
             <Profile profile={this.state.profile} />
-            <QuestionAndAnswer questions={this.state.questions} />
+            <QuestionAndAnswer answers={this.props.answers} questions={this.props.questions} />
             <div className="row">
               <div className="col-6 text-left">
                 <ButtonSecondary

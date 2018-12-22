@@ -16,52 +16,24 @@ const StyledTextArea = styled(TextArea)`
 `
 class question extends React.Component {
   state = {
-    questions: [],
     startIndex: 0,
-    pageIndex: 1,
-    answers: []
   }
   componentDidMount = async () => {
-    let queryQuestion = await QuestionService.getAllQuestion()
-    this.setState({
-      questions: queryQuestion.data
-    })
-    for (let index = 0; index < this.state.questions.length; index++) {
-      this.state.answers.push({ question_id: index + 1, ans_content: '' })
-    }
-  }
-
-  setAnswerByQuestionId = (question_id, newAnswer) => {
-    return this.state.answers.map(answer => {
-      if (answer.question_id === question_id) {
-        answer.ans_content = newAnswer
-      }
-      return answer
-    })
-  }
-  handleFields = e => {
-    const newAnswer = e.target.value
-    const question_id = parseInt(e.target.id)
-    const answers = this.setAnswerByQuestionId(question_id, newAnswer)
-    this.setState({ answers })
+    
   }
 
   handleNext = () => {
-    this.setState({
-      startIndex: this.state.startIndex + 3
-    })
+    this.props.changeQuestionStartIndex(this.props.questionStartIndex + 3)
     return 1
   }
   handleBack = () => {
-    this.setState({
-      startIndex: this.state.startIndex - 3
-    })
+    this.props.changeQuestionStartIndex(this.props.questionStartIndex - 3)
     let count = -1
     return count
   }
 
   findAnswerByquestion_id = question_id => {
-    return this.state.answers.find(ans => ans.question_id == question_id)
+    return this.props.answers.find(ans => ans.question_id == question_id)
   }
 
   showAnswer = question_id => {
@@ -74,7 +46,7 @@ class question extends React.Component {
 
   handleNextButton = e => {
     e.preventDefault();
-    QuestionService.sendQuestions(this.state.answers)
+    QuestionService.sendQuestions(this.props.answers)
     this.nextStep()
   }
   nextStep = async () => {
@@ -93,10 +65,11 @@ class question extends React.Component {
           <div className="row">
             <div className="col-10 mt-5 mx-auto">
               <Form method="post" onSubmit={this.handleNextButton} layout="vertical">
-                {this.state.questions.map((data, key) => {
+                {this.props.questions.map((data, key) => {
+                  console.log(this.props.questionStartIndex)
                   if (
-                    key <= this.state.startIndex + 2 &&
-                    key >= this.state.startIndex
+                    key <= this.props.questionStartIndex + 2 &&
+                    key >= this.props.questionStartIndex
                   )
                     return (
                       <FormItem key={key}>
@@ -106,7 +79,7 @@ class question extends React.Component {
                         <StyledTextArea
                         required
                           name="ans_content"
-                          onChange={this.handleFields}
+                          onChange={this.props.handleFields}
                           autosize={{ minRows: 7 }}
                           id={data.id}
                           value={this.showAnswer(data.id)}

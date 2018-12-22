@@ -26,200 +26,45 @@ const FormItem = Form.Item
 const Option = AntDesignSelect.Option
 
 class RegistrationForm extends React.Component {
-  state = {
-    registerDetail: {
-      fistname_th: '',
-      lastname_th: '',
-      fistname_en: '',
-      lastname_en: '',
-      nickname: '',
-      gender: '',
-      dob: '',
-      religion: '',
-      citizen_no: '',
-      cangenital_disease: '',
-      allergic_drug: '',
-      prefix_name: '',
-      allergic_food: '',
-      medical_approved: '',
-      telno: '',
-      guardian_telno: '',
-      guardian_relative: '',
-      school_id: '',
-      school_level: '',
-      school_major: '',
-      gpax: '',
-      email: '',
-      school_name: '',
-      wip_id: '',
-      confirm_register: ''
-    },
-    schoolOptions: [],
-    schoolname: ''
-  }
-  componentDidMount = async () => {
-    const schoolname = await RegisterService.getSchoolname()
-    this.getSchool(schoolname.data)
-    this.getProfilefromDB()
-    console.log(this.state.registerDetail)
-    
-  }
-  getProfilefromDB = async () => {
-    const profile = await RegisterService.getProfile()
-    this.setState({
-      registerDetail: profile.data
-    })
-    await this.props.setWipId(
-      this.state.registerDetail.wip_id,
-      this.state.registerDetail.nickname
-      )
-    if (await this.state.registerDetail.confirm_register === 1) {
-      Router.push({
-        pathname: '/regiscomplete'
-      })
-    }
-  }
-  getSchool = async schoolname => {
-    let newSelectOptions = []
-    for (let index = 0; index < schoolname.length; index++) {
-      newSelectOptions.push({
-        id: index,
-        value: schoolname[index].school_name,
-        label: schoolname[index].school_name
-      })
-    }
-    await this.setState({
-      schoolOptions: newSelectOptions
-    })
-  }
-
-  handleFields = (name, value) => {
-    const { registerDetail } = this.state
-    this.setState({
-      registerDetail: {
-        ...registerDetail,
-        [name]: value
-      }
-    })
-  }
-  handleDate = (date, dateString) => {
-    const { registerDetail } = this.state
-    this.setState({
-      registerDetail: {
-        ...registerDetail,
-        dob: date && date.format('Y-M-D')
-      }
-    })
-  }
-
-  handleGender = e => {
-    const { registerDetail } = this.state
-    this.setState({
-      registerDetail: {
-        ...registerDetail,
-        gender: e.target.value
-      }
-    })
-  }
-
-  handleReligion = e => {
-    const { registerDetail } = this.state
-    this.setState({
-      registerDetail: {
-        ...registerDetail,
-        religion: e.key
-      }
-    })
-  }
-
-  handleChange = async data => {
-    const { registerDetail } = this.state
-    const school = (await data.id) + 1
-    const schoolNameFromInput = data.value
-    this.setState({
-      registerDetail: {
-        ...registerDetail,
-        school_id: school,
-        school_name: schoolNameFromInput
-      }
-    })
-    console.log(this.state.schoolname)
-  }
-  handleschoolGrade = e => {
-    const { registerDetail } = this.state
-    this.setState({
-      registerDetail: {
-        ...registerDetail,
-        school_level: e.key
-      }
-    })
-  }
-  handlemajor = e => {
-    const { registerDetail } = this.state
-    this.setState({
-      registerDetail: {
-        ...registerDetail,
-        school_major: e.key
-      }
-    })
-  }
 
   handleNextButton = e => {
     e.preventDefault()
     this.handlesendRegister(e)
   }
   handlesendRegister = async (e) => {
-    if (Validatetion.handleValidation(this.state.registerDetail)) {
-      await RegisterService.sendRegister(this.state.registerDetail)
+    console.log('val', e)
+    if (await Validatetion.handleValidation(this.props.profileData)) {
+      await RegisterService.sendRegister(this.props.profileData)
       await this.props.setWipId(
-        this.state.registerDetail.wip_id,
-        this.state.registerDetail.nickname
+        this.props.profileData.wip_id,
+        this.props.profileData.nickname
       )
       this.props.setPageIndex(1)
     } else {
     }
   }
 
-
-  handlePrefixName = valuePrefix => {
-    const { registerDetail } = this.state
-    this.setState({
-      registerDetail: {
-        ...registerDetail,
-        prefix_name: valuePrefix
-      }
-    })
-  }
   handleLogout= ()=>{
     CookiesService.removeJWTAndEmailCookie()
     this.handleCheckLoginState()
   }
-  handleCheckLoginState = async() => {
-    if (await CookiesService.gettokenJWTCookie()) {
-    }else{
-        Router.push({
-          pathname: '/index'
-        })
-  
-    }
-  }
 
-  render() {
+  render () {
     const schoolGradeOptions = (
-      <Menu onClick={this.handleschoolGrade}>
+      <Menu onClick={this.props.handleschoolGrade}>
         <Menu.Item key="ม.4">4</Menu.Item>
         <Menu.Item key="ม.5">5</Menu.Item>
         <Menu.Item key="ม.6">6</Menu.Item>
       </Menu>
     )
     const major = (
-      <Menu onClick={this.handlemajor}>
+      <Menu onClick={this.props.handlemajor}>
         <Menu.Item key="วิทย์-คณิต">วิทย์-คณิต</Menu.Item>
         <Menu.Item key="ศิลป์คำนวน">ศิลป์คำนวน</Menu.Item>
       </Menu>
     )
     const religion = (
-      <Menu onClick={this.handleReligion}>
+      <Menu onClick={this.props.handleReligion}>
         <Menu.Item key="พุทธ">พุทธ</Menu.Item>
         <Menu.Item key="คริสต์">คริสต์</Menu.Item>
         <Menu.Item key="อิสราม">อิสลาม</Menu.Item>
@@ -228,7 +73,7 @@ class RegistrationForm extends React.Component {
     )
 
     const prefixName = (
-      <AntDesignSelect onChange={this.handlePrefixName} defaultValue=''>
+      <AntDesignSelect onChange={this.props.handlePrefixName} defaultValue=''>
         <Option value="นาย">นาย</Option>
         <Option value="นางสาว">นางสาว</Option>
       </AntDesignSelect>
@@ -255,10 +100,10 @@ class RegistrationForm extends React.Component {
                           <InputText
                             addonBefore={prefixName}
                             onChange={({ target: { name, value } }) =>
-                              this.handleFields(name, value)
+                              this.props.handleFields(name, value)
                             }
                             name="fistname_th"
-                            value={this.state.registerDetail.fistname_th}
+                            value={this.props.profileData.fistname_th}
                             required
                           />
                         </FormItem>
@@ -276,10 +121,10 @@ class RegistrationForm extends React.Component {
                         <FormItem>
                           <InputText
                             onChange={({ target: { name, value } }) =>
-                              this.handleFields(name, value)
+                              this.props.handleFields(name, value)
                             }
                             name="lastname_th"
-                            value={this.state.registerDetail.lastname_th}
+                            value={this.props.profileData.lastname_th}
                             required
                           />
                         </FormItem>
@@ -300,10 +145,10 @@ class RegistrationForm extends React.Component {
                           <InputText
                             required
                             onChange={({ target: { name, value } }) =>
-                              this.handleFields(name, value)
+                              this.props.handleFields(name, value)
                             }
                             name="fistname_en"
-                            value={this.state.registerDetail.fistname_en}
+                            value={this.props.profileData.fistname_en}
                           />
                         </FormItem>
                       </div>
@@ -321,10 +166,10 @@ class RegistrationForm extends React.Component {
                           <InputText
                             required
                             onChange={({ target: { name, value } }) =>
-                              this.handleFields(name, value)
+                              this.props.handleFields(name, value)
                             }
                             name="lastname_en"
-                            value={this.state.registerDetail.lastname_en}
+                            value={this.props.profileData.lastname_en}
                           />
                         </FormItem>
                       </div>
@@ -344,10 +189,10 @@ class RegistrationForm extends React.Component {
                           <InputText
                             required
                             onChange={({ target: { name, value } }) =>
-                              this.handleFields(name, value)
+                              this.props.handleFields(name, value)
                             }
                             name="nickname"
-                            value={this.state.registerDetail.nickname}
+                            value={this.props.profileData.nickname}
                           />
                         </FormItem>
                       </div>
@@ -363,15 +208,15 @@ class RegistrationForm extends React.Component {
                       <div className="col-12 col-md-7">
                         <FormItem>
                           <Radio.Group
-                            defaultValue={this.state.registerDetail.gender}
-                            value={this.state.registerDetail.gender}
+                            defaultValue={this.props.profileData.gender}
+                            value={this.props.profileData.gender}
                             size="large"
                           >
                             <Radio.Button
                               value="male"
                               name="Male"
                               className="px-4"
-                              onClick={this.handleGender}
+                              onClick={this.props.handleGender}
                             >
                               ชาย
                             </Radio.Button>
@@ -379,7 +224,7 @@ class RegistrationForm extends React.Component {
                               value="female"
                               name="Female"
                               className="px-4"
-                              onClick={this.handleGender}
+                              onClick={this.props.handleGender}
                             >
                               หญิง
                             </Radio.Button>
@@ -402,13 +247,13 @@ class RegistrationForm extends React.Component {
                           <LocaleProvider locale={th_TH}>
                             <DatePicker
                               placeholder={
-                                this.state.registerDetail.dob != ''
-                                  ? this.state.registerDetail.dob
+                                this.props.profileData.dob != ''
+                                  ? this.props.profileData.dob
                                   : 'เลือกวันเกิด'
                               }
                               format={DateFormat}
                               defaultValue={moment('01/01/2002', DateFormat)}
-                              onChange={this.handleDate}
+                              onChange={this.props.handleDate}
                               locale={th_TH}
                             />
                           </LocaleProvider>
@@ -431,14 +276,14 @@ class RegistrationForm extends React.Component {
                               className="col-6"
                               type="button"
                               value={
-                                this.state.registerDetail.religion != ''
-                                  ? this.state.registerDetail.religion
+                                this.props.profileData.religion != ''
+                                  ? this.props.profileData.religion
                                   : ''
                               }
                               disabled
                               name=""
                               placeholder="เลือก"
-                              value={this.state.registerDetail.religion}
+                              value={this.props.profileData.religion}
                             />
                           </Dropdown>
                         </FormItem>
@@ -459,10 +304,10 @@ class RegistrationForm extends React.Component {
                           <InputText
                             required
                             onChange={({ target: { name, value } }) =>
-                              this.handleFields(name, value)
+                              this.props.handleFields(name, value)
                             }
                             name="citizen_no"
-                            value={this.state.registerDetail.citizen_no}
+                            value={this.props.profileData.citizen_no}
                             size="13"
                           />
                         </FormItem>
@@ -484,10 +329,10 @@ class RegistrationForm extends React.Component {
                             required
                             name="cangenital_disease"
                             onChange={({ target: { name, value } }) =>
-                              this.handleFields(name, value)
+                              this.props.handleFields(name, value)
                             }
                             placeholder="หากไม่มีให้ใส่ -"
-                            value={this.state.registerDetail.cangenital_disease}
+                            value={this.props.profileData.cangenital_disease}
                           />
                         </FormItem>
                       </div>
@@ -506,10 +351,10 @@ class RegistrationForm extends React.Component {
                             required
                             placeholder="หากไม่มีให้ใส่ -"
                             onChange={({ target: { name, value } }) =>
-                              this.handleFields(name, value)
+                              this.props.handleFields(name, value)
                             }
                             name="allergic_food"
-                            value={this.state.registerDetail.allergic_food}
+                            value={this.props.profileData.allergic_food}
                           />
                         </FormItem>
                       </div>
@@ -528,10 +373,10 @@ class RegistrationForm extends React.Component {
                             required
                             placeholder="หากไม่มีให้ใส่ -"
                             onChange={({ target: { name, value } }) =>
-                              this.handleFields(name, value)
+                              this.props.handleFields(name, value)
                             }
                             name="allergic_drug"
-                            value={this.state.registerDetail.allergic_drug}
+                            value={this.props.profileData.allergic_drug}
                           />
                         </FormItem>
                       </div>
@@ -554,10 +399,10 @@ class RegistrationForm extends React.Component {
                           <InputText
                             required
                             onChange={({ target: { name, value } }) =>
-                              this.handleFields(name, value)
+                              this.props.handleFields(name, value)
                             }
                             name="telno"
-                            value={this.state.registerDetail.telno}
+                            value={this.props.profileData.telno}
                             type="tel"
                           />
                         </FormItem>
@@ -577,12 +422,12 @@ class RegistrationForm extends React.Component {
                             required
                             type="email"
                             onChange={({ target: { name, value } }) =>
-                              this.handleFields(name, value)
+                              this.props.handleFields(name, value)
                             }
                             name="email"
                             value={
-                              this.state.registerDetail.email != ''
-                                ? this.state.registerDetail.email
+                              this.props.profileData.email != ''
+                                ? this.props.profileData.email
                                 : ''
                             }
                           />
@@ -604,11 +449,11 @@ class RegistrationForm extends React.Component {
                           <InputText
                             required
                             onChange={({ target: { name, value } }) =>
-                              this.handleFields(name, value)
+                              this.props.handleFields(name, value)
                             }
                             name="guardian_telno"
+                            value={this.props.profileData.guardian_telno}
                             type="tel"
-                            value={this.state.registerDetail.guardian_telno}
                           />
                         </FormItem>
                       </div>
@@ -626,10 +471,10 @@ class RegistrationForm extends React.Component {
                           <InputText
                             required
                             onChange={({ target: { name, value } }) =>
-                              this.handleFields(name, value)
+                              this.props.handleFields(name, value)
                             }
                             name="guardian_relative"
-                            value={this.state.registerDetail.guardian_relative}
+                            value={this.props.profileData.guardian_relative}
                           />
                         </FormItem>
                       </div>
@@ -651,15 +496,15 @@ class RegistrationForm extends React.Component {
                         <FormItem>
                           <Select
                             defaultValue={
-                              this.state.registerDetail.school_name != ''
-                                ? this.state.registerDetail.school_name
+                              this.props.profileData.school_name != ''
+                                ? this.props.profileData.school_name
                                 : ''
                             }
-                            onChange={this.handleChange}
-                            options={this.state.schoolOptions}
+                            onChange={this.props.handleChange}
+                            options={this.props.schoolOptions}
                             placeholder={
-                              this.state.registerDetail.school_name != ''
-                                ? this.state.registerDetail.school_name
+                              this.props.profileData.school_name != ''
+                                ? this.props.profileData.school_name
                                 : 'เลือก'
                             }
                           />
@@ -683,8 +528,8 @@ class RegistrationForm extends React.Component {
                               type="button"
                               name="school_level"
                               value={
-                                this.state.registerDetail.school_level != ''
-                                  ? this.state.registerDetail.school_level
+                                this.props.profileData.school_level != ''
+                                  ? this.props.profileData.school_level
                                   : ''
                               }
                               placeholder="เลือก"
@@ -711,8 +556,8 @@ class RegistrationForm extends React.Component {
                               className="col-6"
                               type="button"
                               value={
-                                this.state.registerDetail.school_major != ''
-                                  ? this.state.registerDetail.school_major
+                                this.props.profileData.school_major != ''
+                                  ? this.props.profileData.school_major
                                   : ''
                               }
                               placeholder="เลือก"
@@ -735,10 +580,13 @@ class RegistrationForm extends React.Component {
                             required
                             name="gpax"
                             onChange={({ target: { name, value } }) =>
-                              this.handleFields(name, value)
+                              this.props.handleFields(name, value)
                             }
-                            value={this.state.registerDetail.gpax}
-                            type="text"
+                            value={this.props.profileData.gpax}
+                            type="number"
+                            step="0.01"
+                            min={0}
+                            max={4}
                           />
                         </FormItem>
                       </div>

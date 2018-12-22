@@ -1,6 +1,7 @@
 import validID from './ValidationCitiZen'
 const validNation = {
   handleValidation: (value) => {
+    console.log(value)
     let registerDetail = value
     var phoneno = /^(([0-9]{3})) *([0-9]{3})*([0-9]{4})$/
     if (!phoneno.test(registerDetail.guardian_telno) ||

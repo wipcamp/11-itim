@@ -11,7 +11,8 @@ const RegisterService = {
     })
   },
   getSchoolname: async () => {
-    return apiReg.get('/schools')
+    let data = await apiReg.get('/schools')
+    return data
   },
 
   getProfile: async () => {
