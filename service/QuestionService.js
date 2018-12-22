@@ -7,7 +7,7 @@ const QuestionService = {
   },
   sendQuestions: async (request) => {
     console.log(JSON.stringify(request))
-    await apiReg.post('/answers', request)
+    await apiReg.put('/answers', request)
   }
 }
 export default QuestionService

@@ -1,10 +1,9 @@
 import React from 'react'
 import { Card, Modal } from 'antd'
-import Router from 'next/router'
 
 import Body from '../Core/Body'
 import Profile from './Profile'
-import ButtonPrimary from '../Core/Button'
+import ButtonPrimary, { ButtonSecondary } from '../Core/Button'
 import QuestionAndAnswer from './QuestionAndAnswer'
 import RegisterService from '../../service/RegisterService'
 import QuestionService from '../../service/QuestionService'
@@ -19,7 +18,7 @@ class Register extends React.Component {
     console.log(this.state.questions)
   }
   getQuestion = async () => {
-     let queryQuestion = await QuestionService.getAllQuestion()
+    let queryQuestion = await QuestionService.getAllQuestion()
     this.setState({
       questions: queryQuestion.data
     })
@@ -37,29 +36,8 @@ class Register extends React.Component {
     })
   }
 
-  handleOk = e => {
-    RegisterService.sendRegister(this.state.profile)
-    QuestionService.sendQuestions(this.state.questions)
-    const { profile } = this.state
-    this.setState({
-      modalVisible: false,
-      profile: {
-        ...profile,
-        confirm_register: 1
-      }
-    })
-    setInterval(() => {
-      Router.push({
-        pathname: '/regiscomplete',
-        query: {
-          wipid: this.state.profile.wip_id,
-          nickname: this.state.profile.nickname,
-          fname: this.state.profile.fistname_th,
-          lname: this.state.profile.lastname_th,
-          confirm: this.state.profile.confirm_register
-        }
-      })
-    }, 1000)
+  handleOk = async e => {
+    this.props.setPageIndex(1)
   }
 
   handleCancel = e => {
@@ -67,6 +45,17 @@ class Register extends React.Component {
     this.setState({
       modalVisible: false
     })
+  }
+  backStep = async () => {
+    const count = await this.handleBack()
+    this.props.setPageIndex(count)
+  }
+   handleBack = () => {
+    this.setState({
+      startIndex: this.state.startIndex - 3
+    })
+    let count = -1
+    return count
   }
   render() {
     return (
@@ -76,30 +65,38 @@ class Register extends React.Component {
             <Profile profile={this.state.profile} />
             <QuestionAndAnswer answers={this.props.answers} questions={this.props.questions} />
             <div className="row">
-              <div className="col text-right">
+              <div className="col-6 text-left">
+                <ButtonSecondary
+                  onClick={() => this.backStep()}
+                  className="ml-0"
+                >
+                  ย้อนกลับ
+                </ButtonSecondary>
+              </div>
+              <div className="col-6 text-right">
                 <ButtonPrimary
                   onClick={() => this.showModal()}
                   className="mr-0"
                 >
                   ถัดไป
                 </ButtonPrimary>
-                <Modal
-                  title="น้องต้องการส่งคำตอบใช่หรือไม่"
-                  visible={this.state.modalVisible}
-                  onOk={this.handleOk}
-                  onCancel={this.handleCancel}
-                >
-                  <div className="row justify-content-center">
-                    <div className="col-11">
-                      <p className="text-center">
-                        หากไม่แน่ใจน้องสามารถย้อนกลับไปแก้ไขข้อมูลและคำตอบได้
-                        หากกดยืนยันแล้ว จะไม่สามาถกลับมาแก้ไขได้อีก
-                      </p>
-                    </div>
-                  </div>
-                </Modal>
               </div>
             </div>
+            <Modal
+              title="น้องต้องการส่งคำตอบใช่หรือไม่"
+              visible={this.state.modalVisible}
+              onOk={this.handleOk}
+              onCancel={this.handleCancel}
+            >
+              <div className="row justify-content-center">
+                <div className="col-11">
+                  <p className="text-center">
+                    หากไม่แน่ใจน้องสามารถย้อนกลับไปแก้ไขข้อมูลและคำตอบได้
+                    หากกดยืนยันแล้ว จะไม่สามาถกลับมาแก้ไขได้อีก
+                  </p>
+                </div>
+              </div>
+            </Modal>
           </Card>
         </div>
       </Body>

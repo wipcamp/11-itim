@@ -17,12 +17,37 @@ import Router from 'next/router'
 import { Subtitle, Paragraph } from '../Core/Text'
 import InputText from '../Core/InputText'
 import ButtonPrimary from '../Core/Button'
+import RegisterService from '../../service/RegisterService'
+import CookiesService from '../../service/CookieService';
+import Validatetion from './Validatetion'
 
 const DateFormat = `DD/MM/YYYY`
 const FormItem = Form.Item
 const Option = AntDesignSelect.Option
 
 class RegistrationForm extends React.Component {
+
+  handleNextButton = e => {
+    e.preventDefault()
+    this.handlesendRegister(e)
+  }
+  handlesendRegister = async (e) => {
+    console.log('val', e)
+    if (await Validatetion.handleValidation(this.props.profileData)) {
+      await RegisterService.sendRegister(this.props.profileData)
+      await this.props.setWipId(
+        this.props.profileData.wip_id,
+        this.props.profileData.nickname
+      )
+      this.props.setPageIndex(1)
+    } else {
+    }
+  }
+
+  handleLogout= ()=>{
+    CookiesService.removeJWTAndEmailCookie()
+    this.handleCheckLoginState()
+  }
 
   render () {
     const schoolGradeOptions = (
@@ -41,25 +66,24 @@ class RegistrationForm extends React.Component {
     const religion = (
       <Menu onClick={this.props.handleReligion}>
         <Menu.Item key="พุทธ">พุทธ</Menu.Item>
-        <Menu.Item key="อิสราม">อิสราม</Menu.Item>
         <Menu.Item key="คริสต์">คริสต์</Menu.Item>
+        <Menu.Item key="อิสราม">อิสลาม</Menu.Item>
         <Menu.Item key="คริสต์">อื่นๆ</Menu.Item>
       </Menu>
     )
 
     const prefixName = (
-      <AntDesignSelect onChange={this.props.handlePrefixName} defaultValue="นาย">
+      <AntDesignSelect onChange={this.props.handlePrefixName} defaultValue=''>
         <Option value="นาย">นาย</Option>
         <Option value="นางสาว">นางสาว</Option>
       </AntDesignSelect>
     )
     return (
       <div className="container-fluid">
-        <button onClick={this.props.handleLogout}>Emergercy logout ชั่วคราวจ้าาา</button>
         <div className="row justify-content-center">
           <div className="col-10">
             <Card className="mt-2 mb-5">
-              <Form method="post" onSubmit={this.props.handleNextButton}>
+              <Form method="post" onSubmit={this.handleNextButton}>
                 <Subtitle className="font-weight-bold mb-4 ml-5">
                   ข้อมูลส่วนตัว
                 </Subtitle>
@@ -284,6 +308,7 @@ class RegistrationForm extends React.Component {
                             }
                             name="citizen_no"
                             value={this.props.profileData.citizen_no}
+                            size="13"
                           />
                         </FormItem>
                       </div>
@@ -428,6 +453,7 @@ class RegistrationForm extends React.Component {
                             }
                             name="guardian_telno"
                             value={this.props.profileData.guardian_telno}
+                            type="tel"
                           />
                         </FormItem>
                       </div>
@@ -545,7 +571,7 @@ class RegistrationForm extends React.Component {
                     <div className="row">
                       <div className="col-12 col-md-5 ">
                         <FormItem>
-                          <Paragraph>เกรด:</Paragraph>
+                          <Paragraph>เกรด(x.xx):</Paragraph>
                         </FormItem>
                       </div>
                       <div className="col-12 col-md-7">
@@ -558,6 +584,9 @@ class RegistrationForm extends React.Component {
                             }
                             value={this.props.profileData.gpax}
                             type="number"
+                            step="0.01"
+                            min={0}
+                            max={4}
                           />
                         </FormItem>
                       </div>

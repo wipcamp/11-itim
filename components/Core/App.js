@@ -4,6 +4,7 @@ import ProgressBar from './ProgressBar.js'
 import Register from '../Register'
 import Questions from '../Questions'
 import Confirm from '../Confirm'
+import RegisComplete from '../RegisterComplete'
 import QuestionService from '../../service/QuestionService'
 import Navbar from './Navbar'
 import CookiesService from '../../service/CookieService.js';
@@ -18,6 +19,7 @@ class App extends React.Component {
     registerVisible: 'none',
     questionVisible: 'none',
     confirmVisible: 'none',
+    completeVisible: 'none',
     wipid: 0,
     nickname:'',
     registerDetail: {
@@ -87,7 +89,8 @@ class App extends React.Component {
       this.setState({
         registerVisible: 'block',
         questionVisible: 'none',
-        confirmVisible: 'none'
+        confirmVisible: 'none',
+        completeVisible: 'none'
       })
     } else if (
       this.state.pageIndex >= 1 &&
@@ -96,7 +99,8 @@ class App extends React.Component {
       this.setState({
         questionVisible: 'block',
         registerVisible: 'none',
-        confirmVisible: 'none'
+        confirmVisible: 'none',
+        completeVisible: 'none'
       })
     } else if (
       this.state.pageIndex > Math.ceil(this.state.questions.length / 3) &&
@@ -105,23 +109,35 @@ class App extends React.Component {
       this.setState({
         questionVisible: 'none',
         registerVisible: 'none',
-        confirmVisible: 'block'
+        confirmVisible: 'block',
+        completeVisible: 'none'
+      })
+    } else if (
+      this.state.pageIndex ===
+      Math.ceil(this.state.questions.length / 3) + 1
+    ) {
+      this.setState({
+        questionVisible: 'none',
+        registerVisible: 'none',
+        confirmVisible: 'none',
+        completeVisible: 'block'
       })
     } else {
       this.setState({
         registerVisible: 'none',
         questionVisible: 'none',
-        confirmVisible: 'none'
+        confirmVisible: 'none',
+        completeVisible: 'none'
       })
     }
   }
   setPageIndex = async count => {
     this.setState({
-      pageIndex: (await this.state.pageIndex) + count
+      pageIndex: (this.state.pageIndex) + count
     })
     this.handleChangePage()
   }
-  setWipId = async (id,nickname) => {
+  setWipId = async (id, nickname) => {
     this.setState({
       wipid: await id,
       nickname: await nickname
@@ -215,12 +231,12 @@ class App extends React.Component {
   handlePrefixName = valuePrefix => {
     const { registerDetail } = this.state
     this.setState({
-        registerDetail: {
-          ...registerDetail,
-          prefix_name: valuePrefix
-        }
-      })
-    }
+      registerDetail: {
+        ...registerDetail,
+        prefix_name: valuePrefix
+      }
+    })
+  }
 
   setAnswerByQuestionId = (question_id, newAnswer) => {
     return this.state.answers.map(answer => {
@@ -242,7 +258,7 @@ class App extends React.Component {
     this.setState({ questionStartIndex: number})
   }
 
-  render() { 
+  render() {
     this.handleCheckLoginState()
     return (
       <div className="container-fluid">
@@ -288,6 +304,11 @@ class App extends React.Component {
               setPageIndex={this.setPageIndex}
               questions={this.state.questions}
               answers={this.state.answers}
+            />
+          </div>
+          <div className="mt-5">
+            <RegisComplete
+              visible={this.state.completeVisible}
             />
           </div>
         </div>
