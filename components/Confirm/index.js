@@ -1,6 +1,5 @@
 import React from 'react'
 import { Card, Modal } from 'antd'
-import Router from 'next/router'
 
 import Body from '../Core/Body'
 import Profile from './Profile'
@@ -52,7 +51,7 @@ class Register extends React.Component {
     const count = await this.handleBack()
     this.props.setPageIndex(count)
   }
-  handleBack = () => {
+   handleBack = () => {
     this.setState({
       startIndex: this.state.startIndex - 3
     })
