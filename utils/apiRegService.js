@@ -1,13 +1,14 @@
 import axios from 'axios'
 import Cookies from '../service/CookieService'
-const urlReg = process.env.PATH_REGISTANCE
+import ENV from '../config/envConfig'
+
 const headers = {
   'Authorization': `Bearer ${Cookies.gettokenJWTCookie()}`,
   'Content-Type': 'application/json'
 }
 const createInstance = () => {
   return axios.create({
-    baseURL: urlReg,
+    baseURL: ENV.PATH_REGISTANCE,
     headers
   })
 }
