@@ -2,6 +2,12 @@ import validID from './ValidationCitiZen'
 const validNation = {
   handleValidation: (value) => {
     let registerDetail = value
+    var phoneno = /^(([0-9]{3})) *-([0-9]{3})*-([0-9]{4})$/
+    if (!phoneno.test(registerDetail.guardian_telno) ||
+    !phoneno.test(registerDetail.telno)) {
+      window.alert('กรอกเบอร์ผิด xxx-xxx-xxxx')
+      return false
+    }
     for (let index in registerDetail) {
       if (registerDetail.hasOwnProperty(index)) {
         if (registerDetail[index] === '') {
@@ -15,7 +21,7 @@ const validNation = {
             } else {
               const gpaxc = registerDetail.gpax
               if (isNaN(gpaxc) || gpaxc.length !== 4) {
-                window.alert('กรอกเกรดผิด')
+                window.alert('กรอกเกรดผิด x.xx')
                 return false
               } else {
                 if (/^[a-zA-Z]+$/.test(registerDetail.fistname_th) || /^[a-zA-Z]+$/.test(registerDetail.lastname_th)) {

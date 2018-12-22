@@ -235,7 +235,6 @@ class RegistrationForm extends React.Component {
     )
     return (
       <div className="container-fluid">
-      <button onClick={this.handleLogout}>Emergercy logout ชั่วคราวจ้าาา</button>
         <div className="row justify-content-center">
           <div className="col-10">
             <Card className="mt-2 mb-5">
