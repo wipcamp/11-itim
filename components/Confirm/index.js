@@ -38,17 +38,17 @@ class Register extends React.Component {
     })
   }
 
-  handleOk = e => {
-    RegisterService.sendRegister(this.state.profile.comfirm_register)
-    QuestionService.sendQuestions(this.state.questions)
+  handleOk =async e => {
     const { profile } = this.state
-    this.setState({
+   await this.setState({
       modalVisible: false,
       profile: {
         ...profile,
         confirm_register: 1
       }
     })
+    QuestionService.sendQuestions(this.state.questions)
+    RegisterService.sendRegister(this.state.profile)
     setInterval(() => {
       Router.push({
         pathname: '/regiscomplete',
