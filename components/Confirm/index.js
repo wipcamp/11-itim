@@ -39,7 +39,7 @@ class Register extends React.Component {
   }
 
   handleOk = e => {
-    RegisterService.sendRegister(this.state.profile)
+    RegisterService.sendRegister(this.state.profile.comfirm_register)
     QuestionService.sendQuestions(this.state.questions)
     const { profile } = this.state
     this.setState({
