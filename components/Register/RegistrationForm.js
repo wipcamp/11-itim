@@ -187,27 +187,35 @@ class RegistrationForm extends React.Component {
           return false
         } else {
           if (this.validNationalID(registerDetail.citizen_no)) {
-            if(/^[a-zA-Z]+$/.test(this.state.registerDetail.nickname)){
+            if(/^[a-zA-Z]+$/.test(registerDetail.nickname)){
               window.alert('ชื่อเล่นภาษาไทยยนะ')
             return false
             }else{
-              const gpaxc = this.state.registerDetail.gpax
+              const gpaxc = registerDetail.gpax
             if(isNaN(gpaxc)||gpaxc.length!==4){
               window.alert('กรอกเกรดผิด')
               return false
             }else{
-              if(/^[a-zA-Z]+$/.test(this.state.registerDetail.fistname_th)||/^[a-zA-Z]+$/.test(this.state.registerDetail.lastname_th)){
+              if(/^[a-zA-Z]+$/.test(registerDetail.fistname_th)||/^[a-zA-Z]+$/.test(this.state.registerDetail.lastname_th)){
                 window.alert('กรอกชื่อและนามสกุลไทยผิด')
               return false
               }else{
-                if(/^[a-zA-Z]+$/.test(this.state.registerDetail.fistname_en)&&/^[a-zA-Z]+$/.test(this.state.registerDetail.lastname_en)){
-                return true
+                if(/^[a-zA-Z]+$/.test(registerDetail.fistname_en)&&/^[a-zA-Z]+$/.test(this.state.registerDetail.lastname_en)){
+                  if(registerDetail.prefix_name==='นาย'&&registerDetail.gender==='male'){
+                    return true;
+                  }
+                  if(registerDetail.prefix_name==='นางสาว'&&registerDetail.gender==='female'){
+                    return true;
+                  }else{
+                     window.alert('คำนำหน้ากับชื่อไม่ตรงกัน')
+                    return false;
+
+                  }
                 }else{
                   window.alert('กรอกชื่อและนามสกุลอังกฤษผิด')
                   return false
                 }
               }
-
             }
             }
           } else {
