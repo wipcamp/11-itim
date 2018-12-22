@@ -67,7 +67,7 @@ class RegistrationForm extends React.Component {
       <Menu onClick={this.props.handleReligion}>
         <Menu.Item key="พุทธ">พุทธ</Menu.Item>
         <Menu.Item key="คริสต์">คริสต์</Menu.Item>
-        <Menu.Item key="อิสราม">อิสลาม</Menu.Item>
+        <Menu.Item key="อิสลาม">อิสลาม</Menu.Item>
         <Menu.Item key="คริสต์">อื่นๆ</Menu.Item>
       </Menu>
     )
