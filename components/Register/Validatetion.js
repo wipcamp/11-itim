@@ -2,10 +2,10 @@ import validID from './ValidationCitiZen'
 const validNation = {
   handleValidation: (value) => {
     let registerDetail = value
-    var phoneno = /^(([0-9]{3})) *-([0-9]{3})*-([0-9]{4})$/
+    var phoneno = /^(([0-9]{3})) *([0-9]{3})*([0-9]{4})$/
     if (!phoneno.test(registerDetail.guardian_telno) ||
     !phoneno.test(registerDetail.telno)) {
-      window.alert('กรอกเบอร์ผิด xxx-xxx-xxxx')
+      window.alert('กรอกเบอร์ผิด xxxxxxxxxx')
       return false
     }
     for (let index in registerDetail) {
