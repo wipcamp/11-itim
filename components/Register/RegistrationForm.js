@@ -308,7 +308,7 @@ class RegistrationForm extends React.Component {
                             }
                             name="citizen_no"
                             value={this.props.profileData.citizen_no}
-                            size="13"
+                            maxlength="13"
                           />
                         </FormItem>
                       </div>
