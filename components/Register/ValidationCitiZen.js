@@ -1,7 +1,10 @@
 const check = {
 
   validNationalID: (id) => {
-    if (id == null || id.length !== 13) return false
+    console.log(id)
+    if (id == null || id.length !== 13) {
+      return false
+    }
     let i; let sum = 0
     for ((i = 0), (sum = 0); i < 12; i++) {
       sum += parseInt(id.charAt(i)) * (13 - i)

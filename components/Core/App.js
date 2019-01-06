@@ -155,6 +155,7 @@ class App extends React.Component {
   }
 
   handleDate = (date, dateString) => {
+    console.log(date && date.format('Y-M-D'))
     const { registerDetail } = this.state
     this.setState({
       registerDetail: {
@@ -169,7 +170,7 @@ class App extends React.Component {
     this.setState({
       registerDetail: {
         ...registerDetail,
-        gender: e
+        gender: e.target.value
       }
     })
   }

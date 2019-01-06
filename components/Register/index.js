@@ -39,7 +39,13 @@ class Register extends React.Component {
   }
   handlesendRegister = async () => {
     if (Validatetion.handleValidation(this.props.profileData)) {
-      await RegisterService.sendRegister(this.props.profileData)
+      try{
+        await RegisterService.sendRegister(this.props.profileData)
+
+      }catch(err){
+        console.log(this.props.profileData)
+        console.log('err', err)
+      }
       await this.props.setWipId(
         this.props.profileData.wip_id,
         this.props.profileData.nickname
