@@ -270,7 +270,7 @@ class RegistrationForm extends React.Component {
                   </div>
                 </div>
                 <div className="row">
-                  <div className="col-4">
+                  <div className="col-12 col-md-4">
                     <div className="row">
                       <div className="col-6 ">
                         <FormItem>
@@ -292,7 +292,7 @@ class RegistrationForm extends React.Component {
                       </div>
                     </div>
                   </div>
-                  <div className="col-4">
+                  <div className="col-12 col-md-4">
                     <div className="row">
                       <div className="col-6 ">
                         <FormItem>
@@ -314,7 +314,7 @@ class RegistrationForm extends React.Component {
                       </div>
                     </div>
                   </div>
-                  <div className="col-4">
+                  <div className="col-12 col-md-4">
                     <div className="row">
                       <div className="col-6 ">
                         <FormItem>

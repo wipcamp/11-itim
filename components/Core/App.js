@@ -7,7 +7,7 @@ import Confirm from '../Confirm'
 import RegisComplete from '../RegisterComplete'
 import QuestionService from '../../service/QuestionService'
 import Navbar from './Navbar'
-import CookiesService from '../../service/CookieService.js';
+import CookiesService from '../../service/CookieService.js'
 import RegisterService from '../../service/RegisterService'
 
 class App extends React.Component {
@@ -21,7 +21,7 @@ class App extends React.Component {
     confirmVisible: 'none',
     completeVisible: 'none',
     wipid: 0,
-    nickname:'',
+    nickname: '',
     registerDetail: {
       fistname_th: '',
       lastname_th: '',
@@ -47,9 +47,9 @@ class App extends React.Component {
       email: '',
       school_name: '',
       wip_id: '',
-      confirm_register: '',
+      confirm_register: ''
     },
-    schoolname: '',
+    schoolname: ''
   }
 
   componentDidMount = async () => {
@@ -76,8 +76,8 @@ class App extends React.Component {
     this.setWipId(
       this.state.registerDetail.wip_id,
       this.state.registerDetail.nickname
-      )
-    if (await this.state.registerDetail.confirm_register === 1) {
+    )
+    if ((await this.state.registerDetail.confirm_register) === 1) {
       Router.push({
         pathname: '/regiscomplete'
       })
@@ -133,7 +133,7 @@ class App extends React.Component {
   }
   setPageIndex = async count => {
     this.setState({
-      pageIndex: (this.state.pageIndex) + count
+      pageIndex: this.state.pageIndex + count
     })
     this.handleChangePage()
   }
@@ -217,13 +217,12 @@ class App extends React.Component {
     })
   }
 
-  handleCheckLoginState = async() => {
+  handleCheckLoginState = async () => {
     if (await CookiesService.gettokenJWTCookie()) {
-    }else{
-        Router.push({
-          pathname: '/index'
-        })
-
+    } else {
+      Router.push({
+        pathname: '/index'
+      })
     }
   }
 
@@ -245,7 +244,6 @@ class App extends React.Component {
       return answer
     })
   }
-  
   handleAnswerFields = e => {
     const newAnswer = e.target.value
     const question_id = parseInt(e.target.id)
@@ -254,7 +252,7 @@ class App extends React.Component {
   }
 
   changeQuestionStartIndex = number => {
-    this.setState({ questionStartIndex: number})
+    this.setState({ questionStartIndex: number })
   }
 
   render() {
@@ -263,17 +261,20 @@ class App extends React.Component {
       <div className="container-fluid">
         <Navbar state={this.state} />
         <div className="container mt-5">
-          <ProgressBar
-            current={this.state.pageIndex}
-            questions={this.state.questions}
-          />
+          <div className="row">
+            <div className="col-12">
+              <ProgressBar
+                current={this.state.pageIndex}
+                questions={this.state.questions}
+              />
+            </div>
+          </div>
           <div className="mt-5">
             <Register
               visible={this.state.registerVisible}
               setPageIndex={this.setPageIndex}
               setWipId={this.setWipId}
               profileData={this.state.registerDetail}
-
               handleFields={this.handleFields}
               handleDate={this.handleDate}
               handleGender={this.handleGender}
@@ -283,16 +284,16 @@ class App extends React.Component {
               handlemajor={this.handlemajor}
               handlePrefixName={this.handlePrefixName}
               changeQuestionStartIndex={this.changeQuestionStartIndex}
-              questionStartIndex = {this.state.questionStartIndex}
+              questionStartIndex={this.state.questionStartIndex}
             />
           </div>
           <div className="mt-5">
             <Questions
               visible={this.state.questionVisible}
               setPageIndex={this.setPageIndex}
-              questions = {this.state.questions}
-              answers = {this.state.answers}
-              questionStartIndex = {this.state.questionStartIndex}
+              questions={this.state.questions}
+              answers={this.state.answers}
+              questionStartIndex={this.state.questionStartIndex}
               handleFields={this.handleAnswerFields}
               changeQuestionStartIndex={this.changeQuestionStartIndex}
             />
@@ -306,9 +307,7 @@ class App extends React.Component {
             />
           </div>
           <div className="mt-5">
-            <RegisComplete
-              visible={this.state.completeVisible}
-            />
+            <RegisComplete visible={this.state.completeVisible} />
           </div>
         </div>
       </div>
