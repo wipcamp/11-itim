@@ -19,7 +19,6 @@ import InputText from '../Core/InputText'
 import ButtonPrimary from '../Core/Button'
 import RegisterService from '../../service/RegisterService'
 import CookiesService from '../../service/CookieService';
-import Validatetion from './Validatetion'
 
 const DateFormat = `DD/MM/YYYY`
 const FormItem = Form.Item
@@ -27,34 +26,12 @@ const Option = AntDesignSelect.Option
 
 class RegistrationForm extends React.Component {
 
-  handleLogout= ()=>{
+   handleLogout = ()=>{
     CookiesService.removeJWTAndEmailCookie()
-    this.handleCheckLoginState()
+    this.props.handleCheckLoginState()
   }
 
   render () {
-    const schoolGradeOptions = (
-      <Menu onClick={this.props.handleschoolGrade}>
-        <Menu.Item key="ม.4">4</Menu.Item>
-        <Menu.Item key="ม.5">5</Menu.Item>
-        <Menu.Item key="ม.6">6</Menu.Item>
-      </Menu>
-    )
-    const major = (
-      <Menu onClick={this.props.handlemajor}>
-        <Menu.Item key="วิทย์-คณิต">วิทย์-คณิต</Menu.Item>
-        <Menu.Item key="ศิลป์คำนวน">ศิลป์คำนวน</Menu.Item>
-      </Menu>
-    )
-    const religion = (
-      <Menu onClick={this.props.handleReligion}>
-        <Menu.Item key="พุทธ">พุทธ</Menu.Item>
-        <Menu.Item key="คริสต์">คริสต์</Menu.Item>
-        <Menu.Item key="อิสลาม">อิสลาม</Menu.Item>
-        <Menu.Item key="คริสต์">อื่นๆ</Menu.Item>
-      </Menu>
-    )
-
     const prefixName = (
       <AntDesignSelect onChange={this.props.handlePrefixName} defaultValue=''>
         <Option value="นาย">นาย</Option>
@@ -253,22 +230,16 @@ class RegistrationForm extends React.Component {
                       </div>
                       <div className="col-12 col-md-7">
                         <FormItem>
-                          <Dropdown overlay={religion}>
-                            <InputText
-                              required
-                              className="col-6"
-                              type="button"
-                              value={
-                                this.props.profileData.religion != ''
-                                  ? this.props.profileData.religion
-                                  : ''
-                              }
-                              disabled
-                              name=""
-                              placeholder="เลือก"
-                              value={this.props.profileData.religion}
-                            />
-                          </Dropdown>
+                        <AntDesignSelect
+                          value={this.props.profileData.religion}
+                          size={10}
+                          style={{ width: '100%' }}
+                          onChange={this.props.handleReligion}>
+                              <Option value="พุทธ">พุทธ</Option>
+                              <Option value="คริสต์">คริสต์</Option>
+                              <Option value="อิสลาม">อิสลาม</Option>
+                              <Option value="อื่นๆ">อื่นๆ</Option>
+                          </AntDesignSelect>
                         </FormItem>
                       </div>
                     </div>
@@ -504,20 +475,15 @@ class RegistrationForm extends React.Component {
                       </div>
                       <div className="col-12 col-md-7">
                         <FormItem>
-                          <Dropdown overlay={schoolGradeOptions}>
-                            <InputText
-                              required
-                              className="col-6"
-                              type="button"
-                              name="school_level"
-                              value={
-                                this.props.profileData.school_level != ''
-                                  ? this.props.profileData.school_level
-                                  : ''
-                              }
-                              placeholder="เลือก"
-                            />
-                          </Dropdown>
+                          <AntDesignSelect
+                            value={this.props.profileData.school_level}
+                            size={10}
+                            style={{ width: '100%' }}
+                            onChange={this.props.handleschoolGrade}>
+                            <Option value="ม.4">ม.4</Option>
+                            <Option value="ม.5">ม.5</Option>
+                            <Option value="ม.6">ม.6</Option>
+                           </AntDesignSelect>
                         </FormItem>
                       </div>
                     </div>
@@ -533,19 +499,15 @@ class RegistrationForm extends React.Component {
                       </div>
                       <div className="col-12 col-md-7">
                         <FormItem>
-                          <Dropdown overlay={major}>
-                            <InputText
-                              required
-                              className="col-6"
-                              type="button"
-                              value={
-                                this.props.profileData.school_major != ''
-                                  ? this.props.profileData.school_major
-                                  : ''
-                              }
-                              placeholder="เลือก"
-                            />
-                          </Dropdown>
+                        <AntDesignSelect
+                            value={this.props.profileData.school_major}
+                            size={10}
+                            style={{ width: '100%' }}
+                            onChange={this.props.handlemajor}>
+                            <Option value="วิทย์-คณิต">วิทย์-คณิต</Option>
+                            <Option value="วิทย์-คอม">วิทย์-คอม</Option>
+                            <Option value="ศิลป์คำนวน">ศิลป์คำนวน</Option>
+                           </AntDesignSelect>
                         </FormItem>
                       </div>
                     </div>

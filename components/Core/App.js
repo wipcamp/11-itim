@@ -169,7 +169,7 @@ class App extends React.Component {
     this.setState({
       registerDetail: {
         ...registerDetail,
-        gender: e.target.value
+        gender: e
       }
     })
   }
@@ -179,7 +179,7 @@ class App extends React.Component {
     this.setState({
       registerDetail: {
         ...registerDetail,
-        religion: e.key
+        religion: e
       }
     })
   }
@@ -195,7 +195,6 @@ class App extends React.Component {
         school_name: schoolNameFromInput
       }
     })
-    console.log(this.state.schoolname)
   }
 
   handleschoolGrade = e => {
@@ -203,7 +202,7 @@ class App extends React.Component {
     this.setState({
       registerDetail: {
         ...registerDetail,
-        school_level: e.key
+        school_level: e
       }
     })
   }
@@ -213,7 +212,7 @@ class App extends React.Component {
     this.setState({
       registerDetail: {
         ...registerDetail,
-        school_major: e.key
+        school_major: e
       }
     })
   }

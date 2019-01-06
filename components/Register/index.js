@@ -6,7 +6,7 @@ import RegisterService from '../../service/RegisterService'
 
 import RegistrationForm from './RegistrationForm'
 import CookiesService from '../../service/CookieService.js';
-
+import Validatetion from './Validatetion'
 
 
 class Register extends React.Component {
@@ -38,7 +38,7 @@ class Register extends React.Component {
     this.handlesendRegister()
   }
   handlesendRegister = async () => {
-    if (this.handleValidation()) {
+    if (Validatetion.handleValidation(this.props.profileData)) {
       await RegisterService.sendRegister(this.props.profileData)
       await this.props.setWipId(
         this.props.profileData.wip_id,
@@ -51,19 +51,7 @@ class Register extends React.Component {
     } else {
     }
   }
-  handleValidation = () => {
-    let registerDetail = this.props.profileData
-    for (let index in registerDetail) {
-      if (registerDetail.hasOwnProperty(index)) {
-        if (registerDetail[index] === '') {
-          window.alert('โปรดกรอกข้อมูลให้ครบ')
-          return false
-        } else {
-          return true
-        }
-      }
-    }
-  }
+
 
   handleLogout= ()=>{
     CookiesService.removeJWTAndEmailCookie()
@@ -81,7 +69,6 @@ class Register extends React.Component {
 
   render = () => {
     const profileData = this.props.profileData
-    console.log(this.props)
     return (
       <Body visible={this.props.visible}>
         <RegistrationForm
@@ -91,7 +78,6 @@ class Register extends React.Component {
           handleValidation={this.handleValidation}
           handleLogout={this.handleLogout}
           handleCheckLoginState={this.handleCheckLoginState}
-  
           profileData={profileData}
           schoolOptions={this.state.schoolOptions}
           schoolName={this.state.schoolname}
