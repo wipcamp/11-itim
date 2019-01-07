@@ -32,16 +32,7 @@ class RegistrationForm extends React.Component {
   }
 
   render () {
-    const prefixName = (
-      <AntDesignSelect onChange={this.props.handlePrefixName} Value={this.props.profileData.prefixName}  defaultValue={
-        this.props.profileData.prefix != ''
-          ? this.props.profileData.prefix
-          : 'คำนหน้า'
-      }>
-        <Option value="นาย">นาย</Option>
-        <Option value="นางสาว">นางสาว</Option>
-      </AntDesignSelect>
-    )
+    
     return (
       <div className="container-fluid">
         <div className="row justify-content-center">
@@ -62,7 +53,6 @@ class RegistrationForm extends React.Component {
                       <div className="col-12 col-md-7">
                         <FormItem>
                           <InputText
-                            addonBefore={prefixName}
                             onChange={({ target: { name, value } }) =>
                               this.props.handleFields(name, value)
                             }
