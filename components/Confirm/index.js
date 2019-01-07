@@ -18,8 +18,10 @@ class Register extends React.Component {
   }
   getQuestion = async () => {
     let queryQuestion = await QuestionService.getAllQuestion()
+    
     this.setState({
       questions: queryQuestion.data
+      
     })
   }
   getProfilefromDB = async () => {
@@ -36,7 +38,8 @@ class Register extends React.Component {
   }
 
   handleOk = async e => {
-    const { profile } = this.state.profile
+    const { profile } = this.props.registerDetail
+    console.log(this.props.registerDetail)
     this.setState({
       modalVisible: false,
       profile: {
@@ -44,7 +47,6 @@ class Register extends React.Component {
         confirm_register: 1
       }
     })
-    console.log(this.state.profile)
     RegisterService.sendRegister(this.state.profile)
     QuestionService.sendQuestions(this.state.questions)
     this.props.setPageIndex(1)
@@ -72,7 +74,7 @@ class Register extends React.Component {
       <Body visible={this.props.visible}>
         <div className="container-fluid">
           <Card className="mt-2 mb-5">
-            <Profile profile={this.state.profile} />
+            <Profile profile={this.props.registerDetail} />
             <QuestionAndAnswer answers={this.props.answers} questions={this.props.questions} />
             <div className="row">
               <div className="col-6 text-left">

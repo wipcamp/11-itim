@@ -55,7 +55,8 @@ class App extends React.Component {
   componentDidMount = async () => {
     try {
       await this.getProfilefromDB()
-    await this.getAllQuestion()
+      await this.getAllQuestion()
+
     this.handleChangePage()
     } catch (error) {
       console.log('fail get Data',error)
@@ -64,10 +65,13 @@ class App extends React.Component {
   }
   getAllQuestion = async () => {
     let queryQuestion = await QuestionService.getAllQuestion()
-
+    let queryAns = await QuestionService.getAns()
+    console.log(queryAns)
     this.setState({
-      questions: queryQuestion.data
+      questions: queryQuestion.data,
+      answers:queryAns.data
     })
+    
     for (let index = 0; index < this.state.questions.length; index++) {
       this.state.answers.push({ question_id: index + 1, ans_content: '' })
     }
@@ -310,6 +314,7 @@ class App extends React.Component {
               setPageIndex={this.setPageIndex}
               questions={this.state.questions}
               answers={this.state.answers}
+              registerDetail={this.state.registerDetail}
             />
           </div>
           <div className="mt-5">

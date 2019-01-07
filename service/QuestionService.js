@@ -8,6 +8,10 @@ const QuestionService = {
   sendQuestions: async (request) => {
     console.log(JSON.stringify(request))
     await apiReg.post('/answers', request)
+  },
+  getAns: async () => {
+    let asn = await apiReg.get('/answers')
+    return asn
   }
 }
 export default QuestionService
