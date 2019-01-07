@@ -36,17 +36,12 @@ class Register extends React.Component {
   }
 
   handleOk = async e => {
-    const { profile } = this.props.registerDetail
-    console.log(this.props.registerDetail)
+    this.props.confirm(1)
     this.setState({
       modalVisible: false,
-      profile: {
-        ...profile,
-        confirm_register: 1
-      }
     })
     RegisterService.sendRegister(this.state.profile)
-    QuestionService.sendQuestions(this.state.questions)
+    // QuestionService.sendQuestions(this.state.questions)
     this.props.setPageIndex(1)
   }
 

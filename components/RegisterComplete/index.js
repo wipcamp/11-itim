@@ -5,12 +5,6 @@ import Complete from './Complete'
 import CookiesService from '../../service/CookieService'
 
 export default class RegisComplete extends React.Component {
-  state = {
-    wipid: 0,
-    nickname: null,
-    name: '',
-    confirm: 0
-  }
   componentDidMount = async () => {
     this.handleCheckLoginState()
   }
@@ -29,7 +23,7 @@ export default class RegisComplete extends React.Component {
         <Navbar state={this.state} />
         <Complete
           handleCheckLoginState={this.handleCheckLoginState}
-          name={this.state.name}
+          name={this.props.name}
         />
       </Fragment>
     )

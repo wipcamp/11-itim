@@ -92,6 +92,16 @@ class App extends React.Component {
       pageIndex: this.state.pageIndex + count
     })
   }
+
+  setConfirm = async confirm => {
+    const { registerDetail } = this.state
+    this.setState({
+      registerDetail:{
+        ...registerDetail,
+        confirm_register: confirm
+      }
+    })
+  }
   setWipId = async (id, nickname) => {
     this.setState({
       wipid: await id,
@@ -215,7 +225,7 @@ class App extends React.Component {
     this.handleCheckLoginState()
     return (
       <div className="container-fluid">
-        <Navbar state={this.state} />
+        <Navbar state={this.state.registerDetail} />
         <div className="container mt-5">
           <div className="row">
             <div className="col-12">
@@ -259,13 +269,14 @@ class App extends React.Component {
               Math.ceil(this.state.questions.length / 3) && (
               <Confirm
                 setPageIndex={this.setPageIndex}
-                registerDetail={this.state.registerDetail}
+                confirm={this.setConfirm}
                 questions={this.state.questions}
                 answers={this.state.answers}
+                registerDetail={this.state.registerDetail}
               />
             )}
-            {this.state.registerDetail.confirm_register === 1 && (
-              <RegisComplete visible={this.state.completeVisible} />
+            {this.state.registerDetail.confirm_register == 1 && (
+              <RegisComplete name={this.state.registerDetail.fistname_th}/>
             )}
           </div>
         </div>
