@@ -56,7 +56,7 @@ class App extends React.Component {
   getAllQuestion = async () => {
     let queryQuestion = await QuestionService.getAllQuestion()
     let queryAns = await QuestionService.getAns()
-    console.log(queryAns)
+    console.table(queryAns)
     this.setState({
       questions: queryQuestion.data,
       answers: queryAns.data
