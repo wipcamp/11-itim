@@ -33,7 +33,11 @@ class RegistrationForm extends React.Component {
 
   render () {
     const prefixName = (
-      <AntDesignSelect onChange={this.props.handlePrefixName} defaultValue=''>
+      <AntDesignSelect onChange={this.props.handlePrefixName} Value={this.props.profileData.prefixName}  defaultValue={
+        this.props.profileData.prefix != ''
+          ? this.props.profileData.prefix
+          : 'คำนหน้า'
+      }>
         <Option value="นาย">นาย</Option>
         <Option value="นางสาว">นางสาว</Option>
       </AntDesignSelect>
@@ -232,7 +236,7 @@ class RegistrationForm extends React.Component {
                         <FormItem>
                         <AntDesignSelect
                           value={this.props.profileData.religion}
-                          size={10}
+                          defaultValue="ศาสนา"
                           style={{ width: '100%' }}
                           onChange={this.props.handleReligion}>
                               <Option value="พุทธ">พุทธ</Option>
@@ -262,7 +266,7 @@ class RegistrationForm extends React.Component {
                             }
                             name="citizen_no"
                             value={this.props.profileData.citizen_no}
-                            maxlength="13"
+                            maxLength="13"
                           />
                         </FormItem>
                       </div>
@@ -477,12 +481,13 @@ class RegistrationForm extends React.Component {
                         <FormItem>
                           <AntDesignSelect
                             value={this.props.profileData.school_level}
-                            size={10}
+                            defaultValue="ระดับชั้น"
                             style={{ width: '100%' }}
                             onChange={this.props.handleschoolGrade}>
-                            <Option value="ม.4">ม.4</Option>
-                            <Option value="ม.5">ม.5</Option>
-                            <Option value="ม.6">ม.6</Option>
+                            <Option value="ม.3 ขึ้น ม.4">ม.3 ขึ้น ม.4</Option>
+                            <Option value="ม.4 ขึ้น ม.5">ม.4 ขึ้น ม.5</Option>
+                            <Option value="ม.5 ขึ้น ม.6">ม.5 ขึ้น ม.6</Option>
+                            <Option value="ม.6 ขึ้น ปี 1">ม.6 ขึ้น ปี 1</Option>
                            </AntDesignSelect>
                         </FormItem>
                       </div>
@@ -501,7 +506,7 @@ class RegistrationForm extends React.Component {
                         <FormItem>
                         <AntDesignSelect
                             value={this.props.profileData.school_major}
-                            size={10}
+                            defaultValue="สายการเรียน"
                             style={{ width: '100%' }}
                             onChange={this.props.handlemajor}>
                             <Option value="วิทย์-คณิต">วิทย์-คณิต</Option>

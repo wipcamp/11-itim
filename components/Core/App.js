@@ -53,9 +53,14 @@ class App extends React.Component {
   }
 
   componentDidMount = async () => {
+    try {
+      await this.getProfilefromDB()
     await this.getAllQuestion()
-    await this.getProfilefromDB()
     this.handleChangePage()
+    } catch (error) {
+      console.log('fail get Data',error)
+    location.reload()
+    }
   }
   getAllQuestion = async () => {
     let queryQuestion = await QuestionService.getAllQuestion()

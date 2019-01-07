@@ -8,8 +8,7 @@ import AuthService from '../../service/AuthService'
 
 const responseFacebook = async (response) => {
   await AuthService.login(response)
-  let token = Cookies.gettokenJWTCookie()
-  console.log(token)
+  let token = await Cookies.gettokenJWTCookie()
   if (token) {
     changetoRegisterPage()
   } else {
