@@ -86,9 +86,6 @@ class Register extends React.Component {
     )
   }
 }
-// const Register = props => (
-//   <Body visible={props.visible}>
-//   </Body>
-// )
+
 
 export default Register
