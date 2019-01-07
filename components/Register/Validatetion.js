@@ -35,8 +35,7 @@ const validNation = {
                     if (registerDetail.prefix_name === 'นางสาว' && registerDetail.gender === 'female') {
                       return true
                     } else {
-                      window.alert('คำนำหน้ากับชื่อไม่ตรงกัน')
-                      return false
+                      return true
                     }
                   } else {
                     window.alert('กรอกชื่อและนามสกุลอังกฤษผิด')
