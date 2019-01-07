@@ -96,7 +96,7 @@ class App extends React.Component {
   setConfirm = async confirm => {
     const { registerDetail } = this.state
     this.setState({
-      registerDetail:{
+      registerDetail: {
         ...registerDetail,
         confirm_register: confirm
       }
@@ -229,10 +229,13 @@ class App extends React.Component {
         <div className="container mt-5">
           <div className="row">
             <div className="col-12">
-              <ProgressBar
-                current={this.state.pageIndex}
-                questions={this.state.questions}
-              />
+              {this.state.pageIndex <=
+                Math.ceil(this.state.questions.length / 3) && (
+                <ProgressBar
+                  current={this.state.pageIndex}
+                  questions={this.state.questions}
+                />
+              )}
             </div>
           </div>
           <div className="mt-5">
@@ -266,17 +269,19 @@ class App extends React.Component {
                 />
               )}
             {this.state.pageIndex >
-              Math.ceil(this.state.questions.length / 3) && (
-              <Confirm
-                setPageIndex={this.setPageIndex}
-                confirm={this.setConfirm}
-                questions={this.state.questions}
-                answers={this.state.answers}
-                registerDetail={this.state.registerDetail}
-              />
-            )}
+              Math.ceil(this.state.questions.length / 3) &&
+              this.state.pageIndex <=
+                Math.ceil(this.state.questions.length / 3) + 1 && (
+                <Confirm
+                  setPageIndex={this.setPageIndex}
+                  confirm={this.setConfirm}
+                  questions={this.state.questions}
+                  answers={this.state.answers}
+                  registerDetail={this.state.registerDetail}
+                />
+              )}
             {this.state.registerDetail.confirm_register == 1 && (
-              <RegisComplete name={this.state.registerDetail.fistname_th}/>
+              <RegisComplete name={this.state.registerDetail.fistname_th} />
             )}
           </div>
         </div>
