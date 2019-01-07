@@ -1,20 +1,18 @@
 import React from 'react'
 import Router from 'next/router'
 
-import Body from '../Core/Body'
 import RegisterService from '../../service/RegisterService'
 
 import RegistrationForm from './RegistrationForm'
-import CookiesService from '../../service/CookieService.js';
+import CookiesService from '../../service/CookieService.js'
 import Validatetion from './Validatetion'
-
 
 class Register extends React.Component {
   state = {
-    schoolOptions: [],
+    schoolOptions: []
   }
 
-  async componentDidMount () {
+  async componentDidMount() {
     const schoolname = await RegisterService.getSchoolname()
     await this.getSchool(schoolname.data)
   }
@@ -39,10 +37,9 @@ class Register extends React.Component {
   }
   handlesendRegister = async () => {
     if (Validatetion.handleValidation(this.props.profileData)) {
-      try{
+      try {
         await RegisterService.sendRegister(this.props.profileData)
-
-      }catch(err){
+      } catch (err) {
         console.log(this.props.profileData)
         console.log('err', err)
       }
@@ -50,7 +47,7 @@ class Register extends React.Component {
         this.props.profileData.wip_id,
         this.props.profileData.nickname
       )
-      if(this.props.questionStartIndex === -3) {
+      if (this.props.questionStartIndex === -3) {
         this.props.changeQuestionStartIndex(0)
       }
       this.props.setPageIndex(1)
@@ -58,37 +55,34 @@ class Register extends React.Component {
     }
   }
 
-
-  handleLogout= ()=>{
+  handleLogout = () => {
     CookiesService.removeJWTAndEmailCookie()
     this.handleCheckLoginState()
   }
 
-  handleCheckLoginState = async() => {
+  handleCheckLoginState = async () => {
     if (await CookiesService.gettokenJWTCookie()) {
-    }else{
-        Router.push({
-          pathname: '/index'
-        })
+    } else {
+      Router.push({
+        pathname: '/index'
+      })
     }
   }
 
   render = () => {
     const profileData = this.props.profileData
     return (
-      <Body visible={this.props.visible}>
-        <RegistrationForm
-          {...this.props}
-          handleNextButton={this.handleNextButton}
-          handlesendRegister={this.handlesendRegister}
-          handleValidation={this.handleValidation}
-          handleLogout={this.handleLogout}
-          handleCheckLoginState={this.handleCheckLoginState}
-          profileData={profileData}
-          schoolOptions={this.state.schoolOptions}
-          schoolName={this.state.schoolname}
-        />
-      </Body>
+      <RegistrationForm
+        {...this.props}
+        handleNextButton={this.handleNextButton}
+        handlesendRegister={this.handlesendRegister}
+        handleValidation={this.handleValidation}
+        handleLogout={this.handleLogout}
+        handleCheckLoginState={this.handleCheckLoginState}
+        profileData={profileData}
+        schoolOptions={this.state.schoolOptions}
+        schoolName={this.state.schoolname}
+      />
     )
   }
 }
