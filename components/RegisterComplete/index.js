@@ -1,37 +1,38 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import Router from 'next/router'
 import Navbar from '../Core/Navbar'
 import Complete from './Complete'
 import Body from '../Core/Body'
-import CookiesService from '../../service/CookieService';
-
+import CookiesService from '../../service/CookieService'
 
 export default class RegisComplete extends React.Component {
   state = {
-    wipid:0,
-    nickname:null,
-    name:'',
+    wipid: 0,
+    nickname: null,
+    name: '',
     confirm: 0
   }
   componentDidMount = async () => {
     this.handleCheckLoginState()
   }
-  handleCheckLoginState = async() => {
+  handleCheckLoginState = async () => {
     if (await CookiesService.gettokenJWTCookie()) {
-    }else{
-        Router.push({
-          pathname: '/index'
-        })
+    } else {
+      Router.push({
+        pathname: '/index'
+      })
     }
   }
 
   render() {
     return (
-      <Body visible={this.props.visible}>
+      <Fragment>
         <Navbar state={this.state} />
-        <Complete handleCheckLoginState={this.handleCheckLoginState}  name={this.state.name}/>
-      </Body>
-    )          
-
+        <Complete
+          handleCheckLoginState={this.handleCheckLoginState}
+          name={this.state.name}
+        />
+      </Fragment>
+    )
   }
 }

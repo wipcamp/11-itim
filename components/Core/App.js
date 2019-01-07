@@ -16,10 +16,6 @@ class App extends React.Component {
     questionStartIndex: 0,
     answers: [],
     pageIndex: 0,
-    registerVisible: 'none',
-    questionVisible: 'none',
-    confirmVisible: 'none',
-    completeVisible: 'none',
     wipid: 0,
     nickname: '',
     registerDetail: {
@@ -56,11 +52,9 @@ class App extends React.Component {
     try {
       await this.getProfilefromDB()
       await this.getAllQuestion()
-
-    this.handleChangePage()
+      this.handleChangePage()
     } catch (error) {
-      console.log('fail get Data',error)
-    location.reload()
+      console.log('fail get Data', error)
     }
   }
   getAllQuestion = async () => {
@@ -93,58 +87,10 @@ class App extends React.Component {
     }
   }
 
-  handleChangePage = () => {
-    if (this.state.pageIndex == 0) {
-      this.setState({
-        registerVisible: 'block',
-        questionVisible: 'none',
-        confirmVisible: 'none',
-        completeVisible: 'none'
-      })
-    } else if (
-      this.state.pageIndex >= 1 &&
-      this.state.pageIndex <= Math.ceil(this.state.questions.length / 3)
-    ) {
-      this.setState({
-        questionVisible: 'block',
-        registerVisible: 'none',
-        confirmVisible: 'none',
-        completeVisible: 'none'
-      })
-    } else if (
-      this.state.pageIndex > Math.ceil(this.state.questions.length / 3) &&
-      this.state.pageIndex <= Math.ceil(this.state.questions.length / 3) + 1
-    ) {
-      this.setState({
-        questionVisible: 'none',
-        registerVisible: 'none',
-        confirmVisible: 'block',
-        completeVisible: 'none'
-      })
-    } else if (
-      this.state.pageIndex ===
-      Math.ceil(this.state.questions.length / 3) + 1
-    ) {
-      this.setState({
-        questionVisible: 'none',
-        registerVisible: 'none',
-        confirmVisible: 'none',
-        completeVisible: 'block'
-      })
-    } else {
-      this.setState({
-        registerVisible: 'none',
-        questionVisible: 'none',
-        confirmVisible: 'none',
-        completeVisible: 'none'
-      })
-    }
-  }
   setPageIndex = async count => {
     this.setState({
       pageIndex: this.state.pageIndex + count
     })
-    this.handleChangePage()
   }
   setWipId = async (id, nickname) => {
     this.setState({
@@ -280,45 +226,47 @@ class App extends React.Component {
             </div>
           </div>
           <div className="mt-5">
-            <Register
-              visible={this.state.registerVisible}
-              setPageIndex={this.setPageIndex}
-              setWipId={this.setWipId}
-              profileData={this.state.registerDetail}
-              handleFields={this.handleFields}
-              handleDate={this.handleDate}
-              handleGender={this.handleGender}
-              handleReligion={this.handleReligion}
-              handleChange={this.handleChange}
-              handleschoolGrade={this.handleschoolGrade}
-              handlemajor={this.handlemajor}
-              handlePrefixName={this.handlePrefixName}
-              changeQuestionStartIndex={this.changeQuestionStartIndex}
-              questionStartIndex={this.state.questionStartIndex}
-            />
-          </div>
-          <div className="mt-5">
-            <Questions
-              visible={this.state.questionVisible}
-              setPageIndex={this.setPageIndex}
-              questions={this.state.questions}
-              answers={this.state.answers}
-              questionStartIndex={this.state.questionStartIndex}
-              handleFields={this.handleAnswerFields}
-              changeQuestionStartIndex={this.changeQuestionStartIndex}
-            />
-          </div>
-          <div className="mt-5">
-            <Confirm
-              visible={this.state.confirmVisible}
-              setPageIndex={this.setPageIndex}
-              questions={this.state.questions}
-              answers={this.state.answers}
-              registerDetail={this.state.registerDetail}
-            />
-          </div>
-          <div className="mt-5">
-            <RegisComplete visible={this.state.completeVisible} />
+            {this.state.pageIndex === 0 && (
+              <Register
+                setPageIndex={this.setPageIndex}
+                setWipId={this.setWipId}
+                profileData={this.state.registerDetail}
+                handleFields={this.handleFields}
+                handleDate={this.handleDate}
+                handleGender={this.handleGender}
+                handleReligion={this.handleReligion}
+                handleChange={this.handleChange}
+                handleschoolGrade={this.handleschoolGrade}
+                handlemajor={this.handlemajor}
+                handlePrefixName={this.handlePrefixName}
+                changeQuestionStartIndex={this.changeQuestionStartIndex}
+                questionStartIndex={this.state.questionStartIndex}
+              />
+            )}
+            {this.state.pageIndex > 0 &&
+              this.state.pageIndex <=
+                Math.ceil(this.state.questions.length / 3) && (
+                <Questions
+                  setPageIndex={this.setPageIndex}
+                  questions={this.state.questions}
+                  answers={this.state.answers}
+                  questionStartIndex={this.state.questionStartIndex}
+                  handleFields={this.handleAnswerFields}
+                  changeQuestionStartIndex={this.changeQuestionStartIndex}
+                />
+              )}
+            {this.state.pageIndex >
+              Math.ceil(this.state.questions.length / 3) && (
+              <Confirm
+                setPageIndex={this.setPageIndex}
+                registerDetail={this.state.registerDetail}
+                questions={this.state.questions}
+                answers={this.state.answers}
+              />
+            )}
+            {this.state.registerDetail.confirm_register === '1' && (
+              <RegisComplete visible={this.state.completeVisible} />
+            )}
           </div>
         </div>
       </div>

@@ -71,7 +71,6 @@ class Register extends React.Component {
   }
   render() {
     return (
-      <Body visible={this.props.visible}>
         <div className="container-fluid">
           <Card className="mt-2 mb-5">
             <Profile profile={this.props.registerDetail} />
@@ -111,7 +110,6 @@ class Register extends React.Component {
             </Modal>
           </Card>
         </div>
-      </Body>
     )
   }
 }
