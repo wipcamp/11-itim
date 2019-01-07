@@ -10,7 +10,7 @@ export default class Complete extends React.Component {
         <div className="container">
           <Card className="mt-5 mb-2">
             <div className="row justify-content-center">
-              <div className="col-2">hi</div>
+              <div className="col-2"></div>
             </div>
             <div className="row text-center">
               <div className="col-12 mt-3">

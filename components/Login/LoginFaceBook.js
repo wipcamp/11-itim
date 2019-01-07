@@ -15,8 +15,8 @@ const responseFacebook = async (response) => {
   }
 }
 
-const changetoRegisterPage = () => {
-  if (Cookies.gettokenJWTCookie()) {
+const changetoRegisterPage = async () => {
+  if (await Cookies.gettokenJWTCookie()) {
     Router.push({
       pathname: '/register'
     })

@@ -49,13 +49,9 @@ class App extends React.Component {
   }
 
   componentDidMount = async () => {
-    try {
       await this.getProfilefromDB()
       await this.getAllQuestion()
-      this.handleChangePage()
-    } catch (error) {
-      console.log('fail get Data', error)
-    }
+    
   }
   getAllQuestion = async () => {
     let queryQuestion = await QuestionService.getAllQuestion()
@@ -72,7 +68,9 @@ class App extends React.Component {
   }
 
   getProfilefromDB = async () => {
-    const profile = await RegisterService.getProfile()
+    try{
+      const profile = await RegisterService.getProfile()
+
     this.setState({
       registerDetail: profile.data
     })
@@ -84,6 +82,13 @@ class App extends React.Component {
       Router.push({
         pathname: '/regiscomplete'
       })
+    }
+  }
+  catch(err){
+    CookiesService.removeJWTAndEmailCookie()
+    Router.push({
+      pathname: '/index'
+    })
     }
   }
 

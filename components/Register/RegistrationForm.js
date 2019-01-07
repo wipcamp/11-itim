@@ -32,7 +32,8 @@ class RegistrationForm extends React.Component {
   }
 
   render () {
-    
+    const { dob } = this.props.profileData
+
     return (
       <div className="container-fluid">
         <div className="row justify-content-center">
@@ -206,7 +207,7 @@ class RegistrationForm extends React.Component {
                                   : 'เลือกวันเกิด'
                               }
                               format={DateFormat}
-                              defaultValue={moment('01/01/2002', DateFormat)}
+                              defaultValue={moment(dob ? dob:'11/11/2011', DateFormat)}
                               onChange={this.props.handleDate}
                               locale={th_TH}
                             />
