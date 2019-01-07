@@ -54,7 +54,6 @@ class App extends React.Component {
       await this.getAllQuestion()
       this.handleChangePage()
     } catch (error) {
-      location.reload()
       console.log('fail get Data', error)
     }
   }
