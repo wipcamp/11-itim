@@ -64,9 +64,9 @@ class App extends React.Component {
     console.log(queryAns)
     this.setState({
       questions: queryQuestion.data,
-      answers:queryAns.data
+      answers: queryAns.data
     })
-    
+
     for (let index = 0; index < this.state.questions.length; index++) {
       this.state.answers.push({ question_id: index + 1, ans_content: '' })
     }
@@ -265,7 +265,7 @@ class App extends React.Component {
                 answers={this.state.answers}
               />
             )}
-            {this.state.registerDetail.confirm_register === '1' && (
+            {this.state.registerDetail.confirm_register === 1 && (
               <RegisComplete visible={this.state.completeVisible} />
             )}
           </div>

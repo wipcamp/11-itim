@@ -2,7 +2,6 @@ import React, { Fragment } from 'react'
 import Router from 'next/router'
 import Navbar from '../Core/Navbar'
 import Complete from './Complete'
-import Body from '../Core/Body'
 import CookiesService from '../../service/CookieService'
 
 export default class RegisComplete extends React.Component {
