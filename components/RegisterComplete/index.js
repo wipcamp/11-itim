@@ -1,17 +1,17 @@
 import React, { Fragment } from 'react'
 import Router from 'next/router'
 import Complete from './Complete'
-import CookiesService from '../../service/CookieService'
+import RegisterService from '../../service/RegisterService';
 
 export default class RegisComplete extends React.Component {
   componentDidMount = async () => {
     this.handleCheckLoginState()
   }
   handleCheckLoginState = async () => {
-    if (await CookiesService.gettokenJWTCookie()) {
-    } else {
+    const profile = await RegisterService.getProfile()
+    if (profile.data.confirm_register !== 1) {
       Router.push({
-        pathname: '/index'
+        pathname: '/register'
       })
     }
   }

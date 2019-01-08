@@ -1,9 +1,6 @@
 import React, { Fragment } from 'react'
 import { Steps } from 'antd'
 import styled from 'styled-components'
-
-
-
 let Step = Steps.Step
 Step = styled(Step)`
   @media (max-width: 575.98px) {

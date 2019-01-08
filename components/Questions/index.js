@@ -32,7 +32,6 @@ class question extends React.Component {
   findAnswerByquestion_id = question_id => {
     return this.props.answers.find(ans => ans.question_id == question_id)
   }
-
   showAnswer = question_id => {
     let answer = this.findAnswerByquestion_id(question_id)
     if (answer) {

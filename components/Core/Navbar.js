@@ -1,6 +1,4 @@
-import React, { Fragment } from 'react'
-import { Menu as DefaultMenu} from 'antd'
-import styled from 'styled-components'
+import { Menu } from 'antd'
 import { Paragraph } from './Text'
 
 const Menu = styled(DefaultMenu)`

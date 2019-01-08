@@ -54,13 +54,11 @@ class App extends React.Component {
       await this.getAllQuestion()
       this.handleChangePage()
     } catch (error) {
-      console.log('fail get Data', error)
     }
   }
   getAllQuestion = async () => {
     let queryQuestion = await QuestionService.getAllQuestion()
     let queryAns = await QuestionService.getAns()
-    console.log(queryAns)
     this.setState({
       questions: queryQuestion.data,
       answers: queryAns.data
@@ -90,6 +88,12 @@ class App extends React.Component {
   setPageIndex = async count => {
     this.setState({
       pageIndex: this.state.pageIndex + count
+    })
+  }
+
+  handleQuestionStartIndex = async num => {
+    this.setState({
+      questionStartIndex: this.state.questionStartIndex - num
     })
   }
 
@@ -277,6 +281,7 @@ class App extends React.Component {
                   questions={this.state.questions}
                   answers={this.state.answers}
                   registerDetail={this.state.registerDetail}
+                  handleQuestionStartIndex={this.handleQuestionStartIndex}
                 />
               )}
             {this.state.registerDetail.confirm_register == 1 && (
