@@ -40,12 +40,13 @@ class Register extends React.Component {
     this.setState({
       modalVisible: false,
     })
-    this.state.profile.confirm_register =1;
     RegisterService.sendRegister(this.state.profile)
+    // QuestionService.sendQuestions(this.state.questions)
     this.props.setPageIndex(1)
   }
 
   handleCancel = e => {
+    console.log(e)
     this.setState({
       modalVisible: false
     })
@@ -55,9 +56,7 @@ class Register extends React.Component {
     this.props.setPageIndex(count)
   }
   handleBack = () => {
-    this.setState({
-      startIndex: this.state.startIndex - 3
-    })
+    this.props.handleQuestionStartIndex(3)
     let count = -1
     return count
   }

@@ -93,6 +93,12 @@ class App extends React.Component {
     })
   }
 
+  handleQuestionStartIndex = async num => {
+    this.setState({
+      questionStartIndex: this.state.questionStartIndex - num
+    })
+  }
+
   setConfirm = async confirm => {
     const { registerDetail } = this.state
     this.setState({
@@ -277,6 +283,7 @@ class App extends React.Component {
                   questions={this.state.questions}
                   answers={this.state.answers}
                   registerDetail={this.state.registerDetail}
+                  handleQuestionStartIndex={this.handleQuestionStartIndex}
                 />
               )}
             {this.state.registerDetail.confirm_register == 1 && (
