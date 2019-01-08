@@ -1,4 +1,5 @@
-import { Menu } from 'antd'
+import { Menu as DefaultMenu} from 'antd'
+import styled from 'styled-components'
 import { Paragraph } from './Text'
 
 const Menu = styled(DefaultMenu)`
