@@ -49,14 +49,18 @@ class App extends React.Component {
   }
 
   componentDidMount = async () => {
+    try {
       await this.getProfilefromDB()
       await this.getAllQuestion()
-    
+      this.handleChangePage()
+    } catch (error) {
+      console.log('fail get Data', error)
+    }
   }
   getAllQuestion = async () => {
     let queryQuestion = await QuestionService.getAllQuestion()
     let queryAns = await QuestionService.getAns()
-    console.table(queryAns)
+    console.log(queryAns)
     this.setState({
       questions: queryQuestion.data,
       answers: queryAns.data
@@ -68,9 +72,7 @@ class App extends React.Component {
   }
 
   getProfilefromDB = async () => {
-    try{
-      const profile = await RegisterService.getProfile()
-
+    const profile = await RegisterService.getProfile()
     this.setState({
       registerDetail: profile.data
     })
@@ -82,13 +84,6 @@ class App extends React.Component {
       Router.push({
         pathname: '/regiscomplete'
       })
-    }
-  }
-  catch(err){
-    CookiesService.removeJWTAndEmailCookie()
-    Router.push({
-      pathname: '/index'
-    })
     }
   }
 
@@ -234,7 +229,7 @@ class App extends React.Component {
           <div className="row">
             <div className="col-12">
               {this.state.pageIndex <=
-                Math.ceil(this.state.questions.length / 3) && (
+                Math.ceil(this.state.questions.length / 3) +1 && (
                 <ProgressBar
                   current={this.state.pageIndex}
                   questions={this.state.questions}
