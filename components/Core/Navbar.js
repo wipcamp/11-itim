@@ -1,33 +1,30 @@
-import { Menu as DefaultMenu} from 'antd'
 import styled from 'styled-components'
 import { Paragraph } from './Text'
 
-const Menu = styled(DefaultMenu)`
+const Menu = styled.div`
   border:0;
 `
 
 const Navbar = props => (
-  <Menu mode="horizontal" >
-    <div className="container">
-      <div className="row">
-        <div className="col-6">
-          <Menu.Item>Logo</Menu.Item>
-        </div>
-        <div className="col-6 text-right mt-3 mb-3">
-          <Menu.Item>
-            <Paragraph>WIP ID: {props.state && props.state.wip_id}</Paragraph>
-          </Menu.Item>
-          <Menu.Item>
-            <Paragraph>
-              {props.state && props.state.nickname != null
-                ? `น้อง${props.state.nickname}`
-                : ''}
-            </Paragraph>
-          </Menu.Item>
-        </div>
+  <div className="container">
+    <div className="row">
+      <div className="col-6">
+        <Menu>Logo</Menu>
+      </div>
+      <div className="col-6 text-right mt-3 mb-3">
+        <Menu>
+          <Paragraph>WIP ID: {props.state && props.state.wip_id}</Paragraph>
+        </Menu>
+        <Menu>
+          <Paragraph>
+            {props.state && props.state.nickname != null
+              ? `น้อง${props.state.nickname}`
+              : ''}
+          </Paragraph>
+        </Menu>
       </div>
     </div>
-  </Menu>
+  </div>
 )
 
 export default Navbar

@@ -34,7 +34,7 @@ class LoginFaceBook extends React.Component {
         appId="293604811359850"
         callback={responseFacebook}
         render={renderProps => (
-          <Button size="large " block type="primary" onClick={renderProps.onClick}>Login!</Button>
+          <Button size="large" block type="primary" onClick={renderProps.onClick}>Login!</Button>
         )}
       />
     )
