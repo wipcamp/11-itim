@@ -1,11 +1,28 @@
 import React from 'react'
 import { Card, Modal } from 'antd'
-
+import styled from 'styled-components'
 import Profile from './Profile'
 import ButtonPrimary, { ButtonSecondary } from '../Core/Button'
 import QuestionAndAnswer from './QuestionAndAnswer'
 import RegisterService from '../../service/RegisterService'
 import QuestionService from '../../service/QuestionService'
+
+
+const CardReponsive = styled(Card)`
+    @media (max-width : 768px){
+    .ant-card-body{
+      border:0;
+      margin:0px 0px 10% 0px;
+      padding:0px;
+    }
+      border:0;
+      margin:0;
+      padding:0px;
+    .ant-card-bordered{
+      border:0px;
+    }
+  }
+`
 
 class Register extends React.Component {
   state = {
@@ -40,7 +57,7 @@ class Register extends React.Component {
     this.setState({
       modalVisible: false,
     })
-    this.state.profile.confirm_register =1;
+    this.state.profile.confirm_register = 1;
     RegisterService.sendRegister(this.state.profile)
     this.props.setPageIndex(1)
   }
@@ -63,8 +80,8 @@ class Register extends React.Component {
   }
   render() {
     return (
-      <div className="container-fluid">
-        <Card className="mt-2 mb-5">
+      <div className="container-fulid">
+        <CardReponsive className="mb-5">
           <Profile profile={this.props.registerDetail} />
           <QuestionAndAnswer
             answers={this.props.answers}
@@ -72,12 +89,12 @@ class Register extends React.Component {
           />
           <div className="row">
             <div className="col-6 text-left">
-              <ButtonSecondary onClick={() => this.backStep()} className="ml-0">
+              <ButtonSecondary onClick={() => this.backStep()} className="ml-0 mt-2">
                 ย้อนกลับ
               </ButtonSecondary>
             </div>
             <div className="col-6 text-right">
-              <ButtonPrimary onClick={() => this.showModal()} className="mr-0">
+              <ButtonPrimary onClick={() => this.showModal()} className="mr-0 mt-2">
                 ถัดไป
               </ButtonPrimary>
             </div>
@@ -97,7 +114,7 @@ class Register extends React.Component {
               </div>
             </div>
           </Modal>
-        </Card>
+        </CardReponsive>
       </div>
     )
   }

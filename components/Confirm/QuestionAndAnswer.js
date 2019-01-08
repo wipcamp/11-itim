@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { ParagraphBold } from '../Core/Text'
 
 const findAnswer = (answers, questionId) => {
@@ -8,20 +8,20 @@ const findAnswer = (answers, questionId) => {
 
 const QuestionAndAnswer = (props) => {
   return (
-    <div className="container-fluid">
+    <div className="container">
       <div className="row justify-content-center">
-        <div className="col-10">
-          <h3 className="font-weight-bold mb-4 ml-5">ตอบคำถาม</h3>
+        <div className="col-12">
+          <h3 className="font-weight-bold mb-4">ตอบคำถาม</h3>
           {props.questions.map((data, key) => {
             return (
-              <div key={key}>
-                <ParagraphBold>
-                  คำถามที่ {data.id} : {data.content}
+              <Fragment>
+                <ParagraphBold className="col-12">
+                  <div className="row">
+                    คำถามที่ {data.id}: <br className="d-md-none"/>{data.content}
+                  </div>
                 </ParagraphBold>
-                <p>
-                  {findAnswer(props.answers, data.id)}
-                </p>
-              </div>
+                <p>{findAnswer(props.answers, data.id)}</p>
+              </Fragment>
             )
           })}
         </div>

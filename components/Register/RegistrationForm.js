@@ -13,7 +13,7 @@ import {
 import moment from 'moment'
 import Select from 'react-select'
 import Router from 'next/router'
-
+import styled from 'styled-components'
 import { Subtitle, Paragraph } from '../Core/Text'
 import InputText from '../Core/InputText'
 import ButtonPrimary from '../Core/Button'
@@ -24,6 +24,31 @@ const DateFormat = `DD/MM/YYYY`
 const FormItem = Form.Item
 const Option = AntDesignSelect.Option
 
+const CardReponsive = styled(Card)`
+    @media (max-width : 768px){
+    .ant-card-body{
+      border:0;
+      margin:0px 0px 10% 0px;
+      padding:0px;
+    }
+      border:0;
+      margin:0;
+      padding:0px;
+    .ant-card-bordered{
+      border:0px;
+    }
+
+    .ant-form-item{
+      margin-bottom:0px;
+    }
+
+    .ant-card-bordered{
+      border:0;
+      margin:0px 0px 10px 0px;
+      padding:0px;
+    }
+  }
+`
 class RegistrationForm extends React.Component {
 
    handleLogout = ()=>{
@@ -37,16 +62,16 @@ class RegistrationForm extends React.Component {
     return (
       <div className="container-fluid">
         <div className="row justify-content-center">
-          <div className="col-10">
-            <Card className="mt-2 mb-5">
-              <Form method="post" onSubmit={this.props.handleNextButton}>
-                <Subtitle className="font-weight-bold mb-4 ml-5">
+          <div className="col-12">
+            <CardReponsive className="mb-5">
+                <Subtitle className="font-weight-bold">
                   ข้อมูลส่วนตัว
                 </Subtitle>
+              <Form method="post" onSubmit={this.props.handleNextButton}>
                 <div className="row">
                   <div className="col-12 col-md-6">
                     <div className="row">
-                      <div className="col-12 col-md-5 ">
+                      <div className="col-12 col-md-5 mt-2">
                         <FormItem>
                           <Paragraph>ชื่อ(ไทย):</Paragraph>
                         </FormItem>
@@ -67,7 +92,7 @@ class RegistrationForm extends React.Component {
                   </div>
                   <div className="col-12 col-md-6">
                     <div className="row">
-                      <div className="col-12 col-md-5 ">
+                      <div className="col-12 col-md-5 mt-2 ">
                         <FormItem>
                           <Paragraph>นามสกุล(ไทย):</Paragraph>
                         </FormItem>
@@ -90,7 +115,7 @@ class RegistrationForm extends React.Component {
                 <div className="row">
                   <div className="col-12 col-md-6">
                     <div className="row">
-                      <div className="col-12 col-md-5 ">
+                      <div className="col-12 col-md-5 mt-2">
                         <FormItem>
                           <Paragraph>ชื่อ(อังกฤษ):</Paragraph>
                         </FormItem>
@@ -111,7 +136,7 @@ class RegistrationForm extends React.Component {
                   </div>
                   <div className="col-12 col-md-6">
                     <div className="row">
-                      <div className="col-12 col-md-5 ">
+                      <div className="col-12 col-md-5 mt-2">
                         <FormItem>
                           <Paragraph>นามสกุล(อังกฤษ):</Paragraph>
                         </FormItem>
@@ -134,7 +159,7 @@ class RegistrationForm extends React.Component {
                 <div className="row">
                   <div className="col-12 col-md-6">
                     <div className="row">
-                      <div className="col-12 col-md-5 ">
+                      <div className="col-12 col-md-5 mt-2">
                         <FormItem>
                           <Paragraph>ชื่อเล่น:</Paragraph>
                         </FormItem>
@@ -155,7 +180,7 @@ class RegistrationForm extends React.Component {
                   </div>
                   <div className="col-12 col-md-6">
                     <div className="row">
-                      <div className="col-12 col-md-5 ">
+                      <div className="col-12 col-md-5 mt-2">
                         <FormItem>
                           <Paragraph>เพศ:</Paragraph>
                         </FormItem>
@@ -192,7 +217,7 @@ class RegistrationForm extends React.Component {
                 <div className="row">
                   <div className="col-12 col-md-6">
                     <div className="row">
-                      <div className="col-12 col-md-5 ">
+                      <div className="col-12 col-md-5 mt-2">
                         <FormItem>
                           <Paragraph>วันเกิด:</Paragraph>
                         </FormItem>
@@ -218,7 +243,7 @@ class RegistrationForm extends React.Component {
                   </div>
                   <div className="col-12 col-md-6">
                     <div className="row">
-                      <div className="col-12 col-md-5 ">
+                      <div className="col-12 col-md-5 mt-2">
                         <FormItem>
                           <Paragraph>ศาสนา:</Paragraph>
                         </FormItem>
@@ -243,7 +268,7 @@ class RegistrationForm extends React.Component {
                 <div className="row">
                   <div className="col-12 col-md-6">
                     <div className="row">
-                      <div className="col-12 col-md-5 ">
+                      <div className="col-12 col-md-5 mt-2">
                         <FormItem>
                           <Paragraph>เลขบัตรประชาชน:</Paragraph>
                         </FormItem>
@@ -332,13 +357,13 @@ class RegistrationForm extends React.Component {
                     </div>
                   </div>
                 </div>
-                <Subtitle className="font-weight-bold mb-4 ml-5">
+                <Subtitle className="font-weight-bold mt-5">
                   ข้อมูลการติดต่อ
                 </Subtitle>
                 <div className="row">
                   <div className="col-12 col-md-6">
                     <div className="row">
-                      <div className="col-12 col-md-5 ">
+                      <div className="col-12 col-md-5 mt-2">
                         <FormItem>
                           <Paragraph>เบอร์โทรศัพท์:</Paragraph>
                         </FormItem>
@@ -360,7 +385,7 @@ class RegistrationForm extends React.Component {
                   </div>
                   <div className="col-12 col-md-6">
                     <div className="row">
-                      <div className="col-12 col-md-5 ">
+                      <div className="col-12 col-md-5 mt-2">
                         <FormItem>
                           <Paragraph>อีเมลล์:</Paragraph>
                         </FormItem>
@@ -388,7 +413,7 @@ class RegistrationForm extends React.Component {
                 <div className="row">
                   <div className="col-12 col-md-6">
                     <div className="row">
-                      <div className="col-12 col-md-5 ">
+                      <div className="col-12 col-md-5 mt-2">
                         <FormItem>
                           <Paragraph>เบอร์โทรผู้ปกครอง:</Paragraph>
                         </FormItem>
@@ -410,7 +435,7 @@ class RegistrationForm extends React.Component {
                   </div>
                   <div className="col-12 col-md-6">
                     <div className="row">
-                      <div className="col-12 col-md-5 ">
+                      <div className="col-12 col-md-5 mt-2">
                         <FormItem>
                           <Paragraph>ผู้ปกครองเกี่ยวข้องเป็น:</Paragraph>
                         </FormItem>
@@ -430,13 +455,13 @@ class RegistrationForm extends React.Component {
                     </div>
                   </div>
                 </div>
-                <Subtitle className="font-weight-bold mb-4 ml-5">
+                <Subtitle className="font-weight-bold mt-5">
                   ข้อมูลการศึกษา
                 </Subtitle>
                 <div className="row">
                   <div className="col-12 col-md-6">
                     <div className="row">
-                      <div className="col-12 col-md-5 ">
+                      <div className="col-12 col-md-5 mt-2">
                         <FormItem>
                           <Paragraph>ชื่อโรงเรียน:</Paragraph>
                         </FormItem>
@@ -463,7 +488,7 @@ class RegistrationForm extends React.Component {
                   </div>
                   <div className="col-12 col-md-6">
                     <div className="row">
-                      <div className="col-12 col-md-5 ">
+                      <div className="col-12 col-md-5 mt-2">
                         <FormItem>
                           <Paragraph>ระดับชั้น:</Paragraph>
                         </FormItem>
@@ -488,7 +513,7 @@ class RegistrationForm extends React.Component {
                 <div className="row">
                   <div className="col-12 col-md-6">
                     <div className="row">
-                      <div className="col-12 col-md-5 ">
+                      <div className="col-12 col-md-5 mt-2">
                         <FormItem>
                           <Paragraph>สายการเรียน:</Paragraph>
                         </FormItem>
@@ -510,7 +535,7 @@ class RegistrationForm extends React.Component {
                   </div>
                   <div className="col-12 col-md-6">
                     <div className="row">
-                      <div className="col-12 col-md-5 ">
+                      <div className="col-12 col-md-5 mt-2">
                         <FormItem>
                           <Paragraph>เกรด(x.xx):</Paragraph>
                         </FormItem>
@@ -536,13 +561,13 @@ class RegistrationForm extends React.Component {
                 </div>
                 <div className="row">
                   <div className="col text-right">
-                    <ButtonPrimary htmlType="submit" className="mr-0">
+                    <ButtonPrimary htmlType="submit" className="mr-0 m-2">
                       ถัดไป
                     </ButtonPrimary>
                   </div>
                 </div>
               </Form>
-            </Card>
+            </CardReponsive>
           </div>
         </div>
       </div>

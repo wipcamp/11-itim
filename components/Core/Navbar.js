@@ -1,16 +1,20 @@
 import React, { Fragment } from 'react'
-import { Menu } from 'antd'
+import { Menu as DefaultMenu} from 'antd'
 import styled from 'styled-components'
 import { Paragraph } from './Text'
 
+const Menu = styled(DefaultMenu)`
+  border:0;
+`
+
 const Navbar = props => (
-  <Menu mode="horizontal">
+  <Menu mode="horizontal" >
     <div className="container">
       <div className="row">
-        <div className="col-8">
+        <div className="col-6">
           <Menu.Item>Logo</Menu.Item>
         </div>
-        <div className="col-4 text-right mt-3 mb-3">
+        <div className="col-6 text-right mt-3 mb-3">
           <Menu.Item>
             <Paragraph>WIP ID: {props.state && props.state.wip_id}</Paragraph>
           </Menu.Item>

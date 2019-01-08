@@ -223,9 +223,9 @@ class App extends React.Component {
   render() {
     this.handleCheckLoginState()
     return (
-      <div className="container-fluid">
+      <div className="container">
         <Navbar state={this.state.registerDetail} />
-        <div className="container mt-5">
+        <div className="container-fulid">
           <div className="row">
             <div className="col-12">
               {this.state.pageIndex <=
