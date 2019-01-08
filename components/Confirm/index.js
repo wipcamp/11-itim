@@ -40,14 +40,12 @@ class Register extends React.Component {
     this.setState({
       modalVisible: false,
     })
-    console.log('ssdsdsd',this.state.profile)
     this.state.profile.confirm_register =1;
     RegisterService.sendRegister(this.state.profile)
     this.props.setPageIndex(1)
   }
 
   handleCancel = e => {
-    console.log(e)
     this.setState({
       modalVisible: false
     })

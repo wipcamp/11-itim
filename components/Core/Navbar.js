@@ -10,7 +10,6 @@ const Navbar = props => (
         <div className="col-8">
           <Menu.Item>Logo</Menu.Item>
         </div>
-        {console.log('stat', props.state)}
         <div className="col-4 text-right mt-3 mb-3">
           <Menu.Item>
             <Paragraph>WIP ID: {props.state && props.state.wip_id}</Paragraph>

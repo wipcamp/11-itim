@@ -2,14 +2,13 @@ import axios from 'axios'
 import Cookies from '../service/CookieService'
 import ENV from '../config/envConfig'
 
-const headers = {
-  'Authorization': `Bearer ${Cookies.gettokenJWTCookie()}`,
-  'Content-Type': 'application/json'
-}
 const createInstance = () => {
   return axios.create({
     baseURL: ENV.PATH_REGISTANCE,
-    headers
+    headers: {
+      'Authorization': `Bearer ${Cookies.gettokenJWTCookie()}`,
+      'Content-Type': 'application/json'
+    }
   })
 }
 
@@ -20,6 +19,7 @@ const catchError = err => {
 }
 
 export default {
+
   get: (path, headers = {}) => (
     createInstance(headers)
       .get(path)

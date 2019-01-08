@@ -1,7 +1,6 @@
 const check = {
 
   validNationalID: (id) => {
-    console.log(id)
     if (id == null || id.length !== 13) {
       return false
     }

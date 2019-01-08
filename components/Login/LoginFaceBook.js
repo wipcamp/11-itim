@@ -11,26 +11,21 @@ const responseFacebook = async (response) => {
   await AuthService.login(response)
   let token = await Cookies.gettokenJWTCookie()
   if (token) {
-    changetoRegisterPage()
+    location.reload()
   } else {
   }
 }
-let interval
 const changetoRegisterPage = async () => {
-  interval = setInterval(async () => {
-    const profile = await RegisterService.getProfile()
-    if (profile.data.confirm_register === 1) {
-      clearInterval(interval)
-      Router.push({
-        pathname: '/regiscomplete'
-      })
-    } else {
-      clearInterval(interval)
-      Router.push({
-        pathname: '/register'
-      })
-    }
-  }, 1000)
+  const profile = await RegisterService.getProfile()
+  if (profile.data.confirm_register === 1) {
+    Router.push({
+      pathname: '/regiscomplete'
+    })
+  } else {
+    Router.push({
+      pathname: '/register'
+    })
+  }
 }
 class LoginFaceBook extends React.Component {
   componentDidMount () {

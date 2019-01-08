@@ -40,8 +40,6 @@ class Register extends React.Component {
       try {
         await RegisterService.sendRegister(this.props.profileData)
       } catch (err) {
-        console.log(this.props.profileData)
-        console.log('err', err)
       }
       await this.props.setWipId(
         this.props.profileData.wip_id,

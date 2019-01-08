@@ -66,7 +66,6 @@ class question extends React.Component {
               layout="vertical"
             >
               {this.props.questions.map((data, key) => {
-                console.log(this.props.questionStartIndex)
                 if (
                   key <= this.props.questionStartIndex + 2 &&
                   key >= this.props.questionStartIndex
