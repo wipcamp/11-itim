@@ -2,18 +2,12 @@ import Button from '../Core/Button'
 import React from 'react'
 import Router from 'next/router'
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
-import Cookies from '../../service/CookieService'
 
 import AuthService from '../../service/AuthService'
 import RegisterService from '../../service/RegisterService'
 
 const responseFacebook = async (response) => {
   await AuthService.login(response)
-  let token = await Cookies.gettokenJWTCookie()
-  if (token) {
-    location.reload()
-  } else {
-  }
 }
 const changetoRegisterPage = async () => {
   const profile = await RegisterService.getProfile()
