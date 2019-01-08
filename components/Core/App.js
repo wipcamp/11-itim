@@ -54,13 +54,11 @@ class App extends React.Component {
       await this.getAllQuestion()
       this.handleChangePage()
     } catch (error) {
-      console.log('fail get Data', error)
     }
   }
   getAllQuestion = async () => {
     let queryQuestion = await QuestionService.getAllQuestion()
     let queryAns = await QuestionService.getAns()
-    console.log(queryAns)
     this.setState({
       questions: queryQuestion.data,
       answers: queryAns.data

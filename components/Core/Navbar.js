@@ -1,6 +1,4 @@
-import React, { Fragment } from 'react'
 import { Menu } from 'antd'
-import styled from 'styled-components'
 import { Paragraph } from './Text'
 
 const Navbar = props => (
