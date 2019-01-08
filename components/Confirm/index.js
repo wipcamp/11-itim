@@ -57,6 +57,7 @@ class Register extends React.Component {
     this.setState({
       modalVisible: false,
     })
+    this.state.profile.confirm_register =1;
     RegisterService.sendRegister(this.state.profile)
     this.props.setPageIndex(1)
   }
