@@ -154,6 +154,7 @@ class App extends React.Component {
   }
 
   handleChange = async data => {
+    console.log(data)
     const { registerDetail } = this.state
     const school = (await data.id) + 1
     const schoolNameFromInput = data.value

@@ -12,6 +12,8 @@ import {
 } from 'antd'
 import moment from 'moment'
 import Select from 'react-select'
+import CreatableSelect from 'react-select/lib/Creatable';
+
 import Router from 'next/router'
 import styled from 'styled-components'
 import { Subtitle, Paragraph } from '../Core/Text'
@@ -468,20 +470,11 @@ class RegistrationForm extends React.Component {
                       </div>
                       <div className="col-12 col-md-7">
                         <FormItem>
-                          <Select
-                            defaultValue={
-                              this.props.profileData.school_name != ''
-                                ? this.props.profileData.school_name
-                                : ''
-                            }
-                            onChange={this.props.handleChange}
-                            options={this.props.schoolOptions}
-                            placeholder={
-                              this.props.profileData.school_name != ''
-                                ? this.props.profileData.school_name
-                                : 'เลือก'
-                            }
-                          />
+                        <CreatableSelect
+                              onChange={this.props.handleChange}
+                              options={this.props.schoolOptions}
+                              placeholder={this.props.profileData.school_name != ""? this.props.profileData.school_name :"ใส่ชื่อโรงเรียน"}
+                           /> 
                         </FormItem>
                       </div>
                     </div>
