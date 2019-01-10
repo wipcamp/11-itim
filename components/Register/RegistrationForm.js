@@ -193,7 +193,7 @@ class RegistrationForm extends React.Component {
                             size="large"
                           >
                             <Radio.Button
-                              value="male"
+                              value="ชาย"
                               name="Male"
                               className="px-4"
                               onClick={this.props.handleGender}
@@ -201,7 +201,7 @@ class RegistrationForm extends React.Component {
                               ชาย
                             </Radio.Button>
                             <Radio.Button
-                              value="female"
+                              value="หญิง"
                               name="Female"
                               className="px-4"
                               onClick={this.props.handleGender}
