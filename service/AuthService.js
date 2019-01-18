@@ -8,7 +8,7 @@ const AuthService = {
         'provider_name': 'facebook',
         'provider_id': request.userID,
         'accessToken': request.accessToken,
-        'role': 'itim_applicant'
+        'role': 1
       })
         .then(respons => {
           if (respons) {
