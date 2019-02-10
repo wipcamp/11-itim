@@ -10,6 +10,7 @@ const ButtonPrimary = styled(DefaultButton)`
   &:hover{
     background-color: ${colors.primaryDarker};
     color: #fff;
+    border : 1px solid ${colors.primary};
   }
 `
 
@@ -20,7 +21,8 @@ export const ButtonSecondary = styled(DefaultButton)`
   border-color: ${colors.primary};
   &:hover{
     background-color: ${colors.primaryDarker};
-    color: ${colors.hover}
+    color: ${colors.hover};
+    border : 1px solid ${colors.primary};
   }
 `
 
