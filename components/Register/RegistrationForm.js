@@ -59,7 +59,7 @@ class RegistrationForm extends React.Component {
   }
 
   render () {
-    const { dob } = this.props.profileData
+    const  dob  = this.props.profileData.dob
 
     return (
       <div className="container-fluid">
@@ -229,9 +229,7 @@ class RegistrationForm extends React.Component {
                           <LocaleProvider locale={th_TH}>
                             <DatePicker
                               placeholder={
-                                this.props.profileData.dob != ''
-                                  ? this.props.profileData.dob
-                                  : 'เลือกวันเกิด'
+                                dob  ? dob: 'เลือกวันเกิด'
                               }
                               format={DateFormat}
                               defaultValue={moment(dob ? dob:'11/11/2011')}
