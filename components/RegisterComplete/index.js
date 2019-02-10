@@ -11,12 +11,13 @@ export default class RegisComplete extends React.Component {
     this.handleCheckLoginState()
   }
   handleCheckLoginState = async () => {
-    const profile = await RegisterService.getProfile()
+     const profile = await RegisterService.getProfile()
     if (profile.data.confirm_register !== 1) {
       Router.push({
         pathname: '/register'
       })
     }
+  nickname = profile.data.nickname
   }
 
   render() {
@@ -25,8 +26,6 @@ export default class RegisComplete extends React.Component {
         pathname: '/index'
       })
     }
-  nickname = Cookies.getCookie('name')
-  Cookies.removeCookie('name')
     return (
       <Fragment>
         <Complete

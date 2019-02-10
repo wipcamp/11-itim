@@ -1,5 +1,4 @@
 import apiReg from '../utils/apiRegService'
-import Cookies from './CookieService'
 
 const RegisterService = {
 
@@ -13,9 +12,6 @@ const RegisterService = {
 
   getProfile: async () => {
     const data = await apiReg.get('/profile')
-    if (data.data.confirm_register === 1) {
-      await Cookies.setCookie('name',profile.data.nickname)
-    }
     return data
   }
 
