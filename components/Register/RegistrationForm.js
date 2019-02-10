@@ -26,11 +26,12 @@ const FormItem = Form.Item
 const Option = AntDesignSelect.Option
 
 const CardReponsive = styled(Card)`
+      
     @media (max-width : 768px){
     .ant-card-body{
       border:0;
       margin:0px 0px 10% 0px;
-      padding:0px;
+      padding:5%;
     }
       border:0;
       margin:0;
@@ -57,8 +58,8 @@ class RegistrationForm extends React.Component {
     this.props.handleCheckLoginState()
   }
 
-  render() {
-    const { dob } = this.props.profileData
+  render () {
+    const  dob  = this.props.profileData.dob
 
     return (
       <div className="container-fluid">
@@ -227,13 +228,8 @@ class RegistrationForm extends React.Component {
                         <FormItem>
                           <LocaleProvider locale={th_TH}>
                             <DatePicker
-                              placeholder={
-                                this.props.profileData.dob != ''
-                                  ? this.props.profileData.dob
-                                  : 'เลือกวันเกิด'
-                              }
                               format={DateFormat}
-                              defaultValue={moment(dob ? dob : '11/11/2011', DateFormat)}
+                              defaultValue={moment(dob ? dob:'11/11/2011')}
                               onChange={this.props.handleDate}
                               locale={th_TH}
                             />

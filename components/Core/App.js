@@ -9,6 +9,7 @@ import QuestionService from '../../service/QuestionService'
 import Navbar from './Navbar'
 import CookiesService from '../../service/CookieService.js'
 import RegisterService from '../../service/RegisterService'
+import styled from 'styled-components'
 
 
 class App extends React.Component {

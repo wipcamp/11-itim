@@ -87,12 +87,12 @@ class Register extends React.Component {
           />
           <div className="row">
             <div className="col-6 text-left">
-              <ButtonSecondary onClick={() => this.backStep()} className="ml-0 mt-2">
+              <ButtonSecondary onClick={() => this.backStep()} className="ml-0 mt-2 m-2">
                 ย้อนกลับ
               </ButtonSecondary>
             </div>
             <div className="col-6 text-right">
-              <ButtonPrimary onClick={() => this.showModal()} className="mr-0 mt-2">
+              <ButtonPrimary onClick={() => this.showModal()} className="mr-0 mt-2 m-2">
                 ถัดไป
               </ButtonPrimary>
             </div>

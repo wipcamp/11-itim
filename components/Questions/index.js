@@ -1,7 +1,6 @@
 import React from 'react'
-import { Form, Input } from 'antd'
+import { Form, Input,Card } from 'antd'
 import styled from 'styled-components'
-
 import ButtonPrimary, { ButtonSecondary } from '../Core/Button'
 import QuestionService from '../../service/QuestionService'
 import { Subtitle } from '../Core/Text'
@@ -58,7 +57,7 @@ class question extends React.Component {
     return (
       <div className="container">
         <div className="row">
-          <div className="col-10 mt-5 mx-auto">
+          <Card className="col-10 mt-5 mx-auto">
             <Form
               method="post"
               onSubmit={this.handleNextButton}
@@ -103,7 +102,7 @@ class question extends React.Component {
                 </div>
               </FormItem>
             </Form>
-          </div>
+          </Card>
         </div>
       </div>
     )

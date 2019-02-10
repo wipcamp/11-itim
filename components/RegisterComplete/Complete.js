@@ -20,6 +20,9 @@ const CardReponsive = styled(Card)`
   }
 `
 export default class Complete extends React.Component {
+  handleClick = () => {
+    window.location('https://www.facebook.com/wipcamp/')
+  }
   render () {
     return (
       <div className="container-fluid">
@@ -35,13 +38,13 @@ export default class Complete extends React.Component {
               <div className="col-12 mt-3">
                 <Paragraph>
                   {this.props.name} ได้ส่งใบสมัครค่ายสำเร็จเรียบร้อยแล้ว
-                  โปรดรอฟังผลการประกาศค่ายในวันที่ xx มีนาคม 2562 ผ่านทาง
+                  โปรดรอฟังผลการประกาศค่ายในวันที่ 28 มีนาคม 2562 ผ่านทาง
                   Facebook Live นะครับ
                 </Paragraph>
               </div>
             </div>
             <div className="row justify-content-center mt-5">
-              <ButtonPrimary>ไปยัง Facebook Fanpage</ButtonPrimary>
+              <ButtonPrimary onClick={this.handleClick}>ไปยัง Facebook Fanpage</ButtonPrimary>
             </div>
           </CardReponsive>
         </div>
