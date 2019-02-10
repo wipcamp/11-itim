@@ -232,7 +232,7 @@ class RegistrationForm extends React.Component {
                                 dob  ? dob: 'เลือกวันเกิด'
                               }
                               format={DateFormat}
-                              defaultValue={moment(dob ? dob:'11/11/2011')}
+                              defaultValue={dob?dob:'11/11/2011'}
                               onChange={this.props.handleDate}
                               locale={th_TH}
                             />
