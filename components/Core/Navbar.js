@@ -4,12 +4,16 @@ import { Paragraph } from './Text'
 const Menu = styled.div`
   border:0;
 `
-
+const Logo = styled.img`
+  width: 30%;
+`
 const Navbar = props => (
   <div className="container">
     <div className="row">
-      <div className="col-6">
-        <Menu>Logo</Menu>
+      <div className="col-6 p-3">
+        <Menu>
+          <Logo src="/static/img/logo.png"/>
+        </Menu>
       </div>
       <div className="col-6 text-right mt-3 mb-3">
         <Menu>
