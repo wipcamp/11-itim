@@ -80,11 +80,11 @@ class App extends React.Component {
       this.state.registerDetail.wip_id,
       this.state.registerDetail.nickname
     )
-    if ((await this.state.registerDetail.confirm_register) === 1) {
-      Router.push({
-        pathname: '/regiscomplete'
-      })
-    }
+    // if ((await this.state.registerDetail.confirm_register) === 1) {
+    //   Router.push({
+    //     pathname: '/regiscomplete'
+    //   })
+    // }
   }
 
   setPageIndex = async count => {
