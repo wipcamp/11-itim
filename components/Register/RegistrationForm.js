@@ -13,7 +13,6 @@ import {
 import moment from 'moment'
 import Select from 'react-select'
 import CreatableSelect from 'react-select/lib/Creatable';
-
 import Router from 'next/router'
 import styled from 'styled-components'
 import { Subtitle, Paragraph } from '../Core/Text'
@@ -53,12 +52,12 @@ const CardReponsive = styled(Card)`
 `
 class RegistrationForm extends React.Component {
 
-   handleLogout = ()=>{
+  handleLogout = () => {
     CookiesService.removeJWTAndEmailCookie()
     this.props.handleCheckLoginState()
   }
 
-  render () {
+  render() {
     const { dob } = this.props.profileData
 
     return (
@@ -66,8 +65,8 @@ class RegistrationForm extends React.Component {
         <div className="row justify-content-center">
           <div className="col-12">
             <CardReponsive className="mb-5">
-                <Subtitle className="font-weight-bold">
-                  ข้อมูลส่วนตัว
+              <Subtitle className="font-weight-bold">
+                ข้อมูลส่วนตัว
                 </Subtitle>
               <Form method="post" onSubmit={this.props.handleNextButton}>
                 <div className="row">
@@ -234,7 +233,7 @@ class RegistrationForm extends React.Component {
                                   : 'เลือกวันเกิด'
                               }
                               format={DateFormat}
-                              defaultValue={moment(dob ? dob:'11/11/2011', DateFormat)}
+                              defaultValue={moment(dob ? dob : '11/11/2011', DateFormat)}
                               onChange={this.props.handleDate}
                               locale={th_TH}
                             />
@@ -252,15 +251,15 @@ class RegistrationForm extends React.Component {
                       </div>
                       <div className="col-12 col-md-7">
                         <FormItem>
-                        <AntDesignSelect
-                          value={this.props.profileData.religion}
-                          defaultValue="ศาสนา"
-                          style={{ width: '100%' }}
-                          onChange={this.props.handleReligion}>
-                              <Option value="พุทธ">พุทธ</Option>
-                              <Option value="คริสต์">คริสต์</Option>
-                              <Option value="อิสลาม">อิสลาม</Option>
-                              <Option value="อื่นๆ">อื่นๆ</Option>
+                          <AntDesignSelect
+                            value={this.props.profileData.religion}
+                            defaultValue="ศาสนา"
+                            style={{ width: '100%' }}
+                            onChange={this.props.handleReligion}>
+                            <Option value="พุทธ">พุทธ</Option>
+                            <Option value="คริสต์">คริสต์</Option>
+                            <Option value="อิสลาม">อิสลาม</Option>
+                            <Option value="อื่นๆ">อื่นๆ</Option>
                           </AntDesignSelect>
                         </FormItem>
                       </div>
@@ -470,11 +469,11 @@ class RegistrationForm extends React.Component {
                       </div>
                       <div className="col-12 col-md-7">
                         <FormItem>
-                        <CreatableSelect
-                              onChange={this.props.handleChange}
-                              options={this.props.schoolOptions}
-                              placeholder={this.props.profileData.school_name != ""? this.props.profileData.school_name :"ใส่ชื่อโรงเรียน"}
-                           /> 
+                          <CreatableSelect
+                            onChange={this.props.handleChange}
+                            options={this.props.schoolOptions}
+                            placeholder={this.props.profileData.school_name != "" ? this.props.profileData.school_name : "ใส่ชื่อโรงเรียน"}
+                          />
                         </FormItem>
                       </div>
                     </div>
@@ -497,7 +496,7 @@ class RegistrationForm extends React.Component {
                             <Option value="ม.4 ขึ้น ม.5">ม.4 ขึ้น ม.5</Option>
                             <Option value="ม.5 ขึ้น ม.6">ม.5 ขึ้น ม.6</Option>
                             <Option value="ม.6 ขึ้น ปี 1">ม.6 ขึ้น ปี 1</Option>
-                           </AntDesignSelect>
+                          </AntDesignSelect>
                         </FormItem>
                       </div>
                     </div>
@@ -513,7 +512,7 @@ class RegistrationForm extends React.Component {
                       </div>
                       <div className="col-12 col-md-7">
                         <FormItem>
-                        <AntDesignSelect
+                          <AntDesignSelect
                             value={this.props.profileData.school_major}
                             defaultValue="สายการเรียน"
                             style={{ width: '100%' }}
@@ -521,7 +520,7 @@ class RegistrationForm extends React.Component {
                             <Option value="วิทย์-คณิต">วิทย์-คณิต</Option>
                             <Option value="วิทย์-คอม">วิทย์-คอม</Option>
                             <Option value="ศิลป์คำนวน">ศิลป์คำนวน</Option>
-                           </AntDesignSelect>
+                          </AntDesignSelect>
                         </FormItem>
                       </div>
                     </div>
