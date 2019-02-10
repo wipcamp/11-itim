@@ -234,7 +234,7 @@ class RegistrationForm extends React.Component {
                                   : 'เลือกวันเกิด'
                               }
                               format={DateFormat}
-                              defaultValue={moment(dob ? dob:'11/11/2011', DateFormat)}
+                              defaultValue={moment(this.props.profileData.dob,DateFormat)||moment(dob ? dob:'11/11/2011', DateFormat)}
                               onChange={this.props.handleDate}
                               locale={th_TH}
                             />

@@ -3,8 +3,7 @@ import apiReg from '../utils/apiRegService'
 const RegisterService = {
 
   sendRegister: async (request) => {
-    await apiReg.put('/profile', request).then(respons => {
-    })
+    await apiReg.put('/profile', request)
   },
   getSchoolname: async () => {
     let data = await apiReg.get('/schools')
