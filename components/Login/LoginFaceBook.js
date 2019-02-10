@@ -4,7 +4,6 @@ import Router from 'next/router'
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 import AuthService from '../../service/AuthService'
 import RegisterService from '../../service/RegisterService'
-import Cookies from './CookieService'
 
 const responseFacebook = async (response) => {
   await AuthService.login(response)
@@ -12,7 +11,6 @@ const responseFacebook = async (response) => {
 const changetoRegisterPage = async () => {
   const profile = await RegisterService.getProfile()
   if (profile.data.confirm_register === 1) {
-    Cookies.setCookie('name',profile.data.nickname)
     Router.push({
       pathname: '/regiscomplete'
     })
