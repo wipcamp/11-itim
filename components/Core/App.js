@@ -19,9 +19,9 @@ class App extends React.Component {
     wipid: 0,
     nickname: '',
     registerDetail: {
-      fistname_th: '',
+      firstname_th: '',
       lastname_th: '',
-      fistname_en: '',
+      firstname_en: '',
       lastname_en: '',
       nickname: '',
       gender: '',
@@ -286,7 +286,7 @@ class App extends React.Component {
                 />
               )}
             {this.state.registerDetail.confirm_register == 1 && (
-              <RegisComplete name={this.state.registerDetail.fistname_th} />
+              <RegisComplete name={this.state.registerDetail.firstname_th} />
             )}
           </div>
         </div>

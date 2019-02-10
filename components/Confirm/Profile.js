@@ -16,7 +16,7 @@ const Profile = (props) => {
                   <ParagraphBold>ชื่อ(ไทย):</ParagraphBold>
                 </div>
                 <div className="col-6 col-md-8">
-                  <Paragraph>{props.profile.fistname_th}</Paragraph>
+                  <Paragraph>{props.profile.firstname_th}</Paragraph>
                 </div>
               </div>
             </div>
@@ -39,7 +39,7 @@ const Profile = (props) => {
                   <ParagraphBold>ชื่อ(อังกฤษ):</ParagraphBold>
                 </div>
                 <div className="col-6 col-md-8">
-                  <Paragraph>{props.profile.fistname_en}</Paragraph>
+                  <Paragraph>{props.profile.firstname_en}</Paragraph>
                 </div>
               </div>
             </div>

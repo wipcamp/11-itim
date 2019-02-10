@@ -84,8 +84,8 @@ class RegistrationForm extends React.Component {
                             onChange={({ target: { name, value } }) =>
                               this.props.handleFields(name, value)
                             }
-                            name="fistname_th"
-                            value={this.props.profileData.fistname_th}
+                            name="firstname_th"
+                            value={this.props.profileData.firstname_th}
                             required
                           />
                         </FormItem>
@@ -129,8 +129,8 @@ class RegistrationForm extends React.Component {
                             onChange={({ target: { name, value } }) =>
                               this.props.handleFields(name, value)
                             }
-                            name="fistname_en"
-                            value={this.props.profileData.fistname_en}
+                            name="firstname_en"
+                            value={this.props.profileData.firstname_en}
                           />
                         </FormItem>
                       </div>

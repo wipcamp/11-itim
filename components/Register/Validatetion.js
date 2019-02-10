@@ -24,11 +24,11 @@ const validNation = {
                 window.alert('กรอกเกรดผิด x.xx')
                 return false
               } else {
-                if (/^[a-zA-Z]+$/.test(registerDetail.fistname_th) || /^[a-zA-Z]+$/.test(registerDetail.lastname_th)) {
+                if (/^[a-zA-Z]+$/.test(registerDetail.firstname_th) || /^[a-zA-Z]+$/.test(registerDetail.lastname_th)) {
                   window.alert('กรอกชื่อและนามสกุลไทยผิด')
                   return false
                 } else {
-                  if (/^[a-zA-Z]+$/.test(registerDetail.fistname_en) && /^[a-zA-Z]+$/.test(registerDetail.lastname_en)) {
+                  if (/^[a-zA-Z]+$/.test(registerDetail.firstname_en) && /^[a-zA-Z]+$/.test(registerDetail.lastname_en)) {
                     if (registerDetail.prefix_name === 'นาย' && registerDetail.gender === 'male') {
                       return true
                     }
