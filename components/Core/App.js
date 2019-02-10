@@ -10,6 +10,7 @@ import Navbar from './Navbar'
 import CookiesService from '../../service/CookieService.js'
 import RegisterService from '../../service/RegisterService'
 
+
 class App extends React.Component {
   state = {
     questions: [],

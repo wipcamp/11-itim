@@ -1,8 +1,6 @@
 import React from 'react'
 import Router from 'next/router'
-
 import RegisterService from '../../service/RegisterService'
-
 import RegistrationForm from './RegistrationForm'
 import CookiesService from '../../service/CookieService.js'
 import Validatetion from './Validatetion'
