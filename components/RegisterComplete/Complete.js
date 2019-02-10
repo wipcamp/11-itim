@@ -28,9 +28,6 @@ const Img = styled.img`
   }
 `
 export default class Complete extends React.Component {
-  handleClick = () => {
-    window.location('https://www.facebook.com/wipcamp/')
-  }
   render() {
     return (
       <div className="container-fluid">
