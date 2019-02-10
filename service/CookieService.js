@@ -7,6 +7,9 @@ const CookiesService = {
   getCookie (name) {
     return Cookies.get(name)
   },
+  removeCookie(name){
+    Cookies.remove(name)
+  },
   gettokenJWTCookie () {
     return Cookies.get('tokenJWT')
   },

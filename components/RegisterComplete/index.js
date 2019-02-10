@@ -2,8 +2,11 @@ import React, { Fragment } from 'react'
 import Router from 'next/router'
 import Complete from './Complete'
 import RegisterService from '../../service/RegisterService';
+import Cookies from './CookieService'
 
+let nickname
 export default class RegisComplete extends React.Component {
+  
   componentDidMount = async () => {
     this.handleCheckLoginState()
   }
@@ -17,11 +20,13 @@ export default class RegisComplete extends React.Component {
   }
 
   render() {
+  nickname = Cookies.getCookie('name')
+  Cookies.removeCookie('name')
     return (
       <Fragment>
         <Complete
           handleCheckLoginState={this.handleCheckLoginState}
-          name={this.props.name}
+          name={this.props.name||nickname}
         />
       </Fragment>
     )
