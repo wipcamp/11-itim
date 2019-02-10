@@ -228,11 +228,8 @@ class RegistrationForm extends React.Component {
                         <FormItem>
                           <LocaleProvider locale={th_TH}>
                             <DatePicker
-                              placeholder={
-                                dob  ? dob: 'เลือกวันเกิด'
-                              }
                               format={DateFormat}
-                              defaultValue={dob?dob:'11/11/2011'}
+                              defaultValue={moment(dob ? dob:'11/11/2011')}
                               onChange={this.props.handleDate}
                               locale={th_TH}
                             />
