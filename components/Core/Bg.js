@@ -1,20 +1,20 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
-const BgColors = styled.div`
-  /* background: #F8E9D6; */
-`
-
 const Img = styled.img`
   width: 100%;
+  @media (max-width : 768px) {
+    position: ${props => props.position};
+    bottom: 0;
+  }
 `
 
 class Bg extends Component {
-  render () {
+  render() {
     return (
-      <BgColors>
-        <Img src="/static/img/MaskGroup.png" />
-      </BgColors>
+      <React.Fragment>
+        <Img src="/static/img/MaskGroup.png" position={this.props.position} />
+      </React.Fragment>
     )
   }
 }
