@@ -57,7 +57,7 @@ class Register extends React.Component {
     this.setState({
       modalVisible: false,
     })
-    this.state.profile.confirm_register =1;
+    this.state.profile.confirm_register = 1;
     RegisterService.sendRegister(this.state.profile)
     this.props.setPageIndex(1)
   }
@@ -102,6 +102,9 @@ class Register extends React.Component {
             visible={this.state.modalVisible}
             onOk={this.handleOk}
             onCancel={this.handleCancel}
+            okText={"ยืนยัน"}
+            cancelText={"ยกเลิก"}
+            closable={false}
           >
             <div className="row justify-content-center">
               <div className="col-11">
