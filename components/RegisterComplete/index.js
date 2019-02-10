@@ -20,6 +20,11 @@ export default class RegisComplete extends React.Component {
   }
 
   render() {
+    if(Cookies.getCookie('tokenJWT')){
+      Router.push({
+        pathname: '/index'
+      })
+    }
   nickname = Cookies.getCookie('name')
   Cookies.removeCookie('name')
     return (
