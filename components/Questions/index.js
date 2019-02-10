@@ -12,6 +12,33 @@ const { TextArea } = Input
 const StyledTextArea = styled(TextArea)`
   font-size: ${config.paragraph};
 `
+
+const CardReponsive = styled(Card)`
+      
+    @media (max-width : 768px){
+    .ant-card-body{
+      border:0;
+      margin:0px 2px 0px 10px;
+      padding:5%;
+    }
+      border:0;
+      margin:0;
+      padding:0px;
+    .ant-card-bordered{
+      border:0px;
+    }
+
+    .ant-form-item{
+      margin-bottom:0px;
+    }
+
+    .ant-card-bordered{
+      border:0;
+      margin:0px 0px 0px 0px;
+      padding:0px;
+    }
+  }
+`
 class question extends React.Component {
   state = {
     startIndex: 0
@@ -57,7 +84,7 @@ class question extends React.Component {
     return (
       <div className="container">
         <div className="row">
-          <Card className="col-10 mt-5 mx-auto">
+          <CardReponsive className="col-12 mt-2 mx-auto mb-3">
             <Form
               method="post"
               onSubmit={this.handleNextButton}
@@ -102,7 +129,7 @@ class question extends React.Component {
                 </div>
               </FormItem>
             </Form>
-          </Card>
+          </CardReponsive>
         </div>
       </div>
     )
