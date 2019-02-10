@@ -7,10 +7,18 @@ const ButtonPrimary = styled(DefaultButton)`
   font-size: ${fonts.paragraph};
   background-color: ${colors.primary};
   color: #fff;
-  &:hover{
+  :hover{
     background-color: ${colors.primaryDarker};
     color: #fff;
     border : 1px solid ${colors.primary};
+  }
+  :visited{
+    background:  ${colors.primaryDarker};
+    color: #fff;
+  }
+  ::selection {
+    background:  ${colors.primaryDarker};
+    color: #fff;
   }
 `
 
