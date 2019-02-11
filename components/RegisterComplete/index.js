@@ -26,7 +26,7 @@ export default class RegisComplete extends React.Component {
     }
     
   this.setState({
-    nickname :this.props.name||profile.data.nickname
+    nickname :this.props.name||profile.data.firstname_th
   }) 
   }
 
