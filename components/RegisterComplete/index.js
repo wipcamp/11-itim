@@ -9,6 +9,11 @@ export default class RegisComplete extends React.Component {
   
   componentDidMount = async () => {
     this.handleCheckLoginState()
+    if(Cookies.getCookie('tokenJWT')){
+      Router.push({
+        pathname: '/index'
+      })
+    }
   }
   handleCheckLoginState = async () => {
      const profile = await RegisterService.getProfile()
@@ -21,11 +26,6 @@ export default class RegisComplete extends React.Component {
   }
 
   render() {
-    if(Cookies.getCookie('tokenJWT')){
-      Router.push({
-        pathname: '/index'
-      })
-    }
     return (
       <Fragment>
         <Complete
