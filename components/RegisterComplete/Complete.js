@@ -28,7 +28,7 @@ const Img = styled.img`
   }
 `
 export default class Complete extends React.Component {
-  render() {
+  render () {
     return (
       <div className="container-fluid">
         <div className="container">
@@ -42,11 +42,11 @@ export default class Complete extends React.Component {
                 <div className="col-12 mt-3">
                   <Paragraph>
                     น้อง{this.props.name} ได้ส่งใบสมัครค่ายสำเร็จเรียบร้อยแล้ว
-                </Paragraph>
+                  </Paragraph>
                   <Paragraph>
                     โปรดรอฟังผลการประกาศค่ายในวันที่ 28 มีนาคม 2562 ผ่านทาง
                     Facebook Live นะครับ
-                </Paragraph>
+                  </Paragraph>
                 </div>
               </div>
               <div className="row justify-content-center mt-3 p-3">
