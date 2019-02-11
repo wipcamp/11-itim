@@ -13,7 +13,7 @@ const BgColors = styled.div`
 `
 
 class regisComplete extends React.Component {
-  render() {
+  render () {
     return (
       <BgColors>
         <RegisComplete />
