@@ -15,7 +15,7 @@ import Select from 'react-select'
 import CreatableSelect from 'react-select/lib/Creatable';
 import Router from 'next/router'
 import styled from 'styled-components'
-import { Subtitle, Paragraph } from '../Core/Text'
+import { Subtitle, Paragraph, Small } from '../Core/Text'
 import InputText from '../Core/InputText'
 import ButtonPrimary from '../Core/Button'
 import RegisterService from '../../service/RegisterService'
@@ -58,8 +58,8 @@ class RegistrationForm extends React.Component {
     this.props.handleCheckLoginState()
   }
 
-  render () {
-    const  dob  = this.props.profileData.dob
+  render() {
+    const dob = this.props.profileData.dob
 
     return (
       <div className="container-fluid">
@@ -88,6 +88,9 @@ class RegistrationForm extends React.Component {
                             value={this.props.profileData.firstname_th}
                             required
                           />
+                          <Small>
+                            ไม่ต้องใส่คำนำหน้าชื่อ
+                          </Small>
                         </FormItem>
                       </div>
                     </div>
@@ -132,6 +135,9 @@ class RegistrationForm extends React.Component {
                             name="firstname_en"
                             value={this.props.profileData.firstname_en}
                           />
+                          <Small>
+                            ไม่ต้องใส่คำนำหน้าชื่อ
+                          </Small>
                         </FormItem>
                       </div>
                     </div>
@@ -229,7 +235,7 @@ class RegistrationForm extends React.Component {
                           <LocaleProvider locale={th_TH}>
                             <DatePicker
                               format={DateFormat}
-                              defaultValue={moment(dob ? dob:'11/11/2011')}
+                              defaultValue={moment(dob ? dob : '11/11/2011')}
                               onChange={this.props.handleDate}
                               locale={th_TH}
                             />

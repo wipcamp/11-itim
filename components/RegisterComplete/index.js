@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import Router from 'next/router'
 import Complete from './Complete'
 import RegisterService from '../../service/RegisterService';
-import Cookies from './../../service/CookieService'
+import Cookies from '../../service/CookieService'
 
 export default class RegisComplete extends React.Component {
   state = {

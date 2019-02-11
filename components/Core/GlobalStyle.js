@@ -1,12 +1,18 @@
 import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
+  body{
+    font-family:sans-serif,'Sarabun' !important;
+  }
+
   .ant-calendar-month-panel-selected-cell .ant-calendar-month-panel-month {
-    background: #00B2FF !important;
+    background: #304151 !important;
     color: #fff !important;
   }
-  body{
-    font-family:'Sarabun', sans-serif !important;
+
+  @font-face{
+    font-family: 'Sarabun';
+    src: url('/static/font/Sarabun-Regular.ttf') format('truetype');
   }
 
   .ant-btn-primary {
@@ -35,6 +41,7 @@ const GlobalStyle = createGlobalStyle`
       background:  #304151;
       color: #fff;
     }
+
   }
 `
 
