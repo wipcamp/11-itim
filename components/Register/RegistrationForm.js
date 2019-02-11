@@ -390,7 +390,7 @@ class RegistrationForm extends React.Component {
                     <div className="row">
                       <div className="col-12 col-md-5 mt-2">
                         <FormItem>
-                          <Paragraph>อีเมลล์:</Paragraph>
+                          <Paragraph>อีเมล์:</Paragraph>
                         </FormItem>
                       </div>
                       <div className="col-12 col-md-7">
