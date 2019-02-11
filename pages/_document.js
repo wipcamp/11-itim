@@ -23,6 +23,7 @@ export default class MyDocument extends Document {
       <html>
         <Head>
           <style>{`body { margin: 0 } /* custom! */`}</style>
+          <title>สมัครค่าย WIP Camp #11 : Ways to IT Professionals Camp : ค่ายเส้นทางสู่ฝันนักไอที</title>
           <link
             rel="stylesheet"
             href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
