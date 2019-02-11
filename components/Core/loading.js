@@ -21,7 +21,6 @@ export default class Loading extends Component {
         <div className = "container">
           <div className = "row text-center justify-content-center">
             <Position src = './../../static/img/loading.gif' />
-            Connecting...
           </div>
         </div>
       </Background>
