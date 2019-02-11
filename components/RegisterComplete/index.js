@@ -24,7 +24,8 @@ export default class RegisComplete extends React.Component {
       })
     }
     
-  nickname = profile.data.nickname
+  const tempNickname = profile.data.nickname
+  nickname =this.props.name||tempNickname
   console.log(nickname)
   }
 
@@ -34,7 +35,7 @@ export default class RegisComplete extends React.Component {
       <Fragment>
         <Complete
           handleCheckLoginState={this.handleCheckLoginState}
-          name={this.props.name||nickname}
+          name={nickname}
         />
       </Fragment>
     )
