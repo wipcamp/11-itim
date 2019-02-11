@@ -25,6 +25,7 @@ export default class RegisComplete extends React.Component {
     }
     
   nickname = profile.data.nickname
+  console.log(nickname)
   }
 
   render() {

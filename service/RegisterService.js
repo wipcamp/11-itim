@@ -9,7 +9,6 @@ const RegisterService = {
     let data = await apiReg.get('/schools')
     return data
   },
-
   getProfile: async () => {
     const data = await apiReg.get('/profile')
     return data
