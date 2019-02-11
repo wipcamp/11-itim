@@ -3,9 +3,10 @@ import styled from 'styled-components'
 
 const Img = styled.img`
   width: 100%;
-  @media (max-wdth : 768px) {
+  @media (max-width : 880px) {
+    margin-top:37vh;
     position: ${props => props.position};
-    bottom: 0;
+    bottom:0;
   }
 `
 

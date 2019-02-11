@@ -5,6 +5,7 @@ import colors from '../config/colors'
 import styled from 'styled-components'
 
 const BgColors = styled.div`
+  background: ${colors.bgcolor};
   @media (max-width : 768px) {
     height: 100%;
   }

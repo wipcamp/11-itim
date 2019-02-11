@@ -56,6 +56,7 @@ class App extends React.Component {
       await this.getAllQuestion()
       this.handleChangePage()
     } catch (error) {
+      
     }
   }
   getAllQuestion = async () => {

@@ -3,14 +3,19 @@ import styled from 'styled-components'
 
 const Background = styled.div`
   display:${props => props.loadingout};
+  margin-top:25vh;
+
 `
 
 const Position = styled.img`
-  margin-top:35vh;
   width:45%;
   position: absolute;
-  @media (max-width:720px) {
+  @media (max-width:880px) {
+    margin-top:30vh;
+    position: absolute;
     width: 40%;
+    bottom: 0;
+
   }
 `
 

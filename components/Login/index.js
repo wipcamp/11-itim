@@ -20,7 +20,7 @@ this.setState({
       <div className="container-fluid mt-5">
         <div className="row mt-5 justify-content-center">
           <div className="col-8 col-md-4 mt-5">
-            <Loading loadingout={this.state.loading}></Loading>
+            <Loading  loadingout={this.state.loading}></Loading>
             <LoginFaceBook face={this.state.face}/>
           </div>
         </div>
