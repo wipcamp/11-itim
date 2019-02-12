@@ -5,7 +5,7 @@ const validNation = {
     var phoneno = /^(([0-9]{3})) *([0-9]{3})*([0-9]{4})$/
     if (!phoneno.test(registerDetail.guardian_telno) ||
     !phoneno.test(registerDetail.telno)) {
-      window.alert('กรอกเบอร์ผิด xxxxxxxxxx')
+      window.alert(`กรอกเบอร์ผิด ${registerDetail.telno} `)
       return false
     }
     for (let index in registerDetail) {
