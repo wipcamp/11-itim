@@ -531,7 +531,7 @@ class RegistrationForm extends React.Component {
                     <div className="row">
                       <div className="col-12 col-md-5 mt-2">
                         <FormItem>
-                          <Paragraph>เกรด(x.xx):</Paragraph>
+                          <Paragraph>เกรด:</Paragraph>
                         </FormItem>
                       </div>
                       <div className="col-12 col-md-7">
@@ -548,6 +548,9 @@ class RegistrationForm extends React.Component {
                             min={0}
                             max={4}
                           />
+                          <Small>
+                          กรุณาใส่เป็น ทศนิยม 2 ตำแหน่ง เช่น 3.45 เป็นต้น
+                          </Small>
                         </FormItem>
                       </div>
                     </div>
