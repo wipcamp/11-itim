@@ -21,7 +21,7 @@ const validNation = {
             } else {
               const gpaxc = registerDetail.gpax
               if (isNaN(gpaxc) || gpaxc.length !== 4) {
-                window.alert(`กรอกเกรดผิด กรุณาใส่เป็น ทศนิยม 2 ตำแหน่ง เช่น 3.45 เป็นต้น`)
+                window.alert(`กรอกเกรดผิด กรุณากรอกเป็น ทศนิยม 2 ตำแหน่ง เช่น 3.45 เป็นต้น`)
                 return false
               } else {
                 if (/^[a-zA-Z]+$/.test(registerDetail.firstname_th) || /^[a-zA-Z]+$/.test(registerDetail.lastname_th)) {

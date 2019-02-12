@@ -549,7 +549,7 @@ class RegistrationForm extends React.Component {
                             max={4}
                           />
                           <Small>
-                          กรุณาใส่เป็น ทศนิยม 2 ตำแหน่ง เช่น 3.45 เป็นต้น
+                          กรุณากรอกเป็น ทศนิยม 2 ตำแหน่ง เช่น 3.45 เป็นต้น
                           </Small>
                         </FormItem>
                       </div>
