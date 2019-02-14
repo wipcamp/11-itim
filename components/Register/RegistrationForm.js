@@ -531,7 +531,7 @@ class RegistrationForm extends React.Component {
                     <div className="row">
                       <div className="col-12 col-md-5 mt-2">
                         <FormItem>
-                          <Paragraph>เกรด(x.xx):</Paragraph>
+                          <Paragraph>เกรดเฉลี่ยสะสม(x.xx):</Paragraph>
                         </FormItem>
                       </div>
                       <div className="col-12 col-md-7">
