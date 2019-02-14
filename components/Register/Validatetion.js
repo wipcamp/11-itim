@@ -5,7 +5,7 @@ const validNation = {
     var phoneno = /^(([0-9]{3})) *([0-9]{3})*([0-9]{4})$/
     if (!phoneno.test(registerDetail.guardian_telno) ||
     !phoneno.test(registerDetail.telno)) {
-      window.alert('กรอกเบอร์ผิด xxxxxxxxxx')
+      window.alert(`กรอกเบอร์ผิด ${registerDetail.telno} `)
       return false
     }
     for (let index in registerDetail) {
@@ -21,7 +21,7 @@ const validNation = {
             } else {
               const gpaxc = registerDetail.gpax
               if (isNaN(gpaxc) || gpaxc.length !== 4) {
-                window.alert('กรอกเกรดผิด x.xx')
+                window.alert(`กรอกเกรดผิด กรุณากรอกเป็น ทศนิยม 2 ตำแหน่ง เช่น 3.45 เป็นต้น`)
                 return false
               } else {
                 if (/^[a-zA-Z]+$/.test(registerDetail.firstname_th) || /^[a-zA-Z]+$/.test(registerDetail.lastname_th)) {

@@ -5,9 +5,9 @@ const Menu = styled.div`
   border:0;
 `
 const Logo = styled.img`
-  width: 30%;
-  @media (max-width : 320px){
-    width: 80%;
+  width: 45%;
+  @media (max-width : 768px){
+    width: 100%;
   }
 `
 const Navbar = props => (
@@ -15,7 +15,7 @@ const Navbar = props => (
     <div className="row">
       <div className="col-6 p-3">
         <Menu>
-          <Logo src="/static/img/logo.png"/>
+          <Logo src="/static/img/logotitle.png"/>
         </Menu>
       </div>
       <div className="col-6 text-right p-3">

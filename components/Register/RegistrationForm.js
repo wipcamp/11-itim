@@ -548,6 +548,9 @@ class RegistrationForm extends React.Component {
                             min={0}
                             max={4}
                           />
+                          <Small>
+                          กรุณากรอกเป็น ทศนิยม 2 ตำแหน่ง เช่น 3.45 เป็นต้น
+                          </Small>
                         </FormItem>
                       </div>
                     </div>
