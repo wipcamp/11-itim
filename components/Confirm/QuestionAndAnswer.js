@@ -15,7 +15,7 @@ const QuestionAndAnswer = (props) => {
           {props.questions.map((data, key) => {
             return (
               <Fragment>
-                <ParagraphBold className="col-12">
+                <ParagraphBold className="col-12" key={key}>
                   <div className="row">
                     คำถามที่ {data.id}: <br className="d-md-none"/>{data.content}
                   </div>

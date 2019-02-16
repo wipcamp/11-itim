@@ -106,7 +106,7 @@ class question extends React.Component {
                         onChange={this.props.handleFields}
                         autosize={{ minRows: 7 }}
                         id={data.id}
-                        value={this.showAnswer(data.id)}
+                        defaultValue={this.showAnswer(data.id)}
                       />
                     </FormItem>
                   )
