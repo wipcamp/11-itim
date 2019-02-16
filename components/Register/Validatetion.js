@@ -29,13 +29,23 @@ const validNation = {
                   return false
                 } else {
                   if (/^[a-zA-Z]+$/.test(registerDetail.firstname_en) && /^[a-zA-Z]+$/.test(registerDetail.lastname_en)) {
-                    if (registerDetail.prefix_name === 'นาย' && registerDetail.gender === 'male') {
-                      return true
-                    }
-                    if (registerDetail.prefix_name === 'นางสาว' && registerDetail.gender === 'female') {
-                      return true
+                    if (registerDetail.gender === 'ชาย') {
+                      if (registerDetail.dob) {
+                        return true
+                      } else {
+                        window.alert('กรุณากรอกวันเดือนปีเกิดด้วยนะ')
+                        return false
+                      }
+                    } if (registerDetail.gender === 'หญิง') {
+                      if (registerDetail.dob) {
+                        return true
+                      } else {
+                        window.alert('กรุณากรอกวันเดือนปีเกิดด้วยนะ')
+                        return false
+                      }
                     } else {
-                      return true
+                      window.alert('อย่าลืมเลือกเพศนะ')
+                      return false
                     }
                   } else {
                     window.alert('กรอกชื่อและนามสกุลอังกฤษผิด')
