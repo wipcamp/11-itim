@@ -60,7 +60,6 @@ class RegistrationForm extends React.Component {
 
   render() {
     const dob = this.props.profileData.dob
-if(dob){
   return (
     <div className="container-fluid">
       <div className="row justify-content-center">
@@ -235,7 +234,6 @@ if(dob){
                         <LocaleProvider locale={th_TH}>
                           <DatePicker
                             format={DateFormat}
-                            defaultValue={moment(this.props.profileData.dob)}
                             onChange={this.props.handleDate}
                             locale={th_TH}
                           />
@@ -569,11 +567,6 @@ if(dob){
       </div>
     </div>
   )
-}else{
-  return(
-    <div></div>
-  )
-}
 
   }
 }
