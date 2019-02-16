@@ -60,6 +60,7 @@ class question extends React.Component {
   }
   showAnswer = question_id => {
     let answer = this.findAnswerByquestion_id(question_id)
+    console.log("Anwser : ",answer)
     if (answer) {
       return answer.ans_content
     }
@@ -103,7 +104,7 @@ class question extends React.Component {
                       <StyledTextArea
                         required
                         name="ans_content"
-                        onChange={this.props.handleFields}
+                        // onChange={this.props.handleFields}
                         autosize={{ minRows: 7 }}
                         id={data.id}
                         defaultValue={this.showAnswer(data.id)}
