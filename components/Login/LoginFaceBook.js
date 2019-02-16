@@ -44,7 +44,7 @@ class LoginFaceBook extends React.Component {
     return (
       <Background face = {this.props.face} className="text-center">
         <Img src="/static/img/logotitle.png" className="mb-5"/>
-        <Subtitle>ขออภัยสำนักนินจา "ปิดชั่วคราว"</Subtitle>
+        <Subtitle>ขออภัยสำนักนินจา "ปิดรับสมัครชั่วคราว"</Subtitle>
         {/* <FacebookLogin
           scope="email"
           autoLoad={true}
