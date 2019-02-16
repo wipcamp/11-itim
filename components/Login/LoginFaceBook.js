@@ -5,6 +5,8 @@ import Button from '../Core/Button'
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 import AuthService from '../../service/AuthService'
 import RegisterService from '../../service/RegisterService'
+import { Subtitle, Paragraph, Small } from '../Core/Text'
+
 const responseFacebook = async (response) => {
   await AuthService.login(response)
 }
@@ -40,10 +42,10 @@ class LoginFaceBook extends React.Component {
   }
   render () {
     return (
-      <Background face = {this.props.face}>
+      <Background face = {this.props.face} className="text-center">
         <Img src="/static/img/logotitle.png" className="mb-5"/>
-
-        <FacebookLogin
+        <Subtitle>ขออภัยสำนักนินจา "ปิดรับสมัครชั่วคราว"</Subtitle>
+        {/* <FacebookLogin
           scope="email"
           autoLoad={true}
           fields="name,email,picture,id"
@@ -52,7 +54,7 @@ class LoginFaceBook extends React.Component {
           render={renderProps => (
             <Button size="large" block type="primary" onClick={renderProps.onClick}>Login! เพื่อสมัครค่าย</Button>
           )}
-        />
+        /> */}
       </Background>
 
     )
