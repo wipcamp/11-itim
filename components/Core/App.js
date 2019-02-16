@@ -211,6 +211,8 @@ class App extends React.Component {
   }
 
   setAnswerByQuestionId = (question_id, newAnswer) => {
+    console.log(question_id)
+    console.log(newAnswer)
     return this.state.answers.map(answer => {
       if (answer.question_id === question_id) {
         answer.ans_content = newAnswer
