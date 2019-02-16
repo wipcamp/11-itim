@@ -221,6 +221,8 @@ class App extends React.Component {
     const newAnswer = e.target.value
     const question_id = parseInt(e.target.id)
     const answers = this.setAnswerByQuestionId(question_id, newAnswer)
+    console.log(answers)
+    console.log(this.state.answers)
     this.setState({ answers })
   }
 
