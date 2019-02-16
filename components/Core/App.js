@@ -62,14 +62,15 @@ class App extends React.Component {
   getAllQuestion = async () => {
     let queryQuestion = await QuestionService.getAllQuestion()
     let queryAns = await QuestionService.getAns()
+    console.log(queryAns)
     this.setState({
       questions: queryQuestion.data,
       answers: queryAns.data
     })
 
-    for (let index = 0; index < this.state.questions.length; index++) {
-      this.state.answers.push({ question_id: index + 1, ans_content: '' })
-    }
+    // for (let index = 0; index < this.state.questions.length; index++) {
+    //   this.state.answers.push({ question_id: index + 1, ans_content: '' })
+    // }
   }
 
   getProfilefromDB = async () => {
@@ -222,7 +223,6 @@ class App extends React.Component {
     const question_id = parseInt(e.target.id)
     const answers = this.setAnswerByQuestionId(question_id, newAnswer)
     console.log(answers)
-    console.log(this.state.answers)
     this.setState({ answers })
   }
 
