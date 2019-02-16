@@ -81,6 +81,10 @@ class question extends React.Component {
     this.props.setPageIndex(count)
   }
 
+  getValue = (e) =>{
+    console.log(e.target.value)
+  }
+
   render() {
     return (
       <div className="container">
@@ -104,7 +108,7 @@ class question extends React.Component {
                       <StyledTextArea
                         required
                         name="ans_content"
-                        // onChange={this.props.handleFields}
+                        onChange={(e) => this.getValue(e)}
                         autosize={{ minRows: 7 }}
                         id={data.id}
                         defaultValue={this.showAnswer(data.id)}
