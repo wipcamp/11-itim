@@ -44,8 +44,7 @@ class LoginFaceBook extends React.Component {
     return (
       <Background face = {this.props.face} className="text-center">
         <Img src="/static/img/logotitle.png" className="mb-5"/>
-        <Subtitle>ขออภัยสำนักนินจา "ปิดรับสมัครชั่วคราว"</Subtitle>
-        {/* <FacebookLogin
+        <FacebookLogin
           scope="email"
           autoLoad={true}
           fields="name,email,picture,id"
@@ -54,7 +53,7 @@ class LoginFaceBook extends React.Component {
           render={renderProps => (
             <Button size="large" block type="primary" onClick={renderProps.onClick}>Login! เพื่อสมัครค่าย</Button>
           )}
-        /> */}
+        />
       </Background>
 
     )
