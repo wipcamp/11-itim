@@ -6,7 +6,7 @@ const QuestionService = {
     return queryQuestion
   },
   sendQuestions: async (request) => {
-    await apiReg.post('/answers', request)
+    await apiReg.put('/answers', request)
   },
   getAns: async () => {
     let asn = await apiReg.get('/answers')

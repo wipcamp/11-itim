@@ -217,10 +217,9 @@ class App extends React.Component {
       return answer
     })
   }
-  handleAnswerFields = e => {
-    const newAnswer = e.target.value
-    const question_id = parseInt(e.target.id)
-    const answers = this.setAnswerByQuestionId(question_id, newAnswer)
+  handleAnswerFields = (value,id) => {
+    const question_id = parseInt(id)
+    const answers = this.setAnswerByQuestionId(question_id, value)
     this.setState({ answers })
   }
 

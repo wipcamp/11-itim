@@ -108,10 +108,10 @@ class question extends React.Component {
                       <StyledTextArea
                         required
                         name="ans_content"
-                        onChange={(e) => this.getValue(e)}
+                        onChange={({ target: { value ,id} }) => this.props.handleFields(value,id)}
                         autosize={{ minRows: 7 }}
                         id={data.id}
-                        defaultValue={this.showAnswer(data.id)}
+                        value={this.props.answers[key].ans_content}
                       />
                     </FormItem>
                   )
