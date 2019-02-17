@@ -219,7 +219,8 @@ class App extends React.Component {
 
   setAnswerByQuestionId = (question_id, newAnswer) => {
     return this.state.answers.map(answer => {
-      if (answer.question_id === question_id) {
+
+      if (parseInt(answer.question_id)=== question_id) {
         answer.ans_content = newAnswer
         console.log('true')
       }
@@ -229,6 +230,7 @@ class App extends React.Component {
   handleAnswerFields = async (value,id) => {
     console.log(value)
     console.log(id)
+    const question_id = parseInt(id)
     const answers = await this.setAnswerByQuestionId(question_id, value)
     console.log(answers)
     this.setState({ answers })
