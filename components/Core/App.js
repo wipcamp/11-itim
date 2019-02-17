@@ -229,7 +229,6 @@ class App extends React.Component {
   handleAnswerFields = async (value,id) => {
     console.log(value)
     console.log(id)
-    const question_id = parseInt(id)
     const answers = await this.setAnswerByQuestionId(question_id, value)
     console.log(answers)
     this.setState({ answers })
