@@ -3,6 +3,7 @@ import { ParagraphBold } from '../Core/Text'
 
 const findAnswer = (answers, questionId, key) => {
   const answer = answers.find(answer => (answer.question_id === questionId))
+  console.log(answer)
   return answer.ans_content || ''
 }
 
@@ -20,7 +21,7 @@ const QuestionAndAnswer = (props) => {
                     คำถามที่ {data.id}: <br className="d-md-none"/>{data.content}
                   </div>
                 </ParagraphBold>
-                <p>{findAnswer(props.answers, data.id, key)}</p>
+                <p>{props.answers[key].ans_content}</p>
               </Fragment>
             )
           })}
