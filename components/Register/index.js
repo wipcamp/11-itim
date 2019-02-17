@@ -59,9 +59,7 @@ class Register extends React.Component {
   handleCheckLoginState = async () => {
     if (await CookiesService.gettokenJWTCookie()) {
     } else {
-      Router.push({
-        pathname: '/index'
-      })
+      location.href = '/index'
     }
   }
 

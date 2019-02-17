@@ -14,15 +14,13 @@ export default class RegisComplete extends React.Component {
   }
   handleCheckLoginState = async () => {
     if(!Cookies.gettokenJWTCookie()){
-      Router.push({
-        pathname: '/'
-      })
+      location.href = '/index'
     }
      const profile = await RegisterService.getProfile()
     if (profile.data.confirm_register !== 1) {
-      Router.push({
-        pathname: '/register'
-      })
+  
+      location.href = '/register'
+
     }
     
   this.setState({

@@ -13,13 +13,9 @@ const responseFacebook = async (response) => {
 const changetoRegisterPage = async () => {
   const profile = await RegisterService.getProfile()
   if (profile.data.confirm_register === 1) {
-    Router.push({
-      pathname: '/regiscomplete'
-    })
+    location.href = '/regiscomplete'
   } else {
-    Router.push({
-      pathname: '/register'
-    })
+    location.href = '/register'
   }
 }
 
@@ -49,7 +45,7 @@ class LoginFaceBook extends React.Component {
           scope="email"
           autoLoad={true}
           fields="name,email,picture,id"
-          appId="293604811359850"
+          appId="2062230890741331"
           callback={responseFacebook}
           render={renderProps => (
             <Button size="large" block type="primary" onClick={renderProps.onClick}>Login! เพื่อสมัครค่าย</Button>
