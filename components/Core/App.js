@@ -221,6 +221,7 @@ class App extends React.Component {
     return this.state.answers.map(answer => {
       if (answer.question_id === question_id) {
         answer.ans_content = newAnswer
+        console.log('true')
       }
       return answer
     })
@@ -230,6 +231,7 @@ class App extends React.Component {
     console.log(id)
     const question_id = parseInt(id)
     const answers = await this.setAnswerByQuestionId(question_id, value)
+    console.log(answers)
     this.setState({ answers })
   }
 
