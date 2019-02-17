@@ -67,17 +67,12 @@ class App extends React.Component {
     for (let index = 0; index < this.state.questions.length; index++) {
       this.state.answers.push({ question_id: index + 1, ans_content: '' })
     }
-    console.log( this.state.answers)
     let queryAns = await QuestionService.getAns()
-    console.log(queryAns.data)
     if(queryAns.data.length>0){
       this.setState({
         answers: queryAns.data
       })
     }
-    console.log( this.state.answers)
-
-      
   }
 
   getProfilefromDB = async () => {
@@ -165,7 +160,6 @@ class App extends React.Component {
   }
 
   handleChange = async data => {
-    console.log(data)
     const { registerDetail } = this.state
     const school = (await data.id) + 1
     const schoolNameFromInput = data.value
@@ -222,17 +216,13 @@ class App extends React.Component {
 
       if (parseInt(answer.question_id)=== question_id) {
         answer.ans_content = newAnswer
-        console.log('true')
       }
       return answer
     })
   }
   handleAnswerFields = async (value,id) => {
-    console.log(value)
-    console.log(id)
     const question_id = parseInt(id)
     const answers = await this.setAnswerByQuestionId(question_id, value)
-    console.log(answers)
     this.setState({ answers })
   }
 

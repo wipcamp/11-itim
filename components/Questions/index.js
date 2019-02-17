@@ -60,7 +60,6 @@ class question extends React.Component {
   }
   showAnswer = question_id => {
     let answer = this.findAnswerByquestion_id(question_id)
-    console.log("Anwser : ",answer)
     if (answer) {
       return answer.ans_content
     }
@@ -79,10 +78,6 @@ class question extends React.Component {
   backStep = async () => {
     const count = await this.handleBack()
     this.props.setPageIndex(count)
-  }
-
-  getValue = (e) =>{
-    console.log(e.target.value)
   }
 
   render() {

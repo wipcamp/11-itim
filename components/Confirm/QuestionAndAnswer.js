@@ -3,7 +3,6 @@ import { ParagraphBold } from '../Core/Text'
 
 const findAnswer = (answers, questionId, key) => {
   const answer = answers.find(answer => (answer.question_id === questionId))
-  console.log(answer)
   return answer.ans_content || ''
 }
 
