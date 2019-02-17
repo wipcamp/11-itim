@@ -44,7 +44,7 @@ class LoginFaceBook extends React.Component {
           scope="email"
           autoLoad={true}
           fields="name,email,picture,id"
-          appId="2062230890741331"
+          appId="293604811359850"
           callback={responseFacebook}
           render={renderProps => (
             <Button size="large" block type="primary" onClick={renderProps.onClick}>Login! เพื่อสมัครค่าย</Button>
