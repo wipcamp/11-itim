@@ -9,6 +9,7 @@ import Navbar from './Navbar'
 import CookiesService from '../../service/CookieService.js'
 import RegisterService from '../../service/RegisterService'
 import Router from 'next/router'
+import { withRouter } from 'next/router'
 
 class App extends React.Component {
   state = {
@@ -66,7 +67,7 @@ class App extends React.Component {
       this.state.answers.push({ question_id: index + 1, ans_content: '' })
     }
     let queryAns = await QuestionService.getAns()
-    if(queryAns.data.length>0){
+    if (queryAns.data.length > 0) {
       this.setState({
         answers: queryAns.data
       })
@@ -82,10 +83,16 @@ class App extends React.Component {
       this.state.registerDetail.wip_id,
       this.state.registerDetail.nickname
     )
-    if ((await this.state.registerDetail.confirm_register) === 1) {
-      Router.push({
-        pathname : '/regiscomplete'
-      })
+    try{
+      if ((await this.state.registerDetail.confirm_register) === 1) {
+        // Router.push({
+        //   pathname : '/regiscomplete'
+        // })
+        const { router } = this.props
+          router.prefetch('/index')
+      }
+    }catch (e) {
+      console.log(e)
     }
   }
 
@@ -191,11 +198,17 @@ class App extends React.Component {
   }
 
   handleCheckLoginState = async () => {
-    if (await CookiesService.gettokenJWTCookie()) {
-    } else {
-      Router.push({
-        pathname : '/index'
-      })
+    try {
+      if (await CookiesService.gettokenJWTCookie()) {
+      } else {
+        // Router.push({
+        //   pathname : '/index'
+        // })
+        const { router } = this.props
+        router.prefetch('/index')
+      }
+    }catch (e) {
+      console.log(e)
     }
   }
 
@@ -212,13 +225,13 @@ class App extends React.Component {
   setAnswerByQuestionId = (question_id, newAnswer) => {
     return this.state.answers.map(answer => {
 
-      if (parseInt(answer.question_id)=== question_id) {
+      if (parseInt(answer.question_id) === question_id) {
         answer.ans_content = newAnswer
       }
       return answer
     })
   }
-  handleAnswerFields = async (value,id) => {
+  handleAnswerFields = async (value, id) => {
     const question_id = parseInt(id)
     const answers = await this.setAnswerByQuestionId(question_id, value)
     this.setState({ answers })
@@ -237,12 +250,12 @@ class App extends React.Component {
           <div className="row">
             <div className="col-12">
               {this.state.pageIndex <=
-                Math.ceil(this.state.questions.length / 3) +1 && (
-                <ProgressBar
-                  current={this.state.pageIndex}
-                  questions={this.state.questions}
-                />
-              )}
+                Math.ceil(this.state.questions.length / 3) + 1 && (
+                  <ProgressBar
+                    current={this.state.pageIndex}
+                    questions={this.state.questions}
+                  />
+                )}
             </div>
           </div>
           <div className="mt-5">
@@ -265,7 +278,7 @@ class App extends React.Component {
             )}
             {this.state.pageIndex > 0 &&
               this.state.pageIndex <=
-                Math.ceil(this.state.questions.length / 3) && (
+              Math.ceil(this.state.questions.length / 3) && (
                 <Questions
                   setPageIndex={this.setPageIndex}
                   questions={this.state.questions}
@@ -278,7 +291,7 @@ class App extends React.Component {
             {this.state.pageIndex >
               Math.ceil(this.state.questions.length / 3) &&
               this.state.pageIndex <=
-                Math.ceil(this.state.questions.length / 3) + 1 && (
+              Math.ceil(this.state.questions.length / 3) + 1 && (
                 <Confirm
                   setPageIndex={this.setPageIndex}
                   confirm={this.setConfirm}
@@ -298,4 +311,4 @@ class App extends React.Component {
   }
 }
 
-export default App
+export default withRouter(App)
