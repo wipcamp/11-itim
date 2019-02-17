@@ -9,6 +9,7 @@ import Navbar from './Navbar'
 import CookiesService from '../../service/CookieService.js'
 import RegisterService from '../../service/RegisterService'
 import styled from 'styled-components'
+import { async } from 'rxjs/internal/scheduler/async';
 
 
 class App extends React.Component {
@@ -60,15 +61,23 @@ class App extends React.Component {
   }
   getAllQuestion = async () => {
     let queryQuestion = await QuestionService.getAllQuestion()
-    let queryAns = await QuestionService.getAns()
     this.setState({
       questions: queryQuestion.data,
-      answers: queryAns.data
     })
-
     for (let index = 0; index < this.state.questions.length; index++) {
       this.state.answers.push({ question_id: index + 1, ans_content: '' })
     }
+    console.log( this.state.answers)
+    let queryAns = await QuestionService.getAns()
+    console.log(queryAns.data)
+    if(queryAns.data.length>0){
+      this.setState({
+        answers: queryAns.data
+      })
+    }
+    console.log( this.state.answers)
+
+      
   }
 
   getProfilefromDB = async () => {
@@ -216,10 +225,9 @@ class App extends React.Component {
       return answer
     })
   }
-  handleAnswerFields = (value,id) => {
-    console.log(value)
+  handleAnswerFields = async (value,id) => {
     const question_id = parseInt(id)
-    const answers = this.setAnswerByQuestionId(question_id, value)
+    const answers = await this.setAnswerByQuestionId(question_id, value)
     this.setState({ answers })
   }
 
