@@ -23,12 +23,11 @@ export default class MyDocument extends Document {
       <html>
         <Head>
           <style>{`body { margin: 0 } /* custom! */`}</style>
-          <title>สมัครค่าย WIP Camp #11 : Ways to IT Professionals Camp : ค่ายเส้นทางสู่ฝันนักไอที</title>
           <link
             rel="stylesheet"
             href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
             integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-            crossorigin="anonymous"
+            crossOrigin="anonymous"
           />
           <link
             href="https://fonts.googleapis.com/css?family=Sarabun:300,400,700"
@@ -38,7 +37,7 @@ export default class MyDocument extends Document {
             name="viewport"
             content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
           />
-          <meta charset="utf-8"/>
+          <meta charSet="utf-8"/>
           <meta name="keywords" content="wipcamp,itcamp,ค่ายไอที,ค่ายคอม,สมัครค่ายไอที,สมัครค่ายคอม,สมัครค่าย"/>
           <meta property="og:title" content="สมัครค่าย WIP Camp #11 : Ways to IT Professionals Camp : ค่ายเส้นทางสู่ฝันนักไอที "/>
           <meta property="og:type" content="company"/>
