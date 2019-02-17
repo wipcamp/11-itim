@@ -1,5 +1,4 @@
 import React from 'react'
-import Router from 'next/router'
 import ProgressBar from './ProgressBar.js'
 import Register from '../Register'
 import Questions from '../Questions'
@@ -82,9 +81,9 @@ class App extends React.Component {
       this.state.registerDetail.nickname
     )
     if ((await this.state.registerDetail.confirm_register) === 1) {
-      Router.push({
-        pathname: '/regiscomplete'
-      })
+      
+      location.href = '/regiscomplete'
+
     }
   }
 
@@ -193,9 +192,9 @@ class App extends React.Component {
   handleCheckLoginState = async () => {
     if (await CookiesService.gettokenJWTCookie()) {
     } else {
-      Router.push({
-        pathname: '/index'
-      })
+      
+      location.href = '/index'
+
     }
   }
 

@@ -111,7 +111,7 @@ class question extends React.Component {
                         onChange={({ target: { value ,id} }) => this.props.handleFields(value,id)}
                         autosize={{ minRows: 7 }}
                         id={data.id}
-                        value={this.props.answers[key].ans_content}
+                        defaultValue={this.props.answers[key].ans_content}
                       />
                     </FormItem>
                   )

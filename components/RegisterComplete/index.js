@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react'
-import Router from 'next/router'
 import Complete from './Complete'
 import RegisterService from '../../service/RegisterService';
 import Cookies from '../../service/CookieService'
