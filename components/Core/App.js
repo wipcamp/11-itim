@@ -8,9 +8,7 @@ import QuestionService from '../../service/QuestionService'
 import Navbar from './Navbar'
 import CookiesService from '../../service/CookieService.js'
 import RegisterService from '../../service/RegisterService'
-import styled from 'styled-components'
-import { async } from 'rxjs/internal/scheduler/async';
-
+import Router from 'next/router'
 
 class App extends React.Component {
   state = {
@@ -56,7 +54,7 @@ class App extends React.Component {
       await this.getAllQuestion()
       this.handleChangePage()
     } catch (error) {
-      
+      console.log(error)
     }
   }
   getAllQuestion = async () => {
@@ -85,9 +83,9 @@ class App extends React.Component {
       this.state.registerDetail.nickname
     )
     if ((await this.state.registerDetail.confirm_register) === 1) {
-      
-      location.href = '/regiscomplete'
-
+      Router.push({
+        pathname : '/regiscomplete'
+      })
     }
   }
 
@@ -195,9 +193,9 @@ class App extends React.Component {
   handleCheckLoginState = async () => {
     if (await CookiesService.gettokenJWTCookie()) {
     } else {
-      
-      location.href = '/index'
-
+      Router.push({
+        pathname : '/index'
+      })
     }
   }
 

@@ -3,6 +3,7 @@ import RegisterService from '../../service/RegisterService'
 import RegistrationForm from './RegistrationForm'
 import CookiesService from '../../service/CookieService.js'
 import Validatetion from './Validatetion'
+import Router from 'next/router'
 
 class Register extends React.Component {
   state = {
@@ -58,7 +59,9 @@ class Register extends React.Component {
   handleCheckLoginState = async () => {
     if (await CookiesService.gettokenJWTCookie()) {
     } else {
-      location.href = '/index'
+      Router.push({
+        pathname : '/index'
+      })
     }
   }
 

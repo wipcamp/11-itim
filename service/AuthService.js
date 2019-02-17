@@ -15,11 +15,10 @@ const AuthService = {
             Cookies.setCookie('tokenJWT', respons.data.token)
             Cookies.setCookie('wip_Id', respons.data.wip_id)
             location.reload(true)
-          } else {
           }
         })
     } catch (error) {
-
+      console.log(error)
     }
   }
 

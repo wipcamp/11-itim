@@ -4,7 +4,7 @@ import Button from '../Core/Button'
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 import AuthService from '../../service/AuthService'
 import RegisterService from '../../service/RegisterService'
-import { Subtitle, Paragraph, Small } from '../Core/Text'
+import Router from 'next/router'
 
 const responseFacebook = async (response) => {
   await AuthService.login(response)
@@ -12,9 +12,9 @@ const responseFacebook = async (response) => {
 const changetoRegisterPage = async () => {
   const profile = await RegisterService.getProfile()
   if (profile.data.confirm_register === 1) {
-    location.href = '/regiscomplete'
+    Router.push('/regiscomplete')
   } else {
-    location.href = '/register'
+    Router.push('/register')
   }
 }
 
@@ -37,21 +37,19 @@ class LoginFaceBook extends React.Component {
   }
   render () {
     return (
-      <Background face = {this.props.face} className="text-center">
-        <Img src="/static/img/logotitle.png" className="mb-5"/>
-        {/* <Subtitle>ขออภัยสำนักนินจา "ปิดรับสมัครชั่วคราว"</Subtitle> */}
+      <Background face={this.props.face} className="text-center">
+        <Img src="/static/img/logotitle.png" className="mb-5" />
         <FacebookLogin
           scope="email"
           autoLoad={true}
           fields="name,email,picture,id"
-          appId="293604811359850"
+          appId="2259610627641637"
           callback={responseFacebook}
           render={renderProps => (
             <Button size="large" block type="primary" onClick={renderProps.onClick}>Login! เพื่อสมัครค่าย</Button>
           )}
         />
       </Background>
-
     )
   }
 }
