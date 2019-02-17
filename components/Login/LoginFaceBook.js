@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import React from 'react'
-import Router from 'next/router'
 import Button from '../Core/Button'
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 import AuthService from '../../service/AuthService'

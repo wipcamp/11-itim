@@ -13,7 +13,6 @@ import {
 import moment from 'moment'
 import Select from 'react-select'
 import CreatableSelect from 'react-select/lib/Creatable';
-import Router from 'next/router'
 import styled from 'styled-components'
 import { Subtitle, Paragraph, Small } from '../Core/Text'
 import InputText from '../Core/InputText'
