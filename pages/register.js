@@ -5,6 +5,7 @@ import colors from '../config/colors'
 import styled from 'styled-components'
 import Router from 'next/router'
 import CookiesService from '../service/CookieService.js'
+import RegisterService from './../service/RegisterService'
 
 const BgColors = styled.div`
   background: ${colors.bgcolor};
