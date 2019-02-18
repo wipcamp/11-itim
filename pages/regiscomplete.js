@@ -13,10 +13,33 @@ const BgColors = styled.div`
 `
 
 class regisComplete extends React.Component {
+  state = {
+    firstname_th:''
+  }
+  componentDidMount() {
+    this.handleCheckLoginState()
+  }
+  handleCheckLoginState = async () => {
+    const profile = await RegisterService.getProfile()
+    if (CookiesService.gettokenJWTCookie()) {
+      if (profile.data.confirm_register !== 1 || profile.data.confirm_register!== '1') {
+       Router.push({
+        pathname: '/register'
+      })
+      }
+    } else {
+      Router.push({
+        pathname: '/index'
+      })
+    }
+    this.setState({
+      firstname_th:profile.data.firstname_th
+    })
+  }
   render () {
     return (
       <BgColors>
-        <RegisComplete />
+        <RegisComplete name={this.state.firstname_th}/>
         <Bg position="absolute"/>
       </BgColors>
     )
