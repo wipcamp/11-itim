@@ -27,9 +27,9 @@ class regisComplete extends React.Component {
      await RegisterService.getProfile().then(profile =>{
      if (CookiesService.gettokenJWTCookie()) {
       if (profile.data.confirm_register !== 1 || profile.data.confirm_register!== '1') {
-       Router.push({
-        pathname: '/register'
-      })
+//        Router.push({
+//         pathname: '/register'
+//       })
       }
     } else {
       Router.push({
