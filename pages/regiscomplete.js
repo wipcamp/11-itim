@@ -3,6 +3,8 @@ import RegisComplete from '../components/RegisterComplete'
 import colors from '../config/colors'
 import styled from 'styled-components'
 import Bg from '../components/Core/Bg'
+import CookiesService from '../service/CookieService.js'
+import RegisterService from './../service/RegisterService'
 
 const BgColors = styled.div`
   background: ${colors.bgcolor};
