@@ -24,9 +24,9 @@ class Register extends React.Component {
       console.log('get profile',profile.data)
       if (profile.data.confirm_register === 1 || profile.data.confirm_register === '1') {
         console.log('aleady confrim')
-        Router.push({
-          pathname: '/index'
-        })
+       Router.push({
+        pathname: '/regiscomplete'
+      })
       }
     } else {
       Router.push({
