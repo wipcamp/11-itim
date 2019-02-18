@@ -4,7 +4,6 @@ import Button from '../Core/Button'
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 import AuthService from '../../service/AuthService'
 import RegisterService from '../../service/RegisterService'
-import { withRouter } from 'next/router'
 import Router from 'next/router'
 
 const responseFacebook = async (response) => {
@@ -30,17 +29,13 @@ class LoginFaceBook extends React.Component {
   }
   changetoRegisterPage = async () => {
     const profile = await RegisterService.getProfile()
-    const { router } = this.props
     if (profile.data.confirm_register === 1) {
       Router.push('/regiscomplete')
-      // router.prefetch('/regiscomplete')
     } else {
       Router.push('/register')
-      // router.prefetch('/register')
     }
   }
   render () {
-    const { router } = this.props
     return (
       <Background face={this.props.face} className="text-center">
         <Img src="/static/img/logotitle.png" className="mb-5" />
@@ -59,4 +54,4 @@ class LoginFaceBook extends React.Component {
   }
 }
 
-export default withRouter(LoginFaceBook)
+export default LoginFaceBook

@@ -9,7 +9,6 @@ import Navbar from './Navbar'
 import CookiesService from '../../service/CookieService.js'
 import RegisterService from '../../service/RegisterService'
 import Router from 'next/router'
-import { withRouter } from 'next/router'
 
 class App extends React.Component {
   state = {
@@ -85,11 +84,9 @@ class App extends React.Component {
     )
     try{
       if ((await this.state.registerDetail.confirm_register) === 1) {
-        // Router.push({
-        //   pathname : '/regiscomplete'
-        // })
-        const { router } = this.props
-          router.prefetch('/index')
+        Router.push({
+          pathname : '/regiscomplete'
+        })
       }
     }catch (e) {
       console.log(e)
@@ -201,11 +198,9 @@ class App extends React.Component {
     try {
       if (await CookiesService.gettokenJWTCookie()) {
       } else {
-        // Router.push({
-        //   pathname : '/index'
-        // })
-        const { router } = this.props
-        router.prefetch('/index')
+        Router.push({
+          pathname : '/index'
+        })
       }
     }catch (e) {
       console.log(e)
@@ -311,4 +306,4 @@ class App extends React.Component {
   }
 }
 
-export default withRouter(App)
+export default App
