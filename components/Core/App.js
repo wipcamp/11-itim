@@ -8,7 +8,7 @@ import QuestionService from '../../service/QuestionService'
 import Navbar from './Navbar'
 import CookiesService from '../../service/CookieService.js'
 import RegisterService from '../../service/RegisterService'
-import Router from 'next/router'
+// import Router from 'next/router'
 
 class App extends React.Component {
   state = {
@@ -82,13 +82,13 @@ class App extends React.Component {
       this.state.registerDetail.wip_id,
       this.state.registerDetail.nickname
     )
-    try{
+    try {
       if ((await this.state.registerDetail.confirm_register) === 1) {
         Router.push({
           pathname : '/regiscomplete'
         })
       }
-    }catch (e) {
+    } catch (e) {
       console.log(e)
     }
   }
@@ -194,18 +194,6 @@ class App extends React.Component {
     })
   }
 
-  handleCheckLoginState = async () => {
-    try {
-      if (await CookiesService.gettokenJWTCookie()) {
-      } else {
-        Router.push({
-          pathname : '/index'
-        })
-      }
-    }catch (e) {
-      console.log(e)
-    }
-  }
 
   handlePrefixName = valuePrefix => {
     const { registerDetail } = this.state
@@ -237,7 +225,6 @@ class App extends React.Component {
   }
 
   render() {
-    this.handleCheckLoginState()
     return (
       <div className="container">
         <Navbar state={this.state.registerDetail} />
