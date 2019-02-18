@@ -21,7 +21,7 @@ class Register extends React.Component {
   handleCheckLoginState = async () => {
     const profile = await RegisterService.getProfile()
     if (CookiesService.gettokenJWTCookie()) {
-      if (profile.data.confirm_register === 1 || profile.data.confirm_register === '1') {
+      if (profile.data.confirm_register === '1') {
        Router.push({
         pathname: '/regiscomplete'
       })
