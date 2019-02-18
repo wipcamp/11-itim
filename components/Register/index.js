@@ -51,19 +51,27 @@ class Register extends React.Component {
     }
   }
 
-  handleLogout = () => {
-    CookiesService.removeJWTAndEmailCookie()
-    this.handleCheckLoginState()
-  }
+  // handleLogout = () => {
+  //   CookiesService.removeJWTAndEmailCookie()
+  //   this.handleCheckLoginState()
+  // }
 
-  handleCheckLoginState = async () => {
-    if (await CookiesService.gettokenJWTCookie()) {
-    } else {
-      Router.push({
-        pathname : '/index'
-      })
-    }
-  }
+  // handleCheckLoginState = async () => {
+  //   const profile = await RegisterService.getProfile()
+  //   if (await CookiesService.gettokenJWTCookie()) {
+  //     console.log('get profile',profile.data.confirm_register)
+  //     if (profile.data.confirm_register === 1 || profile.data.confirm_register === '1') {
+  //       console.log('aleady confrim')
+  //      Router.push({
+  //       pathname: '/regiscomplete'
+  //     })
+  //     }
+  //   } else {
+  //     Router.push({
+  //       pathname : '/index'
+  //     })
+  //   }
+  // }
 
   render = () => {
     const profileData = this.props.profileData
@@ -74,7 +82,6 @@ class Register extends React.Component {
         handlesendRegister={this.handlesendRegister}
         handleValidation={this.handleValidation}
         handleLogout={this.handleLogout}
-        handleCheckLoginState={this.handleCheckLoginState}
         profileData={profileData}
         schoolOptions={this.state.schoolOptions}
         schoolName={this.state.schoolname}
