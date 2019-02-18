@@ -85,7 +85,7 @@ class App extends React.Component {
     try {
       if ((await this.state.registerDetail.confirm_register) === 1) {
         Router.push({
-          pathname : '/regiscomplete'
+          pathname: '/regiscomplete'
         })
       }
     } catch (e) {

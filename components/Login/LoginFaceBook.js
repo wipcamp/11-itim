@@ -24,18 +24,22 @@ const Background = styled.div`
   
 `
 class LoginFaceBook extends React.Component {
-  componentDidMount () {
+  componentDidMount() {
     this.changetoRegisterPage()
   }
   changetoRegisterPage = async () => {
-    const profile = await RegisterService.getProfile()
-    if (profile.data.confirm_register === 1) {
-      Router.push('/regiscomplete')
-    } else {
-      Router.push('/register')
+    try {
+      const profile = await RegisterService.getProfile()
+      if (profile.data.confirm_register === 1) {
+        Router.push('/regiscomplete')
+      } else {
+        Router.push('/register')
+      }
+    } catch (error) {
+      console.log(error)
     }
   }
-  render () {
+  render() {
     return (
       <Background face={this.props.face} className="text-center">
         <Img src="/static/img/logotitle.png" className="mb-5" />

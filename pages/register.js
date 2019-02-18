@@ -14,19 +14,18 @@ const BgColors = styled.div`
 `
 
 class Register extends React.Component {
+  componentDidMount(){
+    this.handleCheckLoginState()
+  }
   handleCheckLoginState = async () => {
-    try {
-      if (await CookiesService.gettokenJWTCookie()) {
-      } else {
-        Router.push({
-          pathname : '/index'
-        })
-      }
-    }catch (e) {
-      console.log(e)
+    if (CookiesService.gettokenJWTCookie()) {
+    } else {
+      Router.push({
+        pathname: '/index'
+      })
     }
   }
-  render () {
+  render() {
     return (
       <BgColors>
         <App />
