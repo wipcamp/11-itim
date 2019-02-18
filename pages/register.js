@@ -15,14 +15,14 @@ const BgColors = styled.div`
 `
 
 class Register extends React.Component {
-  componentDidMount(){
+  componentDidMount() {
     this.handleCheckLoginState()
   }
   handleCheckLoginState = async () => {
     const profile = await RegisterService.getProfile()
     if (CookiesService.gettokenJWTCookie()) {
-      if (profile.data.confirm_register === 1) {
-        console.log(profile.data)
+      console.log(profile.data)
+      if (profile.data.confirm_register === 1 || profile.data.confirm_register === '1') {
         Router.push('/regiscomplete')
       }
     } else {
