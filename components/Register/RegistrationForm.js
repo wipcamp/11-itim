@@ -511,7 +511,7 @@ class RegistrationForm extends React.Component {
                     </div>
                     <div className="col-12 col-md-7">
                       <FormItem>
-                        <AntDesignSelect
+                        <CreatableSelect
                           value={this.props.profileData.school_major}
                           defaultValue="สายการเรียน"
                           style={{ width: '100%' }}
@@ -520,7 +520,7 @@ class RegistrationForm extends React.Component {
                           <Option value="วิทย์-คอม">วิทย์-คอม</Option>
                           <Option value="ศิลป์-คำนวน">ศิลป์-คำนวน</Option>
                           <Option value="ศิลป์-ภาษา">ศิลป์-ภาษา</Option>
-                        </AntDesignSelect>
+                        </CreatableSelect>
                       </FormItem>
                     </div>
                   </div>
