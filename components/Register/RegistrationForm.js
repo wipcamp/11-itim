@@ -518,7 +518,8 @@ class RegistrationForm extends React.Component {
                           onChange={this.props.handlemajor}>
                           <Option value="วิทย์-คณิต">วิทย์-คณิต</Option>
                           <Option value="วิทย์-คอม">วิทย์-คอม</Option>
-                          <Option value="ศิลป์คำนวน">ศิลป์คำนวน</Option>
+                          <Option value="ศิลป์-คำนวน">ศิลป์-คำนวน</Option>
+                          <Option value="ศิลป์-ภาษา">ศิลป์-ภาษา</Option>
                         </AntDesignSelect>
                       </FormItem>
                     </div>
