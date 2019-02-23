@@ -516,7 +516,8 @@ class RegistrationForm extends React.Component {
                           // options={this.props.schoolOptions}
                           // placeholder={this.props.profileData.school_name != "" ? this.props.profileData.school_name : "ใส่ชื่อโรงเรียน"}
                           placeholder={this.props.profileData.school_major||"สายการเรียน"}
-                          options ={['วิทย์-คณิต','วิทย์-คอม','ศิลป์-คำนวน','ศิลป์-ภาษา']}
+                          name='school_major'
+                          options =''
                           style={{ width: '100%' }}
                           onChange={this.props.handlemajor}>
                         </CreatableSelect>
