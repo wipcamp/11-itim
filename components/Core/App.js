@@ -186,11 +186,10 @@ class App extends React.Component {
 
   handlemajor = e => {
     const { registerDetail } = this.state
-    console.log(e)
     this.setState({
       registerDetail: {
         ...registerDetail,
-        school_major: e
+        school_major: e.value
       }
     })
     console.log(this.state.registerDetail)
