@@ -512,8 +512,7 @@ class RegistrationForm extends React.Component {
                     <div className="col-12 col-md-7">
                       <FormItem>
                         <CreatableSelect
-                          value={this.props.profileData.school_major}
-                          defaultValue="สายการเรียน"
+                          placeholder={this.props.profileData.school_major||"สายการเรียน"}
                           name='school_major'
                           options ={['วิทย์-คณิต','วิทย์-คอม','ศิลป์-คำนวน','ศิลป์-ภาษา']}
                           style={{ width: '100%' }}
