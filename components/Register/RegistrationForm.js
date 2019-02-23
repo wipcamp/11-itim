@@ -517,7 +517,7 @@ class RegistrationForm extends React.Component {
                           name='school_major'
                           options ={[
                             { value: 'วิทย์-คณิต', label: 'วิทย์-คณิต' },
-                            { value: 'วิทย์-คอม', label: 'Strawberry' },
+                            { value: 'วิทย์-คอม', label: 'วิทย์-คอม' },
                             { value: 'ศิลป์-คำนวน', label: 'ศิลป์-คำนวน' },
                             { value: 'ศิลป์-ภาษา', label: 'ศิลป์-ภาษา' }
                           ]}
