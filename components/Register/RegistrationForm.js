@@ -512,12 +512,15 @@ class RegistrationForm extends React.Component {
                     <div className="col-12 col-md-7">
                       <FormItem>
                         <CreatableSelect
-                          // onChange={this.props.handleChange}
-                          // options={this.props.schoolOptions}
-                          // placeholder={this.props.profileData.school_name != "" ? this.props.profileData.school_name : "ใส่ชื่อโรงเรียน"}
+                         placeholder={this.props.profileData.school_name != "" ? this.props.profileData.school_name : "ใส่ชื่อโรงเรียน"}
                           placeholder={this.props.profileData.school_major||"สายการเรียน"}
                           name='school_major'
-                          options =''
+                          options ={[
+                            { value: 'วิทย์-คณิต', label: 'วิทย์-คณิต' },
+                            { value: 'วิทย์-คอม', label: 'Strawberry' },
+                            { value: 'ศิลป์-คำนวน', label: 'ศิลป์-คำนวน' },
+                            { value: 'ศิลป์-ภาษา', label: 'ศิลป์-ภาษา' }
+                          ]}
                           style={{ width: '100%' }}
                           onChange={this.props.handlemajor}>
                         </CreatableSelect>
