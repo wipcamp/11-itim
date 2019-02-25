@@ -3,9 +3,12 @@ const validNation = {
   handleValidation: (value) => {
     let registerDetail = value
     var phoneno = /^(([0-9]{3})) *([0-9]{3})*([0-9]{4})$/
-    if (!phoneno.test(registerDetail.guardian_telno) ||
-    !phoneno.test(registerDetail.telno)) {
+    if (
+      !phoneno.test(registerDetail.telno)) {
       window.alert(`กรอกเบอร์ผิด ${registerDetail.telno} `)
+      return false
+    } if (!phoneno.test(registerDetail.guardian_telno)) {
+      window.alert(`กรอกเบอร์ผู้ปกครองผิด ${registerDetail.guardian_telno} `)
       return false
     }
     for (let index in registerDetail) {
@@ -44,7 +47,7 @@ const validNation = {
                         return false
                       }
                     } else {
-                      window.alert('อย่าลืมเลือกเพศนะ')
+                      window.alert('กรุณาเลือกเพศ')
                       return false
                     }
                   } else {
