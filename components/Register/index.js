@@ -36,7 +36,8 @@ class Register extends React.Component {
   handlesendRegister = async () => {
     if (Validatetion.handleValidation(this.props.profileData)) {
       try {
-        await RegisterService.sendRegister(this.props.profileData)
+      let res =  await RegisterService.sendRegister(this.props.profileData)
+      console.log(res)
       } catch (err) {
         CookiesService.removeJWTAndEmailCookie()
         this.props.handleCheckLoginState()

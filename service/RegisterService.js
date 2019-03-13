@@ -4,10 +4,11 @@ import { EROFS } from 'constants';
 const RegisterService = {
 
   sendRegister: async (request) => {
+    let data
     try {
-        await apiReg.put('/profile', request)
+      data=   await apiReg.put('/profile', request)
     } catch (error) {
-          return false
+          return data
     }
   },
   getSchoolname: async () => {
@@ -15,11 +16,12 @@ const RegisterService = {
     return data
   },
   getProfile: async () => {
+    let data 
     try {
-      const data = await apiReg.get('/profile')
+       data = await apiReg.get('/profile')
       return data
     } catch (error) {
-      return false
+      return data
     }
   }
 
