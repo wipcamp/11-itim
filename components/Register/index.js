@@ -38,6 +38,8 @@ class Register extends React.Component {
       try {
         await RegisterService.sendRegister(this.props.profileData)
       } catch (err) {
+        CookiesService.removeJWTAndEmailCookie()
+        this.props.handleCheckLoginState()
       }
       await this.props.setWipId(
         this.props.profileData.wip_id,

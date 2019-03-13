@@ -244,6 +244,7 @@ class App extends React.Component {
           <div className="mt-5">
             {this.state.pageIndex === 0 && (
               <Register
+              handleCheckLoginState={this.props.handleCheckLoginState}
                 setPageIndex={this.setPageIndex}
                 setWipId={this.setWipId}
                 profileData={this.state.registerDetail}
@@ -263,6 +264,7 @@ class App extends React.Component {
               this.state.pageIndex <=
               Math.ceil(this.state.questions.length / 3) && (
                 <Questions
+                handleCheckLoginState={this.props.handleCheckLoginState}
                   setPageIndex={this.setPageIndex}
                   questions={this.state.questions}
                   answers={this.state.answers}
@@ -276,6 +278,7 @@ class App extends React.Component {
               this.state.pageIndex <=
               Math.ceil(this.state.questions.length / 3) + 1 && (
                 <Confirm
+                handleCheckLoginState={this.props.handleCheckLoginState}
                   setPageIndex={this.setPageIndex}
                   confirm={this.setConfirm}
                   questions={this.state.questions}

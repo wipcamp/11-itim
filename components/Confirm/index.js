@@ -58,7 +58,12 @@ class Register extends React.Component {
       modalVisible: false,
     })
     this.state.profile.confirm_register = 1;
-    RegisterService.sendRegister(this.state.profile)
+    try {
+      RegisterService.sendRegister(this.state.profile)
+    } catch (err) {
+      CookiesService.removeJWTAndEmailCookie()
+      this.props.handleCheckLoginState()
+    }
     this.props.setPageIndex(1)
   }
 

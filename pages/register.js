@@ -35,7 +35,7 @@ class Register extends React.Component {
   render() {
     return (
       <BgColors>
-        <App />
+        <App handleCheckLoginState = {this.handleCheckLoginState}/>
         <Bg />
       </BgColors>
     )

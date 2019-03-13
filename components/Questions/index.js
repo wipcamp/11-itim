@@ -68,7 +68,12 @@ class question extends React.Component {
 
   handleNextButton = e => {
     e.preventDefault()
-    QuestionService.sendQuestions(this.props.answers)
+    try {
+      QuestionService.sendQuestions(this.props.answers)
+    } catch (err) {
+      CookiesService.removeJWTAndEmailCookie()
+      this.props.handleCheckLoginState()
+    }
     this.nextStep()
   }
   nextStep = async () => {

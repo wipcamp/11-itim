@@ -16,7 +16,7 @@ const CookiesService = {
   getEmailCookie () {
     return Cookies.get('email')
   },
-  removeJWTAndEmailCookie () {
+  removeJWTAndWipIdCookie () {
     Cookies.remove('tokenJWT')
     Cookies.remove('wip_Id')
   }

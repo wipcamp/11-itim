@@ -5,9 +5,9 @@ const RegisterService = {
 
   sendRegister: async (request) => {
     try {
-      await apiReg.put('/profile', request)
+        await apiReg.put('/profile', request)
     } catch (error) {
-      console.log(error)
+          return false
     }
   },
   getSchoolname: async () => {
@@ -19,7 +19,7 @@ const RegisterService = {
       const data = await apiReg.get('/profile')
       return data
     } catch (error) {
-      console.log(error)
+      return false
     }
   }
 
