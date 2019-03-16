@@ -7,6 +7,13 @@ const QuestionService = {
   },
   sendQuestions: async (request) => {
     await apiReg.put('/answers', request)
+    .catch(error=>{
+      let status = error.response.status
+      if (status === 401) {
+        alert('Session หมดอายยุกรุณา login ใหม่')
+        location.reload()
+      }
+    })
   },
   getAns: async () => {
     let asn = await apiReg.get('/answers')

@@ -5,11 +5,17 @@ const RegisterService = {
 
   sendRegister: async (request) => {
     let data
-    try {
-      data=   await apiReg.put('/profile', request)
-    } catch (error) {
-          return data
-    }
+      await apiReg.put('/profile', request).then(res =>{
+      console.log(res)
+      }).catch(error=>{
+        let status = error.response.status
+        if (status === 401) {
+          alert('Session หมดอายยุกรุณา login ใหม่')
+          location.reload()
+        }
+      })
+
+   
   },
   getSchoolname: async () => {
     let data = await apiReg.get('/schools')
