@@ -1,6 +1,5 @@
 import apiReg from '../utils/apiRegService'
-import { EROFS } from 'constants';
-
+import cookie from '../service/CookieService'
 const RegisterService = {
 
   sendRegister: async (request) => {
@@ -11,6 +10,7 @@ const RegisterService = {
         let status = error.response.status
         if (status === 401) {
           alert('Session หมดอายยุกรุณา login ใหม่')
+          cookie.removeJWTAndWipIdCookie()
           location.reload()
         }
       })

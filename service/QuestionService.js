@@ -1,4 +1,5 @@
 import apiReg from '../utils/apiRegService'
+import cookie from '../service/CookieService'
 
 const QuestionService = {
   getAllQuestion: async () => {
@@ -11,6 +12,8 @@ const QuestionService = {
       let status = error.response.status
       if (status === 401) {
         alert('Session หมดอายยุกรุณา login ใหม่')
+        cookie.removeJWTAndWipIdCookie()
+
         location.reload()
       }
     })
