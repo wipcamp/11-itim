@@ -44,7 +44,7 @@ export default class Complete extends React.Component {
                     น้อง{this.props.name} ได้ส่งใบสมัครค่ายสำเร็จเรียบร้อยแล้ว
                   </Paragraph>
                   <Paragraph>
-                    โปรดรอฟังผลการประกาศค่ายในวันที่ 28 มีนาคม 2562 ผ่านทาง
+                    โปรดรอฟังผลการประกาศค่ายในวันที่ 29 มีนาคม 2562 ผ่านทาง
                     Facebook Live นะครับ
                   </Paragraph>
                 </div>
