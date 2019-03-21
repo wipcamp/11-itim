@@ -28,31 +28,22 @@ class LoginFaceBook extends React.Component {
     this.changetoRegisterPage()
   }
   changetoRegisterPage = async () => {
-    try {
-      const profile = await RegisterService.getProfile()
-      if (profile.data.confirm_register === 1) {
-        Router.push('/regiscomplete')
-      } else {
-        Router.push('/register')
-      }
-    } catch (error) {
-      console.log(error)
-    }
+    // try {
+    //   const profile = await RegisterService.getProfile()
+    //   if (profile.data.confirm_register === 1) {
+    //     Router.push('/regiscomplete')
+    //   } else {
+    //     Router.push('/register')
+    //   }
+    // } catch (error) {
+    //   console.log(error)
+    // }
   }
   render() {
     return (
       <Background face={this.props.face} className="text-center">
         <Img src="/static/img/logotitle.png" className="mb-5" />
-        <FacebookLogin
-          scope="email"
-          autoLoad={true}
-          fields="name,email,picture,id"
-          appId="293604811359850"
-          callback={responseFacebook}
-          render={renderProps => (
-            <Button size="large" block type="primary" onClick={renderProps.onClick}>Login! เพื่อสมัครค่าย</Button>
-          )}
-        />
+        <Button size="large" block type="primary" >ปิดรับสมัครแล้ว</Button>
       </Background>
     )
   }

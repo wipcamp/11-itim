@@ -6,6 +6,8 @@ import styled from 'styled-components'
 import Router from 'next/router'
 import CookiesService from '../service/CookieService.js'
 import RegisterService from './../service/RegisterService'
+import Login from './../components/Login'
+import BG from '../components/Core/Bglogin'
 
 const BgColors = styled.div`
   background: ${colors.bgcolor};
@@ -14,9 +16,10 @@ const BgColors = styled.div`
   }
 `
 
+
 class Register extends React.Component {
   componentDidMount() {
-    this.handleCheckLoginState()
+    // this.handleCheckLoginState()
   }
   handleCheckLoginState = async () => {
     const profile = await RegisterService.getProfile()
@@ -35,11 +38,15 @@ class Register extends React.Component {
   render() {
     return (
       <BgColors>
-        <App handleCheckLoginState = {this.handleCheckLoginState}/>
-        <Bg />
+        {/* <App handleCheckLoginState = {this.handleCheckLoginState}/>
+        <Bg /> */}
+          <Login />
+        <BG />
       </BgColors>
     )
   }
+  
 }
 
 export default Register
+

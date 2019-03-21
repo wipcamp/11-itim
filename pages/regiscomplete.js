@@ -21,7 +21,10 @@ class regisComplete extends React.Component {
     firstname_th:''
   }
   componentDidMount() {
-    this.handleCheckLoginState()
+    // this.handleCheckLoginState()
+    Router.push({
+      pathname: '/index'
+    })
   }
   handleCheckLoginState = async () => {
      await RegisterService.getProfile().then(profile =>{
@@ -47,7 +50,7 @@ class regisComplete extends React.Component {
   render () {
     return (
       <BgColors>
-        <RegisComplete name={this.state.firstname_th}/>
+        {/* <RegisComplete name={this.state.firstname_th}/> */}
         <Bg position="absolute"/>
       </BgColors>
     )
