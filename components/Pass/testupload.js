@@ -22,7 +22,7 @@ import {
   
       // You can use any AJAX library you like
       axios({
-        url: 'http://127.0.0.1:8000/api/campers/upload',
+        url: 'https://camper.service.freezer.in.th/api/campers/upload',
         method: 'post',
         processData: false,
         data: formData,
