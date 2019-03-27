@@ -1,14 +1,22 @@
 import {
     Upload, Button, Icon, message,
   } from 'antd';
-  import axios from 'axios';
-  
+import axios from 'axios';
+import minio from './../../config/minio'  
+
  export default class Demo extends React.Component {
     state = {
       fileList: [],
       uploading: false,
     }
   
+    componentDidMount(){
+     var presignedUrl = minio.presignedGetObject('profile', '1553691654', 90000, function(e, presignedUrl) {
+        if (e) return console.log(e)
+        console.log(presignedUrl)
+        })     
+    }
+
     handleUpload = () => {
       const { fileList } = this.state;
       const formData = new FormData();
