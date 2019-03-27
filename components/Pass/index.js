@@ -1,5 +1,6 @@
 import React from 'react'
 import Navbar from '../Core/Navbar'
+import TestUpload from './testupload'
 import { Card } from 'antd'
 
 export default class Pass extends React.Component {
@@ -34,6 +35,7 @@ export default class Pass extends React.Component {
       Inner Card content
           </Card>
         </Card>
+        <TestUpload></TestUpload>
       </div>
     )
   }
