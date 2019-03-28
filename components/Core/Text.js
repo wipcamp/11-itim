@@ -12,7 +12,7 @@ export const Subtitle = styled.h1`
   font-size: ${config.subtitle};
 `
 
-export const Paragraph = styled.h1`
+export const Paragraph = styled.p`
   font-family: 'Sarabun', sans-serif;
   font-size: ${config.paragraph};
 `
