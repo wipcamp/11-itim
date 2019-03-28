@@ -59,13 +59,13 @@ export default class Pass extends React.Component {
               <Subtitle>อัพโหลดเอกสาร</Subtitle>
               <div className="row my-3">
                 <div className="col-12 col-md-4">
-                  <TestUpload />
+                  <TestUpload transcript={'transcript'}/>
                 </div>
                 <div className="col-12 col-md-4">
-                  <TestUpload />
+                  <TestUpload recipe={'recipe'}/>
                 </div>
                 <div className="col-12 col-md-4">
-                  <TestUpload />
+                  <TestUpload confrim={'confrim'}/>
                 </div>
               </div>
               <Subtitle>ไซส์เสื้อ</Subtitle>

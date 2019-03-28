@@ -8,11 +8,7 @@ const evnconfig = {
   publicRuntimeConfig: {
     PATH_AUTH: process.env.PATH_AUTH,
     PATH_REGISTANCE: process.env.PATH_REGISTANCE,
-    MINIO_ENDPOINT:process.env.MINIO_ENDPOINT,
-    AWS_KEY : process.env.AWS_KEY,
-    AWS_SECRET : process.env.AWS_SECRET,
-    AWS_REGION:process.env.AWS_REGION,
-    AWS_BUCKET:process.env.AWS_BUCKET,
+    PATH_CAMPPER:process.env.PATH_CAMPPER
     
   },
   serverRuntimeConfig: {

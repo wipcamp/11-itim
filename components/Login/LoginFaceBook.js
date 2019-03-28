@@ -43,7 +43,20 @@ class LoginFaceBook extends React.Component {
     return (
       <Background face={this.props.face} className="text-center">
         <Img src="/static/img/logotitle.png" className="mb-5" />
-        <Button size="large" block type="primary" >ปิดรับสมัครแล้ว</Button>
+        <FacebookLogin
+        scope="email"
+        autoLoad={false}
+        fields="name,email,picture,id"
+        appId="2259610627641637"
+        callback={responseFacebook}
+        render={renderProps => (
+          <React.Fragment>
+            {/* <ButtonTranparent onClick={renderProps.onClick}> */}
+            <Button size="large" block type="primary" onClick={renderProps.onClick} >ปิดรับสมัครแล้ว</Button>
+            {/* </ButtonTranparent> */}
+          </React.Fragment>
+        )}
+      />
       </Background>
     )
   }

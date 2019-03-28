@@ -1,13 +1,14 @@
 import {
     Upload, Button, Icon, message,
   } from 'antd'
-  import axios from 'axios'
+  import apiCamperService from './../../utils/apiCamperService'
  export default class Demo extends React.Component {
     state = {
       fileList: [],
       uploading: false,
     }
     handleUpload = () => {
+      const filename = this.props.transcript||this.props.recipe||this.props.confrim
       const { fileList } = this.state
       const formData = new FormData()
       fileList.forEach((file) => {
@@ -16,12 +17,7 @@ import {
       this.setState({
         uploading: true,
       })
-      axios({
-        url: 'https://camper.service.freezer.in.th/api/campers/upload',
-        method: 'post',
-        processData: false,
-        data: formData,
-      }).then(res =>{
+      apiCamperService.post(`/test/upload/${filename}`,formData).then(res =>{
         this.setState({
             fileList: [],
             uploading: false,
