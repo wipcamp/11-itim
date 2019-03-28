@@ -5,6 +5,7 @@ import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props
 import AuthService from '../../service/AuthService'
 import RegisterService from '../../service/RegisterService'
 import Router from 'next/router'
+import CookiesService from '../../service/CookieService';
 
 const responseFacebook = async (response) => {
   await AuthService.login(response)
@@ -26,18 +27,16 @@ const Background = styled.div`
 class LoginFaceBook extends React.Component {
   componentDidMount() {
     this.changetoRegisterPage()
+
   }
   changetoRegisterPage = async () => {
-    // try {
-    //   const profile = await RegisterService.getProfile()
-    //   if (profile.data.confirm_register === 1) {
-    //     Router.push('/regiscomplete')
-    //   } else {
-    //     Router.push('/register')
-    //   }
-    // } catch (error) {
-    //   console.log(error)
-    // }
+    try {
+      if (CookiesService.gettokenJWTCookie) {
+    Router.push('/passing')
+      } 
+    } catch (error) {
+      console.log(error)
+    }
   }
   render() {
     return (

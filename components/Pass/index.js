@@ -30,6 +30,10 @@ const BgColors = styled.div`
 const RadioGroup = DefualtRadio.Group
 
 export default class Pass extends React.Component {
+
+  handleChange = (e)=>{
+    console.log(e.target.value)
+  }
   render () {
     return (
       <BgColors>
@@ -71,18 +75,18 @@ export default class Pass extends React.Component {
               <Subtitle>ไซส์เสื้อ</Subtitle>
               <div className="row my-3">
                 <div className="col-12">
-                  <TablePass />
+                  <TablePass handleChange={this.handleChange}/>
                 </div>
               </div>
               <Subtitle>วิธีการเดินทางมาค่าย</Subtitle>
               <div className="row my-3">
                 <div className="col-12">
-                  <RadioGroup >
-                    <Radio value={1}>เดินทางมาเอง</Radio> <br/>
-                    <Radio value={2}>ให้พี่ค่ายรอรับที่ หัวลำโพง</Radio> <br/>
-                    <Radio value={3}>ให้พี่ค่ายรอรับที่ สายใต้ใหม่</Radio> <br/>
-                    <Radio value={4}>ให้พี่ค่ายรอรับที่ อนุเสาวรีย์ชัยสมรภูมิ</Radio> <br/>
-                    <Radio value={5}>ให้พี่ค่ายรอรับที่ หมอชิต</Radio>
+                  <RadioGroup onChange ={this.handleChange} >
+                    <Radio value='เดินทางมาเอง'>เดินทางมาเอง</Radio> <br/>
+                    <Radio value='หัวลำโพง'>ให้พี่ค่ายรอรับที่ หัวลำโพง</Radio> <br/>
+                    <Radio value='สายใต้ใหม่'>ให้พี่ค่ายรอรับที่ สายใต้ใหม่</Radio> <br/>
+                    <Radio value='อนุเสาวรีย์ชัยสมรภูมิ'>ให้พี่ค่ายรอรับที่ อนุเสาวรีย์ชัยสมรภูมิ</Radio> <br/>
+                    <Radio value='หมอชิต'>ให้พี่ค่ายรอรับที่ หมอชิต</Radio>
                   </RadioGroup>
                 </div>
               </div>

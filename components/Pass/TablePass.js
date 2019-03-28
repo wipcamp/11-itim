@@ -1,5 +1,6 @@
 import React from 'react'
 import { Table, Radio } from 'antd'
+const RadioGroup = Radio.Group
 
 class TablePass extends React.Component {
   state = {
@@ -7,7 +8,7 @@ class TablePass extends React.Component {
       {
         title: '',
         dataIndex: 'choose',
-        render: () => <Radio></Radio>
+        render: (index,data) => <Radio value={data.size}></Radio>
       },
       {
         title: 'ขนาด',
@@ -40,7 +41,9 @@ class TablePass extends React.Component {
 
   render() {
     return (
+      <RadioGroup onChange = {this.props.handleChange} >
       <Table columns={this.state.columns} dataSource={this.state.dataSource} pagination={false} />
+      </RadioGroup>
     )
   }
 }
