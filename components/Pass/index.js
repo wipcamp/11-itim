@@ -1,7 +1,7 @@
 import React from 'react'
 import Navbar from '../Core/Navbar'
 import TestUpload from './testupload'
-import { Card } from 'antd'
+import { Card, Radio as DefualtRadio } from 'antd'
 import Headline, { Paragraph } from '../Core/Text'
 import TablePass from './TablePass'
 import styled from 'styled-components'
@@ -9,6 +9,14 @@ import styled from 'styled-components'
 const Subtitle = styled.h2`
   font-size: 24px;
 `
+
+const Radio = styled(DefualtRadio)`
+  display: 'block';
+  height : '30px';
+  line-height : '30px';
+`
+
+const RadioGroup = DefualtRadio.Group
 
 export default class Pass extends React.Component {
   render () {
@@ -54,6 +62,15 @@ export default class Pass extends React.Component {
             </div>
           </div>
           <Subtitle>วิธีการเดินทางมาค่าย</Subtitle>
+          <div className="row">
+            <div className="col-12">
+              <RadioGroup >
+                <Radio value={1}>Option A</Radio>
+                <Radio value={2}>Option B</Radio>
+                <Radio value={3}>Option C</Radio>
+              </RadioGroup>
+            </div>
+          </div>
         </Card>
       </div>
     )
