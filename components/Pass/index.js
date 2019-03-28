@@ -4,16 +4,18 @@ import TestUpload from './testupload'
 import { Card, Radio as DefualtRadio } from 'antd'
 import Headline, { Paragraph } from '../Core/Text'
 import TablePass from './TablePass'
+import config from '../../config/fonts'
 import styled from 'styled-components'
+import Button from '../Core/Button'
 
 const Subtitle = styled.h2`
-  font-size: 24px;
+  font-size: 20px;
 `
 
 const Radio = styled(DefualtRadio)`
   display: 'block';
   height : '30px';
-  line-height : '30px';
+font-size: ${config.paragraph};
 `
 
 const RadioGroup = DefualtRadio.Group
@@ -23,52 +25,62 @@ export default class Pass extends React.Component {
     return (
       <div className="container">
         <Navbar />
-        <Headline className="text-center">Congratulation !</Headline>
-        <Paragraph className="text-center">
+        <Card className="my-5">
+          <Headline className="text-center">Congratulation !</Headline>
+          <Paragraph className="text-center">
           ขอแสดงความยินดีกับน้องไอติมที่ผ่านรอบคัดเลือกเข้าค่าย WIP Camp #11
           ขอให้น้องทำตามขั้นตอนดังต่อไปนี้ เพื่อยืนยันสิทธิ์ครับ
-        </Paragraph>
-        <Card className="my-5">
-          <div className="row">
+          </Paragraph>
+          <Card className="my-5">
+            <div className="row my-3">
+              <div className="col-12">
+                <Paragraph>อัพโหลด ปพ.1</Paragraph>
+                <Paragraph>อัพโหลด ใบขออนุญาตผู้ปกครอง</Paragraph>
+                <Paragraph>อัพโหลด สลิป</Paragraph>
+                <Paragraph>เลือกไซส์เสื้อ</Paragraph>
+                <Paragraph>เลือกวิธีการเดินทาง</Paragraph>
+              </div>
+            </div>
+          </Card>
+          <Card className="my-5">
+            <p>sdasdasd</p>
+          </Card>
+          <Card className="my-5">
+            <Subtitle>อัพโหลดเอกสาร</Subtitle>
+            <div className="row my-3">
+              <div className="col-12 col-md-4">
+                <TestUpload />
+              </div>
+              <div className="col-12 col-md-4">
+                <TestUpload />
+              </div>
+              <div className="col-12 col-md-4">
+                <TestUpload />
+              </div>
+            </div>
+            <Subtitle>ไซส์เสื้อ</Subtitle>
+            <div className="row my-3">
+              <div className="col-12">
+                <TablePass />
+              </div>
+            </div>
+            <Subtitle>วิธีการเดินทางมาค่าย</Subtitle>
+            <div className="row my-3">
+              <div className="col-12">
+                <RadioGroup >
+                  <Radio value={1}>เดินทางมาเอง</Radio> <br/>
+                  <Radio value={2}>ให้พี่ค่ายรอรับที่ หัวลำโพง</Radio> <br/>
+                  <Radio value={3}>ให้พี่ค่ายรอรับที่ สายใต้ใหม่</Radio> <br/>
+                  <Radio value={4}>ให้พี่ค่ายรอรับที่ อนุเสาวรีย์ชัยสมรภูมิ</Radio> <br/>
+                  <Radio value={5}>ให้พี่ค่ายรอรับที่ หมอชิต</Radio>
+                </RadioGroup>
+              </div>
+            </div>
+          </Card>
+          <Paragraph>โปรดตรวจสอบรายละเอียดให้เรียบร้อย หากข้อมูลที่กรอกมาเป็นเท็จทางค่ายจะตัดสิทธิ์ทันที</Paragraph>
+          <div className="row text-center">
             <div className="col-12">
-              <Paragraph>อัพโหลด ปพ.1</Paragraph>
-              <Paragraph>อัพโหลด ใบขออนุญาตผู้ปกครอง</Paragraph>
-              <Paragraph>อัพโหลด สลิป</Paragraph>
-              <Paragraph>เลือกไซส์เสื้อ</Paragraph>
-              <Paragraph>เลือกวิธีการเดินทาง</Paragraph>
-            </div>
-          </div>
-        </Card>
-        <Card className="my-5">
-          <p>sdasdasd</p>
-        </Card>
-        <Card className="my-5">
-          <Subtitle>อัพโหลดเอกสาร</Subtitle>
-          <div className="row my-3">
-            <div className="col-12 col-md-4">
-              <TestUpload />
-            </div>
-            <div className="col-12 col-md-4">
-              <TestUpload />
-            </div>
-            <div className="col-12 col-md-4">
-              <TestUpload />
-            </div>
-          </div>
-          <Subtitle>ไซส์เสื้อ</Subtitle>
-          <div className="row">
-            <div className="col-12">
-              <TablePass />
-            </div>
-          </div>
-          <Subtitle>วิธีการเดินทางมาค่าย</Subtitle>
-          <div className="row">
-            <div className="col-12">
-              <RadioGroup >
-                <Radio value={1}>Option A</Radio>
-                <Radio value={2}>Option B</Radio>
-                <Radio value={3}>Option C</Radio>
-              </RadioGroup>
+              <Button>ยืนยัน</Button>
             </div>
           </div>
         </Card>

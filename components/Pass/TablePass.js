@@ -1,9 +1,14 @@
 import React from 'react'
-import { Table } from 'antd'
+import { Table, Radio } from 'antd'
 
 class TablePass extends React.Component {
   state = {
     columns: [
+      {
+        title: '',
+        dataIndex: 'choose',
+        render: () => <Radio></Radio>
+      },
       {
         title: 'ขนาด',
         dataIndex: 'size',
@@ -35,7 +40,7 @@ class TablePass extends React.Component {
 
   render() {
     return (
-      <Table columns={this.state.columns} dataSource={this.state.dataSource} />
+      <Table columns={this.state.columns} dataSource={this.state.dataSource} pagination={false} />
     )
   }
 }
