@@ -1,26 +1,21 @@
 import {
     Upload, Button, Icon, message,
-  } from 'antd';
-  import axios from 'axios';
-  
+  } from 'antd'
+  import axios from 'axios'
  export default class Demo extends React.Component {
     state = {
       fileList: [],
       uploading: false,
     }
-  
     handleUpload = () => {
-      const { fileList } = this.state;
-      const formData = new FormData();
+      const { fileList } = this.state
+      const formData = new FormData()
       fileList.forEach((file) => {
-        formData.append('files[]', file);
-      });
-  
+        formData.append('files[]', file)
+      })
       this.setState({
         uploading: true,
-      });
-  
-      // You can use any AJAX library you like
+      })
       axios({
         url: 'https://camper.service.freezer.in.th/api/campers/upload',
         method: 'post',
@@ -31,15 +26,14 @@ import {
             fileList: [],
             uploading: false,
           });
-          message.success('upload successfully.');
+          message.success('upload successfully.')
       }).catch(res =>{
         this.setState({
             uploading: false,
           });
           message.error('upload failed.');
-      });
+      })
     }
-  
     render() {
       const { uploading, fileList } = this.state;
       const props = {
@@ -60,8 +54,7 @@ import {
           return false;
         },
         fileList,
-      };
-  
+      }
       return (
         <div>
           <Upload {...props}>
@@ -79,7 +72,6 @@ import {
             {uploading ? 'Uploading' : 'Start Upload' }
           </Button>
         </div>
-      );
+      )
     }
   }
-  
