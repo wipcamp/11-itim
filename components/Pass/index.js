@@ -15,7 +15,7 @@ const Subtitle = styled.h2`
 `
 
 const Banklogo = styled.img`
-  height: 5em;
+  height: 3em;
 `
 
 const Radio = styled(DefualtRadio)`
