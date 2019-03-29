@@ -49,7 +49,8 @@ export default class Pass extends React.Component {
               <div className="row my-3">
                 <div className="col-12">
                   <Paragraph>อัพโหลด ปพ.1</Paragraph>
-                  <Paragraph>อัพโหลด ใบขออนุญาตผู้ปกครอง</Paragraph>
+                  <Paragraph>อัพโหลด ใบขออนุญาตผู้ปกครอง 
+                  </Paragraph>
                   <Paragraph>อัพโหลด สลิป</Paragraph>
                   <Paragraph>เลือกไซส์เสื้อ</Paragraph>
                   <Paragraph>เลือกวิธีการเดินทาง</Paragraph>
@@ -66,10 +67,11 @@ export default class Pass extends React.Component {
                   <TestUpload transcript={'transcript'}/>
                 </div>
                 <div className="col-12 col-md-4">
-                  <TestUpload recipe={'recipe'}/>
+                  <TestUpload confrim={'confrim'}/>
+                  <a href="https://storage.freezer.in.th/profile/%E0%B9%83%E0%B8%9A%E0%B8%82%E0%B8%AD%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%8D%E0%B8%B2%E0%B8%95%E0%B9%80%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%A3%E0%B9%88%E0%B8%A7%E0%B8%A1_%20%28%E0%B8%9C%E0%B8%B9%E0%B9%89%E0%B8%9B%E0%B8%81%E0%B8%84%E0%B8%A3%E0%B8%AD%E0%B8%87%29.docx?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=VizhBfmrCSvpJqGRKvEC%2F20190329%2F%2Fs3%2Faws4_request&X-Amz-Date=20190329T160723Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=75a4d41e6bca6b7832a47253406aaf883f4e5dbf045956729f679ec9812bed3e">แบบฟอมเอกสารขออนุญาติผู้ปกครอง</a>
                 </div>
                 <div className="col-12 col-md-4">
-                  <TestUpload confrim={'confrim'}/>
+                  <TestUpload recipe={'recipe'}/>
                 </div>
               </div>
               <Subtitle>ไซส์เสื้อ</Subtitle>
@@ -90,6 +92,11 @@ export default class Pass extends React.Component {
                   </RadioGroup>
                 </div>
               </div>
+              <p> <img src='/static/img/qrfacebook.png'/></p>
+              <p>  อย่าลืมกดเข้ากลุ่มเพื่อติดตามข่าวสารด้วยนะ
+              <a href="https://www.facebook.com/groups/350278869164512/">Link join Group</a>
+           </p>
+              
             </Card>
             <Paragraph>โปรดตรวจสอบรายละเอียดให้เรียบร้อย หากข้อมูลที่กรอกมาเป็นเท็จทางค่ายจะตัดสิทธิ์ทันที</Paragraph>
             <div className="row text-center">
