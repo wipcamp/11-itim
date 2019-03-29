@@ -41,8 +41,8 @@ class TablePass extends React.Component {
 
   render() {
     return (
-      <RadioGroup onChange = {this.props.handleChange} >
-      <Table columns={this.state.columns} dataSource={this.state.dataSource} pagination={false} />
+      <RadioGroup className="col-12" onChange={this.props.handleChange} >
+        <Table columns={this.state.columns} dataSource={this.state.dataSource} pagination={false} />
       </RadioGroup>
     )
   }
