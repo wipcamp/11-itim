@@ -30,6 +30,22 @@ const BgColors = styled.div`
 const RadioGroup = DefualtRadio.Group
 
 export default class Pass extends React.Component {
+  state = {
+    upload : [
+      'อัพโหลด ปพ.1',
+      'อัพโหลด ใบขออนุญาตผู้ปกครอง',
+      'อัพโหลด สลิป',
+      'เลือกไซส์เสื้อ',
+      'เลือกวิธีการเดินทาง'
+    ],
+    travel: [
+      {value:'เดินทางมาเอง', text: 'เดินทางมาเอง'},
+      {value:'หัวลำโพง', text: 'ให้พี่ค่ายรอรับที่ หัวลำโพง'},
+      {value:'สายใต้ใหม่', text: 'ให้พี่ค่ายรอรับที่ สายใต้ใหม่'},
+      {value:'อนุเสาวรีย์ชัยสมรภูมิ', text: 'ให้พี่ค่ายรอรับที่ อนุเสาวรีย์ชัยสมรภูมิ'},
+      {value:'หมอชิต', text: 'ให้พี่ค่ายรอรับที่ หมอชิต'}
+    ]
+  }
 
   handleChange = (e)=>{
     console.log(e.target.value)
@@ -48,11 +64,11 @@ export default class Pass extends React.Component {
             <Card className="my-5">
               <div className="row my-3">
                 <div className="col-12">
-                  <Paragraph>อัพโหลด ปพ.1</Paragraph>
-                  <Paragraph>อัพโหลด ใบขออนุญาตผู้ปกครอง</Paragraph>
-                  <Paragraph>อัพโหลด สลิป</Paragraph>
-                  <Paragraph>เลือกไซส์เสื้อ</Paragraph>
-                  <Paragraph>เลือกวิธีการเดินทาง</Paragraph>
+                  {this.state.upload.map((data,index)=>{
+                    return(
+                      <Paragraph key={index}>{data}</Paragraph>
+                    )
+                  })}
                 </div>
               </div>
             </Card>
@@ -73,7 +89,7 @@ export default class Pass extends React.Component {
                 </div>
               </div>
               <Subtitle>ไซส์เสื้อ</Subtitle>
-              <div className="row my-3">
+              <div className="row my-3 text-center">
                 <div className="col-12">
                   <TablePass handleChange={this.handleChange}/>
                 </div>
@@ -82,11 +98,13 @@ export default class Pass extends React.Component {
               <div className="row my-3">
                 <div className="col-12">
                   <RadioGroup onChange ={this.handleChange} >
-                    <Radio value='เดินทางมาเอง'>เดินทางมาเอง</Radio> <br/>
-                    <Radio value='หัวลำโพง'>ให้พี่ค่ายรอรับที่ หัวลำโพง</Radio> <br/>
-                    <Radio value='สายใต้ใหม่'>ให้พี่ค่ายรอรับที่ สายใต้ใหม่</Radio> <br/>
-                    <Radio value='อนุเสาวรีย์ชัยสมรภูมิ'>ให้พี่ค่ายรอรับที่ อนุเสาวรีย์ชัยสมรภูมิ</Radio> <br/>
-                    <Radio value='หมอชิต'>ให้พี่ค่ายรอรับที่ หมอชิต</Radio>
+                    {this.state.travel.map((data,index)=>{
+                      return(
+                        <div>
+                          <Radio value={data.value} key={index}>{data.text}</Radio>
+                        </div>
+                      )
+                    })}
                   </RadioGroup>
                 </div>
               </div>
