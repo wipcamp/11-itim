@@ -85,6 +85,7 @@ export default class Pass extends React.Component {
                   <ParagraphBold>เลขที่บัญชี 237-223675-3</ParagraphBold>
                   <ParagraphBold>พร้อมเพย์ 099-0067887</ParagraphBold>
                   <Paragraph>ชื่อบัญชี นางสาว ลลิตา เล็กประเสริฐ</Paragraph>
+                  <Paragraph>สาขามหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี</Paragraph>
                 </div>
               </div>
             </Card>
