@@ -31,7 +31,7 @@ class LoginFaceBook extends React.Component {
   }
   changetoRegisterPage = async () => {
     try {
-      if (CookiesService.gettokenJWTCookie) {
+      if (CookiesService.gettokenJWTCookie()) {
     Router.push('/passing')
       } 
     } catch (error) {

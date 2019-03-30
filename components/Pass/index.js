@@ -31,7 +31,7 @@ const BgColors = styled.div`
   }
 `
 
-const RadioGroup = DefualtRadio.Group
+let RadioGroup = DefualtRadio.Group
 
 export default class Pass extends React.Component {
   state = {
