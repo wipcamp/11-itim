@@ -46,7 +46,7 @@ class LoginFaceBook extends React.Component {
         scope="email"
         autoLoad={false}
         fields="name,email,picture,id"
-        appId="2259610627641637"
+        appId="293604811359850"
         callback={responseFacebook}
         render={renderProps => (
           <React.Fragment>
