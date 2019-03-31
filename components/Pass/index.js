@@ -10,7 +10,7 @@ import RegisterService from '../../service/RegisterService'
 import Button from '../Core/Button'
 import BG from '../Core/Bg'
 import colors from '../../config/colors'
-import CookiesService from '../../service/CookieService';
+import CookiesService from '../../service/CookieService'
 
 const Subtitle = styled.h2`
   font-size: 20px;
@@ -37,16 +37,15 @@ let RadioGroup = DefualtRadio.Group
 
 export default class Pass extends React.Component {
   componentDidMount = async () => {
-    if(CookiesService.gettokenJWTCookie(
-    )){
+    if (CookiesService.gettokenJWTCookie()) {
       const profile = await RegisterService.getProfile()
       this.setState({
-        profile: profile.data,
+        profile: profile.data
       })
     }
   }
   state = {
-    profile:{},
+    profile: {},
     upload: [
       'อัพโหลด ปพ.1',
       'อัพโหลด ใบขออนุญาตผู้ปกครอง',
@@ -64,7 +63,6 @@ export default class Pass extends React.Component {
       },
       { value: 'หมอชิต', text: 'ให้พี่ค่ายรอรับที่ หมอชิต' }
     ]
-    
   }
 
   handleChange = e => {
@@ -74,7 +72,7 @@ export default class Pass extends React.Component {
     return (
       <BgColors>
         <div className="container">
-          <Navbar state={this.state}/>
+          <Navbar state={this.state} />
           <Card className="my-5">
             <Headline className="text-center">Congratulation !</Headline>
             <Paragraph className="text-center">
@@ -98,7 +96,9 @@ export default class Pass extends React.Component {
                   <ParagraphBold>เลขที่บัญชี 237-223675-3</ParagraphBold>
                   <ParagraphBold>พร้อมเพย์ 099-0067887</ParagraphBold>
                   <Paragraph>ชื่อบัญชี นางสาว ลลิตา เล็กประเสริฐ</Paragraph>
-                  <Paragraph>สาขามหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี</Paragraph>
+                  <Paragraph>
+                    สาขามหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี
+                  </Paragraph>
                 </div>
               </div>
             </Card>
@@ -113,7 +113,9 @@ export default class Pass extends React.Component {
                 </div>
                 <div className="col-12 col-md-4 text-center">
                   <TestUpload confrim={'confrim'} />
-                  <a href="https://storage.freezer.in.th/profile/%E0%B9%83%E0%B8%9A%E0%B8%82%E0%B8%AD%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%8D%E0%B8%B2%E0%B8%95%E0%B9%80%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%A3%E0%B9%88%E0%B8%A7%E0%B8%A1_%20%28%E0%B8%9C%E0%B8%B9%E0%B9%89%E0%B8%9B%E0%B8%81%E0%B8%84%E0%B8%A3%E0%B8%AD%E0%B8%87%29.docx?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=VizhBfmrCSvpJqGRKvEC%2F20190329%2F%2Fs3%2Faws4_request&X-Amz-Date=20190329T160723Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=75a4d41e6bca6b7832a47253406aaf883f4e5dbf045956729f679ec9812bed3e">แบบฟอมเอกสารขออนุญาติผู้ปกครอง</a>
+                  <a href="https://storage.freezer.in.th/profile/%E0%B9%83%E0%B8%9A%E0%B8%82%E0%B8%AD%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%8D%E0%B8%B2%E0%B8%95%E0%B9%80%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%A3%E0%B9%88%E0%B8%A7%E0%B8%A1_%20%28%E0%B8%9C%E0%B8%B9%E0%B9%89%E0%B8%9B%E0%B8%81%E0%B8%84%E0%B8%A3%E0%B8%AD%E0%B8%87%29.docx?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=VizhBfmrCSvpJqGRKvEC%2F20190329%2F%2Fs3%2Faws4_request&X-Amz-Date=20190329T160723Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=75a4d41e6bca6b7832a47253406aaf883f4e5dbf045956729f679ec9812bed3e">
+                    แบบฟอมเอกสารขออนุญาติผู้ปกครอง
+                  </a>
                 </div>
               </div>
               <Subtitle>ไซส์เสื้อ</Subtitle>
@@ -138,11 +140,17 @@ export default class Pass extends React.Component {
                   </RadioGroup>
                 </div>
               </div>
-              <p> <img src='/static/img/qrfacebook.png'/></p>
-              <p>  อย่าลืมกดเข้ากลุ่มเพื่อติดตามข่าวสารด้วยนะ
-              <a href="https://www.facebook.com/groups/350278869164512/">Link join Group</a>
-           </p>
-              
+              <div className="text-center">
+                <Paragraph>
+                  <img src="/static/img/qrfacebook.png" />
+                </Paragraph>
+                <Paragraph>
+                  อย่าลืมกดเข้ากลุ่มเพื่อติดตามข่าวสารด้วยนะ
+                  <a href="https://www.facebook.com/groups/350278869164512/">
+                    Link join Group
+                  </a>
+                </Paragraph>
+              </div>
             </Card>
             <Paragraph>
               โปรดตรวจสอบรายละเอียดให้เรียบร้อย
