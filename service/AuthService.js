@@ -1,6 +1,5 @@
 import api from '../utils/apiAuthService'
 import Cookies from './CookieService'
-import { async } from 'rxjs/internal/scheduler/async';
 
 const AuthService = {
   login: async (request) => {
@@ -20,7 +19,12 @@ const AuthService = {
   }
   ,
   getRole: async ()=>{
-    return await api.get('/myrole')
+    return await api.get('/myrole').catch(error =>{
+      if(error == 'Request failed with status code 401'){
+        Cookies.removeJWTAndWipIdCookie()
+        location.reload()
+      }
+    })
   }
 
 }
