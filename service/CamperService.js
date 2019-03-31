@@ -5,6 +5,9 @@ const AuthService = {
   submitData: async (name,value) => {
  let res = await api.post(`/campers/${name}`,{[name]:value})
     console.log(res)
+  },
+  getDocument: async()=>{
+    return await api.get(`/campers/document`)
   }
 }
 

@@ -23,6 +23,7 @@ import {
             uploading: false,
           });
           message.success('upload successfully.')
+          this.props.checkConfrim()
       }).catch(res =>{
         this.setState({
             uploading: false,

@@ -1,7 +1,7 @@
 import React from 'react'
 import Navbar from '../Core/Navbar'
 import TestUpload from './testupload'
-import { Card, Radio as DefualtRadio, Icon } from 'antd'
+import { Card,message, Radio as DefualtRadio, Icon } from 'antd'
 import styled from 'styled-components'
 import Headline, { Paragraph, ParagraphBold } from '../Core/Text'
 import TablePass from './TablePass'
@@ -38,13 +38,25 @@ let RadioGroup = DefualtRadio.Group
 export default class Pass extends React.Component {
   componentDidMount = async () => {
     if (CookiesService.gettokenJWTCookie()) {
+      const checkStatus = await CamperService.getDocument()
+      let tempDoc =[]
+     if (checkStatus.data[0]) {
+       tempDoc[0]=(checkStatus.data[0].transcript)
+       tempDoc[1]=(checkStatus.data[0].confrim)
+       tempDoc[2]=(checkStatus.data[0].receipt)
+       tempDoc[3]=(checkStatus.data[0].size)
+       tempDoc[4]=(checkStatus.data[0].pick_location)
+     }
       const profile = await RegisterService.getProfile()
       this.setState({
-        profile: profile.data
+        profile: profile.data,
+        document:tempDoc
       })
+      console.log(this.state.document)
     }
   }
   state = {
+    document:[null,null,null,null,null],
     profile: {},
     upload: [
       'อัพโหลด ปพ.1',
@@ -67,6 +79,23 @@ export default class Pass extends React.Component {
 
   handleChange = e => {
   CamperService.submitData(e.target.name,e.target.value)
+  
+  this.checkConfrim()
+  }
+  checkConfrim= async()=>{
+    const checkStatus = await CamperService.getDocument()
+    let tempDoc =[]
+    if (await checkStatus.data[0]) {
+      tempDoc[0]=(checkStatus.data[0].transcript)
+      tempDoc[1]=(checkStatus.data[0].confrim)
+      tempDoc[2]=(checkStatus.data[0].receipt)
+      tempDoc[3]=(checkStatus.data[0].size)
+      tempDoc[4]=(checkStatus.data[0].pick_location)
+    }
+    this.setState({
+      document:tempDoc
+    })
+   
   }
   render() {
     return (
@@ -83,7 +112,7 @@ export default class Pass extends React.Component {
               <div className="row my-3">
                 <div className="col-12">
                   {this.state.upload.map((data, index) => {
-                    return <Paragraph key={index}><Icon type="check-circle" theme="twoTone" twoToneColor="#76B445"/> {data}</Paragraph>
+                    return <Paragraph key={index}><Icon type="check-circle"  theme={this.state.document[index]?"twoTone":"outlined"} twoToneColor="#76B445"/> {data}</Paragraph>
                   })}
                 </div>
               </div>
@@ -106,7 +135,7 @@ export default class Pass extends React.Component {
               <Subtitle>อัพโหลดเอกสาร</Subtitle>
               <div className="row my-3">
                 <div className="col-12 col-md-4 text-center">
-                  <TestUpload transcript={'transcript'} />
+                  <TestUpload checkConfrim={this.checkConfrim} transcript={'transcript'} />
                   <div className="col-12 text-left my-3">
                   <ParagraphBold>ใบ ปพ.1</ParagraphBold>
                   <Paragraph>ไฟล์ไม่เกิน 10 MB</Paragraph>
@@ -114,14 +143,14 @@ export default class Pass extends React.Component {
                   </div>
                 </div>
                 <div className="col-12 col-md-4 text-center">
-                  <TestUpload recipe={'receipt'} />
+                  <TestUpload checkConfrim={this.checkConfrim} recipe={'receipt'} />
                   <div className="col-12 text-left my-3">
                   <ParagraphBold>สลิปโอนเงิน</ParagraphBold>
                   <Paragraph>ไฟล์ไม่เกิน 10 MB</Paragraph>
                   </div>
                 </div>
                 <div className="col-12 col-md-4 text-center">
-                  <TestUpload confrim={'confrim'} />
+                  <TestUpload checkConfrim={this.checkConfrim} confrim={'confrim'} />
                   <div className="col-12 text-left my-3">
                   <ParagraphBold>ใบขออนุญาตผู้ปกครอง</ParagraphBold>
                   <Paragraph>ดาวน์โหลดใบขออนุญาตผู้ปกครอง
@@ -174,7 +203,7 @@ export default class Pass extends React.Component {
             </Paragraph>
             <div className="row text-center">
               <div className="col-12">
-                <Button>ยืนยัน</Button>
+                <Button name="hitConfrim" onClick={this.handleChange}>ยืนยัน</Button>
               </div>
             </div>
           </Card>
