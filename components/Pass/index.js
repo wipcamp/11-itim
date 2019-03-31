@@ -1,7 +1,7 @@
 import React from 'react'
 import Navbar from '../Core/Navbar'
 import TestUpload from './testupload'
-import { Card,message, Radio as DefualtRadio, Icon } from 'antd'
+import { Card, Radio as DefualtRadio, Icon } from 'antd'
 import styled from 'styled-components'
 import Headline, { Paragraph, ParagraphBold } from '../Core/Text'
 import TablePass from './TablePass'
@@ -79,7 +79,6 @@ export default class Pass extends React.Component {
 
   handleChange = e => {
   CamperService.submitData(e.target.name,e.target.value)
-  
   this.checkConfrim()
   }
   checkConfrim= async()=>{
@@ -203,7 +202,7 @@ export default class Pass extends React.Component {
             </Paragraph>
             <div className="row text-center">
               <div className="col-12">
-                <Button name="hitConfrim" onClick={this.handleChange}>ยืนยัน</Button>
+                <Button name="confirm" value="confirm" onClick={this.handleChange}>ยืนยัน</Button>
               </div>
             </div>
           </Card>
