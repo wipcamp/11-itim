@@ -11,8 +11,7 @@ import Button from '../Core/Button'
 import BG from '../Core/Bg'
 import colors from '../../config/colors'
 import CookiesService from '../../service/CookieService'
-
-
+import CamperService from '../../service/CamperService'
 const Subtitle = styled.h2`
   font-size: 20px;
 `
@@ -67,7 +66,7 @@ export default class Pass extends React.Component {
   }
 
   handleChange = e => {
-    console.log(e.target.value)
+  CamperService.submitData(e.target.name,e.target.value)
   }
   render() {
     return (
@@ -144,11 +143,11 @@ export default class Pass extends React.Component {
               <Subtitle>วิธีการเดินทางมาค่าย</Subtitle>
               <div className="row my-3">
                 <div className="col-12">
-                  <RadioGroup onChange={this.handleChange}>
+                  <RadioGroup name='location' onChange={this.handleChange}>
                     {this.state.travel.map((data, index) => {
                       return (
                         <div>
-                          <Radio value={data.value} key={index}>
+                          <Radio value={data.value}  key={index}>
                             {data.text}
                           </Radio>
                         </div>
