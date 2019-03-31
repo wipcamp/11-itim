@@ -20,10 +20,8 @@ width: 100%;
 const Background = styled.div`
   display:${props => props.face};
   background-image: url('./../../static/img/loginBG.png');
-  
 `
 class LoginFaceBook extends React.Component {
-  
    responseFacebook = async (response) => {
    let res = await AuthService.login(response)
    this.changetoRegisterPage(res.data.role)
@@ -38,7 +36,7 @@ class LoginFaceBook extends React.Component {
           console.log(role,'not ok')
           Router.push('/notpass')
         }
-      } 
+      }
     } catch (error) {
       console.log(error)
     }
@@ -51,12 +49,12 @@ class LoginFaceBook extends React.Component {
         scope="email"
         autoLoad={true}
         fields="name,email,picture,id"
-        appId="2259610627641637"
+        appId="293604811359850"
         callback={this.responseFacebook}
         render={renderProps => (
           <React.Fragment>
             {/* <ButtonTranparent onClick={renderProps.onClick}> */}
-            <Button size="large" block type="primary" onClick={renderProps.onClick} >ปิดรับสมัครแล้ว</Button>
+            <Button size="large" block type="primary" onClick={renderProps.onClick} >เข้าสู่ระบบ</Button>
             {/* </ButtonTranparent> */}
           </React.Fragment>
         )}
