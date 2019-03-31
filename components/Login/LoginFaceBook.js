@@ -7,9 +7,7 @@ import RegisterService from '../../service/RegisterService'
 import Router from 'next/router'
 import CookiesService from '../../service/CookieService';
 
-const responseFacebook = async (response) => {
-  await AuthService.login(response)
-}
+
 
 const Img = styled.img`
 height:auto;
@@ -25,14 +23,21 @@ const Background = styled.div`
   
 `
 class LoginFaceBook extends React.Component {
-  componentDidMount() {
-    this.changetoRegisterPage()
-
+  
+   responseFacebook = async (response) => {
+   let res = await AuthService.login(response)
+   this.changetoRegisterPage(res.data.role)
   }
-  changetoRegisterPage = async () => {
+  changetoRegisterPage = async (role) => {
     try {
       if (CookiesService.gettokenJWTCookie()) {
-    Router.push('/passing')
+        if(parseInt(role) == 2||parseInt(role) == 10){
+          console.log(role,'ok')
+          Router.push('/passing')
+        }else{
+          console.log(role,'not ok')
+          Router.push('/notpass')
+        }
       } 
     } catch (error) {
       console.log(error)
@@ -44,10 +49,10 @@ class LoginFaceBook extends React.Component {
         <Img src="/static/img/logotitle.png" className="mb-5" />
         <FacebookLogin
         scope="email"
-        autoLoad={false}
+        autoLoad={true}
         fields="name,email,picture,id"
-        appId="293604811359850"
-        callback={responseFacebook}
+        appId="2259610627641637"
+        callback={this.responseFacebook}
         render={renderProps => (
           <React.Fragment>
             {/* <ButtonTranparent onClick={renderProps.onClick}> */}

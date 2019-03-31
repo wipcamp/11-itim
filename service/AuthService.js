@@ -3,23 +3,19 @@ import Cookies from './CookieService'
 
 const AuthService = {
   login: async (request) => {
-    try {
-      await api.post('/auth/login', {
+  
+     let res = await api.post('/auth/login', {
         'provider_name': 'facebook',
         'provider_id': request.userID,
         'accessToken': request.accessToken,
         'role': 1
       })
-        .then(respons => {
-          if (respons) {
-            Cookies.setCookie('tokenJWT', respons.data.token)
-            Cookies.setCookie('wip_Id', respons.data.wip_id)
-            location.reload(true)
-          }
-        })
-    } catch (error) {
-      console.log(error)
-    }
+      if (res) {
+        Cookies.setCookie('tokenJWT', res.data.token)
+        Cookies.setCookie('wip_Id', res.data.wip_id)
+        return res
+      }
+    
   }
 
 }
