@@ -28,7 +28,6 @@ const Img = styled.img`
   }
 `
 export default class Complete extends React.Component {
-  
   render () {
     return (
       <div className="container-fluid">
@@ -41,7 +40,7 @@ export default class Complete extends React.Component {
                 </div>
                 <div className="col-12 mt-3">
                   <Paragraph>
-                  น้อง{this.props.name||'ไอติม'} ที่ไม่ผ่านการคัดเลือกเข้าค่าย WIP Camp #11 ครับ 
+                  น้อง{this.props.name || 'ไอติม'} ที่ไม่ผ่านการคัดเลือกเข้าค่าย WIP Camp #11 ครับ
                   </Paragraph>
                   <Paragraph>
                   ไว้กลับมาสมัครใหม่อีกครั้งในปีหน้านะครับ
