@@ -20,12 +20,12 @@ const Navbar = props => (
       </div>
       <div className="col-6 text-right p-3">
         <Menu>
-          <Paragraph>WIP ID: {props.state && props.state.wip_id}</Paragraph>
+          <Paragraph>WIP ID: {props.state && props.state.profile.wip_id}</Paragraph>
         </Menu>
         <Menu>
           <Paragraph>
-            {props.state && props.state.nickname != null
-              ? `น้อง${props.state.nickname}`
+            {props.state && props.state.profile.nickname != null
+              ? `น้อง${props.state.profile.nickname}`
               : ''}
           </Paragraph>
         </Menu>
