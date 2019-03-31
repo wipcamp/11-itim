@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import Router from 'next/router'
-import Pass from '../components/Pass'
+import NotPass from '../components/NotPass'
 import CookiesService from '../service/CookieService';
-
 
 export default class testPass extends Component {
   componentDidMount() {
@@ -20,7 +19,7 @@ export default class testPass extends Component {
   render () {
     return (
       <div>
-        <Pass />
+        <NotPass />
       </div>
     )
   }
