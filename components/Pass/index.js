@@ -12,6 +12,7 @@ import BG from '../Core/Bg'
 import colors from '../../config/colors'
 import CookiesService from '../../service/CookieService'
 
+
 const Subtitle = styled.h2`
   font-size: 20px;
 `
@@ -83,7 +84,7 @@ export default class Pass extends React.Component {
               <div className="row my-3">
                 <div className="col-12">
                   {this.state.upload.map((data, index) => {
-                    return <Paragraph key={index}><Icon type="check-circle"/> {data}</Paragraph>
+                    return <Paragraph key={index}><Icon type="check-circle" theme="twoTone" twoToneColor="#76B445"/> {data}</Paragraph>
                   })}
                 </div>
               </div>
