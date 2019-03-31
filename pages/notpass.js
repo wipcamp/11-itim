@@ -11,7 +11,7 @@ export default class testPass extends Component {
     try {
       if (!CookiesService.gettokenJWTCookie()) {
         Router.push('/index')
-      } 
+      }
     } catch (error) {
       console.log(error)
     }
