@@ -11,7 +11,12 @@ export default class testPass extends Component {
     try {
       if (!CookiesService.gettokenJWTCookie()) {
         Router.push('/index')
-      } 
+      }
+      let res = await AuthService.getRole()
+     if(await parseInt(res.data.role) == 2){
+       Router.push('/index')
+     }else{
+     } 
     } catch (error) {
       console.log(error)
     }
