@@ -1,5 +1,6 @@
 import api from '../utils/apiAuthService'
 import Cookies from './CookieService'
+import { async } from 'rxjs/internal/scheduler/async';
 
 const AuthService = {
   login: async (request) => {
@@ -16,6 +17,10 @@ const AuthService = {
         return res
       }
     
+  }
+  ,
+  getRole: async ()=>{
+    return await api.get('/myrole')
   }
 
 }
