@@ -2,13 +2,15 @@ import React from 'react'
 import Navbar from '../Core/Navbar'
 import TestUpload from './testupload'
 import { Card, Radio as DefualtRadio } from 'antd'
+import styled from 'styled-components'
 import Headline, { Paragraph, ParagraphBold } from '../Core/Text'
 import TablePass from './TablePass'
 import config from '../../config/fonts'
-import styled from 'styled-components'
+import RegisterService from '../../service/RegisterService'
 import Button from '../Core/Button'
 import BG from '../Core/Bg'
 import colors from '../../config/colors'
+import CookiesService from '../../service/CookieService';
 
 const Subtitle = styled.h2`
   font-size: 20px;
@@ -34,7 +36,17 @@ const BgColors = styled.div`
 let RadioGroup = DefualtRadio.Group
 
 export default class Pass extends React.Component {
+  componentDidMount = async () => {
+    if(CookiesService.gettokenJWTCookie(
+    )){
+      const profile = await RegisterService.getProfile()
+      this.setState({
+        profile: profile.data,
+      })
+    }
+  }
   state = {
+    profile:{},
     upload: [
       'อัพโหลด ปพ.1',
       'อัพโหลด ใบขออนุญาตผู้ปกครอง',
@@ -52,6 +64,7 @@ export default class Pass extends React.Component {
       },
       { value: 'หมอชิต', text: 'ให้พี่ค่ายรอรับที่ หมอชิต' }
     ]
+    
   }
 
   handleChange = e => {
@@ -61,7 +74,7 @@ export default class Pass extends React.Component {
     return (
       <BgColors>
         <div className="container">
-          <Navbar />
+          <Navbar state={this.state}/>
           <Card className="my-5">
             <Headline className="text-center">Congratulation !</Headline>
             <Paragraph className="text-center">
