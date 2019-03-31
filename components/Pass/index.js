@@ -114,7 +114,7 @@ export default class Pass extends React.Component {
                   </div>
                 </div>
                 <div className="col-12 col-md-4 text-center">
-                  <TestUpload recipe={'recipe'} />
+                  <TestUpload recipe={'receipt'} />
                   <div className="col-12 text-left my-3">
                   <ParagraphBold>สลิปโอนเงิน</ParagraphBold>
                   <Paragraph>ไฟล์ไม่เกิน 10 MB</Paragraph>

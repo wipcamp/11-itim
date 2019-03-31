@@ -17,7 +17,7 @@ import {
       this.setState({
         uploading: true,
       })
-      apiCamperService.post(`/camper/upload/${filename}`,formData).then(res =>{
+      apiCamperService.post(`/campers/upload/${filename}`,formData).then(res =>{
         this.setState({
             fileList: [],
             uploading: false,
