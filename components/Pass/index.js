@@ -1,7 +1,7 @@
 import React from 'react'
 import Navbar from '../Core/Navbar'
 import TestUpload from './testupload'
-import { Card, Radio as DefualtRadio } from 'antd'
+import { Card, Radio as DefualtRadio, Icon } from 'antd'
 import styled from 'styled-components'
 import Headline, { Paragraph, ParagraphBold } from '../Core/Text'
 import TablePass from './TablePass'
@@ -83,7 +83,7 @@ export default class Pass extends React.Component {
               <div className="row my-3">
                 <div className="col-12">
                   {this.state.upload.map((data, index) => {
-                    return <Paragraph key={index}>{data}</Paragraph>
+                    return <Paragraph key={index}><Icon type="check-circle"/> {data}</Paragraph>
                   })}
                 </div>
               </div>
