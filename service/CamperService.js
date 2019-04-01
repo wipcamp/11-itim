@@ -1,13 +1,18 @@
 import api from '../utils/apiCamperService'
 import Cookies from './CookieService'
 import {message} from 'antd'
+import Router from 'next/router'
+
 
 const AuthService = {
   submitData: async (name,value) => {
     try {
       let res = await api.post(`/campers/${name}`,{[name]:value})
       if(await res.data.message){
-        message.success('Update successfully!')
+       await message.success('Update successfully!')
+          if(await name=='confirm'){
+            Router.push('https://wip.camp')
+          }
       }
       if(!await res.data.message){
         message.warning('Update ข้อมูลไม่สำเร็จโปรดตรวจสอบฟอร์มให้ครบ')

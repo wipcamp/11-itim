@@ -202,7 +202,7 @@ export default class Pass extends React.Component {
             </Paragraph>
             <div className="row text-center">
               <div className="col-12">
-                <Button name="confirm" value="confirm" onClick={this.handleChange}>ยืนยัน</Button>
+                <Button name="confirm" value="confirm"  onClick={this.handleChange}>ยืนยัน</Button>
               </div>
             </div>
           </Card>
