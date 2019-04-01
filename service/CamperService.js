@@ -9,9 +9,9 @@ const AuthService = {
     try {
       let res = await api.post(`/campers/${name}`,{[name]:value})
       if(await res.data.message){
-       await message.success('Update successfully!')
-          if(await name=='confirm'){
-            Router.push('https://wip.camp')
+        message.success('Update successfully!')
+        if(await name=='confirm'){
+            location.href='https://wip.camp'
           }
       }
       if(!await res.data.message){
