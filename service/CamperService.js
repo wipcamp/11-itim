@@ -10,7 +10,7 @@ const AuthService = {
         message.success('Update successfully!')
       }
       if(!await res.data.message){
-        message.warning('Update ข้อมูลไม่สำเร็จโปรดตรวจสอบฟรอมให้ครบ')
+        message.warning('Update ข้อมูลไม่สำเร็จโปรดตรวจสอบฟอร์มให้ครบ')
       }
     } catch (error) {
       message.error('Update Fail')      
