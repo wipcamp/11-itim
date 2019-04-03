@@ -153,7 +153,7 @@ export default class Pass extends React.Component {
                   <div className="col-12 text-center my-3">
                   <ParagraphBold>ใบขออนุญาตผู้ปกครอง</ParagraphBold>
                   <Paragraph>ดาวน์โหลดใบขออนุญาตผู้ปกครอง
-                  <a href="https://storage.freezer.in.th/profile/%E0%B9%83%E0%B8%9A%E0%B8%82%E0%B8%AD%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%8D%E0%B8%B2%E0%B8%95%E0%B9%80%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%A3%E0%B9%88%E0%B8%A7%E0%B8%A1_%20%28%E0%B8%9C%E0%B8%B9%E0%B9%89%E0%B8%9B%E0%B8%81%E0%B8%84%E0%B8%A3%E0%B8%AD%E0%B8%87%29.docx?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=VizhBfmrCSvpJqGRKvEC%2F20190329%2F%2Fs3%2Faws4_request&X-Amz-Date=20190329T160723Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=75a4d41e6bca6b7832a47253406aaf883f4e5dbf045956729f679ec9812bed3e">
+                  <a href="https://storage.freezer.in.th/profile/confrimsheet.docx?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=VizhBfmrCSvpJqGRKvEC%2F20190403%2F%2Fs3%2Faws4_request&X-Amz-Date=20190403T095120Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=cb3fe51ea0c6680254e9bf9275c3ebceccc005419c4c1ea31168411649b5b8a5">
                     Download
                   </a>
                   </Paragraph>
