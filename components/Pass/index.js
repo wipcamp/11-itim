@@ -137,7 +137,7 @@ export default class Pass extends React.Component {
                   <TestUpload checkConfrim={this.checkConfrim} transcript={'transcript'} />
                   <div className="col-12 text-center my-3">
                   <ParagraphBold>ใบ ปพ.1</ParagraphBold>
-                  <Paragraph>ไฟล์ไม่เกิน 10 MB</Paragraph>
+                  <Paragraph>ไฟล์ไม่เกิน 1 MB</Paragraph>
                   <Paragraph>รับเฉพาะไฟล์นามสกุล png, jpeg, jpg, pdf</Paragraph>
                   </div>
                 </div>
@@ -145,7 +145,7 @@ export default class Pass extends React.Component {
                   <TestUpload checkConfrim={this.checkConfrim} recipe={'receipt'} />
                   <div className="col-12 text-center my-3">
                   <ParagraphBold>สลิปโอนเงิน</ParagraphBold>
-                  <Paragraph>ไฟล์ไม่เกิน 10 MB</Paragraph>
+                  <Paragraph>ไฟล์ไม่เกิน 1 MB</Paragraph>
                   </div>
                 </div>
                 <div className="col-12 col-md-4 text-center">
@@ -153,11 +153,11 @@ export default class Pass extends React.Component {
                   <div className="col-12 text-center my-3">
                   <ParagraphBold>ใบขออนุญาตผู้ปกครอง</ParagraphBold>
                   <Paragraph>ดาวน์โหลดใบขออนุญาตผู้ปกครอง
-                  <a href="https://storage.freezer.in.th/profile/confrimsheet.docx?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=VizhBfmrCSvpJqGRKvEC%2F20190403%2F%2Fs3%2Faws4_request&X-Amz-Date=20190403T095120Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=cb3fe51ea0c6680254e9bf9275c3ebceccc005419c4c1ea31168411649b5b8a5">
+                  <a href="https://storage.freezer.in.th/profile/%E0%B9%83%E0%B8%9A%E0%B8%82%E0%B8%AD%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%8D%E0%B8%B2%E0%B8%95%E0%B9%80%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%A3%E0%B9%88%E0%B8%A7%E0%B8%A1_%20%28%E0%B8%9C%E0%B8%B9%E0%B9%89%E0%B8%9B%E0%B8%81%E0%B8%84%E0%B8%A3%E0%B8%AD%E0%B8%87%29.docx?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=VizhBfmrCSvpJqGRKvEC%2F20190407%2F%2Fs3%2Faws4_request&X-Amz-Date=20190407T071256Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=ea3655273a1bd0a90ed67af34bc376e6038e9ea5b6a7f92caeabd97995a234bc">
                     Download
                   </a>
                   </Paragraph>
-                  <Paragraph>ไฟล์ไม่เกิน 10 MB</Paragraph>
+                  <Paragraph>ไฟล์ไม่เกิน 1 MB</Paragraph>
                   <Paragraph>รับเฉพาะไฟล์นามสกุล png, jpeg, jpg, pdf</Paragraph>
                   </div>
                 </div>
