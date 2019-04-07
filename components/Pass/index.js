@@ -153,7 +153,7 @@ export default class Pass extends React.Component {
                   <div className="col-12 text-center my-3">
                   <ParagraphBold>ใบขออนุญาตผู้ปกครอง</ParagraphBold>
                   <Paragraph>ดาวน์โหลดใบขออนุญาตผู้ปกครอง
-                  <a href="https://storage.freezer.in.th/profile/%E0%B9%83%E0%B8%9A%E0%B8%82%E0%B8%AD%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%8D%E0%B8%B2%E0%B8%95%E0%B9%80%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%A3%E0%B9%88%E0%B8%A7%E0%B8%A1_%20%28%E0%B8%9C%E0%B8%B9%E0%B9%89%E0%B8%9B%E0%B8%81%E0%B8%84%E0%B8%A3%E0%B8%AD%E0%B8%87%29.docx?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=VizhBfmrCSvpJqGRKvEC%2F20190407%2F%2Fs3%2Faws4_request&X-Amz-Date=20190407T071256Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=ea3655273a1bd0a90ed67af34bc376e6038e9ea5b6a7f92caeabd97995a234bc">
+                  <a href="https://storage.freezer.in.th/profile/%E0%B9%83%E0%B8%9A%E0%B8%82%E0%B8%AD%E0%B8%AD%E0%B8%99%E0%B8%B8%E0%B8%8D%E0%B8%B2%E0%B8%95%E0%B9%80%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%A3%E0%B9%88%E0%B8%A7%E0%B8%A1_%20%28%E0%B8%9C%E0%B8%B9%E0%B9%89%E0%B8%9B%E0%B8%81%E0%B8%84%E0%B8%A3%E0%B8%AD%E0%B8%87%29.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=VizhBfmrCSvpJqGRKvEC%2F20190407%2F%2Fs3%2Faws4_request&X-Amz-Date=20190407T102944Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=f440a4c19063548551ed9883807377a982486a94b8f3f6c9592902646dea467d">
                     Download
                   </a>
                   </Paragraph>
