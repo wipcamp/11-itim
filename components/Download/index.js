@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ButtonPrimary from '../Core/Button'
 import Headline, { Paragraph } from '../Core/Text'
 import styled from 'styled-components'
-import { Card } from 'antd'
+import { Card, message} from 'antd'
 import Link from 'next/link'
 import camperservrice from './../../service/CamperService'
 
@@ -37,6 +37,9 @@ getConfrim = async() =>{
   let res = await camperservrice.getdocconfirm()
   console.log(res.data)
 }
+handleClick = () =>{
+  message.warning('handlejaa')
+}
 
     render() {
         return (
@@ -54,7 +57,7 @@ getConfrim = async() =>{
                   เอกสารขออนุญาติทางโรงเรียน 
                   </Paragraph>
                   <Paragraph>
-                <ButtonPrimary>Dowload เอกสาร</ButtonPrimary>
+                <ButtonPrimary onClick={this.handleClick}>Dowload เอกสาร</ButtonPrimary>
                   </Paragraph>
                 </div>
               </div>
