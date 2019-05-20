@@ -24,6 +24,10 @@ const AuthService = {
   },
   getDocument: async()=>{
     return await api.get(`/campers/document`)
+  },
+  getdocconfirm:async()=>{
+    console.log('test')
+    return await api.get('/campers/getdocconfirm')
   }
 }
 
