@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ButtonPrimary from '../Core/Button'
 import Headline, { Paragraph } from '../Core/Text'
 import styled from 'styled-components'
-import { Card, message} from 'antd'
+import { Card, message } from 'antd'
 import Link from 'next/link'
 import camperservrice from './../../service/CamperService'
 
@@ -30,34 +30,29 @@ const Img = styled.img`
 `
 
 class index extends Component {
-componentDidMount=()=>{
-  this.getConfrim()
-}
-getConfrim = async() =>{
-  let res = await camperservrice.getdocconfirm()
-  console.log(res.data)
-}
-handleClick = () =>{
-  message.warning('handlejaa')
-}
 
-    render() {
-        return (
-    <div>
+  handleClick = async () => {
+    let res = await camperservrice.getdocconfirm()
+    console.log(res.data)
+    window.open(res.data,'_blank')
+  }
+
+  render() {
+    return (
       <div className="container-fluid">
         <div className="container">
           <div className="row justify-content-center">
             <CardReponsive className="mt-5 mb-2 p-2">
               <div className="row text-center">
                 <div className="col-12 mt-3">
-                  <Headline>ดาวโหลดเอกสาร</Headline>
+                  <Headline>ดาวน์โหลดเอกสาร</Headline>
                 </div>
                 <div className="col-12 mt-3">
                   <Paragraph>
-                  เอกสารขออนุญาติทางโรงเรียน 
+                    เอกสารขออนุญาติทางโรงเรียน
                   </Paragraph>
                   <Paragraph>
-                <ButtonPrimary onClick={this.handleClick}>Dowload เอกสาร</ButtonPrimary>
+                    <ButtonPrimary onClick={this.handleClick}>Dowload เอกสาร</ButtonPrimary>
                   </Paragraph>
                 </div>
               </div>
@@ -70,9 +65,8 @@ handleClick = () =>{
           </div>
         </div>
       </div>
-    </div>
-        );
-    }
+    );
+  }
 }
 
 
