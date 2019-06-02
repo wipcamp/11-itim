@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import Download from './../components/Download/index'
+import Download from './../components/Cer/index'
 import styled from 'styled-components'
 import colors from '../config/colors'
 import Bg from '../components/Core/Bg'

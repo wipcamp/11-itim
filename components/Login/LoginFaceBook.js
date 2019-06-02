@@ -31,7 +31,7 @@ class LoginFaceBook extends React.Component {
       if (CookiesService.gettokenJWTCookie()) {
         if(parseInt(role) == 2||parseInt(role) == 10){
           console.log(role,'ok')
-          Router.push('/downloadconfrim')
+          Router.push('/downloadcer')
         }else{
           console.log(role,'not ok')
           Router.push('/notpass')

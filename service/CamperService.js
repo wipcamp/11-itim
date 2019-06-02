@@ -21,13 +21,17 @@ const AuthService = {
       message.error('Update Fail')
     }
 
-  },
+  } ,
   getDocument: async () => {
     return await api.get(`/campers/document`)
   },
   getdocconfirm: async () => {
     console.log('test')
     return await api.get('/campers/getdocconfirm')
+  },
+  getCer: async () => {
+    console.log('test')
+    return await api.get('/campers/getertificate')
   }
 }
 
